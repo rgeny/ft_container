@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/01/28 17:43:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/03/22 14:21:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,69 +21,28 @@
 
 namespace ft
 {
-	template< class T>
+	template < class T, class Alloc = std::allocator<T> >
 	class vector
 	{
 		public:
+			typedef T											value_type;
+			typedef Alloc										allocator_type;
+//			typedef allocator_type::reference					reference;
+//			typedef allocator_type::const_reference				const_reference;
+//			typedef allocator_type::pointer						pointer;
+//			typedef allocator_type::const_pointer				const_point;
+//			typedef random_access_iterator<T>					iterator;
+//			typedef random_access_iterator<const T>				const_iterator;
+//			typedef iterator_traits<iterator>::difference_type	difference_type;
+			typedef std::size_t									size_type;
 
-/********************* CONSTRUCTOR **********************/
-			vector	(void)
-				: _size(0)
-				, _tab(0)
-			{	std::cout << DFL_CONSTRUCTOR(VECT_NAME) << std::endl;	}
-
-			vector	(std::size_t n, T val)
-				: _size(n)
-				, _tab(new T[n])
-			{
-				std::cout << PARAMETER_CONSTRUCTOR(VECT_NAME) << std::endl;
-				for (std::size_t i = 0; i < n; i++)
-					this->_tab[i] = val;
-			}
-
-/********************* DESTRUCTOR **********************/
-			~vector	(void)
-			{
-				std::cout << DESTRUCTOR(VECT_NAME) << std::endl;
-				delete[] this->_tab;
-			}
-
-/********************* ITERATORS **********************/
-			class iterator : public std::iterator<std::input_iterator_tag, T>
-			{
-				public:
-					iterator	(void) {}
-
-					iterator	(T *p)
-						: _p(p)
-					{	std::cout << DFL_CONSTRUCTOR("iterator") << std::endl;	}
-
-					~iterator	(void) {}
-
-					iterator &	operator++	(void)
-					{	this->_p++;	return (*this);	}
-					iterator &	operator++	(int)
-					{	T *	p = this->_p;	this->_p++;	return p;	}
-					T &			operator*	(void)
-					{	return *this->_p;	}
-					bool		operator==	(iterator & p)
-					{	return (p == this->_p);	}
-					bool		operator!=	(iterator & p)
-					{	return !(p == this->_p);	}
-				private:
-					T	*_p;
-			};
-			iterator &	begin(void)
-			{
-				return iterator(this->_tab);
-			}
-
+			#include "dctor.hpp"
+			
 
 		protected:
 
 		private:
-			std::size_t	_size;
-			T			*_tab;
+			
 	};
 }
 #endif
