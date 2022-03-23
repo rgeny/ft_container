@@ -3,12 +3,17 @@
 ###############################################
 ##################### OPT #####################
 ###############################################
+
 OPT_LIST=$*
 
 function get_opt()
 {
-	if [ "$OPT_LIST" == "" ] || [ "$*" == "" ]
+	if [ "$OPT_LIST" == "" ]
 	then
+		if [ "$*" == "" ]
+		then
+			return 1
+		fi
 		return 0
 	fi
 	for i in $OPT_LIST
@@ -27,7 +32,26 @@ function get_opt()
 get_opt "-h" "--help"
 if [ "$?" == "1" ]
 then
-	echo "ok"
+	echo "Options :"
+	echo "	--help (-h)"
+	echo "	--verbose (-v)"
+	echo "	--stop (-s)"
+	echo "tests options :"
+	echo "	vector"
+	echo "	map"
+	echo "	stack"
 	exit
 fi
-echo b
+
+get_opt	"-v" "--verbose"
+VERBOSE="$?"
+
+get_opt "-s" "--stop"
+STOP="$?"
+
+###############################################
+#################### TEST #####################
+###############################################
+
+
+

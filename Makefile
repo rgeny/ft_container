@@ -13,13 +13,11 @@ SRCS_DIR			= srcs/
 
 VPATH				= $(SRCS_DIR)
 
-
-DEFAULT_FILES		= operator. structor. member. accessor.
-SRCS				= $(addsuffix .cpp,		my_main)
+SRCS				= $(addsuffix .cpp,		test)
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
 
-EXE					= test
+EXE					= try
 
 all					: $(EXE)
 

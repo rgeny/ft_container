@@ -6,9 +6,44 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/03/22 14:21:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/03/23 18:19:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//TODO :
+//	CONSTRUCTOR
+//	DESTRUCTOR
+//	OPERATOR=
+//	ITERATOR
+//	- begin
+//	- end
+//	- rbegin
+//	- rend
+//	CAPACITY
+//	- size
+//	- max_size
+//	- resize
+//	- capacity
+//	- empty
+//	- reserve
+//	ELEMENT ACCESS
+//	- []
+//	- at
+//	- front
+//	- back
+//	MODIFIERS
+//	- assign
+//	- push_back
+//	- pop_back
+//	- insert
+//	- erase
+//	- swap
+//	- clear
+//	ALLOCATOR
+//	- get_allocator
+//	NON MEMBER
+//	- relational operators
+//	- swap
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
@@ -17,6 +52,7 @@
 
 # define VECT_DFL_SIZE 0
 # define VECT_NAME "vector"
+
 
 
 namespace ft
@@ -36,12 +72,39 @@ namespace ft
 //			typedef iterator_traits<iterator>::difference_type	difference_type;
 			typedef std::size_t									size_type;
 
-			#include "dctor.hpp"
-			
+			explicit	vector	(const allocator_type &		alloc	= allocator_type())
+				:_data(NULL)
+				,_size(0)
+				,_capacity(0)
+			{
+//				DFL_CTOR("Vector")
+			}
+//
+//			explicit	vector	(size_type					n
+//								,const value_type &			val		= value_type()
+//								,const allocator_type &		alloc	= allocator_type())
+//			{
+//				FILL_CTOR("Vector")
+//			}
+//
+//			template <class InputIterator>
+//						vector	(InputIterator				first
+//								,InputIterator				last
+//								,const allocator_type &		alloc	= allocator_type())
+//			{
+//				RANGE_CTOR("Vector")
+//			}
+//						vector	(const vector &				x)
+//			{
+//				CPY_CTOR("Vector")
+//			}
 
 		protected:
 
 		private:
+			T				*_data;
+			std::size_t		_size;
+			std::size_t		_capacity;
 			
 	};
 }
