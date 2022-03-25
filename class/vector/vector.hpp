@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/03/23 18:19:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/03/25 10:42:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ namespace ft
 				,_capacity(0)
 			{
 //				DFL_CTOR("Vector")
+			}
+
+			size_type	size	(void)	const
+			{
+				return (this->_size);
 			}
 //
 //			explicit	vector	(size_type					n

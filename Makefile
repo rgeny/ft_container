@@ -1,42 +1,53 @@
-NEW_DIR				= mkdir -p
-DEL_DIR				= rm -rf
+NEW_DIR						= mkdir -p
+DEL_DIR						= rm -rf
 
-CC					= c++
-COMPILE_FLAG		= $(DEPS_FLAG) -std=c++98 #-Wall -Werror -Wextra
-DEPS_FLAG			= -MMD
-INCLUDES_FLAG		= $(INCLUDES_DIR) $(CLASS_DIR)
+CC							= c++
+COMPILE_FLAG				= $(STD_FLAG) $(DEPS_FLAG) -std=c++98 #-Wall -Werror -Wextra
+DEPS_FLAG					= -MMD
+INCLUDES_FLAG				= $(INCLUDES_DIR) $(CLASS_DIR)
+STD_FLAG					=
 
-INCLUDES_DIR		= $(addprefix -I includes/,	define)
-CLASS_DIR			= $(addprefix -I class/,	vector)
-OBJS_DIR			= objs/
-SRCS_DIR			= srcs/
+INCLUDES_DIR				= $(addprefix -I includes/,	define)
+CLASS_DIR					= $(addprefix -I class/,	vector)
+OBJS_DIR					= objs/
+SRCS_DIR					= srcs/
 
-VPATH				= $(SRCS_DIR)
+VPATH						= $(SRCS_DIR)
 
-SRCS				= $(addsuffix .cpp,		test)
-OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
-DEPS				= $(OBJS:.o=.d)
+OBJS						= $(patsubst %.cpp, $(OBJS_DIR)$(EXE)_%.o, $(SRCS))
+DEPS						= $(OBJS:.o=.d)
 
-EXE					= try
+ifdef SRCS
+all							: $(EXE)
 
-all					: $(EXE)
+clean						:
+							$(DEL_DIR) $(OBJS_DIR)
 
-$(EXE)				: $(OBJS)
-					$(CC) $(COMPILE_FLAG) $^ -o $@
+fclean						: clean
+							$(DEL_DIR) $(EXE)
 
-$(OBJS_DIR)%.o		: %.cpp
-					$(NEW_DIR) $(OBJS_DIR)
-					$(CC) $(COMPILE_FLAG) -c $< $(INCLUDES_FLAG) -o $@
+else
+all							:
+							./test.sh
 
-clean				:
-					$(DEL_DIR) $(OBJS_DIR)
+clean						:
+							./test.sh -c
 
-fclean				: clean
-					$(DEL_DIR) $(EXE)
+fclean						:
+							./test.sh -fc
 
-re					: fclean all
+endif
 
--include			$(DEPS)
+$(EXE)						: $(OBJS)
+							$(CC) $(COMPILE_FLAG) $^ -o $@
 
-.PHONY				: all clean fclean re
+$(OBJS_DIR)$(EXE)_%.o		: %.cpp
+							$(NEW_DIR) $(OBJS_DIR)
+							$(CC) $(COMPILE_FLAG) -c $< $(INCLUDES_FLAG) -o $@
+
+re							: fclean all
+
+-include					$(DEPS)
+
+.PHONY						: all clean fclean re
 

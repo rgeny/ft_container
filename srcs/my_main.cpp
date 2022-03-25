@@ -1,27 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   my_main.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/28 11:58:02 by rgeny             #+#    #+#             */
-/*   Updated: 2022/03/23 17:53:56 by rgeny            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 //#include <iostream>
 //#include <memory>
 //
 //#define SIZE 500000000
 #include "vector.hpp"
 #include <vector>
+#include <iostream>
+
+#ifndef NAMESPACE
+# define NAMESPACE ft
+# define SNAMESPACE "ft"
+#else
+# define SNAMESPACE "std"
+#endif
 
 
 int	main(void)
 {
+	NAMESPACE::vector<int>	v1;
 
-
+	std::cout << SNAMESPACE << " : " << v1.size() << std::endl;
+	while (1);
 
 //	std::vector<int>	vstd;
 //	ft::vector<int>		vft;
