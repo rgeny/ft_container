@@ -19,23 +19,9 @@ DEPS						= $(OBJS:.o=.d)
 
 ifdef SRCS
 all							: $(EXE)
-
-clean						:
-							$(DEL_DIR) $(OBJS_DIR)
-
-fclean						: clean
-							$(DEL_DIR) $(EXE)
-
 else
 all							:
 							./test.sh
-
-clean						:
-							./test.sh -c
-
-fclean						:
-							./test.sh -fc
-
 endif
 
 $(EXE)						: $(OBJS)
@@ -44,6 +30,12 @@ $(EXE)						: $(OBJS)
 $(OBJS_DIR)$(EXE)_%.o		: %.cpp
 							$(NEW_DIR) $(OBJS_DIR)
 							$(CC) $(COMPILE_FLAG) -c $< $(INCLUDES_FLAG) -o $@
+
+clean						:
+							$(DEL_DIR) $(OBJS_DIR)
+
+fclean						: clean
+#							$(DEL_DIR) $(EXE)
 
 re							: fclean all
 

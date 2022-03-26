@@ -18,8 +18,9 @@ int	main(void)
 {
 	NAMESPACE::vector<int>	v1;
 
-	std::cout << SNAMESPACE << " : " << v1.size() << std::endl;
-	while (1);
+//	std::cout << SNAMESPACE << " : " << v1.size() << std::endl;
+	std::cout << v1.size() << std::endl;
+//	while (1);
 
 //	std::vector<int>	vstd;
 //	ft::vector<int>		vft;
