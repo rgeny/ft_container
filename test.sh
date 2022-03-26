@@ -1,11 +1,9 @@
 #!/bin/bash
 
 ###############################################
-##################### VARS ####################
+#################### TESTS ####################
 ###############################################
 
-##### TESTS VARS #####
-N_PAR=3
 declare -a vector_test=(
 	"v1 my_main.cpp srcs/" 
 	"v2 my_main.cpp srcs/")
@@ -21,6 +19,13 @@ declare -a test_name=(
 	"vector"
 	"stack" )
 
+###############################################
+##################### VARS ####################
+###############################################
+
+##### TESTS VARS #####
+TESTS_DIR=tests/
+N_PAR=3
 
 ##### SCRIPT VARS #####
 TIMEOUT="timeout 0.2s"
@@ -29,15 +34,15 @@ DEL_PRINT="1>/dev/null 2>/dev/null"
 OPT_LIST=$*
 SCRIPT=$(basename "$0")
 
-TESTS_DIR=tests/
-
 ##### LOGS #####
 LOGS_DIR=logs/
-mkdir -p $LOGS_DIR
 eval "find $LOGS_DIR$(date +"%F_%T") $DEL_PRINT"
-if [ "$?" == "0" ]; then sleep 1; fi
+while [ "$?" == "0" ]
+do
+	sleep 0.01
+	eval "find $LOGS_DIR$(date +"%F_%T") $DEL_PRINT"
+done
 CUR_LOGS_DIR=$LOGS_DIR$(date +"%F_%T")
-mkdir $CUR_LOGS_DIR
 TEST_LOG_DIR="$CUR_LOGS_DIR/\$1/"
 LOG_RESULT="result.log"
 LOG_RESEARCH="research.log"
@@ -138,7 +143,7 @@ declare -A opt_lst=(
 					printf \$GREEN\"\nRESULT\n\"
 					printf \"\$RESULT\n\"\$WHITE"
 	["stop1"]="exit"
-	["subtest1"]="get_opt \"\$1\"; return \$((!\$?))" )
+	["subtest1"]="get_opt \"\$1\"; if [ "\$?" == "0" ]; then return 0; fi" )
 
 get_opt "-lc" "--logclean"
 if [ "$?" == "1" ]
@@ -178,13 +183,6 @@ SUBTEST="subtest$?"
 ################ FUNCTION TEST ################
 ###############################################
 
-function	test_is_available()
-{
-	for i in $*; do echo -n; done
-	eval "${FCT_ERR[$#]}"
-	eval "${opt_lst[$SUBTEST]}"
-	return 0
-}
 
 function	save_log()
 {
@@ -246,11 +244,8 @@ function	check_result()
 function	test()
 {
 #	CHECK PARAMETERS
-	test_is_available $* "$BASH_LINENO"
-	${ERR[$?]}
-
+	eval "${opt_lst[$SUBTEST]}"
 	(eval make $STDF; eval make $FTF;) 1>/dev/null
-
 	do_test
 	save_log $*
 	check_result $*
@@ -279,27 +274,29 @@ function	is_called_test()
 	fi
 }
 
-###############################################
-##################### TEST ####################
-###############################################
+function	main()
+{
+	mkdir -p $LOGS_DIR
+	mkdir $CUR_LOGS_DIR
+	for ((k = 0; k < ${#test_name[@]}; k++))
+	do
+		is_called_test ${test_name[$k]}
+		if [ "$?" == "1" ]
+		then
+			m=0
+			for l in ${lib_test[${test_name[$k]}]}
+			do
+				m=$(expr $m + 1)
+				ARG+="$l "
+				if [ "$m" == "$N_PAR" ]
+				then
+					test $ARG
+					m=0
+					ARG=""
+				fi
+			done
+		fi
+	done
+}
 
-for ((k = 0; k < ${#test_name[@]}; k++))
-do
-	is_called_test ${test_name[$k]}
-	if [ "$?" == "1" ]
-	then
-		m=0
-		for l in ${lib_test[${test_name[$k]}]}
-		do
-			m=$(expr $m + 1)
-			ARG+="$l "
-			if [ "$m" == "$N_PAR" ]
-			then
-				test $ARG
-				m=0
-				ARG=""
-			fi
-		done
-	fi
-done
-
+main
