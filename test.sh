@@ -5,11 +5,10 @@
 ###############################################
 
 declare -a vector_test=(
-	"v1 my_main.cpp srcs/" 
-	"v2 my_main.cpp srcs/")
+	"v1 test.cpp srcs/" )
 
 declare -a stack_test=(
-	"s1 my_main.cpp srcs/" )
+	"" )
 
 declare -A lib_test=(
 	['vector']="${vector_test[@]}" 
@@ -26,6 +25,7 @@ declare -a test_name=(
 ##### TESTS VARS #####
 TESTS_DIR=tests/
 N_PAR=3
+LINE_DEL=21
 
 ##### SCRIPT VARS #####
 TIMEOUT="timeout 0.2s"
@@ -139,7 +139,7 @@ fi
 
 declare -A opt_lst=(
 	["verbose1"]="printf \$BLUE\"TEST\n\"
-					eval cat \$3/\$TEST
+					eval cat \$3/\$TEST | sed 1,${LINE_DEL}d
 					printf \$GREEN\"\nRESULT\n\"
 					printf \"\$RESULT\n\"\$WHITE"
 	["stop1"]="exit"
@@ -212,9 +212,10 @@ function	check_result()
 	if [ "$RESEARCH" != "$RESULT" ] ||
 		[ "$RESULT_RET" == "$TIMEOUT_RET" ]
 	then
+		printf "\n"$1":"$RED" Ko"$WHITE"\n"
 #		TEST
 		printf $BLUE"TEST\n"
-		eval "cat $3/$TEST"
+		eval "cat $3/$TEST | sed 1,${LINE_DEL}d"
 		printf $WHITE
 
 #		RESEARCH
@@ -236,7 +237,7 @@ function	check_result()
 		fi
 		${opt_lst[$STOP]}
 	else
-		printf $1$GREEN": Ok"$WHITE"\n"
+		printf $1": "$GREEN"Ok"$WHITE"\n"
 		eval "${opt_lst[$VERBOSE]}"
 	fi
 }

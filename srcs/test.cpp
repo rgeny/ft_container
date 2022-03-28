@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/23 18:08:26 by rgeny             #+#    #+#             */
-/*   Updated: 2022/03/23 18:18:39 by rgeny            ###   ########.fr       */
+/*   Created: 2022/03/28 12:01:04 by rgeny             #+#    #+#             */
+/*   Updated: 2022/03/28 12:42:06 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 #else
 # define NAME "std"
 #endif
-
 #include <vector>
 #include <vector.hpp>
 
 int	main	(void)
 {
-	NAMESPACE::vector<int>	test;
-	PRINT(NAME)
+	std::vector<int>	test(10, 20);
+//	PRINT(NAME)
+	std::cout << test.size() << std::endl;
+
 	return (0);
 }

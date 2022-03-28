@@ -1,7 +1,15 @@
-//#include <iostream>
-//#include <memory>
-//
-//#define SIZE 500000000
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   my_main.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/28 12:02:57 by rgeny             #+#    #+#             */
+/*   Updated: 2022/03/28 12:04:42 by rgeny            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vector.hpp"
 #include <vector>
 #include <iostream>
@@ -13,6 +21,10 @@
 # define SNAMESPACE "std"
 #endif
 
+//#include <iostream>
+//#include <memory>
+//
+//#define SIZE 500000000
 
 int	main(void)
 {

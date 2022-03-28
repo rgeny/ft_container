@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/03/25 10:42:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/03/28 12:38:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,20 @@
 
 namespace ft
 {
-	template < class T, class Alloc = std::allocator<T> >
+	template < class T, class Allocator = std::allocator<T> >
 	class vector
 	{
 		public:
 			typedef T											value_type;
-			typedef Alloc										allocator_type;
-//			typedef allocator_type::reference					reference;
-//			typedef allocator_type::const_reference				const_reference;
-//			typedef allocator_type::pointer						pointer;
-//			typedef allocator_type::const_pointer				const_point;
+			typedef Allocator									allocator_type;
+			typedef typename allocator_type::reference			reference;
+			typedef typename allocator_type::const_reference	const_reference;
+			typedef typename allocator_type::pointer			pointer;
+			typedef typename allocator_type::const_pointer		const_pointer;
 //			typedef random_access_iterator<T>					iterator;
 //			typedef random_access_iterator<const T>				const_iterator;
 //			typedef iterator_traits<iterator>::difference_type	difference_type;
+			typedef std::ptrdiff_t								difference_type;
 			typedef std::size_t									size_type;
 
 			explicit	vector	(const allocator_type &		alloc	= allocator_type())
