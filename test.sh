@@ -39,13 +39,11 @@ SCRIPT=$(basename "$0")
 
 ##### LOGS #####
 LOGS_DIR=logs/
-eval "find $LOGS_DIR$(date +"%F_%T") $DEL_PRINT"
-while [ "$?" == "0" ]
-do
-	sleep 0.01
-	eval "find $LOGS_DIR$(date +"%F_%T") $DEL_PRINT"
-done
-CUR_LOGS_DIR=$LOGS_DIR$(date +"%F_%T")
+CUR_LOGS_DIR=$LOGS_DIR$(2>/dev/null ls $LOGS_DIR | wc -w)
+if [ "$?" != "0" ]
+then
+	CUR_LOGS_DIR="$LOGS_DIR"0
+fi
 TEST_LOG_DIR="$CUR_LOGS_DIR/\$1/"
 LOG_RESULT="result.log"
 LOG_RESEARCH="research.log"
