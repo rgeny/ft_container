@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 17:41:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/17 18:47:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,100 +34,11 @@ namespace ft
 	class vector
 	{
 		public:
-			typedef T											value_type;
-			typedef Allocator									allocator_type;
-			typedef std::size_t									size_type;
-			typedef std::ptrdiff_t								difference_type;
-			typedef value_type &								reference;
-			typedef value_type const &							const_reference;
-			typedef typename allocator_type::pointer			pointer;
-			typedef typename allocator_type::const_pointer		const_pointer;
-			typedef typename std::vector<T>::iterator			iterator;
-			typedef typename std::vector<T>::const_iterator		const_iterator;
-			typedef std::reverse_iterator<iterator>				reverse_iterator;
-			typedef std::reverse_iterator<const_iterator>		const_reverse_iterator;
-//			typedef std::random_access_iterator_tag					iterator;
-//			typedef random_access_iterator<const T>				const_iterator;
-//			typedef iterator_traits<iterator>::difference_type	difference_type;
-
-			explicit	vector	(allocator_type const & alloc = allocator_type())
-				:_alloc(alloc)
-				,_size(0)
-				,_capacity(0)
-				,_data(NULL)
-			{
-			}
-
-			explicit	vector	(size_type n
-								,value_type const & val = value_type()
-								,allocator_type const & alloc = allocator_type())
-				:_alloc(alloc)
-				,_size(n)
-				,_capacity(n)
-				,_data(this->_alloc.allocate(this->_capacity))
-			{
-				for (size_t i = 0; i < n; i++)
-					this->_alloc.construct(this->_data + i, val);
-			}
-
-			template < class InputIterator >
-			vector	(InputIterator first
-					,InputIterator last
-					,allocator_type const & alloc = allocator_type()
-					,typename std::enable_if<!std::is_integral<InputIterator>::value, bool>::type = 0)
-				:_alloc(alloc)
-				,_size(std::distance(first, last))
-				,_capacity(this->_size)
-				,_data(this->_alloc.allocate(this->_capacity))
-			{
-				for (size_t i = 0; first != last; i++, first++)
-					this->_alloc.construct(this->_data + i, *first);
-			}
-
-			vector	(vector const & src)
-				:_alloc(src._alloc)
-				,_size(src._size)
-				,_capacity(src._capacity)
-				,_data(this->_alloc.allocate(this->_capacity))
-			{
-				for (size_t i = 0; i < this->_size; i++)
-					this->_alloc.construct(this->_data + i, src._data[i]);
-			}
-
-			~vector	(void)
-			{
-				for (size_t i = 0; i < this->_capacity; i++)
-				{
-					this->_alloc.destroy(this->_data + i);
-				}
-				this->_alloc.deallocate(this->_data, this->_capacity);
-			}
-
-			size_type	size	(void)	const
-			{
-				return (this->_size);
-			}
-
-			size_type	max_size	(void) const
-			{
-				return (this->_alloc.max_size());
-			}
-
-			size_type	capacity	(void) const
-			{
-				return (this->_capacity);
-			}
-
-			iterator	begin	(void)
-			{
-				return (iterator(this->_data));
-			}
-
-			iterator	end	(void)
-			{
-				return (iterator(this->_data + this->_size));
-			}
-
+			#include "vector.typedef.hpp"
+			#include "vector.structor.hpp"
+			#include "vector.iterators.hpp"
+			#include "vector.capacity.hpp"
+			#include "vector.modifiers.hpp"
 
 		protected:
 
