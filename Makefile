@@ -7,12 +7,14 @@ DEPS_FLAG					= -MMD
 INCLUDES_FLAG				= $(INCLUDES_DIR) $(CLASS_DIR)
 STD_FLAG					=
 
-INCLUDES_DIR				= $(addprefix -I includes/,	define)
-CLASS_DIR					= $(addprefix -I class/,	vector)
+INCLUDES_DIR				= $(addprefix -I, includes/ \
+								$(addprefix includes/, define))
+CLASS_DIR					= $(addprefix -I, class/ \
+								$(addprefix class/, vector))
 OBJS_DIR					= objs/
 SRCS_DIR					= srcs/
 
-VPATH						= $(SRCS_DIR)
+VPATH						= $(SRCS_DIR) $(MAKE_DIR)
 
 OBJS						= $(patsubst %.cpp, $(OBJS_DIR)$(EXE)_%.o, $(SRCS))
 DEPS						= $(OBJS:.o=.d)

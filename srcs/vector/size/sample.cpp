@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.cpp                                           :+:      :+:    :+:   */
+/*   sample.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/28 12:01:04 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 12:20:56 by rgeny            ###   ########.fr       */
+/*   Created: 2022/05/17 12:19:17 by rgeny             #+#    #+#             */
+/*   Updated: 2022/05/17 14:10:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector>
-#include <vector.hpp>
-
-#ifndef NAMESPACE
-# define NAMESPACE ft
-#endif
+#include "Utils.hpp"
 
 int	main	(void)
 {
-	std::vector<int>	test(10, 20);
-	std::cout << test.size() << std::endl;
+	NAMESPACE::vector<int>	test;
 
+	std::cout	<< "size     : "
+				<< test.size()
+				<< std::endl
+				<< "max_size : "
+				<< test.max_size()
+				<< std::endl;
+	
 	return (0);
 }

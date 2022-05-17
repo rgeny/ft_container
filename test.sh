@@ -5,7 +5,8 @@
 ###############################################
 
 declare -a vector_test=(
-	"v1 test.cpp srcs/" )
+	"size_sample sample.cpp srcs/vector/size"
+	"iterator_sample sample.cpp srcs/vector/iterator" )
 
 declare -a stack_test=(
 	"" )
@@ -25,10 +26,10 @@ declare -a test_name=(
 ##### TESTS VARS #####
 TESTS_DIR=tests/
 N_PAR=3
-LINE_DEL=21
+LINE_DEL=14
 
 ##### SCRIPT VARS #####
-TIMEOUT="timeout 0.2s"
+TIMEOUT="timeout 1s"
 TIMEOUT_RET="124"
 DEL_PRINT="1>/dev/null 2>/dev/null"
 OPT_LIST=$*
@@ -47,6 +48,8 @@ TEST_LOG_DIR="$CUR_LOGS_DIR/\$1/"
 LOG_RESULT="result.log"
 LOG_RESEARCH="research.log"
 LOG_TEST="test.cpp"
+ERR_RESULT="result.err"
+ERR_RESEARCH="research.err"
 
 ##### MAKEFILE VARS #####
 STD_EXE=std
@@ -63,6 +66,7 @@ BLUE="\033[0;34m"
 PURPLE="\033[0;35m"
 CYAN="\033[0;36m"
 WHITE="\033[0;37m"
+RESET="\033[0m"
 
 ##### ERROR VARS #####
 declare PRINT_ERR="echo $SCRIPT: line \$i: Function require the"
@@ -140,6 +144,8 @@ fi
 declare -A opt_lst=(
 	["verbose1"]="printf \$BLUE\"TEST\n\"
 					eval cat \$3/\$TEST | sed 1,${LINE_DEL}d
+					printf \$BLUE\"\nRESEARCH\n\"
+					printf \"\$RESEARCH\n\"\$WHITE
 					printf \$GREEN\"\nRESULT\n\"
 					printf \"\$RESULT\n\"\$WHITE"
 	["stop1"]="exit"
@@ -192,19 +198,23 @@ function	save_log()
 	eval "cat "$3/$TEST" > $TEST_LOG_DIR$LOG_TEST"
 	eval "mv $STD_EXE $TEST_LOG_DIR"
 	eval "mv $FT_EXE $TEST_LOG_DIR"
+	eval "mv $ERR_RESEARCH $TEST_LOG_DIR"
+	eval "mv $ERR_RESULT $TEST_LOG_DIR"
 }
 
 function	do_test()
 {
 	TIME=$(date +"%s%N")
-	RESEARCH=$($TIMEOUT ./$STD_EXE)
+	RESEARCH=$(2>$ERR_RESEARCH $TIMEOUT valgrind ./$STD_EXE)
 	RESEARCH_RET="$?"
 	RESEARCH_TIME=$(expr $(date +"%s%N") - $TIME)
+	RESEARCH_ERROR=$(cat $ERR_RESEARCH | grep "usage" | awk '{ printf (($5 - $7)) }')
 
 	TIME=$(date +"%s%N")
-	RESULT=$($TIMEOUT ./$FT_EXE)
+	RESULT=$(2>$ERR_RESULT $TIMEOUT valgrind ./$FT_EXE)
 	RESULT_RET="$?"
 	RESULT_TIME=$(expr $(date +"%s%N") - $TIME)
+	RESULT_ERROR=$(cat $ERR_RESULT | grep "usage" | awk '{ printf (($5 - $7)) }')
 }
 
 function	check_result()
@@ -212,32 +222,37 @@ function	check_result()
 	if [ "$RESEARCH" != "$RESULT" ] ||
 		[ "$RESULT_RET" == "$TIMEOUT_RET" ]
 	then
-		printf "\n"$1":"$RED" Ko"$WHITE"\n"
+		printf $1":"$RED" Ko$RESET\n"
 #		TEST
 		printf $BLUE"TEST\n"
 		eval "cat $3/$TEST | sed 1,${LINE_DEL}d"
-		printf $WHITE
+		printf $RESET
 
 #		RESEARCH
 		printf $GREEN"\nRESEARCH\n"
 		if [ "$RESEARCH_RET" == "$TIMEOUT_RET" ]
 		then
-			printf "timeout\n"$WHITE
+			printf "timeout\n"$RESET
 		else
-			printf "$RESEARCH\n"$WHITE
+			printf "$RESEARCH\n"$RESET
 		fi
 
 #		RESULT
 		printf $RED"\nRESULT\n"
 		if [ "$RESULT_RET" == "$TIMEOUT_RET" ]
 		then
-			printf "timeout\n"$WHITE
+			printf "timeout\n"$RESET
 		else
-			printf "$RESULT\n"$WHITE
+			printf "$RESULT\n"$RESET
 		fi
+
+		${opt_lst[$STOP]}
+	elif [ "$RESULT_ERROR" != "$RESEARCH_ERROR" ]
+	then
+		printf "$1:$RED Ko (Memory leak)\n$RESET"
 		${opt_lst[$STOP]}
 	else
-		printf $1": "$GREEN"Ok"$WHITE"\n"
+		printf $1": "$GREEN"Ok"$RESET"\n"
 		eval "${opt_lst[$VERBOSE]}"
 	fi
 }
@@ -246,10 +261,11 @@ function	test()
 {
 #	CHECK PARAMETERS
 	eval "${opt_lst[$SUBTEST]}"
-	(eval make $STDF; eval make $FTF;) 1>/dev/null
+	(eval make $STDF MAKE_DIR="$3"; eval make $FTF MAKE_DIR="$3";) 1>/dev/null
 	do_test
 	save_log $*
 	check_result $*
+	make fclean 1>/dev/null
 }
 
 function	is_called_test()
