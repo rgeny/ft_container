@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 18:47:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/17 21:19:39 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define VECTOR_HPP
 # include <iostream>
 # include "define.hpp"
+# include "type_traits.hpp"
 
 # define VECT_DFL_SIZE 0
 # define VECT_NAME "vector"
