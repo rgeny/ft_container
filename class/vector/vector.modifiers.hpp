@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 18:38:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/17 19:08:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ void	assign	(size_type n
 	this->_data = this->_alloc.allocate(n);
 	for (size_t i = 0; i < n; i++)
 		this->_alloc.construct(this->_data + i, val);
+}
+
+void	clear	(void)
+{
+	for (size_t i = 0; i < this->_size; i++)
+		this->_alloc.destroy(this->_data + i);
+	this->_alloc.deallocate(this->_data, this->_capacity);
+	this->_size = 0;
+	this->_capacity = 0;
 }
 
 # endif

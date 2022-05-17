@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:07:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 18:10:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/17 19:08:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ vector	(vector const & src)
 
 ~vector	(void)
 {
-	for (size_t i = 0; i < this->_capacity; i++)
-		this->_alloc.destroy(this->_data + i);
-	this->_alloc.deallocate(this->_data, this->_capacity);
+	this->clear();
 }
 
 # endif

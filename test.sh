@@ -8,7 +8,9 @@ declare -a vector_test=(
 	"size_sample sample.cpp srcs/vector/size"
 	"iterator_sample sample.cpp srcs/vector/iterator"
 	"constructor_int int.cpp srcs/vector/constructor"
-	"constructor_string string.cpp srcs/vector/constructor" )
+	"constructor_string string.cpp srcs/vector/constructor"
+	"modifiers_clear clear.cpp srcs/vector/modifiers"
+	)
 
 declare -a stack_test=(
 	"" )
@@ -193,9 +195,9 @@ SUBTEST="subtest$?"
 function	save_log()
 {
 	eval "mkdir -p $TEST_LOG_DIR"
-	eval "echo "$RESULT" > $TEST_LOG_DIR$LOG_RESULT"
-	eval "echo "$RESEARCH" > $TEST_LOG_DIR$LOG_RESEARCH"
-	eval "cat "$3/$TEST" > $TEST_LOG_DIR$LOG_TEST"
+	eval "echo \"$RESULT\" > $TEST_LOG_DIR$LOG_RESULT"
+	eval "echo \"$RESEARCH\" > $TEST_LOG_DIR$LOG_RESEARCH"
+	eval "cat \"$3/$TEST\" > $TEST_LOG_DIR$LOG_TEST"
 	eval "mv $STD_EXE $TEST_LOG_DIR"
 	eval "mv $FT_EXE $TEST_LOG_DIR"
 	eval "mv $ERR_RESEARCH $TEST_LOG_DIR"
