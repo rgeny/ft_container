@@ -6,7 +6,8 @@
 
 declare -a vector_test=(
 	"size_sample sample.cpp srcs/vector/size"
-	"iterator_sample sample.cpp srcs/vector/iterator" )
+	"iterator_sample sample.cpp srcs/vector/iterator"
+	"constructor_int int.cpp srcs/vector/constructor" )
 
 declare -a stack_test=(
 	"" )
@@ -251,6 +252,11 @@ function	check_result()
 	then
 		printf "$1:$RED Ko (Memory leak)\n$RESET"
 		${opt_lst[$STOP]}
+	elif [ "$MAKE_RESEARCH_ERROR" != "0" ] ||
+		[ "$MAKE_RESULT_ERROR" != "0" ]
+	then
+		printf "$1:$RED Ko (Compile error)\n$RESET"
+		${opt_lst[$STOP]}
 	else
 		printf $1": "$GREEN"Ok"$RESET"\n"
 		eval "${opt_lst[$VERBOSE]}"
@@ -261,7 +267,10 @@ function	test()
 {
 #	CHECK PARAMETERS
 	eval "${opt_lst[$SUBTEST]}"
-	(eval make $STDF MAKE_DIR="$3"; eval make $FTF MAKE_DIR="$3";) 1>/dev/null
+	(eval make -j $STDF MAKE_DIR="$3") 1>/dev/null
+	MAKE_RESEARCH_ERROR="$?"
+	(eval make -j $FTF MAKE_DIR="$3") 1>/dev/null
+	MAKE_RESULT_ERROR="$?"
 	do_test
 	save_log $*
 	check_result $*

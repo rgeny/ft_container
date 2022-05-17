@@ -39,7 +39,9 @@ clean						:
 fclean						: clean
 #							$(DEL_DIR) $(EXE)
 
-re							: fclean all
+re							:
+							make fclean
+							make
 
 -include					$(DEPS)
 
