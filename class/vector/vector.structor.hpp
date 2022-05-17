@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:07:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 21:28:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/17 21:45:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ template < class InputIterator >
 vector	(InputIterator first
 		,InputIterator last
 		,allocator_type const & alloc = allocator_type()
-		,typename ft::enable_if<!std::is_integral<InputIterator>::value>::type = 0)
+		,typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type = 0)
 	:_alloc(alloc)
 	,_size(0)
 	,_capacity(0)

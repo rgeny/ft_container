@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 21:28:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/17 21:45:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 template < class InputIterator >
 void	assign	(InputIterator first
 				,InputIterator last
-				,typename ft::enable_if<!std::is_integral<InputIterator>::value>::type = 0)
+				,typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type = 0)
 {
 	for (size_t i = 0; i < this->_capacity; i++)
 		this->_alloc.destroy(this->_data + i);
