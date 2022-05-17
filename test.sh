@@ -7,7 +7,8 @@
 declare -a vector_test=(
 	"size_sample sample.cpp srcs/vector/size"
 	"iterator_sample sample.cpp srcs/vector/iterator"
-	"constructor_int int.cpp srcs/vector/constructor" )
+	"constructor_int int.cpp srcs/vector/constructor"
+	"constructor_string string.cpp srcs/vector/constructor" )
 
 declare -a stack_test=(
 	"" )
@@ -146,9 +147,9 @@ declare -A opt_lst=(
 	["verbose1"]="printf \$BLUE\"TEST\n\"
 					eval cat \$3/\$TEST | sed 1,${LINE_DEL}d
 					printf \$BLUE\"\nRESEARCH\n\"
-					printf \"\$RESEARCH\n\"\$WHITE
+					printf \"\$RESEARCH\n\"\$RESET
 					printf \$GREEN\"\nRESULT\n\"
-					printf \"\$RESULT\n\"\$WHITE"
+					printf \"\$RESULT\n\"\$RESET"
 	["stop1"]="exit"
 	["subtest1"]="get_opt \"\$1\"; if [ "\$?" == "0" ]; then return 0; fi" )
 
@@ -206,13 +207,13 @@ function	save_log()
 function	do_test()
 {
 	TIME=$(date +"%s%N")
-	RESEARCH=$(2>$ERR_RESEARCH $TIMEOUT valgrind ./$STD_EXE)
+	RESEARCH=$(2>>$ERR_RESEARCH $TIMEOUT valgrind ./$STD_EXE)
 	RESEARCH_RET="$?"
 	RESEARCH_TIME=$(expr $(date +"%s%N") - $TIME)
 	RESEARCH_ERROR=$(cat $ERR_RESEARCH | grep "usage" | awk '{ printf (($5 - $7)) }')
 
 	TIME=$(date +"%s%N")
-	RESULT=$(2>$ERR_RESULT $TIMEOUT valgrind ./$FT_EXE)
+	RESULT=$(2>>$ERR_RESULT $TIMEOUT valgrind ./$FT_EXE)
 	RESULT_RET="$?"
 	RESULT_TIME=$(expr $(date +"%s%N") - $TIME)
 	RESULT_ERROR=$(cat $ERR_RESULT | grep "usage" | awk '{ printf (($5 - $7)) }')
@@ -220,7 +221,20 @@ function	do_test()
 
 function	check_result()
 {
-	if [ "$RESEARCH" != "$RESULT" ] ||
+	if [ "$MAKE_RESEARCH_ERROR" != "0" ] ||
+		[ "$MAKE_RESULT_ERROR" != "0" ]
+	then
+		printf "$1:$RED Ko (Compile error)\n$RESET"
+		if [ "$VERBOSE" == "verbose1" ]
+		then
+			printf $BLUE"\nRESEARCH\n"
+			eval cat $TEST_LOG_DIR$ERR_RESEARCH
+			printf $RED"\nRESULT\n"
+			eval cat $TEST_LOG_DIR$ERR_RESULT
+			printf $RESET
+		fi
+		${opt_lst[$STOP]}
+	elif [ "$RESEARCH" != "$RESULT" ] ||
 		[ "$RESULT_RET" == "$TIMEOUT_RET" ]
 	then
 		printf $1":"$RED" Ko$RESET\n"
@@ -251,11 +265,14 @@ function	check_result()
 	elif [ "$RESULT_ERROR" != "$RESEARCH_ERROR" ]
 	then
 		printf "$1:$RED Ko (Memory leak)\n$RESET"
-		${opt_lst[$STOP]}
-	elif [ "$MAKE_RESEARCH_ERROR" != "0" ] ||
-		[ "$MAKE_RESULT_ERROR" != "0" ]
-	then
-		printf "$1:$RED Ko (Compile error)\n$RESET"
+		if [ "$VERBOSE" == "verbose1" ]
+		then
+			printf $BLUE"\nRESEARCH\n"
+			eval cat $TEST_LOG_DIR$ERR_RESEARCH
+			printf $RED"\nRESULT\n"
+			eval cat $TEST_LOG_DIR$ERR_RESULT
+			printf $RESET
+		fi
 		${opt_lst[$STOP]}
 	else
 		printf $1": "$GREEN"Ok"$RESET"\n"
@@ -267,9 +284,9 @@ function	test()
 {
 #	CHECK PARAMETERS
 	eval "${opt_lst[$SUBTEST]}"
-	(eval make -j $STDF MAKE_DIR="$3") 1>/dev/null
+	(eval make -j $STDF MAKE_DIR="$3") 1>/dev/null 2>$ERR_RESEARCH
 	MAKE_RESEARCH_ERROR="$?"
-	(eval make -j $FTF MAKE_DIR="$3") 1>/dev/null
+	(eval make -j $FTF MAKE_DIR="$3") 1>/dev/null 2>$ERR_RESULT
 	MAKE_RESULT_ERROR="$?"
 	do_test
 	save_log $*

@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 14:30:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/17 17:41:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 //tmp
 #include <vector>
+#include <iterator>
+#include <type_traits>
 //find tmp
 
 namespace ft
@@ -48,7 +50,7 @@ namespace ft
 //			typedef random_access_iterator<const T>				const_iterator;
 //			typedef iterator_traits<iterator>::difference_type	difference_type;
 
-			explicit	vector	(const allocator_type & alloc = allocator_type())
+			explicit	vector	(allocator_type const & alloc = allocator_type())
 				:_alloc(alloc)
 				,_size(0)
 				,_capacity(0)
@@ -57,15 +59,48 @@ namespace ft
 			}
 
 			explicit	vector	(size_type n
-								,const value_type & val = value_type()
-								,const allocator_type & alloc = allocator_type())
+								,value_type const & val = value_type()
+								,allocator_type const & alloc = allocator_type())
 				:_alloc(alloc)
 				,_size(n)
 				,_capacity(n)
 				,_data(this->_alloc.allocate(this->_capacity))
 			{
 				for (size_t i = 0; i < n; i++)
-					this->_data[i] = val;
+					this->_alloc.construct(this->_data + i, val);
+			}
+
+			template < class InputIterator >
+			vector	(InputIterator first
+					,InputIterator last
+					,allocator_type const & alloc = allocator_type()
+					,typename std::enable_if<!std::is_integral<InputIterator>::value, bool>::type = 0)
+				:_alloc(alloc)
+				,_size(std::distance(first, last))
+				,_capacity(this->_size)
+				,_data(this->_alloc.allocate(this->_capacity))
+			{
+				for (size_t i = 0; first != last; i++, first++)
+					this->_alloc.construct(this->_data + i, *first);
+			}
+
+			vector	(vector const & src)
+				:_alloc(src._alloc)
+				,_size(src._size)
+				,_capacity(src._capacity)
+				,_data(this->_alloc.allocate(this->_capacity))
+			{
+				for (size_t i = 0; i < this->_size; i++)
+					this->_alloc.construct(this->_data + i, src._data[i]);
+			}
+
+			~vector	(void)
+			{
+				for (size_t i = 0; i < this->_capacity; i++)
+				{
+					this->_alloc.destroy(this->_data + i);
+				}
+				this->_alloc.deallocate(this->_data, this->_capacity);
 			}
 
 			size_type	size	(void)	const
@@ -76,6 +111,11 @@ namespace ft
 			size_type	max_size	(void) const
 			{
 				return (this->_alloc.max_size());
+			}
+
+			size_type	capacity	(void) const
+			{
+				return (this->_capacity);
 			}
 
 			iterator	begin	(void)

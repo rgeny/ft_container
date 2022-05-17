@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sample.cpp                                         :+:      :+:    :+:   */
+/*   print.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 12:24:43 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 15:38:41 by rgeny            ###   ########.fr       */
+/*   Created: 2022/05/17 16:01:56 by rgeny             #+#    #+#             */
+/*   Updated: 2022/05/17 16:02:39 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Utils.hpp"
+#include "Utils.hpp"
 
-int	main	(void)
+void	_print_nl	(std::string const msg)
 {
-	NAMESPACE::vector<int>	t1(5, 3);
-
-	for_each(t1.begin(), t1.end(), _print_val<int>);
-	return (0);
+	std::cout	<< msg
+				<< std::endl;
 }

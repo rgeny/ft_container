@@ -2,7 +2,7 @@ NEW_DIR						= mkdir -p
 DEL_DIR						= rm -rf
 
 CC							= c++
-COMPILE_FLAG				= $(STD_FLAG) $(DEPS_FLAG) -std=c++98 #-Wall -Werror -Wextra
+COMPILE_FLAG				= $(STD_FLAG) $(DEPS_FLAG) -g #-std=c++98 #-Wall -Werror -Wextra
 DEPS_FLAG					= -MMD
 INCLUDES_FLAG				= $(INCLUDES_DIR) $(CLASS_DIR)
 STD_FLAG					=
@@ -13,10 +13,12 @@ CLASS_DIR					= $(addprefix -I, class/ \
 								$(addprefix class/, vector))
 OBJS_DIR					= objs/
 SRCS_DIR					= srcs/
+UTILS_DIR					= $(SRCS_DIR)Utils/
 
-VPATH						= $(SRCS_DIR) $(MAKE_DIR)
+VPATH						= $(SRCS_DIR) $(UTILS_DIR) $(MAKE_DIR)
 
-OBJS						= $(patsubst %.cpp, $(OBJS_DIR)$(EXE)_%.o, $(SRCS))
+UTILS						= $(addsuffix .cpp,		print)
+OBJS						= $(patsubst %.cpp, $(OBJS_DIR)$(EXE)_%.o, $(SRCS) $(UTILS))
 DEPS						= $(OBJS:.o=.d)
 
 ifdef SRCS
