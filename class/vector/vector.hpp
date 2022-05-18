@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 21:46:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/18 17:52:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include <iostream>
 # include "define.hpp"
 # include "type_traits.hpp"
+
+# include "iterators.hpp"
 
 # define VECT_DFL_SIZE 0
 # define VECT_NAME "vector"
@@ -34,6 +36,49 @@ namespace ft
 	class vector
 	{
 		public:
+			class MyIterator
+				:public ft::iterator<std::random_access_iterator_tag, T>
+			{
+				public:
+					MyIterator	(int * x)
+						:p(x)
+					{	}
+					MyIterator	(const MyIterator & mit)
+						:p(mit.p)
+					{	}
+					
+					MyIterator &	operator++	(void)
+					{
+						++p;
+						return (*this);
+					}
+					MyIterator	operator++	(int)
+					{
+						MyIterator tmp(*this);
+						operator++();
+
+						return (tmp);
+					}
+					bool	operator==	(const MyIterator& rhs) const
+					{
+						return (p==rhs.p);
+					}
+					bool	operator!=	(const MyIterator& rhs) const
+					{
+						return (p!=rhs.p);
+					}
+					int &	operator*	(void)
+					{
+						return (*p);
+					}
+					int		operator-	(MyIterator const & rhs) const
+					{	return (this->p - rhs.p);	}
+
+				private:
+					int *	p;
+			};
+
+
 			#include "vector.typedef.hpp"
 			#include "vector.structor.hpp"
 			#include "vector.iterators.hpp"

@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sample.cpp                                         :+:      :+:    :+:   */
+/*   reverse_iterator.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 12:24:43 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/18 17:53:07 by rgeny            ###   ########.fr       */
+/*   Created: 2022/05/18 15:03:54 by rgeny             #+#    #+#             */
+/*   Updated: 2022/05/18 15:07:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Utils.hpp"
+#ifdef ITERATORS_HPP
+# ifndef REVERSE_ITERATOR_HPP
+#  define REVERSE_ITERATOR_HPP
 
-int	main	(void)
-{
-	NAMESPACE::vector<int>	t1(5, 3);
 
-	std::for_each(t1.begin(), t1.end(), _print_val<int>);
 
-	std::cout	<< std::distance(t1.begin(), t1.end())
-				<< std::endl;
-	return (0);
-}
+# endif
+#endif
+
