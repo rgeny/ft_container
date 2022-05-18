@@ -11,7 +11,8 @@ INCLUDES_DIR				= $(addprefix -I, includes/ \
 								$(addprefix includes/,	define))
 CLASS_DIR					= $(addprefix -I, class/ \
 								$(addprefix class/,		vector \
-														type_traits ))
+														type_traits \
+														iterator ))
 OBJS_DIR					= objs/
 SRCS_DIR					= srcs/
 UTILS_DIR					= $(SRCS_DIR)Utils/
