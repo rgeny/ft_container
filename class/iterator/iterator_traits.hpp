@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iterators_traits.hpp                               :+:      :+:    :+:   */
+/*   iterator_traits.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:54:07 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/18 17:52:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/18 18:53:24 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef ITERATORS_HPP
-# ifndef ITERATORS_TRAITS_HPP
-#  define ITERATORS_TRAITS_HPP
+#ifdef ITERATOR_HPP
+# ifndef ITERATOR_TRAITS_HPP
+#  define ITERATOR_TRAITS_HPP
 
 #  include <iostream>
 

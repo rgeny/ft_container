@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iterators.hpp                                      :+:      :+:    :+:   */
+/*   iterator.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:01:27 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/18 17:50:28 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/18 19:08:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ITERATORS_HPP
-# define ITERATORS_HPP
+#ifndef ITERATOR_HPP
+# define ITERATOR_HPP
 
 # include <iterator>
 
@@ -34,8 +34,7 @@ namespace ft
 		typedef Category	iterator_category;
 	};
 
-	# include "iterators_traits.hpp"
-	# include "reverse_iterator.hpp"
+	# include "iterator_traits.hpp"
 }
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/18 17:52:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/18 19:10:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "define.hpp"
 # include "type_traits.hpp"
 
-# include "iterators.hpp"
+# include "iterator.hpp"
 
 # define VECT_DFL_SIZE 0
 # define VECT_NAME "vector"
@@ -37,7 +37,7 @@ namespace ft
 	{
 		public:
 			class MyIterator
-				:public ft::iterator<std::random_access_iterator_tag, T>
+				:public std::iterator<std::random_access_iterator_tag, T>
 			{
 				public:
 					MyIterator	(int * x)
@@ -77,6 +77,7 @@ namespace ft
 				private:
 					int *	p;
 			};
+
 
 
 			#include "vector.typedef.hpp"
