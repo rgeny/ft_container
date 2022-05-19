@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/18 19:10:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/19 16:26:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,57 @@
 
 namespace ft
 {
+//	template <class T>
+//	class MyIterator
+//		:public std::iterator<std::random_access_iterator_tag, T>
+//	{
+//		public:
+//			MyIterator	(void)
+//				:p(NULL)
+//			{	}
+//			MyIterator	(T * x)
+//				:p(x)
+//			{	}
+//			MyIterator	(MyIterator const & mit)
+//				:p(mit.p)
+//			{	}
+//			
+//			MyIterator &	operator++	(void)
+//			{
+//				++p;
+//				return (*this);
+//			}
+//			MyIterator	operator++	(T)
+//			{
+//				MyIterator tmp(*this);
+//				operator++();
+//
+//				return (tmp);
+//			}
+//			bool	operator==	(MyIterator const & rhs) const
+//			{
+//				return (p==rhs.p);
+//			}
+//			bool	operator!=	(MyIterator const & rhs) const
+//			{
+//				return (p!=rhs.p);
+//			}
+//			T &	operator*	(void)
+//			{
+//				return (*p);
+//			}
+//			T const &	operator*	(void) const
+//			{
+//				return (*p);
+//			}
+//			T		operator-	(MyIterator const & rhs) const
+//			{	return (this->p - rhs.p);	}
+//
+//		private:
+//			T *	p;
+//	};
+//
+//
 	template
 	<
 		class T,
@@ -36,52 +87,12 @@ namespace ft
 	class vector
 	{
 		public:
-			class MyIterator
-				:public std::iterator<std::random_access_iterator_tag, T>
-			{
-				public:
-					MyIterator	(int * x)
-						:p(x)
-					{	}
-					MyIterator	(const MyIterator & mit)
-						:p(mit.p)
-					{	}
-					
-					MyIterator &	operator++	(void)
-					{
-						++p;
-						return (*this);
-					}
-					MyIterator	operator++	(int)
-					{
-						MyIterator tmp(*this);
-						operator++();
-
-						return (tmp);
-					}
-					bool	operator==	(const MyIterator& rhs) const
-					{
-						return (p==rhs.p);
-					}
-					bool	operator!=	(const MyIterator& rhs) const
-					{
-						return (p!=rhs.p);
-					}
-					int &	operator*	(void)
-					{
-						return (*p);
-					}
-					int		operator-	(MyIterator const & rhs) const
-					{	return (this->p - rhs.p);	}
-
-				private:
-					int *	p;
-			};
 
 
 
 			#include "vector.typedef.hpp"
 			#include "vector.structor.hpp"
+			#include "vector.operator.hpp"
 			#include "vector.iterators.hpp"
 			#include "vector.capacity.hpp"
 			#include "vector.modifiers.hpp"

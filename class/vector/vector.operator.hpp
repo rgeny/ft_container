@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sample.cpp                                         :+:      :+:    :+:   */
+/*   vector.operator.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 12:24:43 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/19 17:03:45 by rgeny            ###   ########.fr       */
+/*   Created: 2022/05/19 16:22:51 by rgeny             #+#    #+#             */
+/*   Updated: 2022/05/19 18:43:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Utils.hpp"
+#ifdef VECTOR_HPP
+# ifndef VECTOR_OPERATOR_HPP
+#  define VECTOR_OPERATOR_HPP
 
-
-int	main	(void)
+vector &	operator=	(vector const & rhs)
 {
-	NAMESPACE::vector<int>	t1(5, 3);
-
-	std::for_each(t1.begin(), t1.end(), _print_val<int>);
-	
-	NAMESPACE::vector<int>::const_iterator	it	= t1.begin(),
-											ite	= t1.end();
-
-	std::for_each(it, ite, _print_val<int>);
-
-	std::cout	<< std::distance(t1.begin(), t1.end())
-				<< std::endl;
-	return (0);
+	if (this == &rhs)
+		return (*this);
+	this->clear();
+	this->assign(rhs.begin(), rhs.end());
+	return (*this);
 }
+
+T &	operator[]	(size_t i)
+{
+	return (this->_data[i]);
+}
+
+# endif
+#endif

@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:30:47 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 21:44:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/19 14:57:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ struct is_integral <bool>
 
 template <>
 struct is_integral <char>
-{	static bool const value = true;	};
-
-template <>
-struct is_integral <char16_t>
-{	static bool const value = true;	};
-
-template <>
-struct is_integral <char32_t>
 {	static bool const value = true;	};
 
 template <>

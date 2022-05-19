@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sample.cpp                                         :+:      :+:    :+:   */
+/*   base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 12:24:43 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/19 17:03:45 by rgeny            ###   ########.fr       */
+/*   Created: 2022/05/19 20:20:54 by rgeny             #+#    #+#             */
+/*   Updated: 2022/05/19 20:25:09 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Utils.hpp"
+#include "Utils.hpp"
 
+#define SIZE 48
+#define VAL 17
 
 int	main	(void)
 {
-	NAMESPACE::vector<int>	t1(5, 3);
+	NAMESPACE::vector<short>	v(SIZE);
 
-	std::for_each(t1.begin(), t1.end(), _print_val<int>);
-	
-	NAMESPACE::vector<int>::const_iterator	it	= t1.begin(),
-											ite	= t1.end();
+	init_vector<short>(v, SIZE, VAL);
 
-	std::for_each(it, ite, _print_val<int>);
-
-	std::cout	<< std::distance(t1.begin(), t1.end())
+	std::cout	<< "test base : "
 				<< std::endl;
-	return (0);
+	{
+		for (NAMESPACE::vector<short>::iterator it = v.begin(), ite = v.end();
+			it != ite;
+			it++)
+		{
+			std::cout	<< *(it.base())
+						<< std::endl;
+		}
+	}
 }

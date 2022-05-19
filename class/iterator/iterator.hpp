@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:01:27 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/18 19:08:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/19 15:40:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ namespace ft
 	<
 		class Category,
 		class T,
-		class Distance = ptrdiff_t,
+		class Distance = std::ptrdiff_t,
 		class Pointer = T *,
 		class Reference = T &
 	>
@@ -35,6 +35,7 @@ namespace ft
 	};
 
 	# include "iterator_traits.hpp"
+	# include "random_access_iterator.hpp"
 }
 
 #endif

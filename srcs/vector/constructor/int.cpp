@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 17:10:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/19 21:04:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	main	(void)
 		NAMESPACE::vector<int>	v;
 
 		_print_size(v);
-		for_each(v.begin(), v.end(), _print_val<int>);
+		std::for_each(v.begin(), v.end(), _print_val<int>);
 	}
 	_print_nl("dfl ctor 2 : ");
 	{
 		NAMESPACE::vector<int, std::allocator<int> >	v((std::allocator<int>()));
 
 		_print_size(v);
-		for_each(v.begin(), v.end(), _print_val<int>);
+		std::for_each(v.begin(), v.end(), _print_val<int>);
 	}
 	_print_nl("fill ctor : ");
 	{

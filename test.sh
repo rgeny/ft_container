@@ -6,7 +6,15 @@
 
 declare -a vector_test=(
 	"size_sample sample.cpp srcs/vector/size"
+	"iterator_constructor structor.cpp srcs/vector/iterator"
+	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator"
+	"iterator_base base.cpp srcs/vector/iterator"
+	"iterator_dereferencing dereferencing.cpp srcs/vector/iterator"
+	"iterator_increment increment.cpp srcs/vector/iterator"
+	"iterator_decrement decrement.cpp srcs/vector/iterator"
+	"iterator_operation operation.cpp srcs/vector/iterator"
 	"iterator_sample sample.cpp srcs/vector/iterator"
+	"iterator_compare compare.cpp srcs/vector/iterator"
 	"constructor_int int.cpp srcs/vector/constructor"
 	"constructor_string string.cpp srcs/vector/constructor"
 	"modifiers_clear clear.cpp srcs/vector/modifiers"
@@ -33,7 +41,7 @@ N_PAR=3
 LINE_DEL=14
 
 ##### SCRIPT VARS #####
-TIMEOUT="timeout 1s"
+TIMEOUT="timeout 5s"
 TIMEOUT_RET="124"
 DEL_PRINT="1>/dev/null 2>/dev/null"
 OPT_LIST=$*
@@ -146,9 +154,9 @@ fi
 declare -A opt_lst=(
 	["verbose1"]="printf \$BLUE\"TEST\n\"
 					eval cat \$3/\$TEST | sed 1,${LINE_DEL}d
-					printf \$BLUE\"\nRESEARCH\n\"
+					printf \$BLUE\"\nRESEARCH (time : \$RESEARCH_TIME ms)\n\"
 					printf \"\$RESEARCH\n\"\$RESET
-					printf \$GREEN\"\nRESULT\n\"
+					printf \$GREEN\"\nRESULT (time : \$RESULT_TIME ms)\n\"
 					printf \"\$RESULT\n\"\$RESET"
 	["stop1"]="exit"
 	["subtest1"]="get_opt \"\$1\"; if [ "\$?" == "0" ]; then return 0; fi" )
@@ -209,13 +217,13 @@ function	do_test()
 	TIME=$(date +"%s%N")
 	RESEARCH=$(2>>$ERR_RESEARCH $TIMEOUT valgrind ./$STD_EXE)
 	RESEARCH_RET="$?"
-	RESEARCH_TIME=$(expr $(date +"%s%N") - $TIME)
+	RESEARCH_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	RESEARCH_ERROR=$(cat $ERR_RESEARCH | grep "usage" | awk '{ printf (($5 - $7)) }')
 
 	TIME=$(date +"%s%N")
 	RESULT=$(2>>$ERR_RESULT $TIMEOUT valgrind ./$FT_EXE)
 	RESULT_RET="$?"
-	RESULT_TIME=$(expr $(date +"%s%N") - $TIME)
+	RESULT_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	RESULT_ERROR=$(cat $ERR_RESULT | grep "usage" | awk '{ printf (($5 - $7)) }')
 }
 
