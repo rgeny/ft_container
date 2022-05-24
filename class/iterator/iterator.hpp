@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:01:27 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/19 15:40:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/05/24 22:19:06 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft
 	};
 
 	# include "iterator_traits.hpp"
-	# include "random_access_iterator.hpp"
+	# include "RandomAccessIterator.hpp"
 }
 
 #endif
