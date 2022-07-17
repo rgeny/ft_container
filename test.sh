@@ -21,6 +21,7 @@ declare -a vector_iterator_test=(
 	"iterator_decrement decrement.cpp srcs/vector/iterator"
 	"iterator_operation operation.cpp srcs/vector/iterator"
 	"iterator_compare compare.cpp srcs/vector/iterator"
+	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator"
 	)
 
 declare -a stack_test=(

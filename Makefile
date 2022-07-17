@@ -8,11 +8,10 @@ INCLUDES_FLAG				= $(INCLUDES_DIR) $(CLASS_DIR)
 STD_FLAG					=
 
 INCLUDES_DIR				= $(addprefix -I, includes/ \
-								$(addprefix includes/,	define))
-CLASS_DIR					= $(addprefix -I, class/ \
-								$(addprefix class/,		vector \
+								$(addprefix includes/,	define \
+									$(addprefix class/,	iterator \
 														type_traits \
-														iterator ))
+														vector)))
 OBJS_DIR					= objs/
 SRCS_DIR					= srcs/
 UTILS_DIR					= $(SRCS_DIR)Utils/
