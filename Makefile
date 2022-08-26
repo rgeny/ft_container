@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 11:00:36 by rgeny             #+#    #+#              #
-#    Updated: 2022/08/26 16:50:04 by rgeny            ###   ########.fr        #
+#    Updated: 2022/08/26 17:15:37 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ ifdef SRCS
 all							: $(EXE)
 else
 all							:
-							./test.sh
+							@./test.sh
 endif
 
 $(EXE)						: $(OBJS)

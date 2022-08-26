@@ -34,7 +34,6 @@ declare -A lib_test=(
 
 declare -a test_name=(
 	"vector"
-	"vector_iterator"
 	"stack" )
 
 ###############################################
@@ -214,7 +213,6 @@ FTEST="$?"
 get_opt "-st" "--subtest"
 SUBTEST="subtest$?"
 
-printf "STDF = $STDF\n"
 get_opt "-d" "--debug"
 if [ "$?" == "1" ]
 then
@@ -223,7 +221,6 @@ then
 	STD_PREFIX+=$DEBUG_PREFIX
 	FT_PREFIX+=$DEBUG_PREFIX
 fi
-printf "STDF = $STDF\n"
 
 ###############################################
 ################ FUNCTION TEST ################
@@ -340,9 +337,9 @@ function	test()
 {
 #	CHECK PARAMETERS
 	eval "${opt_lst[$SUBTEST]}"
-	(eval make -j $STDF PREFIX=$STD_PREFIX MAKE_DIR="$3") #1>/dev/null 2>$ERR_STD
+	(eval make -j $STDF PREFIX=$STD_PREFIX MAKE_DIR="$3") 1>/dev/null 2>$ERR_STD
 	MAKE_STD_ERROR="$?"
-	(eval make -j $FTF PREFIX=$FT_PREFIX MAKE_DIR="$3") #1>/dev/null 2>$ERR_FT
+	(eval make -j $FTF PREFIX=$FT_PREFIX MAKE_DIR="$3") 1>/dev/null 2>$ERR_FT
 	MAKE_FT_ERROR="$?"
 	do_test $*
 	save_log $*
