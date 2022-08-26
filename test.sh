@@ -5,23 +5,23 @@
 ###############################################
 
 declare -a vector_test=(
-	"size_sample sample.cpp srcs/vector/size"
+	"size_sample sample.cpp srcs/vector/size/"
 
-	"constructor_int int.cpp srcs/vector/constructor"
-	"constructor_string string.cpp srcs/vector/constructor"
-	"modifiers_clear clear.cpp srcs/vector/modifiers"
+	"constructor_int int.cpp srcs/vector/constructor/"
+	"constructor_string string.cpp srcs/vector/constructor/"
+	"modifiers_clear clear.cpp srcs/vector/modifiers/"
 	)
 
 declare -a vector_iterator_test=(
-	"iterator_constructor structor.cpp srcs/vector/iterator"
-	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator"
-	"iterator_base base.cpp srcs/vector/iterator"
-	"iterator_dereferencing dereferencing.cpp srcs/vector/iterator"
-	"iterator_increment increment.cpp srcs/vector/iterator"
-	"iterator_decrement decrement.cpp srcs/vector/iterator"
-	"iterator_operation operation.cpp srcs/vector/iterator"
-	"iterator_compare compare.cpp srcs/vector/iterator"
-	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator"
+	"iterator_constructor structor.cpp srcs/vector/iterator/"
+	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
+	"iterator_base base.cpp srcs/vector/iterator/"
+	"iterator_dereferencing dereferencing.cpp srcs/vector/iterator/"
+	"iterator_increment increment.cpp srcs/vector/iterator/"
+	"iterator_decrement decrement.cpp srcs/vector/iterator/"
+	"iterator_operation operation.cpp srcs/vector/iterator/"
+	"iterator_compare compare.cpp srcs/vector/iterator/"
+	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator/"
 	)
 
 declare -a stack_test=(
@@ -160,7 +160,7 @@ fi
 
 declare -A opt_lst=(
 	["verbose1"]="printf \$BLUE\"TEST\n\"
-					eval cat \$3/\$TEST | sed 1,${LINE_DEL}d
+					eval cat \$3\$TEST | sed 1,${LINE_DEL}d
 					printf \$BLUE\"\nSTD (time : \$STD_TIME ms)\n\"
 					printf \"\$STD\n\"\$RESET
 					printf \$GREEN\"\nFT (time : \$FT_TIME ms)\n\"
@@ -173,20 +173,23 @@ get_opt "-lc" "--logclean"
 if [ "$?" == "1" ]
 then
 	rm -rf $LOGS_DIR
-	exit
 fi
 
 get_opt "-fc" "--fclean"
 if [ "$?" == "1" ]
 then
 	make fclean
-	exit
 fi
 
 get_opt "-c" "--clean"
 if [ "$?" == "1" ]
 then
 	make clean
+fi
+
+get_opt "-lc" "--logclean" "-fc" "--fclean" "-c" "--clean"
+if [ "$?" == "1" ]
+then
 	exit
 fi
 
@@ -216,7 +219,7 @@ function	save_log()
 	eval "mkdir -p $TEST_LOG_DIR"
 	eval "echo \"$FT\" > $TEST_LOG_DIR$LOG_FT"
 	eval "echo \"$STD\" > $TEST_LOG_DIR$LOG_STD"
-	eval "cat \"$3/$TEST\" > $TEST_LOG_DIR$LOG_TEST"
+	eval "cat \"$3$TEST\" > $TEST_LOG_DIR$LOG_TEST"
 	eval "mv $STD_EXE $TEST_LOG_DIR"
 	eval "mv $FT_EXE $TEST_LOG_DIR"
 	eval "mv $ERR_STD $TEST_LOG_DIR"
@@ -262,7 +265,7 @@ function	check_result()
 	["verbose_time1"]="printf \$BLUE\"(std_time : \$STD_TIME ms)\"\$GREEN\"(ft_time : \$FT_TIME ms)\n\$RESET\""
 #		TEST
 		printf $BLUE"TEST\n"
-		eval "cat $3/$TEST | sed 1,${LINE_DEL}d"
+		eval "cat $3$TEST | sed 1,${LINE_DEL}d"
 		printf $RESET
 
 #		STD
@@ -302,7 +305,7 @@ function	check_result()
 
 #		TEST
 		printf $BLUE"TEST\n"
-		eval "cat $3/$TEST | sed 1,${LINE_DEL}d"
+		eval "cat $3$TEST | sed 1,${LINE_DEL}d"
 		printf $RESET
 
 		printf $GREEN"\nSTD (time : $STD_TIME ms)\n"
@@ -325,7 +328,7 @@ function	test()
 	do_test
 	save_log $*
 	check_result $*
-	make fclean 1>/dev/null
+#	make fclean 1>/dev/null
 }
 
 function	is_called_test()

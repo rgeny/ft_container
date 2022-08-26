@@ -6,24 +6,10 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 11:00:36 by rgeny             #+#    #+#              #
-#    Updated: 2022/08/26 11:23:57 by rgeny            ###   ########.fr        #
+#    Updated: 2022/08/26 12:36:43 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#INCLUDES_FLAG				= $(INCLUDES_DIR) $(CLASS_DIR)
-#STD_FLAG					=
-#
-#INCLUDES_DIR				= $(addprefix -I, includes/ \
-#								$(addprefix includes/,	define \
-#									$(addprefix class/,	iterator \
-#														common \
-#														vector)))
-#VPATH						= $(SRCS_DIR) $(UTILS_DIR) $(MAKE_DIR)
-#
-#UTILS						= $(addsuffix .cpp,		print)
-#OBJS						= $(patsubst %.cpp, $(OBJS_DIR)$(EXE)_%.o, $(SRCS) $(UTILS))
-#DEPS						= $(OBJS:.o=.d)
-#
 NEW_DIR						= mkdir -p
 DEL_DIR						= rm -rf
 
@@ -47,7 +33,7 @@ TEMPLATES_DIR				= $(INCLUDES_DIR)templates/
 ITERATOR_DIR				= $(TEMPLATES_DIR)iterator/
 TYPE_TRAITS_DIR				= $(TEMPLATES_DIR)type_traits/
 VECTOR_DIR					= $(TEMPLATES_DIR)vector/
-OBJS_DIR					= objs/
+OBJS_DIR					= objs/$(MAKE_DIR)
 SRCS_DIR					= srcs/
 UTILS_DIR					= $(SRCS_DIR)Utils/
 
