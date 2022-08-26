@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:06:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 16:12:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/26 18:27:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,45 @@ void	init_vector	(NAMESPACE::vector<T> & v
 {
 	for (size_t i = 0; i < size; i++)
 		v[i] = ((val + i) * size) / (i + 1);
+}
+
+template
+<
+	typename T,
+	class Container
+>
+void	fill_stack	(NAMESPACE::stack<T, Container> & stack,
+					 T start,
+					 T end)
+{
+	while (start <= end)
+	{
+		stack.push(start);
+		start++;
+	}
+	std::cout	<< "size = "
+				<< stack.size()
+				<< std::endl;
+}
+
+template
+<
+	typename T,
+	class Container
+>
+void	empty_the_stack	(NAMESPACE::stack<T, Container> & stack)
+{
+	_print_nl	("empty the stack");
+	while (!stack.empty())
+	{
+		std::cout	<< stack.top()
+					<< " ";
+		stack.pop();
+	}
+	std::cout	<< std::endl
+				<< "size = "
+				<< stack.size()
+				<< std::endl;
 }
 
 //template<>

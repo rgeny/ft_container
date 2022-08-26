@@ -27,6 +27,10 @@ declare -a stack_test=(
 	"member_types member_types.cpp srcs/stack/"
 	"member_objects member_objects.cpp srcs/stack/"
 	"structor structor.cpp srcs/stack/"
+	"crash_test_top crash_top.cpp srcs/stack/"
+	"crash_test_pop crash_pop.cpp srcs/stack/"
+	"crash_test_big_size crash_big_size.cpp srcs/stack/"
+	"member_function member_function.cpp srcs/stack/"
 	)
 
 declare -A lib_test=(
