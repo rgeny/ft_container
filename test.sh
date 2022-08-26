@@ -24,7 +24,9 @@ declare -a vector_test=(
 	)
 
 declare -a stack_test=(
-	"member_types member_types.cpp srcs/stack/" )
+	"member_types member_types.cpp srcs/stack/"
+	"member_objects member_objects.cpp srcs/stack/"
+	)
 
 declare -A lib_test=(
 	['vector']="${vector_test[@]}" 
@@ -70,8 +72,8 @@ ERR_STD="research.err"
 STD_EXE=$EXE_DIR\$3std_\$1
 FT_EXE=$EXE_DIR\$3ft_\$1
 TEST="\$2"
-STDF="STD_FLAG=-DNAMESPACE=std SRCS=$TEST EXE=$STD_EXE"
-FTF="SRCS=$TEST EXE=$FT_EXE"
+STDF="STD_FLAG=-DNAMESPACE=std SRCS=$TEST EXE=$STD_EXE PREFIX=\"std_\""
+FTF="SRCS=$TEST EXE=$FT_EXE PREFIX=\"ft_\""
 
 ##### COLOR VARS #####
 RED="\033[0;31m"

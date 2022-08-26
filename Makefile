@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 11:00:36 by rgeny             #+#    #+#              #
-#    Updated: 2022/08/26 14:09:23 by rgeny            ###   ########.fr        #
+#    Updated: 2022/08/26 16:17:29 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ VPATH						+=$(UTILS_DIR)
 VPATH						+=$(MAKE_DIR)
 
 UTILS						= $(addsuffix .cpp,		print)
-OBJS						= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS) $(UTILS))
+OBJS						= $(patsubst %.cpp, $(OBJS_DIR)$(PREFIX)%.o, $(SRCS) $(UTILS))
 DEPS						= $(OBJS:.o=.d)
 
 ifdef SRCS
@@ -60,7 +60,7 @@ $(EXE)						: $(OBJS)
 							printf "exe = " $(EXE)
 							$(CC) $(COMPILE_FLAG) $^ -o $@
 
-$(OBJS_DIR)%.o				: %.cpp
+$(OBJS_DIR)$(PREFIX)%.o		: %.cpp
 							$(NEW_DIR) $(OBJS_DIR)
 							$(CC) $(COMPILE_FLAG) -c $< $(INCLUDES_FLAG) -o $@
 
@@ -68,7 +68,7 @@ clean						:
 							$(DEL_DIR) $(OBJS_DIR)
 
 fclean						: clean
-#							$(DEL_DIR) $(EXE)
+							$(DEL_DIR) $(EXE_DIR)
 
 re							:
 							make fclean
