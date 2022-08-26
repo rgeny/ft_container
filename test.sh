@@ -54,6 +54,7 @@ OPT_LIST=$*
 SCRIPT=$(basename "$0")
 
 ##### LOGS #####
+EXE_DIR=exe/
 LOGS_DIR=logs/
 CUR_LOGS_DIR=$LOGS_DIR$(2>/dev/null ls $LOGS_DIR | wc -w)
 if [ "$?" != "0" ]
@@ -68,8 +69,8 @@ ERR_FT="result.err"
 ERR_STD="research.err"
 
 ##### MAKEFILE VARS #####
-STD_EXE=std
-FT_EXE=ft
+STD_EXE=$EXE_DIR\${3}std_\$1
+FT_EXE=$EXE_DIR\${3}ft_\$1
 TEST="\$2"
 STDF="STD_FLAG=-DNAMESPACE=std SRCS=$TEST EXE=$STD_EXE"
 FTF="SRCS=$TEST EXE=$FT_EXE"
@@ -220,8 +221,10 @@ function	save_log()
 	eval "echo \"$FT\" > $TEST_LOG_DIR$LOG_FT"
 	eval "echo \"$STD\" > $TEST_LOG_DIR$LOG_STD"
 	eval "cat \"$3$TEST\" > $TEST_LOG_DIR$LOG_TEST"
-	eval "mv $STD_EXE $TEST_LOG_DIR"
-	eval "mv $FT_EXE $TEST_LOG_DIR"
+	eval "cp $STD_EXE $TEST_LOG_DIR"
+	eval "cp $FT_EXE $TEST_LOG_DIR"
+#	eval "mv $STD_EXE $TEST_LOG_DIR"
+#	eval "mv $FT_EXE $TEST_LOG_DIR"
 	eval "mv $ERR_STD $TEST_LOG_DIR"
 	eval "mv $ERR_FT $TEST_LOG_DIR"
 }
@@ -229,13 +232,13 @@ function	save_log()
 function	do_test()
 {
 	TIME=$(date +"%s%N")
-	STD=$(2>>$ERR_STD $TIMEOUT valgrind ./$STD_EXE)
+	STD=$(eval 2>>$ERR_STD $TIMEOUT valgrind ./$STD_EXE)
 	STD_RET="$?"
 	STD_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	STD_ERROR=$(cat $ERR_STD | grep "usage" | awk '{ printf (($5 - $7)) }')
 
 	TIME=$(date +"%s%N")
-	FT=$(2>>$ERR_FT $TIMEOUT valgrind ./$FT_EXE)
+	FT=$(eval 2>>$ERR_FT $TIMEOUT valgrind ./$FT_EXE)
 	FT_RET="$?"
 	FT_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	FT_ERROR=$(cat $ERR_FT | grep "usage" | awk '{ printf (($5 - $7)) }')
@@ -328,7 +331,6 @@ function	test()
 	do_test
 	save_log $*
 	check_result $*
-#	make fclean 1>/dev/null
 }
 
 function	is_called_test()

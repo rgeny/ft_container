@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 11:00:36 by rgeny             #+#    #+#              #
-#    Updated: 2022/08/26 12:36:43 by rgeny            ###   ########.fr        #
+#    Updated: 2022/08/26 13:10:41 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,14 @@ VECTOR_DIR					= $(TEMPLATES_DIR)vector/
 OBJS_DIR					= objs/$(MAKE_DIR)
 SRCS_DIR					= srcs/
 UTILS_DIR					= $(SRCS_DIR)Utils/
+EXE_DIR						= exe/$(MAKE_DIR)
 
 VPATH						= $(SRCS_DIR)
 VPATH						+=$(UTILS_DIR)
 VPATH						+=$(MAKE_DIR)
 
 UTILS						= $(addsuffix .cpp,		print)
-OBJS						= $(patsubst %.cpp, $(OBJS_DIR)$(EXE)_%.o, $(SRCS) $(UTILS))
+OBJS						= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS) $(UTILS))
 DEPS						= $(OBJS:.o=.d)
 
 ifdef SRCS
@@ -53,9 +54,11 @@ all							:
 endif
 
 $(EXE)						: $(OBJS)
+							$(NEW_DIR) $(EXE_DIR)
+							printf "exe = " $(EXE)
 							$(CC) $(COMPILE_FLAG) $^ -o $@
 
-$(OBJS_DIR)$(EXE)_%.o		: %.cpp
+$(OBJS_DIR)%.o				: %.cpp
 							$(NEW_DIR) $(OBJS_DIR)
 							$(CC) $(COMPILE_FLAG) -c $< $(INCLUDES_FLAG) -o $@
 
