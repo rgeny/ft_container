@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 11:00:36 by rgeny             #+#    #+#              #
-#    Updated: 2022/08/26 16:17:29 by rgeny            ###   ########.fr        #
+#    Updated: 2022/08/26 16:50:04 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NEW_DIR						= mkdir -p
 DEL_DIR						= rm -rf
 
 CC							= c++
-COMPILE_FLAG				= $(STD_FLAG) $(DEPS_FLAG) -g #-std=c++98 #-Wall -Werror -Wextra
+COMPILE_FLAG				= $(STD_FLAG) $(DEPS_FLAG) -g $(DEBUG_FLAG) #-std=c++98 #-Wall -Werror -Wextra
 DEPS_FLAG					= -MMD -MP
 INCLUDES_FLAG				= $(addprefix -I,	$(INCLUDES_DIR) \
 												$(CLASS_DIR) \
@@ -47,6 +47,7 @@ VPATH						+=$(MAKE_DIR)
 UTILS						= $(addsuffix .cpp,		print)
 OBJS						= $(patsubst %.cpp, $(OBJS_DIR)$(PREFIX)%.o, $(SRCS) $(UTILS))
 DEPS						= $(OBJS:.o=.d)
+
 
 ifdef SRCS
 all							: $(EXE)

@@ -69,11 +69,15 @@ ERR_FT="result.err"
 ERR_STD="research.err"
 
 ##### MAKEFILE VARS #####
-STD_EXE=$EXE_DIR\$3std_\$1
-FT_EXE=$EXE_DIR\$3ft_\$1
+STD_EXE=$EXE_DIR\$3\$STD_PREFIX\$1
+FT_EXE=$EXE_DIR\$3\$FT_PREFIX\$1
+STD_PREFIX="std_"
+FT_PREFIX="ft_"
 TEST="\$2"
-STDF="STD_FLAG=-DNAMESPACE=std SRCS=$TEST EXE=$STD_EXE PREFIX=\"std_\""
-FTF="SRCS=$TEST EXE=$FT_EXE PREFIX=\"ft_\""
+STDF="STD_FLAG=-DNAMESPACE=std SRCS=$TEST EXE=$STD_EXE"
+FTF="SRCS=$TEST EXE=$FT_EXE"
+
+DEBUG_PREFIX="debug_"
 
 ##### COLOR VARS #####
 RED="\033[0;31m"
@@ -138,6 +142,7 @@ then
 	echo "	--fclean (-fc)"
 	echo "	--test (-t)"
 	echo "	--subtest (-st)"
+	echo "	--debug (-d)"
 	echo "test options :"
 	for ((i = 0; i < ${#test_name[@]}; i++))
 	do
@@ -209,6 +214,16 @@ FTEST="$?"
 get_opt "-st" "--subtest"
 SUBTEST="subtest$?"
 
+printf "STDF = $STDF\n"
+get_opt "-d" "--debug"
+if [ "$?" == "1" ]
+then
+	STDF+=" DEBUG_FLAG=-DFT_CONTAINER_DEBUG=42"
+	FTF+=" DEBUG_FLAG=-DFT_CONTAINER_DEBUG=42"
+	STD_PREFIX+=$DEBUG_PREFIX
+	FT_PREFIX+=$DEBUG_PREFIX
+fi
+printf "STDF = $STDF\n"
 
 ###############################################
 ################ FUNCTION TEST ################
@@ -325,9 +340,9 @@ function	test()
 {
 #	CHECK PARAMETERS
 	eval "${opt_lst[$SUBTEST]}"
-	(eval make -j $STDF MAKE_DIR="$3") 1>/dev/null 2>$ERR_STD
+	(eval make -j $STDF PREFIX=$STD_PREFIX MAKE_DIR="$3") #1>/dev/null 2>$ERR_STD
 	MAKE_STD_ERROR="$?"
-	(eval make -j $FTF MAKE_DIR="$3") 1>/dev/null 2>$ERR_FT
+	(eval make -j $FTF PREFIX=$FT_PREFIX MAKE_DIR="$3") #1>/dev/null 2>$ERR_FT
 	MAKE_FT_ERROR="$?"
 	do_test $*
 	save_log $*
