@@ -6,14 +6,14 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/19 16:26:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/26 11:36:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 # include <iostream>
-# include "define.hpp"
+# include "print.hpp"
 # include "type_traits.hpp"
 
 # include "iterator.hpp"
@@ -87,8 +87,6 @@ namespace ft
 	class vector
 	{
 		public:
-
-
 
 			#include "vector.typedef.hpp"
 			#include "vector.structor.hpp"
