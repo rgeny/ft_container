@@ -26,6 +26,7 @@ declare -a vector_test=(
 declare -a stack_test=(
 	"member_types member_types.cpp srcs/stack/"
 	"member_objects member_objects.cpp srcs/stack/"
+	"structor structor.cpp srcs/stack/"
 	)
 
 declare -A lib_test=(
