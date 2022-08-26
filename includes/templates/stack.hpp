@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:48:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 14:10:34 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/26 16:25:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,18 @@ namespace ft
 		class Container = std::vector<T>
 	>
 	class stack
-		:public std::stack<T, Container>
 	{
 		public:
 			#include "stack_typedef.hpp"
+			
+			void	push (value_type & value)
+			{
+				this->c.push_back(value);
+			}
+
 
 		protected:
-//			Container
+			container_type	c;
 
 		private:
 	};

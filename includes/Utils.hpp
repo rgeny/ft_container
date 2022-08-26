@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:06:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 15:11:22 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/26 16:12:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 # ifndef NAMESPACE
 #  define NAMESPACE ft
-#  define FT
+#  define FT "ft"
+# else
+# define FT "std"
 # endif
 
 # include <iostream>
