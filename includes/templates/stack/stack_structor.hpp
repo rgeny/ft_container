@@ -1,47 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.hpp                                          :+:      :+:    :+:   */
+/*   stack_structor.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/26 13:48:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 16:27:26 by rgeny            ###   ########.fr       */
+/*   Created: 2022/08/26 16:27:35 by rgeny             #+#    #+#             */
+/*   Updated: 2022/08/26 16:39:54 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_HPP
-# define STACK_HPP
+#ifdef STACK_HPP
+# ifndef STACK_STRUCTOR_HPP
+#  define STACK_STRUCTOR_HPP
 
-# include <iostream>
-# include <vector>
-# include <stack>
-
-namespace ft
+explicit	stack	(container_type const & cont = container_type())
+	:c(cont)
 {
-	template
-	<
-		class T,
-		class Container = std::vector<T>
-	>
-	class stack
-	{
-		public:
-			#include "stack_typedef.hpp"
-			#include "stack_structor.hpp"
-			
-			void	push (value_type & value)
-			{
-				this->c.push_back(value);
-			}
-
-
-		protected:
-			container_type	c;
-
-		private:
-	};
+#ifdef FT_CONTAINER_DEBUG
+	std::cout	<< "stack default constructor."
+				<< std::endl;
+#endif
 }
 
+# endif
 #endif
 

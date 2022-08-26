@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 16:02:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 16:23:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/26 16:33:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ class Tmp
 	:public NAMESPACE::stack<T>
 {
 	public:
+		Tmp	(void)
+			:NAMESPACE::stack<T>()
+		{	}
 		void	print_data	(void)
 		{
 			while (!this->c.empty())
