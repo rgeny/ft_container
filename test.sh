@@ -10,9 +10,7 @@ declare -a vector_test=(
 	"constructor_int int.cpp srcs/vector/constructor/"
 	"constructor_string string.cpp srcs/vector/constructor/"
 	"modifiers_clear clear.cpp srcs/vector/modifiers/"
-	)
-
-declare -a vector_iterator_test=(
+#	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"
 	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
 	"iterator_base base.cpp srcs/vector/iterator/"
@@ -21,15 +19,15 @@ declare -a vector_iterator_test=(
 	"iterator_decrement decrement.cpp srcs/vector/iterator/"
 	"iterator_operation operation.cpp srcs/vector/iterator/"
 	"iterator_compare compare.cpp srcs/vector/iterator/"
+#	reverse iterator
 	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator/"
 	)
 
 declare -a stack_test=(
-	"" )
+	"member_types member_types.cpp srcs/stack/" )
 
 declare -A lib_test=(
 	['vector']="${vector_test[@]}" 
-	['vector_iterator']="${vector_iterator_test[@]}"
 	['stack']="${stack_test[@]}" )
 
 declare -a test_name=(
@@ -69,8 +67,8 @@ ERR_FT="result.err"
 ERR_STD="research.err"
 
 ##### MAKEFILE VARS #####
-STD_EXE=$EXE_DIR\${3}std_\$1
-FT_EXE=$EXE_DIR\${3}ft_\$1
+STD_EXE=$EXE_DIR\$3std_\$1
+FT_EXE=$EXE_DIR\$3ft_\$1
 TEST="\$2"
 STDF="STD_FLAG=-DNAMESPACE=std SRCS=$TEST EXE=$STD_EXE"
 FTF="SRCS=$TEST EXE=$FT_EXE"
@@ -232,13 +230,14 @@ function	save_log()
 function	do_test()
 {
 	TIME=$(date +"%s%N")
-	STD=$(eval 2>>$ERR_STD $TIMEOUT valgrind ./$STD_EXE)
+	STD=$EXE_DIR$3std_$1
+	STD=$(2>>$ERR_STD eval $TIMEOUT valgrind ./$STD_EXE)
 	STD_RET="$?"
 	STD_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	STD_ERROR=$(cat $ERR_STD | grep "usage" | awk '{ printf (($5 - $7)) }')
 
 	TIME=$(date +"%s%N")
-	FT=$(eval 2>>$ERR_FT $TIMEOUT valgrind ./$FT_EXE)
+	FT=$(2>>$ERR_FT eval $TIMEOUT valgrind ./$FT_EXE)
 	FT_RET="$?"
 	FT_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	FT_ERROR=$(cat $ERR_FT | grep "usage" | awk '{ printf (($5 - $7)) }')
@@ -328,7 +327,7 @@ function	test()
 	MAKE_STD_ERROR="$?"
 	(eval make -j $FTF MAKE_DIR="$3") 1>/dev/null 2>$ERR_FT
 	MAKE_FT_ERROR="$?"
-	do_test
+	do_test $*
 	save_log $*
 	check_result $*
 }
