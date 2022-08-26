@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:06:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/19 21:04:54 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/26 15:11:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@
 # endif
 
 # include <iostream>
-# include <vector>
 # include <algorithm>
 # include <list>
 # include <string>
 # include <iterator>
+# include <climits>
 
+# include <vector>
 # include "vector.hpp"
+# include <map>
+
+# include <stack>
+# include "stack.hpp"
 
 template<class T>
 void	_print_val	(T val)

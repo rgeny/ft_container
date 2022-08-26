@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 11:36:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/26 14:02:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,31 @@
 
 namespace ft
 {
+	template
+	<
+		class T,
+		class Allocator = std::allocator<T>
+	>
+	class vector
+	{
+		public:
+
+			#include "vector.typedef.hpp"
+			#include "vector.structor.hpp"
+			#include "vector.operator.hpp"
+			#include "vector.iterators.hpp"
+			#include "vector.capacity.hpp"
+			#include "vector.modifiers.hpp"
+
+		protected:
+
+		private:
+			allocator_type	_alloc;
+			size_type		_size;
+			size_type		_capacity;
+			pointer			_data;
+			
+	};
 //	template <class T>
 //	class MyIterator
 //		:public std::iterator<std::random_access_iterator_tag, T>
@@ -79,31 +104,7 @@ namespace ft
 //	};
 //
 //
-	template
-	<
-		class T,
-		class Allocator = std::allocator<T>
-	>
-	class vector
-	{
-		public:
 
-			#include "vector.typedef.hpp"
-			#include "vector.structor.hpp"
-			#include "vector.operator.hpp"
-			#include "vector.iterators.hpp"
-			#include "vector.capacity.hpp"
-			#include "vector.modifiers.hpp"
-
-		protected:
-
-		private:
-			allocator_type	_alloc;
-			size_type		_size;
-			size_type		_capacity;
-			pointer			_data;
-			
-	};
 }
 #endif
 
