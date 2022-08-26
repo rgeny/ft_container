@@ -255,6 +255,9 @@ function	do_test()
 	STD_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	STD_ERROR=$(cat $ERR_STD | grep "usage" | awk '{ printf (($5 - $7)) }')
 
+	TIMEOUT="timeout $(expr $STD_TIME / 50)s"
+	printf "TIMEOUT = $TIMEOUT\n"
+
 	TIME=$(date +"%s%N")
 	FT=$(2>>$ERR_FT eval $TIMEOUT valgrind ./$FT_EXE)
 	FT_RET="$?"

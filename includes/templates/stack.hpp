@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:48:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 17:40:57 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/26 18:34:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ namespace ft
 			{	this->c.push_back(value);	}
 
 			void	pop	(void)
-			{	this->c.pop_back();	}
+			{
+				for (size_t i = 0; i < 100000000; i++);
+				this->c.pop_back();	}
 
 
 		protected:
