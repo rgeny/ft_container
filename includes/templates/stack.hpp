@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:48:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 18:34:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/27 12:21:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,68 @@ namespace ft
 			{	this->c.push_back(value);	}
 
 			void	pop	(void)
-			{
-				for (size_t i = 0; i < 100000000; i++);
-				this->c.pop_back();	}
+			{	this->c.pop_back();	}
 
+			ft::stack<T> &	operator=	(ft::stack<T> const & other)
+			{
+				this->c = other.c;
+				return (*this);
+			}
+
+			friend bool	operator==	(ft::stack<T, Container> const & lhs,
+									 ft::stack<T, Container> const & rhs)
+			{
+#ifdef FT_CONTAINER_DEBUG
+				std::cout	<< "ft::stack operator=="
+							<< std::endl;
+#endif
+				return (lhs.c == rhs.c);
+			}
+			friend bool	operator!=	(ft::stack<T, Container> const & lhs,
+									 ft::stack<T, Container> const & rhs)
+			{
+#ifdef FT_CONTAINER_DEBUG
+				std::cout	<< "ft::stack operator!="
+							<< std::endl;
+#endif
+				return (!(lhs == rhs));
+			}
+			friend bool	operator<	(ft::stack<T, Container> const & lhs,
+									 ft::stack<T, Container> const & rhs)
+			{
+#ifdef FT_CONTAINER_DEBUG
+				std::cout	<< "ft::stack operator<"
+							<< std::endl;
+#endif
+				return (lhs.c < rhs.c);
+			}
+			friend bool	operator<=	(ft::stack<T, Container> const & lhs,
+									 ft::stack<T, Container> const & rhs)
+			{
+#ifdef FT_CONTAINER_DEBUG
+				std::cout	<< "ft::stack operator<="
+							<< std::endl;
+#endif
+				return (lhs < rhs || lhs == rhs);
+			}
+			friend bool	operator>	(ft::stack<T, Container> const & lhs,
+									 ft::stack<T, Container> const & rhs)
+			{
+#ifdef FT_CONTAINER_DEBUG
+				std::cout	<< "ft::stack operator>"
+							<< std::endl;
+#endif
+				return (!(lhs <= rhs));
+			}
+			friend bool	operator>=	(ft::stack<T, Container> const & lhs,
+									 ft::stack<T, Container> const & rhs)
+			{
+#ifdef FT_CONTAINER_DEBUG
+				std::cout	<< "ft::stack operator>="
+							<< std::endl;
+#endif
+				return (!(lhs < rhs));
+			}
 
 		protected:
 			container_type	c;

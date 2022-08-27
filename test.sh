@@ -31,6 +31,8 @@ declare -a stack_test=(
 	"crash_test_pop crash_pop.cpp srcs/stack/"
 	"crash_test_big_size crash_big_size.cpp srcs/stack/"
 	"member_function member_function.cpp srcs/stack/"
+	"operator= operator=.cpp srcs/stack/"
+	"relationnal_operator relationnal_operator.cpp srcs/stack/"
 	)
 
 declare -A lib_test=(
@@ -84,6 +86,7 @@ FTF="SRCS=$TEST EXE=$FT_EXE"
 DEBUG_PREFIX="debug_"
 
 ##### COLOR VARS #####
+BRIGHT="\033[1m"
 RED="\033[0;31m"
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
@@ -256,7 +259,6 @@ function	do_test()
 	STD_ERROR=$(cat $ERR_STD | grep "usage" | awk '{ printf (($5 - $7)) }')
 
 	TIMEOUT="timeout $(expr $STD_TIME / 50 + 1)s"
-	printf "TIMEOUT = $TIMEOUT\n"
 
 	TIME=$(date +"%s%N")
 	FT=$(2>>$ERR_FT eval $TIMEOUT valgrind ./$FT_EXE)
@@ -367,12 +369,12 @@ function	is_called_test()
 		get_opt "$1"
 		if [ "$?" == "1" ]
 		then
-			printf "***** TEST $1 *****\n"
+			printf "\n$BRIGHT***** TEST $1 *****\n$RESET"
 			return 1
 		fi
 		return 0
 	else
-		printf "***** TEST $1 *****\n"
+		printf "\n$BRIGHT***** TEST $1 *****\n$RESET"
 		return 1
 	fi
 }

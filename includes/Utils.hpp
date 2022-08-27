@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:06:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 18:27:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/27 12:15:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # else
 # define FT "std"
 # endif
+
+# define PRINT_EXECUTE(fct)	std::cout	<< #fct \
+										<< " = " \
+										<< (fct) \
+										<< std::endl;
+# define EXECUTE_AND_PRINT(ope)	ope; \
+								std::cout	<< #ope \
+											<< std::endl;
 
 # include <iostream>
 # include <algorithm>
@@ -97,6 +105,27 @@ template
 	typename T,
 	class Container
 >
+void	fill_stack	(NAMESPACE::stack<T, Container> & stack,
+					 T start,
+					 T end,
+					 std::string str_name)
+{
+	while (start <= end)
+	{
+		stack.push(start);
+		start++;
+	}
+	std::cout	<< str_name
+				<< " size = "
+				<< stack.size()
+				<< std::endl;
+}
+
+template
+<
+	typename T,
+	class Container
+>
 void	empty_the_stack	(NAMESPACE::stack<T, Container> & stack)
 {
 	_print_nl	("empty the stack");
@@ -108,6 +137,28 @@ void	empty_the_stack	(NAMESPACE::stack<T, Container> & stack)
 	}
 	std::cout	<< std::endl
 				<< "size = "
+				<< stack.size()
+				<< std::endl;
+}
+
+template
+<
+	typename T,
+	class Container
+>
+void	empty_the_stack	(NAMESPACE::stack<T, Container> & stack,
+						 std::string str_name)
+{
+	_print_nl	((std::string("empty_the_stack") + str_name).c_str());
+	while (!stack.empty())
+	{
+		std::cout	<< stack.top()
+					<< " ";
+		stack.pop();
+	}
+	std::cout	<< std::endl
+				<< str_name
+				<< " size = "
 				<< stack.size()
 				<< std::endl;
 }
