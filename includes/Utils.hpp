@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:06:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/27 12:15:00 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/27 12:35:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # endif
 
 # define PRINT_EXECUTE(fct)	std::cout	<< #fct \
-										<< " = " \
+										<< " == " \
 										<< (fct) \
 										<< std::endl;
 # define EXECUTE_AND_PRINT(ope)	ope; \
@@ -116,7 +116,7 @@ void	fill_stack	(NAMESPACE::stack<T, Container> & stack,
 		start++;
 	}
 	std::cout	<< str_name
-				<< " size = "
+				<< ".size() = "
 				<< stack.size()
 				<< std::endl;
 }
@@ -158,7 +158,7 @@ void	empty_the_stack	(NAMESPACE::stack<T, Container> & stack,
 	}
 	std::cout	<< std::endl
 				<< str_name
-				<< " size = "
+				<< ".size = "
 				<< stack.size()
 				<< std::endl;
 }

@@ -33,6 +33,7 @@ declare -a stack_test=(
 	"member_function member_function.cpp srcs/stack/"
 	"operator= operator=.cpp srcs/stack/"
 	"relationnal_operator relationnal_operator.cpp srcs/stack/"
+	"crash_test_const_reference crash_const_reference.cpp srcs/stack/"
 	)
 
 declare -A lib_test=(
@@ -241,8 +242,8 @@ function	save_log()
 	eval "echo \"$FT\" > $TEST_LOG_DIR$LOG_FT"
 	eval "echo \"$STD\" > $TEST_LOG_DIR$LOG_STD"
 	eval "cat \"$3$TEST\" > $TEST_LOG_DIR$LOG_TEST"
-	eval "cp $STD_EXE $TEST_LOG_DIR"
-	eval "cp $FT_EXE $TEST_LOG_DIR"
+	eval "cp $STD_EXE $TEST_LOG_DIR" 2>/dev/null
+	eval "cp $FT_EXE $TEST_LOG_DIR" 2>/dev/null
 #	eval "mv $STD_EXE $TEST_LOG_DIR"
 #	eval "mv $FT_EXE $TEST_LOG_DIR"
 	eval "mv $ERR_STD $TEST_LOG_DIR"
@@ -271,8 +272,7 @@ function	do_test()
 
 function	check_result()
 {
-	if [ "$MAKE_STD_ERROR" != "0" ] ||
-		[ "$MAKE_FT_ERROR" != "0" ]
+	if [ "$MAKE_STD_ERROR" != "$MAKE_FT_ERROR" ]
 	then
 		printf "$1:$RED Ko (Compile error)\n$RESET"
 		if [ "$VERBOSE" == "verbose1" ]
@@ -284,6 +284,12 @@ function	check_result()
 			printf $RESET
 		fi
 		${opt_lst[$STOP]}
+	elif [ "$MAKE_STD_ERROR" != "0" ] &&
+		 [ "$MAKE_STD_ERROR" == "$MAKE_FT_ERROR" ] ||
+		 [ "$STD_ERROR" != "0" ] &&
+		 [ "$STD_ERROR" == "$FT_ERROR" ]
+	then
+		printf "$1:$GREEN Ok (Same error)\n$RESET"
 	elif [ "$STD" != "$FT" ] ||
 		[ "$FT_RET" == "$TIMEOUT_RET" ]
 	then
