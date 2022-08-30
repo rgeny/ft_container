@@ -277,17 +277,19 @@ function	check_result()
 		printf "$1:$RED Ko (Compile error)\n$RESET"
 		if [ "$VERBOSE" == "verbose1" ]
 		then
-			printf $BLUE"\nSTD\n"
-			eval cat $TEST_LOG_DIR$ERR_STD
-			printf $RED"\nFT\n"
-			eval cat $TEST_LOG_DIR$ERR_FT
+#			printf $BLUE"\nSTD\n"
+#			eval cat $TEST_LOG_DIR$ERR_STD
+#			printf $RED"\nFT\n"
+#			eval cat $TEST_LOG_DIR$ERR_FT
+			printf "$BLUE\STD\t$RED\FT"
+			eval diff -y $TEST_LOG_DIR$ERR_STD $TEST_LOG_DIR$ERR_FT
 			printf $RESET
 		fi
 		${opt_lst[$STOP]}
-	elif [ "$MAKE_STD_ERROR" != "0" ] &&
-		 [ "$MAKE_STD_ERROR" == "$MAKE_FT_ERROR" ] ||
-		 [ "$STD_ERROR" != "0" ] &&
-		 [ "$STD_ERROR" == "$FT_ERROR" ]
+	elif ([ "$MAKE_STD_ERROR" != "0" ] &&
+			[ "$MAKE_STD_ERROR" == "$MAKE_FT_ERROR" ]) ||
+		 ([ "$STD_ERROR" != "0" ] &&
+		 	[ "$STD_ERROR" == "$FT_ERROR" ])
 	then
 		printf "$1:$GREEN Ok (Same error)\n$RESET"
 	elif [ "$STD" != "$FT" ] ||
@@ -305,8 +307,8 @@ function	check_result()
 		if [ "$STD_RET" == "$TIMEOUT_RET" ]
 		then
 			printf "timeout\n"$RESET
-		else
-			printf "$STD\n"$RESET
+#		else
+#			printf "$STD\n"$RESET
 		fi
 
 #		FT
@@ -314,8 +316,15 @@ function	check_result()
 		if [ "$FT_RET" == "$TIMEOUT_RET" ]
 		then
 			printf "timeout\n"$RESET
-		else
-			printf "$FT\n"$RESET
+#		else
+#			printf "$FT\n"$RESET
+		fi
+
+		if [ "$STD_RET" != "$TIMEOUT_RET" ] &&
+			[ "$FT_RET" != "$TIMEOUT_RET" ]
+		then
+			printf "${BLUE}STD\t\t\t\t\t\t\t\t${RED}FT\n"
+			eval diff -y $TEST_LOG_DIR$LOG_STD $TEST_LOG_DIR$LOG_FT
 		fi
 
 		${opt_lst[$STOP]}
@@ -324,10 +333,12 @@ function	check_result()
 		printf "$1:$RED Ko (Memory leak)\n$RESET"
 		if [ "$VERBOSE" == "verbose1" ]
 		then
-			printf $BLUE"\nSTD\n"
-			eval cat $TEST_LOG_DIR$ERR_STD
-			printf $RED"\nFT\n"
-			eval cat $TEST_LOG_DIR$ERR_FT
+#			printf $BLUE"\nSTD\n"
+#			eval cat $TEST_LOG_DIR$ERR_STD
+#			printf $RED"\nFT\n"
+#			eval cat $TEST_LOG_DIR$ERR_FT
+			printf "$BLUE\STD\t$RED\FT\n"
+			eval diff -y $TEST_LOG_DIR$ERR_STD $TEST_LOG_DIR$ERR_FT
 			printf $RESET
 		fi
 		${opt_lst[$STOP]}
