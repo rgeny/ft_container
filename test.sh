@@ -292,6 +292,7 @@ function	check_result()
 		 	[ "$STD_ERROR" == "$FT_ERROR" ])
 	then
 		printf "$1:$GREEN Ok (Same error)\n$RESET"
+		eval "${opt_lst[$VERBOSE_TIME]}"
 	elif [ "$STD" != "$FT" ] ||
 		[ "$FT_RET" == "$TIMEOUT_RET" ]
 	then
