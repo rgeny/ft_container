@@ -5,3 +5,4 @@ objs
 containers_test
 *.log
 *.err
+*.out
