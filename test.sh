@@ -11,7 +11,9 @@ declare -a vector_test=(
 	"constructor_string string.cpp srcs/vector/constructor/"
 	"clear clear.cpp srcs/vector/modifiers/"
 	"reserve reserve.cpp srcs/vector/modifiers/"
+	"reserve_max_size reserve_max_size.cpp srcs/vector/crash_test/"
 	"resize resize.cpp srcs/vector/modifiers/"
+	"resize_max_size resize_max_size.cpp srcs/vector/crash_test/"
 #	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"
 	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
@@ -23,12 +25,11 @@ declare -a vector_test=(
 	"iterator_compare compare.cpp srcs/vector/iterator/"
 #	reverse iterator
 	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator/"
-#	crash test
-	"reserve_max_size reserve_max_size.cpp srcs/vector/crash_test/"
 	)
 
 declare -a stack_test=(
 	"member_types member_types.cpp srcs/stack/"
+	"crash_test_const_reference crash_const_reference.cpp srcs/stack/"
 	"member_objects member_objects.cpp srcs/stack/"
 	"structor structor.cpp srcs/stack/"
 	"crash_test_top crash_top.cpp srcs/stack/"
@@ -37,7 +38,6 @@ declare -a stack_test=(
 	"member_function member_function.cpp srcs/stack/"
 	"operator= operator=.cpp srcs/stack/"
 	"relationnal_operator relationnal_operator.cpp srcs/stack/"
-	"crash_test_const_reference crash_const_reference.cpp srcs/stack/"
 	)
 
 declare -A lib_test=(
@@ -304,7 +304,9 @@ function	check_result()
 	elif ([ "$MAKE_STD_ERROR" != "0" ] &&
 			[ "$MAKE_STD_ERROR" == "$MAKE_FT_ERROR" ]) ||
 		 ([ "$STD_ERROR" != "0" ] &&
-		 	[ "$STD_ERROR" == "$FT_ERROR" ])
+		 	[ "$STD_ERROR" == "$FT_ERROR" ]) ||
+		 ([ "$STD_RET" != "0" ] &&
+		 	[ "$STD_RET" == "$FT_RET" ])
 	then
 		printf "$1:$GREEN Ok (Same error)\n$RESET"
 		eval "${opt_lst[$VERBOSE_TIME]}"
