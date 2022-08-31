@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 19:37:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 20:02:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,9 @@ void	resize	(size_type count,
 iterator	insert	(iterator pos,
 					 const_reference value)
 {
+	size_t	emplace = pos - this->begin();
 	this->insert(pos, 1, value);
-	return (pos - 1);
+	return (this->begin() + emplace);
 }
 
 void	insert	(iterator pos,
@@ -148,9 +149,12 @@ void	insert	(iterator pos,
 				<< std::endl
 				<< "insert count = "
 				<< count
+				<< std::endl
+				<< "_size + count = "
+				<< _size + count
 				<< std::endl;
 #endif
-	this->resize(_size + count, value);
+	this->resize(ft::max(count, _size + count), value);
 
 	if (emplace >= _size - count)
 		return ;
@@ -182,9 +186,13 @@ void	insert	(iterator pos,
 	size_t	emplace = pos - this->begin(),
 			count = last - first;
 
+#ifdef FT_CONTAINER_DEBUG
+	std::cout	<< "count = "
+				<< count
+				<< std::endl;
+#endif
+
 	this->insert(pos, count, T() );
-	if (emplace >= _size - count)
-		return ;
 
 	for (iterator it = this->begin() + emplace;
 		 first != last;
