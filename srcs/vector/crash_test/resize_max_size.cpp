@@ -1,48 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reserve.cpp                                        :+:      :+:    :+:   */
+/*   resize_max_size.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 12:27:31 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 15:29:05 by rgeny            ###   ########.fr       */
+/*   Created: 2022/08/31 12:42:15 by rgeny             #+#    #+#             */
+/*   Updated: 2022/08/31 16:08:50 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Utils.hpp"
 
-template
-<
-	typename T,
-	typename Class
->
-static void	_test	(Class & v,
-					 size_t n)
+int	main	(void)
 {
+	NAMESPACE::vector<int>	v;
+
 	try
 	{
-		_print_nl	("reserve(" + std::to_string(n) + ")");
-		v.reserve(n);
-		_print_val_and_size<T>(v);
+		_print_nl	("resize(v.max_size())");
+		v.resize(v.max_size());
+		_print_val_and_size<int>(v);
 	}
 	catch (std::exception const & err)
 	{
 		std::cout	<< "error"
 					<< std::endl;
 	}
-}
-
-int	main	(void)
-{
-	NAMESPACE::vector<int>	v;
-
-	_test<int>	(v, 0);
-	_test<int>	(v, 1);
-	_test<int>	(v, 17);
-	_test<int>	(v, 0);
-	_test<int>	(v, 718425);
-	_test<int>	(v, v.capacity());
-	_test<int>	(v, v.capacity() / 2);
-	_test<int>	(v, v.max_size() + 1);
 }

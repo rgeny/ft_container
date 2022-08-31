@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 11:33:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 15:23:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "print.hpp"
 # include "type_traits.hpp"
 # include "iterator.hpp"
+# include "algorithm.hpp"
 
 # define VECT_DFL_SIZE 0
 # define VECT_NAME "vector"

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reserve.cpp                                        :+:      :+:    :+:   */
+/*   resize.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 12:27:31 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 15:29:05 by rgeny            ###   ########.fr       */
+/*   Created: 2022/08/31 15:14:20 by rgeny             #+#    #+#             */
+/*   Updated: 2022/08/31 15:28:40 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ static void	_test	(Class & v,
 {
 	try
 	{
-		_print_nl	("reserve(" + std::to_string(n) + ")");
-		v.reserve(n);
-		_print_val_and_size<T>(v);
+		_print_nl	("resize(" + std::to_string(n) + ")");
+		v.resize(n);
+		if (n < 100)
+			_print_val_and_size<T>(v);
 	}
 	catch (std::exception const & err)
 	{
@@ -39,10 +40,13 @@ int	main	(void)
 
 	_test<int>	(v, 0);
 	_test<int>	(v, 1);
-	_test<int>	(v, 17);
+	_test<int>	(v, 2);
+	_test<int>	(v, 3);
+	_test<int>	(v, 98);
 	_test<int>	(v, 0);
-	_test<int>	(v, 718425);
-	_test<int>	(v, v.capacity());
-	_test<int>	(v, v.capacity() / 2);
+	_test<int>	(v, 175172);
+	_test<int>	(v, v.size());
+	_test<int>	(v, v.size() / 2 - 1);
+	_test<int>	(v, v.size() * 2 - 1);
 	_test<int>	(v, v.max_size() + 1);
 }

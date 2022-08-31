@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 14:55:52 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 16:21:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,6 @@ void	clear	(void)
 	_size = 0;
 }
 
-//iterator	insert	(iterator position,
-//					 value_type const & val)
-//{
-//	return (_data);
-//}
-//void insert (iterator position, size_type n, const value_type& val);
-//template <class InputIterator>
-//void insert (iterator position, InputIterator first, InputIterator last);
-
 void	reserve	(size_type new_cap)
 {
 #ifdef FT_CONTAINER_DEBUG
@@ -118,7 +109,8 @@ void	resize	(size_type count,
 {
 	if (count == _size)
 		return ;
-	this->reserve(count);
+	if (count > _capacity)
+		this->reserve(ft::max(count, _capacity * 2));
 	
 	if (_size < count)
 	{
@@ -155,13 +147,6 @@ void	resize	(size_type count,
 //	}
 //}
 //
-//
-//1 2 3 4 5 6 7 8
-//
-//insert(1, 2)
-//
-//1 2 3 4 5 6 7 8 0 0
-//1 2 3 4 5 6 7 8 0 0
 //
 //template
 //<

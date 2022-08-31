@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:42:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 14:54:00 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 15:29:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main	(void)
 	}
 	catch (std::exception const & err)
 	{
-		std::cout	<< err.what()
+		std::cout	<< "error"
 					<< std::endl;
 	}
 }
