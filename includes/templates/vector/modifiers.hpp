@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 16:21:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 19:37:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,7 @@ void	assign	(size_type n
 
 void	clear	(void)
 {
-	for (pointer it = _data, ite = _data + _size;
-		 it < ite;
-		 it++)
-	{
-		_alloc.destroy(it);
-	}
+	_destroy_all();
 	_size = 0;
 }
 
@@ -89,7 +84,7 @@ void	reserve	(size_type new_cap)
 	{
 		_alloc.construct(new_data + i, _data[i]);
 	}
-	this->clear();
+	_destroy_all();
 	_alloc.deallocate(_data, _capacity);
 	_data = new_data;
 	_capacity = new_cap;
@@ -110,8 +105,8 @@ void	resize	(size_type count,
 	if (count == _size)
 		return ;
 	if (count > _capacity)
-		this->reserve(ft::max(count, _capacity * 2));
-	
+		this->reserve(ft::max(count, _size * 2));
+
 	if (_size < count)
 	{
 		for (size_type i = _size; i < count; i++)
@@ -126,38 +121,80 @@ void	resize	(size_type count,
 	_size = count;
 }
 
-//iterator	insert	(iterator pos,
-//					 const_reference value)
-//{
-//	this->insert(pos, 1, value);
-//	return (pos - 1);
-//}
-//
-//void	insert	(iterator pos,
-//				 size_type count,
-//				 const_reference value)
-//{
-//	this->resize(_size + count, value);
-//
-//	for (iterator it = this->end() + count - 1, ite = this->end - 1;
-//		 it != ite;
-//		 --it)
-//	{
-//		*it = *(it - count);
-//	}
-//}
-//
-//
-//template
-//<
-//	typename InputIt
-//>
-//void	insert	(iterator pos,
-//				 InputIt first,
-//				 InputIt last)
-//{
-//}
-//
+iterator	insert	(iterator pos,
+					 const_reference value)
+{
+	this->insert(pos, 1, value);
+	return (pos - 1);
+}
+
+void	insert	(iterator pos,
+				 size_type count,
+				 const_reference value)
+{
+	size_t	emplace = pos - this->begin();
+#ifdef FT_CONTAINER_DEBUG
+	std::cout	<< "emplace = "
+				<< emplace
+				<< std::endl
+				<< "insert pos = "
+				<< &(*pos)
+				<< std::endl
+				<< "insert end() = "
+				<< &(*this->end())
+				<< std::endl
+				<< "insert begin() = "
+				<< &(*this->begin())
+				<< std::endl
+				<< "insert count = "
+				<< count
+				<< std::endl;
+#endif
+	this->resize(_size + count, value);
+
+	if (emplace >= _size - count)
+		return ;
+#ifdef FT_CONTAINER_DEBUG
+	std::cout	<< "t1\n";
+#endif
+
+
+	for (iterator	lhs = this->end() - 1,
+					rhs = lhs - count,
+					ite = this->begin() + emplace - 1;
+		 rhs != ite;
+		 lhs--, rhs--)
+	{
+		ft::swap(*lhs, *rhs);
+	}
+}
+
+
+template
+<
+	typename InputIt
+>
+void	insert	(iterator pos,
+				 InputIt first,
+				 InputIt last,
+				 typename ft::enable_if<!ft::is_integral<InputIt>::value>::type = 0)
+{
+	size_t	emplace = pos - this->begin(),
+			count = last - first;
+
+	this->insert(pos, count, T() );
+	if (emplace >= _size - count)
+		return ;
+
+	for (iterator it = this->begin() + emplace;
+		 first != last;
+		 it++, first++)
+	{
+		*it = *first;
+	}
+		 
+}
+
 
 
 # endif

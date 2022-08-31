@@ -14,6 +14,7 @@ declare -a vector_test=(
 	"reserve_max_size reserve_max_size.cpp srcs/vector/crash_test/"
 	"resize resize.cpp srcs/vector/modifiers/"
 	"resize_max_size resize_max_size.cpp srcs/vector/crash_test/"
+	"insert insert.cpp srcs/vector/modifiers/"
 #	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"
 	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
@@ -314,7 +315,6 @@ function	check_result()
 		[ "$FT_RET" == "$TIMEOUT_RET" ]
 	then
 		printf $1":"$RED" Ko$RESET\n"
-	["verbose_time1"]="printf \$BLUE\"(std_time : \$STD_TIME ms)\"\$GREEN\"(ft_time : \$FT_TIME ms)\n\$RESET\""
 #		TEST
 		printf $BLUE"TEST\n"
 		eval "cat $3$TEST | sed 1,${LINE_DEL}d"

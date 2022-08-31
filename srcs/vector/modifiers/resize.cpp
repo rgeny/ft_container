@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:14:20 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 15:28:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 16:36:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ static void	_test	(Class & v,
 	{
 		_print_nl	("resize(" + std::to_string(n) + ")");
 		v.resize(n);
-		if (n < 100)
-			_print_val_and_size<T>(v);
+		_print_val_and_size<T>(v);
 	}
 	catch (std::exception const & err)
 	{

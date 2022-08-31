@@ -1,44 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.hpp                                      :+:      :+:    :+:   */
+/*   private.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 15:21:48 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 16:51:27 by rgeny            ###   ########.fr       */
+/*   Created: 2022/08/31 17:05:33 by rgeny             #+#    #+#             */
+/*   Updated: 2022/08/31 17:09:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ALGORITHM_HPP
-# define ALGORITHM_HPP
+#ifdef VECTOR_HPP
+# ifndef PRIVATE_HPP
+#  define PRIVATE_HPP
 
-namespace ft
+void	_destroy	(pointer it,
+					 pointer ite)
 {
-	template
-	<
-		typename T
-	>
-	T const &	max	(T const & lhs,
-					 T const & rhs)
+	while (it != ite)
 	{
-		if (lhs < rhs)
-			return (rhs);
-		return (lhs);
-	}
-
-	template
-	<
-		typename T
-	>
-	void	swap	(T & lhs,
-					 T & rhs)
-	{
-		T	tmp = lhs;
-		lhs = rhs;
-		rhs = tmp;
+		_alloc.destroy(it);
+		it++;
 	}
 }
 
+void	_destroy_all	(void)
+{
+	for (pointer it = _data, ite = _data + _size;
+		 it != ite;
+		 it++)
+	{
+		_alloc.destroy(it);
+	}
+}
+
+# endif
 #endif
 
