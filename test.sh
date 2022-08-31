@@ -11,6 +11,7 @@ declare -a vector_test=(
 	"constructor_string string.cpp srcs/vector/constructor/"
 	"clear clear.cpp srcs/vector/modifiers/"
 	"reserve reserve.cpp srcs/vector/modifiers/"
+	"resize resize.cpp srcs/vector/modifiers/"
 #	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"
 	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
@@ -68,11 +69,20 @@ SCRIPT=$(basename "$0")
 ##### LOGS #####
 EXE_DIR=exe/
 LOGS_DIR=logs/
-CUR_LOGS_DIR=$LOGS_DIR$(2>/dev/null ls $LOGS_DIR | wc -w)
-if [ "$?" != "0" ]
+CUR_LOGS_DIR=$(2>/dev/null ls $LOGS_DIR | wc -w)
+
+if [ $CUR_LOGS_DIR -lt 10 ]
 then
-	CUR_LOGS_DIR="$LOGS_DIR"0
+	CUR_LOGS_DIR="000$CUR_LOGS_DIR"
+elif [ $CUR_LOGS_DIR -lt 100 ]
+then
+	CUR_LOGS_DIR="00$CUR_LOGS_DIR"
+elif [ $CUR_LOGS_DIR -lt 1000 ]
+then
+	CUR_LOGS_DIR="0$CUR_LOGS_DIR"
 fi
+CUR_LOGS_DIR=$LOGS_DIR$CUR_LOGS_DIR
+
 TEST_LOG_DIR="$CUR_LOGS_DIR/\$1/"
 LOG_FT="result.log"
 LOG_STD="research.log"
