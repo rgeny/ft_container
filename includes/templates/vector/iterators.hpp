@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:27:24 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/25 01:05:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/30 14:16:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 
 iterator	begin	(void)
 {
-	return (iterator(this->_data));
+	return (iterator(_data));
 }
 
 const_iterator	begin	(void) const
 {
-	return (const_iterator(this->_data));
+	return (const_iterator(_data));
 }
 
 iterator	end		(void)
 {
-	return (iterator(this->_data + this->_size));
+	return (iterator(_data + _size));
 }
 
 const_iterator	end		(void) const
 {
-	return (const_iterator(this->_data + this->_size));
+	return (const_iterator(_data + _size));
 }
 
 reverse_iterator	rbegin	(void)

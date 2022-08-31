@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/26 11:00:36 by rgeny             #+#    #+#              #
-#    Updated: 2022/08/26 17:33:11 by rgeny            ###   ########.fr        #
+#    Updated: 2022/08/31 11:35:01 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,19 +20,13 @@ INCLUDES_FLAG				= $(addprefix -I,	$(INCLUDES_DIR) \
 												$(CLASS_DIR) \
 												$(DEFINES_DIR) \
 												$(FUNCTIONS_DIR) \
-												$(TEMPLATES_DIR) \
-												$(ITERATOR_DIR) \
-												$(TYPE_TRAITS_DIR) \
-												$(VECTOR_DIR))
+												$(TEMPLATES_DIR))
 
 INCLUDES_DIR				= includes/
 CLASS_DIR					= $(INCLUDES_DIR)class/
 DEFINES_DIR					= $(INCLUDES_DIR)defines/
 FUNCTIONS_DIR				= $(INCLUDES_DIR)functions/
 TEMPLATES_DIR				= $(INCLUDES_DIR)templates/
-ITERATOR_DIR				= $(TEMPLATES_DIR)iterator/
-TYPE_TRAITS_DIR				= $(TEMPLATES_DIR)type_traits/
-VECTOR_DIR					= $(TEMPLATES_DIR)vector/
 OBJS_DIR					= objs/$(MAKE_DIR)
 SRCS_DIR					= srcs/
 UTILS_DIR					= $(SRCS_DIR)Utils/

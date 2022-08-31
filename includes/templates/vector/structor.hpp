@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.structor.hpp                                :+:      :+:    :+:   */
+/*   structor.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:07:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/01 17:16:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 14:22:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,20 @@ vector	(vector const & src)
 
 ~vector	(void)
 {
+#ifdef FT_CONTAINER_DEBUG
+	std::cout	<< "vector destructor."
+				<< std::endl;
+#endif
 	this->clear();
-	this->_alloc.deallocate(this->_data, this->_capacity);
+#ifdef FT_CONTAINER_DEBUG
+	std::cout	<< "_capacity = "
+				<< _capacity
+				<< std::endl
+				<< "_data = "
+				<< _data
+				<< std::endl;
+#endif
+	_alloc.deallocate(_data, _capacity);
 }
 
 # endif

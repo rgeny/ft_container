@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 21:13:32 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 21:30:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 11:35:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 namespace ft
 {
-	#include "enable_if.hpp"	
-	#include "is_integral.hpp"
+	#include "type_traits/enable_if.hpp"	
+	#include "type_traits/is_integral.hpp"
 
 }
 

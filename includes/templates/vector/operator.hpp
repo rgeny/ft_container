@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.capacity.hpp                                :+:      :+:    :+:   */
+/*   vector.operator.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 18:39:20 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/17 18:41:00 by rgeny            ###   ########.fr       */
+/*   Created: 2022/05/19 16:22:51 by rgeny             #+#    #+#             */
+/*   Updated: 2022/08/30 14:16:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef VECTOR_HPP
-# ifndef VECTOR_CAPACITY_HPP
-#  define VECTOR_CAPACITY_HPP
+# ifndef VECTOR_OPERATOR_HPP
+#  define VECTOR_OPERATOR_HPP
 
-size_type	size	(void)	const
+vector &	operator=	(vector const & rhs)
 {
-	return (this->_size);
+	if (this == &rhs)
+		return (*this);
+	this->clear();
+	this->assign(rhs.begin(), rhs.end());
+	return (*this);
 }
 
-size_type	max_size	(void) const
+T &	operator[]	(size_t i)
 {
-	return (this->_alloc.max_size());
-}
-
-size_type	capacity	(void) const
-{
-	return (this->_capacity);
+	return (_data[i]);
 }
 
 # endif

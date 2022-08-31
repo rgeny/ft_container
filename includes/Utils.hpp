@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:06:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/27 12:35:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 12:31:24 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 # ifndef NAMESPACE
 #  define NAMESPACE ft
 #  define FT "ft"
+#  include "stack.hpp"
+#  include "vector.hpp"
 # else
-# define FT "std"
+#  define FT "std"
+#  include <stack>
+#  include <vector>
+#  include <map>
 # endif
 
 # define PRINT_EXECUTE(fct)	std::cout	<< #fct \
@@ -35,12 +40,6 @@
 # include <iterator>
 # include <climits>
 
-# include <vector>
-# include "vector.hpp"
-# include <map>
-
-# include <stack>
-# include "stack.hpp"
 
 template<class T>
 void	_print_val	(T val)
@@ -64,10 +63,10 @@ void	_print_size (T & v)
 }
 
 template<class T1, class T2>
-void	_print_val_and_size	(T1 & v)
+void	_print_val_and_size	(T2 & v)
 {
 	_print_size(v);
-	std::for_each(v.begin(), v.end(), _print_val<T2>);
+	std::for_each(v.begin(), v.end(), _print_val<T1>);
 }
 
 void	_print_nl	(std::string msg);

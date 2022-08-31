@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear.cpp                                          :+:      :+:    :+:   */
+/*   reserve_max_size.cpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgeny <rgeny@42.fr>                        +#+  +:+       +#+        */
+/*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 19:08:49 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 14:52:15 by rgeny            ###   ########.fr       */
+/*   Created: 2022/08/31 12:42:15 by rgeny             #+#    #+#             */
+/*   Updated: 2022/08/31 14:54:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,17 @@
 
 int	main	(void)
 {
-	_print_nl	("clear empty vector<int> :");
+	NAMESPACE::vector<int>	v;
+
+	try
 	{
-		NAMESPACE::vector<int>	v;
-
-		v.clear();
-
-		_print_val_and_size<int> (v);
+		_print_nl	("reserve(v.max_size())");
+		v.reserve(v.max_size());
+		_print_val_and_size<int>(v);
 	}
-	_print_nl	("clear vector<int> :");
+	catch (std::exception const & err)
 	{
-		NAMESPACE::vector<int>	v(10000, 17);
-
-		v.clear();
-
-		_print_val_and_size<int> (v);
+		std::cout	<< err.what()
+					<< std::endl;
 	}
 }

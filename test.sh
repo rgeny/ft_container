@@ -9,7 +9,8 @@ declare -a vector_test=(
 
 	"constructor_int int.cpp srcs/vector/constructor/"
 	"constructor_string string.cpp srcs/vector/constructor/"
-	"modifiers_clear clear.cpp srcs/vector/modifiers/"
+	"clear clear.cpp srcs/vector/modifiers/"
+	"reserve reserve.cpp srcs/vector/modifiers/"
 #	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"
 	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
@@ -21,6 +22,8 @@ declare -a vector_test=(
 	"iterator_compare compare.cpp srcs/vector/iterator/"
 #	reverse iterator
 	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator/"
+#	crash test
+	"reserve_max_size reserve_max_size.cpp srcs/vector/crash_test/"
 	)
 
 declare -a stack_test=(
@@ -37,12 +40,14 @@ declare -a stack_test=(
 	)
 
 declare -A lib_test=(
+	['stack']="${stack_test[@]}"
 	['vector']="${vector_test[@]}" 
-	['stack']="${stack_test[@]}" )
+	)
 
 declare -a test_name=(
+	"stack"
 	"vector"
-	"stack" )
+	)
 
 ###############################################
 ##################### VARS ####################

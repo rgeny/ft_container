@@ -6,25 +6,26 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/26 14:02:22 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/08/31 11:33:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 # define VECTOR_HPP
 # include <iostream>
+# include <stdexcept>
 # include "print.hpp"
 # include "type_traits.hpp"
-
 # include "iterator.hpp"
 
 # define VECT_DFL_SIZE 0
 # define VECT_NAME "vector"
+# define FT_VECTOR_LENGTH_ERROR "vector::reserve"
 
 //tmp
 #include <vector>
 #include <iterator>
-//find tmp
+//fin tmp
 
 namespace ft
 {
@@ -37,12 +38,12 @@ namespace ft
 	{
 		public:
 
-			#include "vector.typedef.hpp"
-			#include "vector.structor.hpp"
-			#include "vector.operator.hpp"
-			#include "vector.iterators.hpp"
-			#include "vector.capacity.hpp"
-			#include "vector.modifiers.hpp"
+			#include "vector/typedef.hpp"
+			#include "vector/structor.hpp"
+			#include "vector/operator.hpp"
+			#include "vector/iterators.hpp"
+			#include "vector/capacity.hpp"
+			#include "vector/modifiers.hpp"
 
 		protected:
 
