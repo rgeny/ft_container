@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:29:45 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/01 15:00:58 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/01 15:16:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,6 @@ static void	_test	(Class & v,
 
 int	main	(void)
 {
-	NAMESPACE::vector<int>	c(7), c2(4), c3, c4;
-
-	for (size_t i = 0; i < c.size(); ++i)
-		c[i] = (c.size() - i) * 3;
-	for (size_t i = 0; i < c2.size(); ++i)
-		c2[i] = (c2.size() - i) * 5;
-	
-	_print_val_and_size<int>(c);
-	_print_val_and_size<int>(c2);
-
-
 	NAMESPACE::vector<char>	v;
 	_test<char>	(v, 0, 'a');
 	_test<char>	(v, 17, 'b');
