@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:07:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 14:22:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/01 15:06:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ explicit	vector	(size_type n
 	,_capacity(0)
 	,_data(NULL)
 {
-	this->assign(n, val);
+	this->insert(this->begin(), n, val);
 }
 
 template < class InputIterator >
@@ -42,7 +42,7 @@ vector	(InputIterator first
 	,_capacity(0)
 	,_data(NULL)
 {
-	this->assign(first, last);
+	this->insert(this->begin(), first, last);
 }
 
 vector	(vector const & src)
@@ -51,7 +51,7 @@ vector	(vector const & src)
 	,_capacity(0)
 	,_data(NULL)
 {
-	this->assign(src.begin(), src.end());
+	this->insert(this->begin(), src.begin(), src.end());
 }
 
 ~vector	(void)

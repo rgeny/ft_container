@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 20:02:22 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/01 15:04:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,40 +18,46 @@ void	assign	(InputIterator first
 				,InputIterator last
 				,typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type = 0)
 {
-	if (first == last) //à revoir
-		return ;
-	for (pointer it = _data, ite = _data + _capacity;
-		 it < ite;
-		 it++)
-	{
-		_alloc.destroy(it);
-	}
-	_alloc.deallocate(_data, _capacity);
-	_size = std::distance(first, last);
-	_capacity = _size;
-	_data = _alloc.allocate(_size);
-	for (size_type i = 0; first != last; i++, first++)
-		_alloc.construct(_data + i, *first);
+	this->clear();
+	this->insert(this->begin(), first, last);
+//	this->insert(0, first, last);
+//	if (first == last) //à revoir
+//		return ;
+//	for (pointer it = _data, ite = _data + _capacity;
+//		 it < ite;
+//		 it++)
+//	{
+//		_alloc.destroy(it);
+//	}
+//	_alloc.deallocate(_data, _capacity);
+//	_size = std::distance(first, last);
+//	_capacity = _size;
+//	_data = _alloc.allocate(_size);
+//	for (size_type i = 0; first != last; i++, first++)
+//		_alloc.construct(_data + i, *first);
 }
 void	assign	(size_type n
 				,const_reference val)
 {
-	for (pointer it = _data, ite = _data + _size;
-		 it < ite;
-		 it++)
-	{
-		 _alloc.destroy(it);
-	}
-	_alloc.deallocate(_data, _size);
-	_size = n;
-	_capacity = n;
-	_data = _alloc.allocate(n);
-	for (pointer it = _data, ite = _data + _size;
-		 it < ite;
-		 it++)
-	{
-		_alloc.construct(it, val);
-	}
+	this->clear();
+	this->insert(this->begin(), n, val);
+//	this->insert(0, n, val);
+//	for (pointer it = _data, ite = _data + _size;
+//		 it < ite;
+//		 it++)
+//	{
+//		 _alloc.destroy(it);
+//	}
+//	_alloc.deallocate(_data, _size);
+//	_size = n;
+//	_capacity = n;
+//	_data = _alloc.allocate(n);
+//	for (pointer it = _data, ite = _data + _size;
+//		 it < ite;
+//		 it++)
+//	{
+//		_alloc.construct(it, val);
+//	}
 }
 
 void	clear	(void)
@@ -184,14 +190,16 @@ void	insert	(iterator pos,
 				 typename ft::enable_if<!ft::is_integral<InputIt>::value>::type = 0)
 {
 	size_t	emplace = pos - this->begin(),
-			count = last - first;
+			count = std::distance(first, last);
 
 #ifdef FT_CONTAINER_DEBUG
-	std::cout	<< "count = "
+	std::cout	<< "insert template count = "
 				<< count
+				<< std::endl
+				<< "insert template emplace ="
+				<< emplace
 				<< std::endl;
 #endif
-
 	this->insert(pos, count, T() );
 
 	for (iterator it = this->begin() + emplace;

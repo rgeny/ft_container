@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 14:51:32 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/01 14:57:09 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 int	main	(void)
 {
+	{
+		NAMESPACE::vector<int>	v1(7), v2(4);
+		_print_val_and_size<int>(v1);
+		_print_val_and_size<int>(v2);
+	}
+
 	_print_nl("dfl ctor : ");
 	{
 		NAMESPACE::vector<int>	v;
