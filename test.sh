@@ -23,6 +23,8 @@ declare -a vector_test=(
 	"pop_back pop_back.cpp srcs/vector/modifiers/"
  	"crash_pop_back_empty pop_back_empty.cpp srcs/vector/crash_test/"
 	"swap swap.cpp srcs/vector/modifiers/"
+	"at at.cpp srcs/vector/access/"
+	"operator= operator=.cpp srcs/vector/operator/"
 #	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"
 	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"

@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 17:33:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 19:28:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ namespace ft
 			#include "vector/iterators.hpp"
 			#include "vector/capacity.hpp"
 			#include "vector/modifiers.hpp"
+			#include "vector/access.hpp"
 
 		protected:
 

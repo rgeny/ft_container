@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:26:24 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/01 15:27:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 19:41:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,31 @@
 
 reference	at	(size_type pos)
 {
+	if (pos >= _size)
+	{
+		std::string	error("pos (" + 
+						  std::to_string(pos) +
+						  ") >= this->size() (" +
+						  std::to_string(_size) +
+						  ")");
+
+		throw (std::out_of_range(error));
+	}
 	return (_data[pos]);
 }
 
-const_reference	at	(size_type pos)
+const_reference	at	(size_type pos) const
 {
+	if (pos >= _size)
+	{
+		std::string	error("pos (" + 
+						  std::to_string(pos) +
+						  ") >= this->size() (" +
+						  std::to_string(_size) +
+						  ")");
+
+		throw (std::out_of_range(error));
+	}
 	return (_data[pos]);
 }
 
