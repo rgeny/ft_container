@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 18:38:14 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 19:20:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,13 @@ void	push_back	(const_reference value)
 void	pop_back	(void)
 {
 	this->erase(this->end());
+}
+
+void	swap	(vector & other)
+{
+	ft::swap(_size, other._size);
+	ft::swap(_capacity, other._capacity);
+	ft::swap(_data, other._data);
 }
 
 # endif
