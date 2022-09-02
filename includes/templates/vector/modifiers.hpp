@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 14:51:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 17:53:24 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	insert	(iterator pos,
 				 const_reference value)
 {
 	size_t	position = pos - this->begin();
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 	std::cout	<< "insert position = "
 				<< position
 				<< std::endl
@@ -90,7 +90,7 @@ void	insert	(iterator pos,
 	size_t	position = pos - this->begin(),
 			count = std::distance(first, last);
 
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 	std::cout	<< "insert template count = "
 				<< count
 				<< std::endl
@@ -117,7 +117,7 @@ iterator	erase	(iterator pos)
 		pos = this->end() - 1;
 //	move_forward(pos, pos + 1, this->end());
 
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 	std::cout	<< std::endl
 				<< "-------------------------- erase --------------------------"
 				<< "content before : "
@@ -132,7 +132,7 @@ iterator	erase	(iterator pos)
 		 rhs != ite;
 		 lhs++, rhs++)
 	{
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 		std::cout	<< "lhs before = "
 					<< *lhs
 					<< std::endl
@@ -141,7 +141,7 @@ iterator	erase	(iterator pos)
 					<< std::endl;
 #endif
 		ft::swap(*lhs, *rhs);
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 		std::cout	<< "lhs after = "
 					<< *lhs
 					<< std::endl
@@ -154,7 +154,7 @@ iterator	erase	(iterator pos)
 	--_size;
 	_alloc.destroy(_data + _size);
 
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 	std::cout	<< "content after : "
 				<< std::endl;
 	for (size_t i = 0; i < _size; i++)
@@ -179,6 +179,11 @@ iterator	erase	(iterator first,
 
 	return (_data + dist);
 }
+
+//void	push_back	(const_reference value)
+//{
+//	this->insert(
+//}
 
 # endif
 #endif

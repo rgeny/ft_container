@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:48:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/27 12:21:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 17:51:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ namespace ft
 			friend bool	operator==	(ft::stack<T, Container> const & lhs,
 									 ft::stack<T, Container> const & rhs)
 			{
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 				std::cout	<< "ft::stack operator=="
 							<< std::endl;
 #endif
@@ -74,7 +74,7 @@ namespace ft
 			friend bool	operator!=	(ft::stack<T, Container> const & lhs,
 									 ft::stack<T, Container> const & rhs)
 			{
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 				std::cout	<< "ft::stack operator!="
 							<< std::endl;
 #endif
@@ -83,7 +83,7 @@ namespace ft
 			friend bool	operator<	(ft::stack<T, Container> const & lhs,
 									 ft::stack<T, Container> const & rhs)
 			{
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 				std::cout	<< "ft::stack operator<"
 							<< std::endl;
 #endif
@@ -92,7 +92,7 @@ namespace ft
 			friend bool	operator<=	(ft::stack<T, Container> const & lhs,
 									 ft::stack<T, Container> const & rhs)
 			{
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 				std::cout	<< "ft::stack operator<="
 							<< std::endl;
 #endif
@@ -101,7 +101,7 @@ namespace ft
 			friend bool	operator>	(ft::stack<T, Container> const & lhs,
 									 ft::stack<T, Container> const & rhs)
 			{
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 				std::cout	<< "ft::stack operator>"
 							<< std::endl;
 #endif
@@ -110,7 +110,7 @@ namespace ft
 			friend bool	operator>=	(ft::stack<T, Container> const & lhs,
 									 ft::stack<T, Container> const & rhs)
 			{
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 				std::cout	<< "ft::stack operator>="
 							<< std::endl;
 #endif

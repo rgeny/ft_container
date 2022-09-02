@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:39:20 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/01 15:21:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 17:53:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ bool	empty	(void) const
 
 void	reserve	(size_type new_cap)
 {
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 	std::cout	<< "_capacity in reserve begin = "
 				<< _capacity
 				<< std::endl
@@ -63,7 +63,7 @@ void	reserve	(size_type new_cap)
 	_data = new_data;
 	_capacity = new_cap;
 
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 	std::cout	<< "_capacity in reserve end = "
 				<< _capacity
 				<< std::endl

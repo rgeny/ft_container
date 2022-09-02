@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:07:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/01 15:06:14 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 17:52:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ vector	(vector const & src)
 
 ~vector	(void)
 {
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 	std::cout	<< "vector destructor."
 				<< std::endl;
 #endif
 	this->clear();
-#ifdef FT_CONTAINER_DEBUG
+#ifdef __DEBUG__
 	std::cout	<< "_capacity = "
 				<< _capacity
 				<< std::endl
