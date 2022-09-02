@@ -11,11 +11,14 @@ declare -a vector_test=(
 	"constructor_string string.cpp srcs/vector/constructor/"
 	"clear clear.cpp srcs/vector/modifiers/"
 	"reserve reserve.cpp srcs/vector/modifiers/"
-	"reserve_max_size reserve_max_size.cpp srcs/vector/crash_test/"
+	"crash_reserve_max_size reserve_max_size.cpp srcs/vector/crash_test/"
 	"resize resize.cpp srcs/vector/modifiers/"
-	"resize_max_size resize_max_size.cpp srcs/vector/crash_test/"
+	"crash_resize_max_size resize_max_size.cpp srcs/vector/crash_test/"
 	"insert insert.cpp srcs/vector/modifiers/"
 	"assign assign.cpp srcs/vector/modifiers/"
+	"erase erase.cpp srcs/vector/modifiers/"
+	"crash_erase_before_begin erase_before_begin.cpp srcs/vector/crash_test/"
+	"crash_erase_after_end erase_after_end.cpp srcs/vector/crash_test/"
 #	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"
 	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
@@ -274,6 +277,7 @@ function	do_test()
 	STD_RET="$?"
 	STD_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	STD_ERROR=$(cat $ERR_STD | grep "usage" | awk '{ printf (($5 - $7)) }')
+	STD_INVALID=$(cat $ERR_STD | grep -E "Invalid")
 
 	TIMEOUT="timeout $(expr $STD_TIME / 50 + 1)s"
 
@@ -282,6 +286,8 @@ function	do_test()
 	FT_RET="$?"
 	FT_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	FT_ERROR=$(cat $ERR_FT | grep "usage" | awk '{ printf (($5 - $7)) }')
+	FT_INVALID=$(cat $ERR_FT | grep -E "Invalid")
+
 	DIFF_TIME=$(expr $STD_TIME \* 20)
 	DIFF_TIME=$(($FT_TIME > $DIFF_TIME))
 }
@@ -293,10 +299,6 @@ function	check_result()
 		printf "$1:$RED Ko (Compile error)\n$RESET"
 		if [ "$VERBOSE" == "verbose1" ]
 		then
-#			printf $BLUE"\nSTD\n"
-#			eval cat $TEST_LOG_DIR$ERR_STD
-#			printf $RED"\nFT\n"
-#			eval cat $TEST_LOG_DIR$ERR_FT
 			printf "$BLUE\STD\t$RED\FT"
 			eval diff -y $TEST_LOG_DIR$ERR_STD $TEST_LOG_DIR$ERR_FT
 			printf $RESET
@@ -307,14 +309,31 @@ function	check_result()
 		 ([ "$STD_ERROR" != "0" ] &&
 		 	[ "$STD_ERROR" == "$FT_ERROR" ]) ||
 		 ([ "$STD_RET" != "0" ] &&
-		 	[ "$STD_RET" == "$FT_RET" ])
+		 	[ "$STD_RET" == "$FT_RET" ]) ||
+		 ([ "$STD_INVALID" != "" ] &&
+		 	[ "$FT_INVALID" != "" ])
 	then
 		printf "$1:$GREEN Ok (Same error)\n$RESET"
 		eval "${opt_lst[$VERBOSE_TIME]}"
+	elif [ "$STD_INVALID" == "" ] &&
+		  [ "$FT_INVALID" != "" ]
+	then
+#		TEST
+		printf $BLUE"TEST\n"
+		eval "cat $3$TEST | sed 1,${LINE_DEL}d"
+		printf $RESET
+
+#		FT
+		printf "$1:$RED Ko\n"
+		eval cat $TEST_LOG_DIR$ERR_FT
+		printf "$RESET\n"
+
+		${opt_lst[$STOP]}
 	elif [ "$STD" != "$FT" ] ||
 		[ "$FT_RET" == "$TIMEOUT_RET" ]
 	then
-		printf $1":"$RED" Ko$RESET\n"
+		printf $1":"$RED" Ko "
+		printf "$RESET\n"
 #		TEST
 		printf $BLUE"TEST\n"
 		eval "cat $3$TEST | sed 1,${LINE_DEL}d"
@@ -351,10 +370,6 @@ function	check_result()
 		printf "$1:$RED Ko (Memory leak)\n$RESET"
 		if [ "$VERBOSE" == "verbose1" ]
 		then
-#			printf $BLUE"\nSTD\n"
-#			eval cat $TEST_LOG_DIR$ERR_STD
-#			printf $RED"\nFT\n"
-#			eval cat $TEST_LOG_DIR$ERR_FT
 			printf "$BLUE\STD\t$RED\FT\n"
 			eval diff -y $TEST_LOG_DIR$ERR_STD $TEST_LOG_DIR$ERR_FT
 			printf $RESET

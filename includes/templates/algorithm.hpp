@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:21:48 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 16:51:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/01 15:44:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,37 @@ namespace ft
 		T	tmp = lhs;
 		lhs = rhs;
 		rhs = tmp;
+	}
+
+	template
+	<
+		typename Iterator
+	>
+	void	swap_backward	(Iterator lhs,
+							 Iterator rhs,
+							 Iterator ite)
+	{
+		while (rhs != ite)
+		{
+			ft::swap(*lhs, *rhs);
+			--lhs;
+			--rhs;
+		}
+	}
+	template
+	<
+		typename Iterator
+	>
+	void	move_forward	(Iterator lhs,
+							 Iterator rhs,
+							 Iterator ite)
+	{
+		while (rhs != ite)
+		{
+			ft::swap(*lhs, *rhs);
+			++lhs;
+			++rhs;
+		}
 	}
 }
 

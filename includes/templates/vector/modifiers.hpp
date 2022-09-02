@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/01 15:20:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 14:51:13 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 # ifndef VECTOR_MODIFIERS_HPP
 
 template < class InputIterator >
-void	assign	(InputIterator first
-				,InputIterator last
-				,typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type = 0)
+void	assign	(InputIterator first,
+				 InputIterator last,
+				 typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type = 0)
 {
 	this->clear();
 	this->insert(this->begin(), first, last);
 }
-void	assign	(size_type n
-				,const_reference val)
+void	assign	(size_type n,
+				 const_reference val)
 {
 	this->clear();
 	this->insert(this->begin(), n, val);
@@ -34,83 +34,22 @@ void	clear	(void)
 	_size = 0;
 }
 
-//void	reserve	(size_type new_cap)
-//{
-//#ifdef FT_CONTAINER_DEBUG
-//	std::cout	<< "_capacity in reserve begin = "
-//				<< _capacity
-//				<< std::endl
-//				<< "_data in reserve begin = "
-//				<< _data
-//				<< std::endl;
-//#endif
-//
-//	if (new_cap > this->max_size())
-//		throw (std::length_error(FT_VECTOR_LENGTH_ERROR));
-//	if (new_cap <= _capacity)
-//		return ;
-//
-//	pointer	new_data = _alloc.allocate(new_cap);
-//
-//	for (size_type i = 0;
-//		 i < _size;
-//		 i++)
-//	{
-//		_alloc.construct(new_data + i, _data[i]);
-//	}
-//	_destroy_all();
-//	_alloc.deallocate(_data, _capacity);
-//	_data = new_data;
-//	_capacity = new_cap;
-//
-//#ifdef FT_CONTAINER_DEBUG
-//	std::cout	<< "_capacity in reserve end = "
-//				<< _capacity
-//				<< std::endl
-//				<< "_data in reserve end = "
-//				<< _data
-//				<< std::endl;
-//#endif
-//}
-
-//void	resize	(size_type count,
-//				 value_type value = T() )
-//{
-//	if (count == _size)
-//		return ;
-//	if (count > _capacity)
-//		this->reserve(ft::max(count, _size * 2));
-//
-//	if (_size < count)
-//	{
-//		for (size_type i = _size; i < count; i++)
-//			_alloc.construct(_data + i, value);
-//	}
-//	else
-//	{
-//		for (size_type i = _size; i < count; i++)
-//			_alloc.destroy(_data + i);
-//	}
-//
-//	_size = count;
-//}
-//
 iterator	insert	(iterator pos,
 					 const_reference value)
 {
-	size_t	emplace = pos - this->begin();
+	size_t	position = pos - this->begin();
 	this->insert(pos, 1, value);
-	return (this->begin() + emplace);
+	return (this->begin() + position);
 }
 
 void	insert	(iterator pos,
 				 size_type count,
 				 const_reference value)
 {
-	size_t	emplace = pos - this->begin();
+	size_t	position = pos - this->begin();
 #ifdef FT_CONTAINER_DEBUG
-	std::cout	<< "emplace = "
-				<< emplace
+	std::cout	<< "insert position = "
+				<< position
 				<< std::endl
 				<< "insert pos = "
 				<< &(*pos)
@@ -124,27 +63,18 @@ void	insert	(iterator pos,
 				<< "insert count = "
 				<< count
 				<< std::endl
-				<< "_size + count = "
+				<< "insert _size + count = "
 				<< _size + count
 				<< std::endl;
 #endif
 	this->resize(ft::max(count, _size + count), value);
 
-	if (emplace >= _size - count)
+	if (position >= _size - count)
 		return ;
-#ifdef FT_CONTAINER_DEBUG
-	std::cout	<< "t1\n";
-#endif
 
-
-	for (iterator	lhs = this->end() - 1,
-					rhs = lhs - count,
-					ite = this->begin() + emplace - 1;
-		 rhs != ite;
-		 lhs--, rhs--)
-	{
-		ft::swap(*lhs, *rhs);
-	}
+	ft::swap_backward	(this->end() - 1,
+						 this->end() - 1 - count,
+						 this->begin() + position - 1);
 }
 
 
@@ -157,29 +87,98 @@ void	insert	(iterator pos,
 				 InputIt last,
 				 typename ft::enable_if<!ft::is_integral<InputIt>::value>::type = 0)
 {
-	size_t	emplace = pos - this->begin(),
+	size_t	position = pos - this->begin(),
 			count = std::distance(first, last);
 
 #ifdef FT_CONTAINER_DEBUG
 	std::cout	<< "insert template count = "
 				<< count
 				<< std::endl
-				<< "insert template emplace ="
-				<< emplace
+				<< "insert template position ="
+				<< position
 				<< std::endl;
 #endif
+
 	this->insert(pos, count, T() );
 
-	for (iterator it = this->begin() + emplace;
+	for (iterator it = this->begin() + position;
 		 first != last;
 		 it++, first++)
 	{
 		*it = *first;
 	}
-		 
 }
 
+iterator	erase	(iterator pos)
+{
+//	if (pos == this->end())
+//		return (pos);
+	if (pos >= this->end())
+		pos = this->end() - 1;
+//	move_forward(pos, pos + 1, this->end());
 
+#ifdef FT_CONTAINER_DEBUG
+	std::cout	<< std::endl
+				<< "-------------------------- erase --------------------------"
+				<< "content before : "
+				<< std::endl;
+	for (size_t i = 0; i < _size; i++)
+		std::cout	<< "- "
+					<< _data[i]
+					<< std::endl;
+#endif
+
+	for (iterator lhs = pos, rhs = pos + 1, ite = this->end();
+		 rhs != ite;
+		 lhs++, rhs++)
+	{
+#ifdef FT_CONTAINER_DEBUG
+		std::cout	<< "lhs before = "
+					<< *lhs
+					<< std::endl
+					<< "rhs before = "
+					<< *rhs
+					<< std::endl;
+#endif
+		ft::swap(*lhs, *rhs);
+#ifdef FT_CONTAINER_DEBUG
+		std::cout	<< "lhs after = "
+					<< *lhs
+					<< std::endl
+					<< "rhs after = "
+					<< *rhs
+					<< std::endl;
+#endif
+	}
+
+	--_size;
+	_alloc.destroy(_data + _size);
+
+#ifdef FT_CONTAINER_DEBUG
+	std::cout	<< "content after : "
+				<< std::endl;
+	for (size_t i = 0; i < _size; i++)
+		std::cout	<< "- "
+					<< _data[i]
+					<< std::endl;
+	std::cout	<< "------------------------ end erase -------------------------"
+				<< std::endl;
+#endif
+
+	return (pos);
+}
+
+iterator	erase	(iterator first,
+					 iterator last)
+{
+	size_t	dist = std::distance(first, last),
+			start = first - this->begin();
+	move_forward(first, last, this->end());
+	_destroy(_data + start, _data + start + dist);
+	_size -= dist;
+
+	return (_data + dist);
+}
 
 # endif
 #endif
