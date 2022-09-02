@@ -19,6 +19,9 @@ declare -a vector_test=(
 	"erase erase.cpp srcs/vector/modifiers/"
 	"crash_erase_before_begin erase_before_begin.cpp srcs/vector/crash_test/"
 	"crash_erase_after_end erase_after_end.cpp srcs/vector/crash_test/"
+	"push_back push_back.cpp srcs/vector/modifiers/"
+	"pop_back pop_back.cpp srcs/vector/modifiers/"
+ 	"crash_pop_back_empty pop_back_empty.cpp srcs/vector/crash_test/"
 #	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"
 	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
@@ -197,6 +200,7 @@ declare -A opt_lst=(
 					eval cat \$3\$TEST | sed 1,${LINE_DEL}d
 					printf \$BLUE\"\nSTD (time : \$STD_TIME ms)\n\"
 					printf \$GREEN\"\nFT (time : \$FT_TIME ms)\n\"
+					printf \"${BLUE}STD\t\t\t\t\t\t\t\t${GREEN}FT\n\"
 					eval diff -y \$TEST_LOG_DIR\$LOG_STD \$TEST_LOG_DIR\$LOG_FT"
 	["verbose_time1"]="printf \$BLUE\"(std_time : \$STD_TIME ms)\"\$GREEN\"(ft_time : \$FT_TIME ms)\n\$RESET\""
 	["stop1"]="exit"

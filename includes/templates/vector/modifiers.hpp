@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 17:53:24 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 18:38:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ iterator	erase	(iterator pos)
 #ifdef __DEBUG__
 	std::cout	<< std::endl
 				<< "-------------------------- erase --------------------------"
+				<< std::endl
 				<< "content before : "
 				<< std::endl;
 	for (size_t i = 0; i < _size; i++)
@@ -157,10 +158,10 @@ iterator	erase	(iterator pos)
 #ifdef __DEBUG__
 	std::cout	<< "content after : "
 				<< std::endl;
-	for (size_t i = 0; i < _size; i++)
-		std::cout	<< "- "
-					<< _data[i]
-					<< std::endl;
+//	for (size_t i = 0; i < _size; i++)
+//		std::cout	<< "- "
+//					<< _data[i]
+//					<< std::endl;
 	std::cout	<< "------------------------ end erase -------------------------"
 				<< std::endl;
 #endif
@@ -180,10 +181,15 @@ iterator	erase	(iterator first,
 	return (_data + dist);
 }
 
-//void	push_back	(const_reference value)
-//{
-//	this->insert(
-//}
+void	push_back	(const_reference value)
+{
+	this->insert(this->end(), value);
+}
+
+void	pop_back	(void)
+{
+	this->erase(this->end());
+}
 
 # endif
 #endif

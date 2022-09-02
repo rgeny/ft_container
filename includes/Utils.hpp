@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:06:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 12:10:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/02 18:43:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@
 											<< #ope \
 											<< std::endl; \
 								ope;
+
+# define TRY_CATCH(code)	try \
+							{ \
+								code \
+							} \
+							catch ( std::exception const & err ) \
+							{ \
+								std::cout	<< "error" \
+											<< std::endl; \
+							}
 
 
 template<class T>
