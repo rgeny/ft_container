@@ -48,26 +48,32 @@ declare -a vector_test=(
 	"data data.cpp srcs/vector/access/"
 	"operator operator.cpp srcs/vector/"
 #	iterator
-	"iterator_constructor structor.cpp srcs/vector/iterator/"
-	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
-	"iterator_base base.cpp srcs/vector/iterator/"
-	"iterator_dereferencing dereferencing.cpp srcs/vector/iterator/"
-	"iterator_increment increment.cpp srcs/vector/iterator/"
-	"iterator_decrement decrement.cpp srcs/vector/iterator/"
-	"iterator_operation operation.cpp srcs/vector/iterator/"
-	"iterator_compare compare.cpp srcs/vector/iterator/"
+#	"iterator_constructor structor.cpp srcs/vector/iterator/"
+#	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
+#	"iterator_base base.cpp srcs/vector/iterator/"
+#	"iterator_dereferencing dereferencing.cpp srcs/vector/iterator/"
+#	"iterator_increment increment.cpp srcs/vector/iterator/"
+#	"iterator_decrement decrement.cpp srcs/vector/iterator/"
+#	"iterator_operation operation.cpp srcs/vector/iterator/"
+#	"iterator_compare compare.cpp srcs/vector/iterator/"
 #	reverse iterator
-	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator/"
+#	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator/"
+	)
+
+declare -a other_test=(
+	"test test.cpp ./"
 	)
 
 declare -A lib_test=(
 	['stack']="${stack_test[@]}"
 	['vector']="${vector_test[@]}" 
+	['other']="${other_test[@]}"
 	)
 
 declare -a test_name=(
 	"stack"
 	"vector"
+	"other"
 	)
 
 ###############################################

@@ -23,8 +23,9 @@ void	test	(void)
 int	main	(__attribute((unused)) int argc,
 			 __attribute((unused)) char * argv[])
 {
-	try
-	{
+	ft::RandomAccessIterator<int>	it;
+//	try
+//	{
 //		std::allocator<std::string>	a;
 //		std::string *				t = a.allocate(10);
 //
@@ -36,14 +37,14 @@ int	main	(__attribute((unused)) int argc,
 //		std::cout	<< "t[1] = "
 //					<< t[1]
 //					<< std::endl;
-
-		std::vector<std::string>	v;
-
-		v.resize(10);
-
+//
+//		std::vector<std::string>	v;
+//
+//		v.resize(10);
+//
 //		v.push_back("c");
-		v[0] = "a";
-
+//		v[0] = "a";
+//
 //		ft::vector<int>	v;
 //
 //		std::cout	<< "max_size = "
@@ -55,14 +56,14 @@ int	main	(__attribute((unused)) int argc,
 //		std::cout	<< "size = "
 //					<< v.size()
 //					<< std::endl;
-	}
-	catch (std::exception const & err)
-	{
-		std::cout	<< err.what()
-					<< std::endl;
-	}
-	
-	return (0);
+//	}
+//	catch (std::exception const & err)
+//	{
+//		std::cout	<< err.what()
+//					<< std::endl;
+//	}
+//	
+//	return (0);
 //	std::vector<std::string>	v;
 //
 //	v.reserve(10);
@@ -73,7 +74,7 @@ int	main	(__attribute((unused)) int argc,
 //
 //	std::cout	<< v.size()
 //				<< std::endl;
-
+//
 //	return (0);
 //	assert(argc != 1);
 //
