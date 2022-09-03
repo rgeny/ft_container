@@ -22,7 +22,7 @@ static void	_test	(Class & v,
 {
 	try
 	{
-		_print_nl	("resize(" + std::to_string(n) + ")");
+		_print_nl	("resize(" + ft::to_string(n) + ")");
 		v.resize(n);
 		_print_val_and_size<T>(v);
 	}

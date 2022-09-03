@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 16:22:51 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 19:44:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 10:08:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ vector &	operator=	(vector const & rhs)
 	return (*this);
 }
 
-reference	operator[]	(size_type i)
-{
-	return (_data[i]);
-}
+//reference	operator[]	(size_type i)
+//{
+//	return (_data[i]);
+//}
 
 # endif
 #endif

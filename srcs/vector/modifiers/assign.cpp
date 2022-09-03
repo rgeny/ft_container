@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 12:29:45 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/01 15:16:52 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 11:24:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void	_test	(Class & v,
 	try
 	{
 		_print_nl	(std::string("assign(") +
-					 std::to_string(n) +
+					 ft::to_string(n) +
 					 ", " +
-					 std::to_string(val) +
+					 ft::to_string(val) +
 					 ")");
 		v.assign(n, val);
 		_print_val_and_size<T>(v);
@@ -51,9 +51,9 @@ static void	_test	(Class & v,
 	try
 	{
 		_print_nl	(std::string("assign(v2.begin() + ") +
-					 std::to_string(first) +
+					 ft::to_string(first) +
 					 ", v2.end() - " +
-					 std::to_string(last) +
+					 ft::to_string(last) +
 					 ")");
 		v.assign(v2.begin() + first, v2.end() - last);
 		_print_val_and_size<T>(v);
@@ -67,22 +67,22 @@ static void	_test	(Class & v,
 
 int	main	(void)
 {
-	NAMESPACE::vector<char>	v;
-	_test<char>	(v, 0, 'a');
-	_test<char>	(v, 17, 'b');
-	_test<char>	(v, 3, 'c');
-	_test<char>	(v, v.size(), 'd');
-	_test<char>	(v, 98, 'e');
-	_test<char>	(v, 0, 'f');
-	_test<char>	(v, 39, 'g');
+	NAMESPACE::vector<int>	v;
+	_test<int>	(v, 0, 'a');
+	_test<int>	(v, 17, 'b');
+	_test<int>	(v, 3, 'c');
+	_test<int>	(v, v.size(), 'd');
+	_test<int>	(v, 98, 'e');
+	_test<int>	(v, 0, 'f');
+	_test<int>	(v, 39, 'g');
 
-	NAMESPACE::vector<char>	v2, v3(17);
-	_test<char>	(v2, v, 0, 0);
-	_test<char>	(v2, v, 0, v.size());
-	_test<char>	(v2, v, v.size(), 0);
-	_test<char>	(v2, v, v.size(), v.size());
-	_test<char>	(v2, v, v.size() - 1, v.size());
-	_test<char>	(v2, v, v.size(), v.size() - 1);
-	_test<char>	(v2, v, v.size() - 1, v.size() - 1);
-	_test<char>	(v3, 0, 0);
+	NAMESPACE::vector<int>	v2, v3(17);
+	_test<int>	(v2, v, 0, 0);
+	_test<int>	(v2, v, 0, v.size());
+	_test<int>	(v2, v, v.size(), 0);
+	_test<int>	(v2, v, v.size(), v.size());
+	_test<int>	(v2, v, v.size() - 1, v.size());
+	_test<int>	(v2, v, v.size(), v.size() - 1);
+	_test<int>	(v2, v, v.size() - 1, v.size() - 1);
+	_test<int>	(v3, 0, 0);
 }

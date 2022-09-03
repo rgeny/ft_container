@@ -1,48 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   at.cpp                                             :+:      :+:    :+:   */
+/*   big_size.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/01 15:27:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 19:42:18 by rgeny            ###   ########.fr       */
+/*   Created: 2022/08/26 18:22:57 by rgeny             #+#    #+#             */
+/*   Updated: 2022/08/26 18:31:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Utils.hpp"
 
-template
-<
-	typename T,
-	typename Class
->
-static void	_test	(Class v,
-					 size_t n)
-{
-	TRY_CATCH
-	(
-		_print_nl	(std::string("v.at(") +
-					 ft::to_string(n) +
-					 ");");
-		std::cout	<< v.at(n)
-					<< std::endl;
-	);
-}
-
 int	main	(void)
 {
-	NAMESPACE::vector<std::string>	v;
-	std::string	str("abc");
+	NAMESPACE::stack<int, std::vector<int> >	s;
 
-	for (int i = 0; i < 24; i++)
-	{
-		v.push_back(str);
-		str[0]++;
-		str[1]++;
-		str[2]++;
-	}
+	_print_nl	("try to add 1000 elements in stack");
+	fill_stack	(s, 1, 1000);
+	empty_the_stack(s);
 
-	for (size_t i = 0; i <= v.size(); i++)
-		_test<std::string>(v, i);
+	_print_nl	("try to add 10000 elements in stack");
+	fill_stack	(s, 1, 10000);
+	empty_the_stack(s);
+
+	_print_nl	("try to add 100000 elements in stack");
+	fill_stack	(s, 1, 100000);
+	empty_the_stack(s);
+
+	_print_nl	("try to add 300000 elements in stack");
+	fill_stack	(s, 1, 300000);
+	empty_the_stack(s);
 }

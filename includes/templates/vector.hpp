@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 19:28:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 10:27:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define VECTOR_HPP
 # include <iostream>
 # include <stdexcept>
+# include <cstring>
+# include <string.hpp>
 # include "print.hpp"
 # include "type_traits.hpp"
 # include "iterator.hpp"
 # include "algorithm.hpp"
-# include <cstring>
 
 # define VECT_DFL_SIZE 0
 # define VECT_NAME "vector"

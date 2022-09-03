@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:57:19 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/27 13:42:54 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 10:35:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ template
 <
 	typename T
 >
-void	test	(T lhs, T rhs)
+static void	_test	(T lhs,
+					 T rhs)
 {
 	std::cout	<< "lhs = "
 				<< lhs
@@ -36,15 +37,15 @@ int	main	(void)
 	_print_nl	("value_type (int) : ");
 	{
 		NAMESPACE::stack<int>::value_type	lhs = 17,
-											rhs;
-		test(lhs, rhs);
+											rhs = 0;
+		_test(lhs, rhs);
 	}
 	_print_nl("");
 	_print_nl	("value_type (string) : ");
 	{
 		NAMESPACE::stack<std::string>::value_type	lhs = "aBcDeFgHiJkLmNoPqRsTuVwXyZ",
 													rhs;
-		test(lhs, rhs);
+		_test(lhs, rhs);
 	}
 	_print_nl("");
 	_print_nl	("container_type (std::vector<int>) : ");

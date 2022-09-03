@@ -4,6 +4,19 @@
 #################### TESTS ####################
 ###############################################
 
+declare -a stack_test=(
+	"member_types member_types.cpp srcs/stack/"
+	"crash_test_const_reference crash_const_reference.cpp srcs/stack/"
+	"member_objects member_objects.cpp srcs/stack/"
+	"structor structor.cpp srcs/stack/"
+	"crash_test_top crash_top.cpp srcs/stack/"
+	"pop_empty pop_empty.cpp srcs/stack/"
+	"big_size big_size.cpp srcs/stack/"
+	"member_function member_function.cpp srcs/stack/"
+	"operator= operator=.cpp srcs/stack/"
+	"relationnal_operator relationnal_operator.cpp srcs/stack/"
+	)
+
 declare -a vector_test=(
 	"size_sample sample.cpp srcs/vector/size/"
 
@@ -15,8 +28,8 @@ declare -a vector_test=(
 	"resize resize.cpp srcs/vector/modifiers/"
 	"crash_resize_max_size resize_max_size.cpp srcs/vector/crash_test/"
 	"insert insert.cpp srcs/vector/modifiers/"
-	"assign assign.cpp srcs/vector/modifiers/"
 	"erase erase.cpp srcs/vector/modifiers/"
+	"assign assign.cpp srcs/vector/modifiers/"
 	"crash_erase_before_begin erase_before_begin.cpp srcs/vector/crash_test/"
 	"crash_erase_after_end erase_after_end.cpp srcs/vector/crash_test/"
 	"push_back push_back.cpp srcs/vector/modifiers/"
@@ -24,6 +37,9 @@ declare -a vector_test=(
  	"crash_pop_back_empty pop_back_empty.cpp srcs/vector/crash_test/"
 	"swap swap.cpp srcs/vector/modifiers/"
 	"at at.cpp srcs/vector/access/"
+	"operator[] operator[].cpp srcs/vector/access/"
+	"crash_operator[]_empty operator[]_empty.cpp srcs/vector/crash_test/"
+	"crash_operator[]_out_of_size operator[]_out_of_size.cpp srcs/vector/crash_test/"
 	"operator= operator=.cpp srcs/vector/operator/"
 #	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"
@@ -36,19 +52,6 @@ declare -a vector_test=(
 	"iterator_compare compare.cpp srcs/vector/iterator/"
 #	reverse iterator
 	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator/"
-	)
-
-declare -a stack_test=(
-	"member_types member_types.cpp srcs/stack/"
-	"crash_test_const_reference crash_const_reference.cpp srcs/stack/"
-	"member_objects member_objects.cpp srcs/stack/"
-	"structor structor.cpp srcs/stack/"
-	"crash_test_top crash_top.cpp srcs/stack/"
-	"crash_test_pop crash_pop.cpp srcs/stack/"
-	"crash_test_big_size crash_big_size.cpp srcs/stack/"
-	"member_function member_function.cpp srcs/stack/"
-	"operator= operator=.cpp srcs/stack/"
-	"relationnal_operator relationnal_operator.cpp srcs/stack/"
 	)
 
 declare -A lib_test=(
@@ -102,7 +105,7 @@ ERR_FT="result.err"
 ERR_STD="research.err"
 
 ##### MAKEFILE VARS #####
-STD_EXE=$EXE_DIR\$3\$STD_PREFIX\$1
+STD_EXE="$EXE_DIR\$3\$STD_PREFIX\$1"
 FT_EXE=$EXE_DIR\$3\$FT_PREFIX\$1
 STD_PREFIX="std_"
 FT_PREFIX="ft_"
