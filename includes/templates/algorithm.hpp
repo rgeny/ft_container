@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:21:48 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/01 15:44:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 14:05:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 namespace ft
 {
+//	max
 	template
 	<
 		typename T
@@ -27,6 +28,7 @@ namespace ft
 		return (lhs);
 	}
 
+//	swap
 	template
 	<
 		typename T
@@ -39,6 +41,7 @@ namespace ft
 		rhs = tmp;
 	}
 
+//	swap_backward
 	template
 	<
 		typename Iterator
@@ -54,6 +57,8 @@ namespace ft
 			--rhs;
 		}
 	}
+
+//	move_forward
 	template
 	<
 		typename Iterator
@@ -68,6 +73,100 @@ namespace ft
 			++lhs;
 			++rhs;
 		}
+	}
+
+//	equal
+	template
+	<
+		typename Iterator1,
+		typename Iterator2
+	>
+	bool	equal	(Iterator1 first1,
+					 Iterator1 last1,
+					 Iterator2 first2)
+	{
+		while (first1 != last1)
+		{
+#ifdef __DEBUG__
+	std::cout	<< "equal : in while"
+				<< std::endl;
+#endif
+			if ( ! (*first1 == *first2) )
+				return (false);
+			++first1;
+			++first2;
+		}
+		return (true);
+	}
+
+	template
+	<
+		typename Iterator1,
+		typename Iterator2,
+		typename BinaryPredicate
+	>
+	bool	equal	(Iterator1 first1,
+					 Iterator1 last1,
+					 Iterator2 first2,
+					 BinaryPredicate p)
+	{
+		while (first1 != last1)
+		{
+			if ( ! (p(*first1, *first2)) )
+				return (false);
+			++first1;
+			++first2;
+		}
+		return (true);
+	}
+
+//	lexicographical_compare
+	template
+	<
+		typename Iterator1,
+		typename Iterator2
+	>
+	bool	lexicographical_compare	(Iterator1 first1,
+									 Iterator1 last1,
+									 Iterator2 first2,
+									 Iterator2 last2)
+	{
+		while (first1 != last1 &&
+				first2 != last2)
+		{
+			if (*first1 != *first2)
+				return (*first1 < *first2);
+			++first1;
+			++first2;
+		}
+		return (first1 == last1 &&
+				first2 != last2);
+	}
+
+	template
+	<
+		typename Iterator1,
+		typename Iterator2,
+		typename Compare
+	>
+	bool	lexicographical_compare	(Iterator1 first1,
+									 Iterator1 last1,
+									 Iterator2 first2,
+									 Iterator2 last2,
+									 Compare comp)
+	{
+		while (first1 != last1 &&
+				first2 != last2)
+		{
+			if (comp(*first1, *first2))
+				return (true);
+			if (comp(*first2, *first1))
+				return (false);
+			++first1;
+			++first2;
+		}
+		return (first1 == last1 &&
+				first2 != last2);
 	}
 }
 

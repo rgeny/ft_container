@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:46:09 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 14:07:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 14:31:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static void	_test	(Class v,
 		_print_nl	(std::string("erase(v.begin() + ") +
 					 ft::to_string(pos) +
 					 ");");
-		v.erase(v.begin() + pos);
+		std::cout	<< "v.erase(v.begin() + pos) - v.begin() == "
+					<< (v.erase(v.begin() + pos) - v.begin())
+					<< std::endl;
 		_print_val_and_size<T>(v);
 	}
 	catch (std::exception const & err)

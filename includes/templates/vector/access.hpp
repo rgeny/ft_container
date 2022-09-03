@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:26:24 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/03 11:39:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 12:07:09 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ const_reference	front	(void) const
 
 reference	back	(void)
 {
-	return	(*this->end());
+	return	(*(this->end() - 1));
 }
 
 const_reference	back	(void) const
 {
-	return (*this->end());
+	return (*(this->end() - 1));
 }
 
 pointer	data	(void)

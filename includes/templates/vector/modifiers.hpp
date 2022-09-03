@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 19:20:55 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 14:36:26 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,12 @@ void	insert	(iterator pos,
 
 iterator	erase	(iterator pos)
 {
-//	if (pos == this->end())
-//		return (pos);
-	if (pos >= this->end())
-		pos = this->end() - 1;
-//	move_forward(pos, pos + 1, this->end());
+	iterator	__pos = (pos >= this->end()) ?
+							this->end() - 1:
+							pos;
+//	size_type	__pos = pos - this->begin();
+//	if (pos >= this->end())
+//		pos = this->end() - 1;
 
 #ifdef __DEBUG__
 	std::cout	<< std::endl
@@ -129,7 +130,7 @@ iterator	erase	(iterator pos)
 					<< std::endl;
 #endif
 
-	for (iterator lhs = pos, rhs = pos + 1, ite = this->end();
+	for (iterator lhs = __pos, rhs = __pos + 1, ite = this->end();
 		 rhs != ite;
 		 lhs++, rhs++)
 	{
@@ -178,7 +179,7 @@ iterator	erase	(iterator first,
 	_destroy(_data + start, _data + start + dist);
 	_size -= dist;
 
-	return (_data + dist);
+	return (_data + start);
 }
 
 void	push_back	(const_reference value)
@@ -196,6 +197,15 @@ void	swap	(vector & other)
 	ft::swap(_size, other._size);
 	ft::swap(_capacity, other._capacity);
 	ft::swap(_data, other._data);
+}
+
+vector &	operator=	(vector const & rhs)
+{
+	if (this == &rhs)
+		return (*this);
+	this->clear();
+	this->assign(rhs.begin(), rhs.end());
+	return (*this);
 }
 
 # endif
