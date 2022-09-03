@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/03 14:36:26 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 14:38:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,12 +112,8 @@ void	insert	(iterator pos,
 iterator	erase	(iterator pos)
 {
 	iterator	__pos = (pos >= this->end()) ?
-							this->end() - 1:
-							pos;
-//	size_type	__pos = pos - this->begin();
-//	if (pos >= this->end())
-//		pos = this->end() - 1;
-
+						this->end() - 1:
+						pos;
 #ifdef __DEBUG__
 	std::cout	<< std::endl
 				<< "-------------------------- erase --------------------------"

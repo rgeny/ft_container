@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 16:48:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/03 13:53:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 15:05:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,18 @@ namespace ft
 			
 			#include "vector/private.hpp"
 	};
+
+	template
+	<
+		typename T,
+		typename Alloc
+	>
+	void	swap	(ft::vector<T, Alloc> & lhs,
+					 ft::vector<T, Alloc> & rhs)
+	{
+		lhs.swap(rhs);
+	}
+
 //	template <class T>
 //	class MyIterator
 //		:public std::iterator<std::random_access_iterator_tag, T>
