@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 19:21:10 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 19:26:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 15:08:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@ static void	_test	(Class v,
 		_print_nl("");
 		_print_nl	(std::string("v.swap(v2)"));
 		v.swap(v2);
+		std::cout	<< "data v : "
+					<< std::endl;
+		_print_val_and_size<T>	(v);
+		std::cout	<< "data v2 : "
+					<< std::endl;
+		_print_val_and_size<T>	(v2);
+		NAMESPACE::swap(v, v2);
 		std::cout	<< "data v : "
 					<< std::endl;
 		_print_val_and_size<T>	(v);
