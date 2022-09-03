@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operator[].cpp                                     :+:      :+:    :+:   */
+/*   front.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/03 10:09:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/03 11:55:05 by rgeny            ###   ########.fr       */
+/*   Created: 2022/09/03 11:56:09 by rgeny             #+#    #+#             */
+/*   Updated: 2022/09/03 12:04:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,16 @@ template
 	typename T,
 	typename Class
 >
-static void	_test	(Class v,
-					 size_t pos)
+static void	_test	(Class v)
 {
 	TRY_CATCH
 	(
-		_print_nl	("std::cout	<< v[" +
-					 ft::to_string(pos) +
-					 "] << std::endl;");
-		T			val 		= v[pos];
-		T &			ref 		= v[pos];
-		T const 	const_val	= v[pos];
-		T const &	const_ref	= v[pos];
+		_print_nl("v.front()");
+		T			val			= v.front();
+		T &			ref			= v.front();
+		T const		const_val	= v.front();
+		T const &	const_ref	= v.front();
+
 		std::cout	<< "val = "
 					<< val
 					<< std::endl
@@ -50,10 +48,8 @@ static void	_test	(Class v,
 
 int	main	(void)
 {
-	NAMESPACE::vector<short>	v;
-
-	for (short i = 0; i < 10; i++)
-		v.push_back(i * i * i);
-	for (size_t i = 0; i < 10; i++)
-		_test<short>	(v, i);
+	NAMESPACE::vector<int>	v1(10),
+							v2(3, 7);
+	_test<int>(v1);
+	_test<int>(v2);
 }

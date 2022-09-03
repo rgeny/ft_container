@@ -40,6 +40,8 @@ declare -a vector_test=(
 	"operator[] operator[].cpp srcs/vector/access/"
 	"crash_operator[]_empty operator[]_empty.cpp srcs/vector/crash_test/"
 	"crash_operator[]_out_of_size operator[]_out_of_size.cpp srcs/vector/crash_test/"
+	"front front.cpp srcs/vector/access/"
+	"crash_front_empty front_empty.cpp srcs/vector/crash_test/"
 	"operator= operator=.cpp srcs/vector/operator/"
 #	iterator
 	"iterator_constructor structor.cpp srcs/vector/iterator/"

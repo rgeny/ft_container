@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:27:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 19:42:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 11:55:48 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,26 @@ static void	_test	(Class v,
 		_print_nl	(std::string("v.at(") +
 					 ft::to_string(n) +
 					 ");");
-		std::cout	<< v.at(n)
+		T 	val = v.at(n);
+		T &	ref = v.at(n);
+		T const const_val = v.at(n);
+		T const & const_ref = v.at(n);
+
+		std::cout	<< "val = "
+					<< val
+					<< std::endl
+					<< "ref = "
+					<< ref
+					<< std::endl
+					<< "const_val = "
+					<< const_val
+					<< std::endl
+					<< "const_ref = "
+					<< const_ref
+					<< std::endl
+					<< "&ref == &const_ref ? "
+					<< std::boolalpha
+					<< (&ref == &const_ref)
 					<< std::endl;
 	);
 }

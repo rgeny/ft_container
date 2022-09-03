@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:26:24 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/03 10:28:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/03 11:39:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,36 @@ reference	operator[]	(size_type pos)
 const_reference	operator[]	(size_type pos) const
 {
 	return (_data[pos]);
+}
+
+reference	front	(void)
+{
+	return (*_data);
+}
+
+const_reference	front	(void) const
+{
+	return (*_data);
+}
+
+reference	back	(void)
+{
+	return	(*this->end());
+}
+
+const_reference	back	(void) const
+{
+	return (*this->end());
+}
+
+pointer	data	(void)
+{
+	return (_data);
+}
+
+const_pointer	data	(void) const
+{
+	return (_data);
 }
 
 # endif
