@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:06:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 15:03:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/05 17:49:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <string>
 # include <iterator>
 # include <climits>
+# include <typeinfo>
 
 # include "colors.hpp"
 # include "string.hpp"

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 15:42:30 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 17:16:42 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/05 17:26:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ template
 	typename Iterator
 >
 static void	_test	(Iterator it,
-					 size_t n)
+					 int n)
 {
 	TRY_CATCH
 	(

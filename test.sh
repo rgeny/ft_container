@@ -59,6 +59,8 @@ declare -a vector_test=(
 	"crash_iterator_random_access_end iterator_random_access_end.cpp srcs/vector/crash_test/"
 	"crash_iterator_random_access_empty iterator_random_access_empty.cpp srcs/vector/crash_test/"
 	"crash_iterator_random_access_after_end iterator_random_access_after_end.cpp srcs/vector/crash_test/"
+	"iterator_function iterator_function.cpp srcs/vector/iterator/"
+	"iterator_traits iterator_traits.cpp srcs/vector/iterator/"
 #	"iterator_constructor structor.cpp srcs/vector/iterator/"
 #	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
 #	"iterator_base base.cpp srcs/vector/iterator/"
