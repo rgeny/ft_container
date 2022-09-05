@@ -54,6 +54,7 @@ declare -a vector_test=(
 	"crash_iterator_default_after_end iterator_default_after_end.cpp srcs/vector/crash_test/"
 	"iterator_input_output input_output.cpp srcs/vector/iterator/"
 	"iterator_forward forward.cpp srcs/vector/iterator/"
+	"iterator_bidirectional bidirectional.cpp srcs/vector/iterator/"
 #	"iterator_constructor structor.cpp srcs/vector/iterator/"
 #	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
 #	"iterator_base base.cpp srcs/vector/iterator/"
