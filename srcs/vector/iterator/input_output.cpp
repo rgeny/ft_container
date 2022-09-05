@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:09:39 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 14:55:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/05 18:12:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static void	_test	(Iterator it1,
 	(
 		PRINT_EXECUTE(*it1);
 		PRINT_EXECUTE(*it2);
+		PRINT_EXECUTE(it1->size());
+		PRINT_EXECUTE(it2->size());
 		PRINT_EXECUTE(it1 == it2);
 		PRINT_EXECUTE(it2 == it1);
 		PRINT_EXECUTE(it1 != it2);
@@ -34,11 +36,14 @@ static void	_test	(Iterator it1,
 
 int	main	(void)
 {
-	NAMESPACE::vector<int>	v;
+	NAMESPACE::vector<std::string>	v;
+	std::string	str("abc");
 
 	for (int i = 0; i < SIZE; i++)
 	{
-		v.push_back(i * i - 4);
+		v.push_back(str);
+		for (size_t j = 0; j < str.size(); j++)
+			str[j]++;
 	}
 
 	for (int i = 0; i < SIZE; i++)
