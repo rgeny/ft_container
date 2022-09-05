@@ -49,6 +49,9 @@ declare -a vector_test=(
 	"operator operator.cpp srcs/vector/"
 #	iterator
 	"iterator_default default.cpp srcs/vector/iterator/"
+	"crash_iterator_default_end iterator_default_end.cpp srcs/vector/crash_test/"
+	"crash_iterator_default_empty iterator_default_empty.cpp srcs/vector/crash_test/"
+	"crash_iterator_default_after_end iterator_default_after_end.cpp srcs/vector/crash_test/"
 #	"iterator_constructor structor.cpp srcs/vector/iterator/"
 #	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
 #	"iterator_base base.cpp srcs/vector/iterator/"
@@ -300,7 +303,7 @@ function	do_test()
 	STD_RET="$?"
 	STD_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	STD_ERROR=$(cat $ERR_STD | grep "usage" | awk '{ printf (($5 - $7)) }')
-	STD_INVALID=$(cat $ERR_STD | grep -E "Invalid")
+	STD_INVALID=$(cat $ERR_STD | grep -E "Invalid|Conditional|Use\ of\ uninitialised")
 
 	TIMEOUT="timeout $(expr $STD_TIME / 50 + 1)s"
 
@@ -309,7 +312,7 @@ function	do_test()
 	FT_RET="$?"
 	FT_TIME=$(expr $(date +"%s%N") / 1000000 - $TIME / 1000000)
 	FT_ERROR=$(cat $ERR_FT | grep "usage" | awk '{ printf (($5 - $7)) }')
-	FT_INVALID=$(cat $ERR_FT | grep -E "Invalid")
+	FT_INVALID=$(cat $ERR_FT | grep -E "Invalid|Conditional|Use\ of\ uninitialised")
 
 	DIFF_TIME=$(expr $STD_TIME \* 20)
 	DIFF_TIME=$(($FT_TIME > $DIFF_TIME))
