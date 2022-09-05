@@ -473,6 +473,7 @@ function	main()
 				ARG+="$l "
 				if [ "$m" == "$N_PAR" ]
 				then
+					TEST_LOG_DIR="$CUR_LOGS_DIR/${test_name[$k]}/\$1/"
 					test $ARG
 					m=0
 					ARG=""
