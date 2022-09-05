@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/03 14:38:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/05 13:52:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ iterator	erase	(iterator first,
 	_destroy(_data + start, _data + start + dist);
 	_size -= dist;
 
-	return (_data + start);
+	return (iterator(_data + start));
 }
 
 void	push_back	(const_reference value)

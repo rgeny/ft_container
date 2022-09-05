@@ -48,6 +48,7 @@ declare -a vector_test=(
 	"data data.cpp srcs/vector/access/"
 	"operator operator.cpp srcs/vector/"
 #	iterator
+	"iterator_default default.cpp srcs/vector/iterator/"
 #	"iterator_constructor structor.cpp srcs/vector/iterator/"
 #	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
 #	"iterator_base base.cpp srcs/vector/iterator/"

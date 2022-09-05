@@ -23,7 +23,7 @@ void	test	(void)
 int	main	(__attribute((unused)) int argc,
 			 __attribute((unused)) char * argv[])
 {
-	ft::RandomAccessIterator<int>	it;
+	NAMESPACE::vector<int>::iterator	it;
 //	try
 //	{
 //		std::allocator<std::string>	a;
