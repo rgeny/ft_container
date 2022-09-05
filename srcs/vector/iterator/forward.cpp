@@ -6,16 +6,12 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:52:23 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 15:10:32 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/05 15:29:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Utils.hpp"
 
-// dfl ctor -->	type a; type()
-// it1 = it2
-// *it++;
-// *it;
 #define SIZE 5
 
 template
