@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:20:47 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 15:27:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 17:51:28 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ class RandomAccessIterator
 	public:
 		#include "RandomAccessIterator/typedef.hpp"
 		#include "RandomAccessIterator/structor.hpp"
-		#include "RandomAccessIterator/member.hpp"
 		#include "RandomAccessIterator/modifiers_operator.hpp"
-		#include "RandomAccessIterator/access_operator.hpp"
 		#include "RandomAccessIterator/member_operation_operator.hpp"
+		#include "RandomAccessIterator/member.hpp"
+		#include "RandomAccessIterator/access_operator.hpp"
 };
 #include "RandomAccessIterator/comparison_operator.hpp"
 #include "RandomAccessIterator/non_member_operation_operator.hpp"

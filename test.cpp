@@ -23,17 +23,26 @@
 int	main	(__attribute((unused)) int argc,
 			 __attribute((unused)) char * argv[])
 {
-	NAMESPACE::vector<int>	v(10);
+	NAMESPACE::vector<int>	v(10, 10);
+	NAMESPACE::vector<int>::const_iterator	it = v.begin();
 
+	it[0] = 4;
 
-	std::cout	<< "-------------------- start --------------------"
+	std::cout	<< it[0]
 				<< std::endl;
-	NAMESPACE::vector<int>::iterator	it0,
-										it1(v.begin()),
-										it2(it1);
 
-	(void)it2;
 
+//	NAMESPACE::vector<int>	v(10);
+//
+//
+//	std::cout	<< "-------------------- start --------------------"
+//				<< std::endl;
+//	NAMESPACE::vector<int>::iterator	it0,
+//										it1(v.begin()),
+//										it2(it1);
+//
+//	(void)it2;
+//
 //	std::vector<int>	v(10);
 //	std::vector<int>::iterator	it(v.begin()),
 //								ite(it.base());
