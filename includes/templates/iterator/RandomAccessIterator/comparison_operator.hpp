@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 14:04:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 14:06:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 18:13:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,13 @@ template
 >
 bool	operator==	(RandomAccessIterator<IteratorLeft, Container> const & lhs,
 					 RandomAccessIterator<IteratorRight, Container> const & rhs)
-{	return (lhs.base() == rhs.base());	}
+{
+#ifdef __DEBUG__
+	std::cout	<< "RandomAccessIterator::operator== with 3 template arguments"
+				<< std::endl;
+#endif
+	return (lhs.base() == rhs.base());
+}
 template
 <
 	typename Iterator,
@@ -31,7 +37,13 @@ template
 >
 bool	operator==	(RandomAccessIterator<Iterator, Container> const & lhs,
 					 RandomAccessIterator<Iterator, Container> const & rhs)
-{	return (lhs.base() == rhs.base());	}
+{
+#ifdef __DEBUG__
+	std::cout	<< "RandomAccessIterator::operator== with 2 template arguments"
+				<< std::endl;
+#endif
+	return (lhs.base() == rhs.base());
+}
 
 
 //	operator !=

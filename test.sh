@@ -50,19 +50,20 @@ declare -a vector_test=(
 	)
 
 declare -a vector_iterator=(
-	"iterator_default default.cpp srcs/vector/iterator/"
-	"crash_iterator_default_end iterator_default_end.cpp srcs/vector/crash_test/"
-	"crash_iterator_default_empty iterator_default_empty.cpp srcs/vector/crash_test/"
-	"crash_iterator_default_after_end iterator_default_after_end.cpp srcs/vector/crash_test/"
-	"iterator_input_output input_output.cpp srcs/vector/iterator/"
-	"iterator_forward forward.cpp srcs/vector/iterator/"
-	"iterator_bidirectional bidirectional.cpp srcs/vector/iterator/"
-	"iterator_random_access random_access.cpp srcs/vector/iterator/"
-	"crash_iterator_random_access_end iterator_random_access_end.cpp srcs/vector/crash_test/"
-	"crash_iterator_random_access_empty iterator_random_access_empty.cpp srcs/vector/crash_test/"
-	"crash_iterator_random_access_after_end iterator_random_access_after_end.cpp srcs/vector/crash_test/"
-	"iterator_function iterator_function.cpp srcs/vector/iterator/"
-	"iterator_traits iterator_traits.cpp srcs/vector/iterator/"
+	"default default.cpp srcs/vector/iterator/"
+	"crash_default_end iterator_default_end.cpp srcs/vector/crash_test/"
+	"crash_default_empty iterator_default_empty.cpp srcs/vector/crash_test/"
+	"crash_default_after_end iterator_default_after_end.cpp srcs/vector/crash_test/"
+	"input_output input_output.cpp srcs/vector/iterator/"
+	"forward forward.cpp srcs/vector/iterator/"
+	"bidirectional bidirectional.cpp srcs/vector/iterator/"
+	"random_access random_access.cpp srcs/vector/iterator/"
+	"crash_random_access_end iterator_random_access_end.cpp srcs/vector/crash_test/"
+	"crash_random_access_empty iterator_random_access_empty.cpp srcs/vector/crash_test/"
+	"crash_random_access_after_end iterator_random_access_after_end.cpp srcs/vector/crash_test/"
+	"function iterator_function.cpp srcs/vector/iterator/"
+	"traits iterator_traits.cpp srcs/vector/iterator/"
+	"crash_assign_const iterator_assign_const.cpp srcs/vector/crash_test/"
 	)
 
 declare -a other_test=(
