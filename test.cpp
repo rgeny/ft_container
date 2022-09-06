@@ -2,19 +2,19 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "includes/templates/vector.hpp"
+//#include "includes/templates/vector.hpp"
 
 #define NDEBUG
 #include <cassert>
 
-void	test	(void)
-{
-	std::cout	<< "test "
-	#ifdef ABC
-				<< "lol "
-	#endif
-				<< "\n";
-}
+//void	test	(void)
+//{
+//	std::cout	<< "test "
+//	#ifdef ABC
+//				<< "lol "
+//	#endif
+//				<< "\n";
+//}
 
 #ifndef NAMESPACE
 # define NAMESPACE ft
@@ -23,7 +23,27 @@ void	test	(void)
 int	main	(__attribute((unused)) int argc,
 			 __attribute((unused)) char * argv[])
 {
-	NAMESPACE::vector<int>::iterator	it;
+//	std::vector<int>	v(10);
+//	std::vector<int>::iterator	it(v.begin()),
+//								ite(it.base());
+//
+//	std::cout	<< it.base()
+//				<< std::endl
+//				<< ite.base()
+//				<< std::endl;
+//	std::vector<int>::iterator::iterator_type	ite;
+//
+//	it = v.begin();
+//	ite = v.end();
+//
+//	while (it != ite)
+//	{
+//		std::cout	<< *it
+//					<< std::endl;
+//		++it;
+//	}
+
+//	NAMESPACE::vector<int>::iterator	it;
 //	try
 //	{
 //		std::allocator<std::string>	a;
