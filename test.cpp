@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-//#include "includes/templates/vector.hpp"
+#include "includes/Utils.hpp"
 
 #define NDEBUG
 #include <cassert>
@@ -23,6 +23,17 @@
 int	main	(__attribute((unused)) int argc,
 			 __attribute((unused)) char * argv[])
 {
+	NAMESPACE::vector<int>	v(10);
+
+
+	std::cout	<< "-------------------- start --------------------"
+				<< std::endl;
+	NAMESPACE::vector<int>::iterator	it0,
+										it1(v.begin()),
+										it2(it1);
+
+	(void)it2;
+
 //	std::vector<int>	v(10);
 //	std::vector<int>::iterator	it(v.begin()),
 //								ite(it.base());

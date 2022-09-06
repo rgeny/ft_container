@@ -47,7 +47,9 @@ declare -a vector_test=(
 	"crash_back_empty back_empty.cpp srcs/vector/crash_test/"
 	"data data.cpp srcs/vector/access/"
 	"operator operator.cpp srcs/vector/"
-#	iterator
+	)
+
+declare -a vector_iterator=(
 	"iterator_default default.cpp srcs/vector/iterator/"
 	"crash_iterator_default_end iterator_default_end.cpp srcs/vector/crash_test/"
 	"crash_iterator_default_empty iterator_default_empty.cpp srcs/vector/crash_test/"
@@ -61,16 +63,6 @@ declare -a vector_test=(
 	"crash_iterator_random_access_after_end iterator_random_access_after_end.cpp srcs/vector/crash_test/"
 	"iterator_function iterator_function.cpp srcs/vector/iterator/"
 	"iterator_traits iterator_traits.cpp srcs/vector/iterator/"
-#	"iterator_constructor structor.cpp srcs/vector/iterator/"
-#	"iterator_assign_operator assign_operator.cpp srcs/vector/iterator/"
-#	"iterator_base base.cpp srcs/vector/iterator/"
-#	"iterator_dereferencing dereferencing.cpp srcs/vector/iterator/"
-#	"iterator_increment increment.cpp srcs/vector/iterator/"
-#	"iterator_decrement decrement.cpp srcs/vector/iterator/"
-#	"iterator_operation operation.cpp srcs/vector/iterator/"
-#	"iterator_compare compare.cpp srcs/vector/iterator/"
-#	reverse iterator
-#	"reverse_iterator_constructor structor.cpp srcs/vector/reverse_iterator/"
 	)
 
 declare -a other_test=(
@@ -80,12 +72,14 @@ declare -a other_test=(
 declare -A lib_test=(
 	['stack']="${stack_test[@]}"
 	['vector']="${vector_test[@]}" 
+	['vector_iterator']="${vector_iterator[@]}"
 	['other']="${other_test[@]}"
 	)
 
 declare -a test_name=(
 	"stack"
 	"vector"
+	"vector_iterator"
 	"other"
 	)
 

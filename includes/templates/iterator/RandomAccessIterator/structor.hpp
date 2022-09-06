@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:54:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 14:52:33 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 16:11:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,7 @@ PAR_CTOR
 #endif
 }
 
-template
-<
-	typename Iter
->
-RandomAccessIterator
-	(RandomAccessIterator<Iter,
-	 typename ft::enable_if<
-		(ft::is_same<Iter,typename Container::pointer>::value),
-		Container>::type
-	 > const & it)
+RandomAccessIterator	(RandomAccessIterator const & it)
 	:_M_current(it.base())
 {
 #ifdef __DEBUG__
