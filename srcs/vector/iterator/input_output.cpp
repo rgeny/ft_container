@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 14:09:39 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 18:12:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 17:10:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ template
 	typename Iterator
 >
 static void	_test	(Iterator it1,
-					 Iterator it2)
+					 Iterator it2,
+					 std::string value)
 {
 	TRY_CATCH
 	(
@@ -31,6 +32,8 @@ static void	_test	(Iterator it1,
 		PRINT_EXECUTE(it2 == it1);
 		PRINT_EXECUTE(it1 != it2);
 		PRINT_EXECUTE(it2 != it1);
+		PRINT_EXECUTE(*it1 = value);
+		PRINT_EXECUTE(*it2++ = value);
 	)
 }
 
@@ -48,9 +51,12 @@ int	main	(void)
 
 	for (int i = 0; i < SIZE; i++)
 	{
+		std::string	tmp(str);
 		for (int j = 0; j < SIZE; j++)
 		{
-			_test(v.begin() + i, v.begin() + j);
+			_test(v.begin() + i, v.begin() + j, tmp);
+			for (size_t k = 0; k < tmp.size(); k++)
+				tmp[k]--;
 		}
 	}
 	PRINT_EXECUTE((v.begin() + SIZE) == (v.end()));
