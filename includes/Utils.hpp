@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 13:06:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 17:49:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:16:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,16 +182,5 @@ void	empty_the_stack	(NAMESPACE::stack<T, Container> & stack,
 				<< stack.size()
 				<< std::endl;
 }
-
-//template<>
-//void	init_vector<std::string>	(NAMESPACE::vector<std::string> & v
-//									,size_t size
-//									,std::string const & val)
-//{
-//	for (size_t i = 0; i < size; i++)
-//	{
-//		v[i] = val;
-//	}
-//}
 
 #endif

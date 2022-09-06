@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:32:59 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 17:54:31 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 14:42:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,20 @@ int	main	(void)
 	PRINT_EXECUTE(typeid (ITT::iterator_category).name());
 
 	PRINT_EXECUTE(typeid (POINTER_ITT::difference_type).name());
-	PRINT_EXECUTE(typeid (POINTER_ITT::value_type).name());
-	PRINT_EXECUTE(typeid (POINTER_ITT::pointer).name());
-	PRINT_EXECUTE(typeid (POINTER_ITT::reference).name());
+	PRINT_EXECUTE(typeid (POINTER_ITT::value_type).name()
+				  == typeid (VECTOR::iterator).name() );
+	PRINT_EXECUTE(typeid (POINTER_ITT::pointer).name()
+				  == typeid (VECTOR::iterator).name() );
+	PRINT_EXECUTE(typeid (POINTER_ITT::reference).name()
+				  == typeid (VECTOR::iterator).name() );
 	PRINT_EXECUTE(typeid (POINTER_ITT::iterator_category).name());
 
 	PRINT_EXECUTE(typeid (CONST_POINTER_ITT::difference_type).name());
-	PRINT_EXECUTE(typeid (CONST_POINTER_ITT::value_type).name());
-	PRINT_EXECUTE(typeid (CONST_POINTER_ITT::pointer).name());
-	PRINT_EXECUTE(typeid (CONST_POINTER_ITT::reference).name());
+	PRINT_EXECUTE(typeid (CONST_POINTER_ITT::value_type).name()
+				  == typeid (VECTOR::iterator).name() );
+	PRINT_EXECUTE(typeid (CONST_POINTER_ITT::pointer).name()
+				  == typeid (VECTOR::iterator).name() );
+	PRINT_EXECUTE(typeid (CONST_POINTER_ITT::reference).name()
+				  == typeid (VECTOR::iterator).name() );
 	PRINT_EXECUTE(typeid (CONST_POINTER_ITT::iterator_category).name());
 }

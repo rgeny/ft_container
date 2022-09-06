@@ -6,12 +6,12 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 21:34:17 by rgeny             #+#    #+#             */
-/*   Updated: 2022/07/23 17:24:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 14:59:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FNX_CPP_COLORS_HPP
-# define FNX_CPP_COLORS_HPP
+#ifndef COLORS_HPP
+# define COLORS_HPP
 
 //	special
 # define RESET				"\033[0m"

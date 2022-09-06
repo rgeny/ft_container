@@ -6,20 +6,25 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:07:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 19:13:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 14:55:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef VECTOR_HPP
 # ifndef VECTOR_STRUCTOR_HPP
 #  define VECTOR_STRUCTOR_HPP
+#  define CLASS_NAME "ft::vector"
 
 explicit	vector	(allocator_type const & alloc = allocator_type())
 	:_alloc(alloc)
 	,_size(0)
 	,_capacity(0)
 	,_data(NULL)
-{	}
+{
+#ifdef __DEBUG__
+DFL_CTOR
+#endif
+}
 
 explicit	vector	(size_type n
 					,value_type const & val = value_type()
@@ -29,6 +34,9 @@ explicit	vector	(size_type n
 	,_capacity(0)
 	,_data(NULL)
 {
+#ifdef __DEBUG__
+PAR_CTOR
+#endif
 	this->insert(this->begin(), n, val);
 }
 
@@ -42,6 +50,9 @@ vector	(InputIterator first
 	,_capacity(0)
 	,_data(NULL)
 {
+#ifdef __DEBUG__
+RANGE_CTOR
+#endif
 	this->insert(this->begin(), first, last);
 }
 
@@ -51,14 +62,16 @@ vector	(vector const & src)
 	,_capacity(0)
 	,_data(NULL)
 {
+#ifdef __DEBUG__
+CPY_CTOR
+#endif
 	this->insert(this->begin(), src.begin(), src.end());
 }
 
 ~vector	(void)
 {
 #ifdef __DEBUG__
-	std::cout	<< "vector destructor."
-				<< std::endl;
+	DTOR
 #endif
 	this->clear();
 #ifdef __DEBUG__
@@ -72,5 +85,6 @@ vector	(vector const & src)
 	_alloc.deallocate(_data, _capacity);
 }
 
+#  undef CLASS_NAME
 # endif
 #endif

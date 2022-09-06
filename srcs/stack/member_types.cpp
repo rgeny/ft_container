@@ -6,11 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:57:19 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/03 10:35:22 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:16:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Utils.hpp"
+#include <vector>
+#include <deque>
 
 template
 <

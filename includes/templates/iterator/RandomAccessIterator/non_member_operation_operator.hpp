@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 14:32:24 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 14:33:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:28:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # ifndef NON_MEMBER_OPERATION_OPERATOR_HPP
 #  define NON_MEMBER_OPERATION_OPERATOR_HPP
 
+//	operator-
 template
 <
 	typename IteratorLeft,
@@ -35,7 +36,7 @@ typename RandomAccessIterator<Iterator, Container>::difference_type
 {	return (lhs.base() - rhs.base());	}
 
 
-
+//	operator+
 template
 <
 	typename Iterator,

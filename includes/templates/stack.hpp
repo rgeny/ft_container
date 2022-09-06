@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:48:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 17:51:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:12:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 # define STACK_HPP
 
 # include <iostream>
-# include <vector>
-# include <stack>
+# include "vector.hpp"
+
+# define CLASS_NAME "ft::stack"
 
 namespace ft
 {
 	template
 	<
 		class T,
-		class Container = std::vector<T>
+		class Container = ft::vector<T>
 	>
 	class stack
 	{
@@ -119,10 +120,9 @@ namespace ft
 
 		protected:
 			container_type	c;
-
-		private:
 	};
 }
 
+# undef CLASS_NAME
 #endif
 

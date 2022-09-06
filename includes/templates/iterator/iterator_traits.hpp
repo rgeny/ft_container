@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 14:54:07 by rgeny             #+#    #+#             */
-/*   Updated: 2022/05/19 16:42:22 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/06 15:23:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # ifndef ITERATOR_TRAITS_HPP
 #  define ITERATOR_TRAITS_HPP
 
-#  include <iostream>
-
-template <class Iterator>
+template
+<
+	typename Iterator
+>
 class iterator_traits
 {
 	public:
@@ -27,7 +28,10 @@ class iterator_traits
 		typedef typename Iterator::iterator_category	iterator_category;
 };
 
-template <class T>
+template
+<
+	typename T
+>
 class iterator_traits <T *>
 {
 	public:
@@ -39,7 +43,10 @@ class iterator_traits <T *>
 };
 
 
-template <class T>
+template
+<
+	typename T
+>
 class iterator_traits <T const *>
 {
 	public:
