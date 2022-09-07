@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iterator_function.cpp                              :+:      :+:    :+:   */
+/*   function.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 17:24:23 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 17:32:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/07 16:34:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,23 @@ static void	_test	(Iterator it1,
 
 int	main	(void)
 {
-	NAMESPACE::vector<int>	v;
+	NAMESPACE::vector<int>					v;
+	NAMESPACE::vector<int>::iterator		it,
+											ite;
+	NAMESPACE::vector<int>::const_iterator	cit,
+											cite;
 
 	for (int i = 0; i < SIZE; i++)
 		v.push_back( -i * 4);
 	for (int i = 0; i < SIZE / 2; i++)
-		_test(v.begin() + i, v.end() - i - 1, i);
+	{
+		it = v.begin() + i;
+		ite = v.end() - i - 1;
+		cit = v.begin() + i;
+		cite = v.end() - i - 1;
+		_test(it, ite, i);
+		_test(cit, cite, i);
+	}
 
 	return (0);
 }

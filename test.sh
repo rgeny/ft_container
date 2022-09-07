@@ -47,24 +47,25 @@ declare -a vector_test=(
 	"crash_back_empty back_empty.cpp srcs/vector/crash_test/"
 	"data data.cpp srcs/vector/access/"
 	"operator operator.cpp srcs/vector/"
+	"big_size big_size.cpp srcs/vector/"
 	)
 
 declare -a vector_iterator=(
-	"default default.cpp srcs/vector/iterator/"
+	"default default.cpp srcs/vector_iterator/"
 	"crash_default_end iterator_default_end.cpp srcs/vector/crash_test/"
 	"crash_default_empty iterator_default_empty.cpp srcs/vector/crash_test/"
 	"crash_default_after_end iterator_default_after_end.cpp srcs/vector/crash_test/"
-	"input_output input_output.cpp srcs/vector/iterator/"
-	"forward forward.cpp srcs/vector/iterator/"
-	"bidirectional bidirectional.cpp srcs/vector/iterator/"
-	"random_access random_access.cpp srcs/vector/iterator/"
+	"input_output input_output.cpp srcs/vector_iterator/"
+	"forward forward.cpp srcs/vector_iterator/"
+	"bidirectional bidirectional.cpp srcs/vector_iterator/"
+	"random_access random_access.cpp srcs/vector_iterator/"
 	"crash_random_access_end iterator_random_access_end.cpp srcs/vector/crash_test/"
 	"crash_random_access_empty iterator_random_access_empty.cpp srcs/vector/crash_test/"
 	"crash_random_access_after_end iterator_random_access_after_end.cpp srcs/vector/crash_test/"
-	"function iterator_function.cpp srcs/vector/iterator/"
-	"traits iterator_traits.cpp srcs/vector/iterator/"
+	"function function.cpp srcs/vector_iterator/"
+	"traits iterator_traits.cpp srcs/vector_iterator/"
 	"crash_assign_const iterator_assign_const.cpp srcs/vector/crash_test/"
-	"protected_member protected.cpp srcs/vector/iterator/"
+	"protected_member protected.cpp srcs/vector_iterator/"
 	)
 
 declare -a other_test=(
