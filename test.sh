@@ -64,6 +64,7 @@ declare -a vector_iterator=(
 	"function iterator_function.cpp srcs/vector/iterator/"
 	"traits iterator_traits.cpp srcs/vector/iterator/"
 	"crash_assign_const iterator_assign_const.cpp srcs/vector/crash_test/"
+	"protected_member protected.cpp srcs/vector/iterator/"
 	)
 
 declare -a other_test=(

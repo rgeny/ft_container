@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:20:47 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 17:51:28 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/07 12:09:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class RandomAccessIterator
 	protected:
 		Iterator	_M_current;
 
-		typedef ft::iterator_traits<Iterator>			traits_type;
+		typedef ft::iterator_traits<Iterator>			__traits_type;
 
 	public:
 		#include "RandomAccessIterator/typedef.hpp"

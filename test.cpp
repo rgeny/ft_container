@@ -20,16 +20,38 @@
 # define NAMESPACE ft
 #endif
 
+
+class Test
+	:public NAMESPACE::vector<int>::iterator
+{
+	public:
+		Test	(NAMESPACE::vector<int>::iterator const & it)
+			:NAMESPACE::vector<int>::iterator(it)
+		{	}
+
+
+		void	test(void)
+		{
+			std::cout	<< &(*this->_M_current)
+						<< std::endl;
+		}
+};
+
 int	main	(__attribute((unused)) int argc,
 			 __attribute((unused)) char * argv[])
 {
-	NAMESPACE::vector<int>	v(10, 10);
-	NAMESPACE::vector<int>::const_iterator	it = v.begin();
+	NAMESPACE::vector<int>	v(10);
+	NAMESPACE::vector<int>::iterator	it = v.begin();
+	Test	a(it);
 
-	it[0] = 4;
-
-	std::cout	<< it[0]
-				<< std::endl;
+	a.test();
+//	NAMESPACE::vector<int>	v(10, 10);
+//	NAMESPACE::vector<int>::const_iterator	it = v.begin();
+//
+//	it[0] = 4;
+//
+//	std::cout	<< it[0]
+//				<< std::endl;
 
 
 //	NAMESPACE::vector<int>	v(10);
