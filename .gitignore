@@ -2,7 +2,7 @@
 logs
 exe
 objs
-containers_test
 *.log
 *.err
 *.out
+tester*
