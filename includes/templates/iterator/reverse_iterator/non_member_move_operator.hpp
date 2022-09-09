@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 10:08:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 10:58:52 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:56:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,21 @@ reverse_iterator<Iterator>
 
 template
 <
+	typename IteratorLeft,
+	typename IteratorRight
+>
+typename reverse_iterator<IteratorLeft>::difference_type
+	operator-	(reverse_iterator<IteratorLeft> const & lhs,
+				 reverse_iterator<IteratorRight> const & rhs)
+{	return (rhs.base() - lhs.base());	}
+template
+<
 	typename Iterator
 >
 typename reverse_iterator<Iterator>::difference_type
 	operator-	(reverse_iterator<Iterator> const & lhs,
 				 reverse_iterator<Iterator> const & rhs)
-	{	return (lhs.base() - rhs.base());	}
+{	return (rhs.base() - lhs.base());	}
 
 # endif
 #endif

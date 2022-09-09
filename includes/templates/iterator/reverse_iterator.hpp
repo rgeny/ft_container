@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:08:42 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 11:37:33 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:56:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ class reverse_iterator
 		typename ft::iterator_traits<Iterator>::pointer,
 		typename ft::iterator_traits<Iterator>::reference >
 {
+	protected:
+		Iterator	current;
+
+		typedef ft::iterator_traits<Iterator>	__traits_type;
+
 	public:
 #  include "reverse_iterator/typedef.hpp"
 #  include "reverse_iterator/structor.hpp"
@@ -36,9 +41,6 @@ class reverse_iterator
 
 		iterator_type	base	(void) const
 		{	return (this->current);	}
-
-	protected:
-		iterator_type	current;
 
 };
 

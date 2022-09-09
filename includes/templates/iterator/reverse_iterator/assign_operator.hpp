@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 10:56:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 11:28:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:40:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ template
 	typename U
 >
 reverse_iterator &	operator=	(reverse_iterator<U> const & other)
-{	this->current = other.base();	}
+{
+	this->current = other.base();
+	return (*this);
+}
 
 # endif
 #endif

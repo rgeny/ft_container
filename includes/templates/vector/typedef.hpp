@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:16:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/08 15:21:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:39:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ typedef typename allocator_type::pointer					pointer;
 typedef typename allocator_type::const_pointer				const_pointer;
 typedef ft::RandomAccessIterator<pointer, vector>			iterator;
 typedef ft::RandomAccessIterator<const_pointer, vector>		const_iterator;
-typedef std::reverse_iterator<iterator>						reverse_iterator;
-typedef std::reverse_iterator<const_iterator>				const_reverse_iterator;
+typedef ft::reverse_iterator<iterator>						reverse_iterator;
+typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
 
 # endif
 #endif
