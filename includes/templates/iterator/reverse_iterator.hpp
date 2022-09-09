@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:08:42 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/07 14:56:32 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 10:35:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,21 @@ class reverse_iterator
 		typename ft::iterator_traits<Iterator>::reference >
 {
 	public:
-		typedef Iterator										iterator_type;
-//		typedef ft:iterator_traits<Iterator>::iterator_category	iterator_category;
-//		typedef ft:iterator_traits<Iterator>::value_type		value_type;
-//		typedef ft:iterator_traits<Iterator>::difference_type	difference_type;
-//		typedef ft:iterator_traits<Iterator>::pointer			pointer;
-//		typedef ft:iterator_traits<Iterator>::reference			reference;
-
+#  include "reverse_iterator/typedef.hpp"
 #  include "reverse_iterator/structor.hpp"
+#  include "reverse_iterator/member_move_operator.hpp"
 
-//		reverse_iterator	(void)
-//			:current()
-//		{	}
-//		explicit reverse_iterator	(iterator_type src)
-//			:current(src)
-//		{	}
-//		template
-//		<
-//			typename Iter
-//		>
-//		reverse_iterator	(reverse_iterator<Iter> const & src)
-//			:current(src.current)
-//		{	}
+
+		iterator_type	base	(void) const
+		{	return (this->current);	}
 
 	protected:
 		iterator_type	current;
 
 };
+
+#  include "reverse_iterator/compares_operator.hpp"
+#  include "reverse_iterator/non_member_move_operator.hpp"
 
 //template <class Iterator>
 //class reverse_iterator

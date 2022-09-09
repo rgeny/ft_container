@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:14:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/07 16:55:00 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/08 14:42:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdexcept>
 # include <cstring>
 # include <string.hpp>
-# include "print.hpp"
+# include "./print.hpp"
 # include "type_traits.hpp"
 # include "iterator.hpp"
 # include "algorithm.hpp"
