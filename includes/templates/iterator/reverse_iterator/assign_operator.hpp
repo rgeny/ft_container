@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   member.hpp                                         :+:      :+:    :+:   */
+/*   assign_operator.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 13:56:11 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 11:00:19 by rgeny            ###   ########.fr       */
+/*   Created: 2022/09/09 10:56:57 by rgeny             #+#    #+#             */
+/*   Updated: 2022/09/09 10:57:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef RANDOMACCESSITERATOR_HPP
-# ifndef RANDOMACCESSITERATOR_MEMBER_HPP
-#  define RANDOMACCESSITERATOR_MEMBER_HPP
+#ifdef REVERSE_ITERATOR_HPP
+# ifndef REVERSE_ITERATOR_ASSIGN_OPERATOR_HPP
+#  define REVERSE_ITERATOR_ASSIGN_OPERATOR_HPP
 
-Iterator const &	base	(void) const
-{	return (_M_current);	}
 
 # endif
 #endif

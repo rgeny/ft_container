@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 15:26:24 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/03 12:07:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:01:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef VECTOR_HPP
-# ifndef ACCESS_HPP
-#  define ACCESS_HPP
+# ifndef VECTOR_ACCESS_HPP
+#  define VECTOR_ACCESS_HPP
 
 reference	at	(size_type pos)
 {

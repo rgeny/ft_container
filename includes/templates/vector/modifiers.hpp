@@ -6,12 +6,13 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 13:52:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:01:59 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef VECTOR_HPP
 # ifndef VECTOR_MODIFIERS_HPP
+#  define VECTOR_MODIFIERS_HPP
 
 template < class InputIterator >
 void	assign	(InputIterator first,

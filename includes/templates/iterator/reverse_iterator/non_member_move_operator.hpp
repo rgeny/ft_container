@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 10:08:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 10:49:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 10:58:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef REVERSE_ITERATOR_HPP
-# ifndef NON_MEMBER_MOVE_OPERATOR_HPP
-#  define NON_MEMBER_MOVE_OPERATOR_HPP
+# ifndef REVERSE_ITERATOR_NON_MEMBER_MOVE_OPERATOR_HPP
+#  define REVERSE_ITERATOR_NON_MEMBER_MOVE_OPERATOR_HPP
 
 template
 <

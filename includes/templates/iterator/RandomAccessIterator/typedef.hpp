@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:52:56 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/07 12:10:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:00:09 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef RANDOMACCESSITERATOR_HPP
-# ifndef TYPEDEF_HPP
-#  define TYPEDEF_HPP
+# ifndef RANDOMACCESSITERATOR_TYPEDEF_HPP
+#  define RANDOMACCESSITERATOR_TYPEDEF_HPP
 
 typedef Iterator									iterator_type;
 typedef typename __traits_type::difference_type		difference_type;

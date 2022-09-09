@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 14:47:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/07 14:53:52 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 10:58:06 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef REVERSE_ITERATOR_HPP
-# ifndef STRUCTOR_HPP
-#  define STRUCTOR_HPP
+# ifndef REVERSE_ITERATOR_STRUCTOR_HPP
+#  define REVERSE_ITERATOR_STRUCTOR_HPP
 
 reverse_iterator	(void)
 	:current()

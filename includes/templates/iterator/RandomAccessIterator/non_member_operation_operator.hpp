@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 14:32:24 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 15:28:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:00:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef RANDOMACCESSITERATOR_HPP
-# ifndef NON_MEMBER_OPERATION_OPERATOR_HPP
-#  define NON_MEMBER_OPERATION_OPERATOR_HPP
+# ifndef RANDOMACCESSITERATOR_NON_MEMBER_OPERATION_OPERATOR_HPP
+#  define RANDOMACCESSITERATOR_NON_MEMBER_OPERATION_OPERATOR_HPP
 
 //	operator-
 template

@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 14:04:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 18:13:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 10:59:48 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef RANDOMACCESSITERATOR_HPP
-# ifndef COMPARISON_OPERATOR_HPP
-#  define COMPARISON_OPERATOR_HPP
+# ifndef RANDOMACCESSITERATOR_COMPARISON_OPERATOR_HPP
+#  define RANDOMACCESSITERATOR_COMPARISON_OPERATOR_HPP
 
 //	operator==
 template

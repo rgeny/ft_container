@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:05:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/08/31 17:09:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:02:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef VECTOR_HPP
-# ifndef PRIVATE_HPP
-#  define PRIVATE_HPP
+# ifndef VECTOR_PRIVATE_HPP
+#  define VECTOR_PRIVATE_HPP
 
 void	_destroy	(pointer it,
 					 pointer ite)

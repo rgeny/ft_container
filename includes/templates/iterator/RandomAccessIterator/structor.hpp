@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:54:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 18:04:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 10:59:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef RANDOMACCESSITERATOR_HPP
-# ifndef STRUCTOR_HPP
-#  define STRUCTOR_HPP
+# ifndef RANDOMACCESSITERATOR_STRUCTOR_HPP
+#  define RANDOMACCESSITERATOR_STRUCTOR_HPP
 #  define CLASS_NAME "RandomAccessIterator"
 
 RandomAccessIterator	(void)

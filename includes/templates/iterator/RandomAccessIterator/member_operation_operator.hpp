@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 14:02:26 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 14:34:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 10:59:28 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef RANDOMACCESSITERATOR_HPP
-# ifndef MEMBER_OPERATION_OPERATOR_HPP
-#  define MEMBER_OPERATION_OPERATOR_HPP
+# ifndef RANDOMACCESSITERATOR_MEMBER_OPERATION_OPERATOR_HPP
+#  define RANDOMACCESSITERATOR_MEMBER_OPERATION_OPERATOR_HPP
 
 RandomAccessIterator &	operator++	(void)
 {

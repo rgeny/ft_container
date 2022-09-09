@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:36:04 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/08 18:50:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 10:58:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef REVERSE_ITERATOR_HPP
-# ifndef COMPARES_OPERATOR_HPP
-#  define COMPARES_OPERATOR_HPP
+# ifndef REVERSE_ITERATOR_COMPARES_OPERATOR_HPP
+#  define REVERSE_ITERATOR_COMPARES_OPERATOR_HPP
 
 template
 <

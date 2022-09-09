@@ -6,13 +6,13 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:57:11 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 10:05:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 10:57:50 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef REVERSE_ITERATOR_HPP
-# ifndef MEMBER_MOVE_OPERATOR_HPP
-#  define MEMBER_MOVE_OPERATOR_HPP
+# ifndef REVERSE_ITERATOR_MEMBER_MOVE_OPERATOR_HPP
+#  define REVERSE_ITERATOR_MEMBER_MOVE_OPERATOR_HPP
 
 reverse_iterator & operator++	(void)
 {
