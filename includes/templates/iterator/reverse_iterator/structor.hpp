@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 14:47:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 10:58:06 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 15:13:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ template
 	typename Iter
 >
 reverse_iterator	(reverse_iterator<Iter> const & src)
+	:current(src.base())
+{	}
+
+reverse_iterator	(reverse_iterator const & src)
 	:current(src.current)
 {	}
 
