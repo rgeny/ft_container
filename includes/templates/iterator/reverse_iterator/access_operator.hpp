@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   assign_operator.hpp                                :+:      :+:    :+:   */
+/*   access_operator.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 10:56:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 11:28:49 by rgeny            ###   ########.fr       */
+/*   Created: 2022/09/09 11:29:29 by rgeny             #+#    #+#             */
+/*   Updated: 2022/09/09 11:35:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef REVERSE_ITERATOR_HPP
-# ifndef REVERSE_ITERATOR_ASSIGN_OPERATOR_HPP
-#  define REVERSE_ITERATOR_ASSIGN_OPERATOR_HPP
+# ifndef REVERSE_ITERATOR_ACCESS_OPERATOR_HPP
+#  define REVERSE_ITERATOR_ACCESS_OPERATOR_HPP
 
-template
-<
-	typename U
->
-reverse_iterator &	operator=	(reverse_iterator<U> const & other)
-{	this->current = other.base();	}
+reference operator*	(void) const
+{
+	iterator_type	tmp(this->current);
+	--tmp;
+	return (*tmp);
+}
+pointer	operator->	(void) const
+{
+	iterator_type	tmp(this->current);
+	--tmp;
+	return (&(*tmp));
+}
+reference	operator[]	(difference_type n) const
+{	return (*(*this + n));	}
 
 # endif
 #endif

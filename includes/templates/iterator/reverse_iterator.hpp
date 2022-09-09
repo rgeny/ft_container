@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:08:42 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 10:35:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 11:37:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ class reverse_iterator
 #  include "reverse_iterator/typedef.hpp"
 #  include "reverse_iterator/structor.hpp"
 #  include "reverse_iterator/member_move_operator.hpp"
+#  include "reverse_iterator/assign_operator.hpp"
+#  include "reverse_iterator/access_operator.hpp"
 
 
 		iterator_type	base	(void) const
