@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 11:01:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 19:34:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ iterator	erase	(iterator first,
 	size_t	dist = std::distance(first, last),
 			start = first - this->begin();
 	move_forward(first, last, this->end());
-	_destroy(_data + start, _data + start + dist);
+	_destroy(_data + _size - dist, _data + _size);
 	_size -= dist;
 
 	return (iterator(_data + start));

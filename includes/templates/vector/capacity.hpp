@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:39:20 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/02 17:53:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/09 19:32:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,14 @@ void	resize	(size_type count,
 	if (count > _capacity)
 		this->reserve(ft::max(count, _size * 2));
 
-	if (_size < count)
+	if (count > _size)
 	{
 		for (size_type i = _size; i < count; i++)
 			_alloc.construct(_data + i, value);
 	}
 	else
 	{
-		for (size_type i = _size; i < count; i++)
+		for (size_type i = count; i < _size; i++)
 			_alloc.destroy(_data + i);
 	}
 
