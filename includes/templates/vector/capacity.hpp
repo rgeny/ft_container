@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:39:20 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 19:32:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/10 13:26:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,7 @@ void	reserve	(size_type new_cap)
 
 	pointer	new_data = _alloc.allocate(new_cap);
 
-	for (size_type i = 0;
-		 i < _size;
-		 i++)
-	{
-		_alloc.construct(new_data + i, _data[i]);
-	}
+	_construct(new_data, new_data + _size, _data, _data + _size);
 	_destroy_all();
 	_alloc.deallocate(_data, _capacity);
 	_data = new_data;
@@ -82,14 +77,12 @@ void	resize	(size_type count,
 		this->reserve(ft::max(count, _size * 2));
 
 	if (count > _size)
-	{
-		for (size_type i = _size; i < count; i++)
-			_alloc.construct(_data + i, value);
-	}
+		_construct(_data + _size, _data + count, value);
 	else
 	{
-		for (size_type i = count; i < _size; i++)
-			_alloc.destroy(_data + i);
+		_destroy(_data + count, _data + _size);
+//		for (size_type i = count; i < _size; i++)
+//			_alloc.destroy(_data + i);
 	}
 
 	_size = count;

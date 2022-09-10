@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:05:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 11:02:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/10 13:19:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,34 @@ void	_destroy_all	(void)
 		 it++)
 	{
 		_alloc.destroy(it);
+	}
+}
+
+void	_construct	(pointer first,
+					 pointer end,
+					 T	value)
+{
+	while (first != end)
+	{
+		_alloc.construct(first, value);
+		++first;
+	}
+}
+template
+<
+	typename InputIt
+>
+void	_construct	(pointer first,
+					 pointer last,
+					 InputIt first_val,
+					 InputIt last_val)
+{
+	while (first != last &&
+			first_val != last_val)
+	{
+		_alloc.construct(first, *first_val);
+		++first;
+		++first_val;
 	}
 }
 
