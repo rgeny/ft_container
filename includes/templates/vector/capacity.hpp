@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:39:20 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/10 13:26:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/10 13:35:24 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,7 @@ void	resize	(size_type count,
 	if (count > _size)
 		_construct(_data + _size, _data + count, value);
 	else
-	{
 		_destroy(_data + count, _data + _size);
-//		for (size_type i = count; i < _size; i++)
-//			_alloc.destroy(_data + i);
-	}
 
 	_size = count;
 }

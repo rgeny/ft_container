@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 22:30:06 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/10 16:54:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ void	insert	(iterator pos,
 				<< std::endl;
 #endif
 
-	this->insert(pos, count, T() );
+	if (&(*first) < &(*last))
+		this->insert(pos, count, *first);
+	else
+		this->insert(pos, count, T() );
 
 	for (iterator it = this->begin() + position;
 		 first != last;

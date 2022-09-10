@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:05:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/10 13:19:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/10 16:11:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	_construct	(pointer first,
 					 pointer end,
 					 T	value)
 {
-	while (first != end)
+	while (first < end)
 	{
 		_alloc.construct(first, value);
 		++first;
@@ -53,8 +53,8 @@ void	_construct	(pointer first,
 					 InputIt first_val,
 					 InputIt last_val)
 {
-	while (first != last &&
-			first_val != last_val)
+	while (first < last &&
+			first_val < last_val)
 	{
 		_alloc.construct(first, *first_val);
 		++first;
