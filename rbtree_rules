@@ -1,0 +1,47 @@
+Properties :
+- Every node is red or black
+- All NIL nodes are black
+- Red node doesn't have red child
+- Every path from a giver node to any of its descendant NILL nodes goes through the same number of black nodes
+
+
+new node has red default color
+
+			G
+	      /   \
+		 /     \
+		/       \
+	   P         U
+	 /   \
+	/     \
+   N       S
+         /   \
+		C     D
+
+N is current node
+
+
+INSERT :
+- parent is black, so end
+- P and U is red --> P and U repainted black and G red, redo that with N = G while G->parent != NULL
+- N == root and is red --> end
+- P is root and red --> P = black
+- P is red and U is black:
+	- if N is left child of P and P right child of G --> switch N and P, N->right == P
+	  or N is right child of P and P left child of P --> switch N and P,  N->left == P
+	- rotate at P, P is now parent to N and G
+	  G is now red and P is black
+	
+
+ERASE :
+- S, P child and S child are black. S become RED, redo that with N = P while P->parent != NULL
+- N is now root --> end
+- S is red --> P, C, D, need to be black
+		rotate in P, S is now G
+		P->color, S->color = S->color, P->color
+- S child and S are black, P is red --> P = black, S = red
+- S is black, C is red and D is black,
+		rotate at C with close child
+		switch S and C color
+- S is black and D is red
+		Rotate at P with S
