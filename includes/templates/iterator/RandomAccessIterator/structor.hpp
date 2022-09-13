@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:54:46 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 10:59:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/13 11:54:59 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # ifndef RANDOMACCESSITERATOR_STRUCTOR_HPP
 #  define RANDOMACCESSITERATOR_STRUCTOR_HPP
 #  define CLASS_NAME "RandomAccessIterator"
+
+#  include "print.hpp"
 
 RandomAccessIterator	(void)
 	:_M_current(Iterator())
