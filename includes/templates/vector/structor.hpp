@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:07:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 14:55:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/13 11:54:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # ifndef VECTOR_STRUCTOR_HPP
 #  define VECTOR_STRUCTOR_HPP
 #  define CLASS_NAME "ft::vector"
+
+#  include "print.hpp"
 
 explicit	vector	(allocator_type const & alloc = allocator_type())
 	:_alloc(alloc)
