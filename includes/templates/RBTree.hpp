@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/13 15:15:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/13 21:03:06 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 namespace ft
 {
+#ifdef __DEBUG__
 	static void	_print_nl	(std::string str)
 	{
 		std::cout	<< str
@@ -31,7 +32,7 @@ namespace ft
 	{
 		std::cout	<< std::endl;
 	}
-
+#endif
 	template
 	<
 		typename Value,
@@ -47,50 +48,71 @@ namespace ft
 			RBTree	(allocator_type const & alloc = allocator_type())
 				:_alloc(alloc)
 				,_sentinel(NULL)
-				,_head(NULL)
+				,_root(NULL)
 			{
 				RBNode<value_type>	tmp(_sentinel);
 				_sentinel = _alloc.allocate(1, &tmp);
 				_alloc.construct(_sentinel, _sentinel);
-				_head = _sentinel;
+				_root = _sentinel;
 			}
 
 			RBTree	(__attribute__ ((unused)) RBTree const & src,
 					 allocator_type const & alloc = allocator_type())
 				:_alloc(alloc)
 				,_sentinel(_alloc.allocate(1, _sentinel))
-				,_head(_sentinel)
+				,_root(_sentinel)
 			{
 				_alloc.construct(_sentinel);
-				if (src._head != src._sentinel)
-					_head = _alloc.allocate(1, *src._head);
+				if (src._root != src._sentinel)
+					_root = _alloc.allocate(1, *src._root);
 			}
 			~RBTree	(void)
 			{
-				_delete_all();
+				this->clear();
 				_alloc.destroy(_sentinel);
 				_alloc.deallocate(_sentinel, 1);
 			}
 
 			RBTree &	operator=	(__attribute__ ((unused)) RBTree const & src)
 			{
-				_delete_all();
-				_head = new RBTree<value_type>(*src._head);
+				this->clear();
+				_root = new RBTree<value_type>(*src._root);
 				return (*this);
 			}
 
 			value_type	insert(value_type const & value )
 			{
-				if (_head == _sentinel)
+				if (_root == _sentinel)
 				{
 					node_type *	new_node = _alloc.allocate(1);
 					node_type	tmp(_sentinel, value);
 					_alloc.construct(new_node, tmp);
-					_head = new_node;
+					_root = new_node;
 				}
 				else
-					_insert(_head, value);
+					_insert(_root, value);
 				return (value);
+			}
+
+			void	clear	(void)
+			{
+				if (_root != _sentinel)
+					_clear(_root);
+			}
+
+			void	print	(void)
+			{
+				print(_root);
+			}
+
+			void	print	(RBNode<value_type> * const & node)
+			{
+				if (node == _sentinel)
+					return ;
+				print(node->left);
+				std::cout	<< node->value
+							<< std::endl;
+				print(node->right);
 			}
 
 //			iterator insert( iterator hint, const value_type& value );
@@ -98,21 +120,14 @@ namespace ft
 		private:
 			allocator_type			_alloc;
 			RBNode<value_type> *	_sentinel;
-			RBNode<value_type> *	_head;
+			RBNode<value_type> *	_root;
 
-
-
-			void	_delete_all	(void)
-			{
-				if (_head != _sentinel)
-					_delete(_head);
-			}
-			void	_delete	(RBNode<value_type> * &	node)
+			void	_clear	(RBNode<value_type> * & node)
 			{
 				if (node != _sentinel)
 				{
-					_delete(node->getLeft());
-					_delete(node->getRight());
+					_clear(node->left);
+					_clear(node->right);
 					_alloc.destroy(node);
 					_alloc.deallocate(node, 1);
 					node = _sentinel;
@@ -138,22 +153,22 @@ namespace ft
 #ifdef __DEBUG__
 	ft::_print_nl("*cur_pt < value");
 #endif
-					if (cur_pt->getRight() == _sentinel)
+					if (cur_pt->right == _sentinel)
 					{
 #ifdef __DEBUG__
-	ft::_print_nl("cur_pt->getRight() == NULL");
+	ft::_print_nl("cur_pt->right == NULL");
 #endif
-						RBNode<value_type> **	pt = &cur_pt->getRight();
+						RBNode<value_type> **	pt = &cur_pt->right;
 						*pt = _alloc.allocate(1);
 						RBNode<value_type>	tmp(_sentinel, value);
-						_alloc.construct(cur_pt->getRight(), tmp);
+						_alloc.construct(cur_pt->right, tmp);
 					}
 					else
 					{
 #ifdef __DEBUG__
-	ft::_print_nl("cur_pt->getRight() != NULL");
+	ft::_print_nl("cur_pt->right != NULL");
 #endif
-						_insert(cur_pt->getRight(), value);
+						_insert(cur_pt->right, value);
 					}
 				}
 				else
@@ -161,21 +176,21 @@ namespace ft
 #ifdef __DEBUG__
 	ft::_print_nl("*cur_pt > value");
 #endif
-					if (cur_pt->getLeft() == _sentinel)
+					if (cur_pt->left == _sentinel)
 					{
 #ifdef __DEBUG__
-	ft::_print_nl("cur_pt->getLeft() == NULL");
+	ft::_print_nl("cur_pt->left == NULL");
 #endif
-						cur_pt->getLeft() = _alloc.allocate(1);
+						cur_pt->left = _alloc.allocate(1);
 						RBNode<value_type>	tmp(_sentinel, value);
-						_alloc.construct(cur_pt->getLeft(), tmp);
+						_alloc.construct(cur_pt->left, tmp);
 					}
 					else
 					{
 #ifdef __DEBUG__
-	ft::_print_nl("cur_pt->getLeft() != NULL");
+	ft::_print_nl("cur_pt->left != NULL");
 #endif
-						_insert(cur_pt->getLeft(), value);
+						_insert(cur_pt->left, value);
 					}
 				}
 #ifdef __DEBUG__

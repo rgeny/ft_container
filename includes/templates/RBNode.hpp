@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/13 15:09:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/13 21:03:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,38 +37,38 @@ namespace ft
 			>
 			RBNode	(T & sentinel,
 					 typename ft::enable_if<ft::is_pointer<T>::value>::type = 0)
-				:_sentinel(sentinel)
-				,_value()
-				,_color(BLACK)
-				,_left(_sentinel)
-				,_right(_sentinel)
-				,_parent(_sentinel)
+				:sentinel(sentinel)
+				,value()
+				,color(BLACK)
+				,left(sentinel)
+				,right(sentinel)
+				,parent(sentinel)
 			{
 #ifdef __DEBUG__
 DFL_CTOR
 #endif
 			}
-			RBNode	(const_pointer & sentinel,
+			RBNode	(pointer & sentinel,
 					 value_type const value,
 					 e_color const color = RED)
-				:_sentinel(sentinel)
-				,_value(value)
-				,_color(color)
-				,_left(_sentinel)
-				,_right(_sentinel)
-				,_parent(_sentinel)
+				:sentinel(sentinel)
+				,value(value)
+				,color(color)
+				,left(sentinel)
+				,right(sentinel)
+				,parent(sentinel)
 			{
 #ifdef __DEBUG__
 PAR_CTOR
 #endif
 			}
 			RBNode	(RBNode const & src)
-				:_sentinel(src._sentinel)
-				,_value(src._value)
-				,_color(src._color)
-				,_left(src._left)
-				,_right(src._right)
-				,_parent(src._parent)
+				:sentinel(src.sentinel)
+				,value(src.value)
+				,color(src.color)
+				,left(src.left)
+				,right(src.right)
+				,parent(src.parent)
 			{
 #ifdef __DEBUG__
 CPY_CTOR
@@ -83,73 +83,36 @@ DTOR
 
 //			RBNode &	operator=	(RBNode const & src)
 //			{
-//				_value = src._value;
-//				_color = src._color;
-//				_left = src._left;
-//				_right = src._right;
-//				_parent = src._parent;
+//				value = src.value;
+//				color = src.color;
+//				left = src.left;
+//				right = src.right;
+//				parent = src.parent;
 //				return (*this);
 //			}
 			RBNode &	operator=	(value_type const & value)
 			{
-				_value = value;
+				this->value = value;
 				return (*this);
 			}
 
 			bool	is_red		(void) const
-			{	return (this->_color);	}
+			{	return (this->color);	}
 			bool	is_black	(void) const
-			{	return ( ! (this->_color) );	}
-
-			pointer	getGrandParent	(void) const
-			{
-				if (this->_parent == _sentinel)
-					return (this->_parent);
-				return (this->_parent->_parent);
-			}
-			pointer	getParent	(void) const
-			{
-				return (this->_parent);
-			}
-			pointer	getUncle	(void) const
-			{
-				pointer	GrandParent	= this->getGrandParent();
-
-				if (GrandParent == _sentinel)
-					return (GrandParent);
-				if (GrandParent->_left == this->_parent)
-					return (GrandParent->_right);
-				return (GrandParent->_left);
-			}
-			pointer	getBrother	(void) const
-			{
-				if (this->_parent == _sentinel)
-					return (this->_parent);
-				if (this->_parent->_left == this)
-					return (this->_parent->_right);
-				return (this->_parent->_left);
-			}
-			pointer &	getLeft	(void)
-			{
-				return (this->_left);
-			}
-			pointer &	getRight	(void)
-			{
-				return (this->_right);
-			}
+			{	return ( ! (this->color) );	}
 
 			bool	operator==	(value_type val)
-			{	return (_value == val);	}
+			{	return (value == val);	}
 			bool	operator<	(value_type val)
-			{	return (_value < val);	}
+			{	return (value < val);	}
 
-		private:
-			pointer &		_sentinel;
-			value_type		_value;
-			e_color			_color;
-			pointer			_left;
-			pointer			_right;
-			pointer			_parent;
+//		private:
+			pointer &		sentinel;
+			value_type		value;
+			e_color			color;
+			pointer			left;
+			pointer			right;
+			pointer			parent;
 	};
 #undef CLASS_NAME
 }
