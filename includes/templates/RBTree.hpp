@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/13 15:05:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/13 15:15:50 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ namespace ft
 				RBNode<value_type>	tmp(_sentinel);
 				_sentinel = _alloc.allocate(1, &tmp);
 				_alloc.construct(_sentinel, _sentinel);
+				_head = _sentinel;
 			}
 
 			RBTree	(__attribute__ ((unused)) RBTree const & src,
 					 allocator_type const & alloc = allocator_type())
 				:_alloc(alloc)
-				,_sentinel(NULL)
-				,_head(NULL)
+				,_sentinel(_alloc.allocate(1, _sentinel))
+				,_head(_sentinel)
 			{
-				_sentinel = _alloc.allocate(1, _sentinel);
 				_alloc.construct(_sentinel);
-				if (src._head != NULL)
+				if (src._head != src._sentinel)
 					_head = _alloc.allocate(1, *src._head);
 			}
 			~RBTree	(void)
@@ -81,7 +81,7 @@ namespace ft
 
 			value_type	insert(value_type const & value )
 			{
-				if (_head == NULL)
+				if (_head == _sentinel)
 				{
 					node_type *	new_node = _alloc.allocate(1);
 					node_type	tmp(_sentinel, value);
@@ -104,18 +104,18 @@ namespace ft
 
 			void	_delete_all	(void)
 			{
-				if (_head != NULL)
+				if (_head != _sentinel)
 					_delete(_head);
 			}
 			void	_delete	(RBNode<value_type> * &	node)
 			{
-				if (node != NULL)
+				if (node != _sentinel)
 				{
 					_delete(node->getLeft());
 					_delete(node->getRight());
 					_alloc.destroy(node);
 					_alloc.deallocate(node, 1);
-					node = NULL;
+					node = _sentinel;
 				}
 			}
 
@@ -138,7 +138,7 @@ namespace ft
 #ifdef __DEBUG__
 	ft::_print_nl("*cur_pt < value");
 #endif
-					if (cur_pt->getRight() == NULL)
+					if (cur_pt->getRight() == _sentinel)
 					{
 #ifdef __DEBUG__
 	ft::_print_nl("cur_pt->getRight() == NULL");
@@ -161,7 +161,7 @@ namespace ft
 #ifdef __DEBUG__
 	ft::_print_nl("*cur_pt > value");
 #endif
-					if (cur_pt->getLeft() == NULL)
+					if (cur_pt->getLeft() == _sentinel)
 					{
 #ifdef __DEBUG__
 	ft::_print_nl("cur_pt->getLeft() == NULL");

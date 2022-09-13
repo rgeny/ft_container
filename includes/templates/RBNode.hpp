@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/13 15:04:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/13 15:09:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ namespace ft
 		BLACK=false
 	};
 #define CLASS_NAME "RBNode"
-	template
-	<
-		typename Value
-	>
+	template <typename Value>
 	class RBNode
 	{
 		public:
@@ -43,9 +40,9 @@ namespace ft
 				:_sentinel(sentinel)
 				,_value()
 				,_color(BLACK)
-				,_left(NULL)
-				,_right(NULL)
-				,_parent(NULL)
+				,_left(_sentinel)
+				,_right(_sentinel)
+				,_parent(_sentinel)
 			{
 #ifdef __DEBUG__
 DFL_CTOR
@@ -53,16 +50,13 @@ DFL_CTOR
 			}
 			RBNode	(const_pointer & sentinel,
 					 value_type const value,
-					 const_pointer left = NULL,
-					 const_pointer right = NULL,
-					 const_pointer parent = NULL,
 					 e_color const color = RED)
 				:_sentinel(sentinel)
 				,_value(value)
 				,_color(color)
-				,_left(left)
-				,_right(right)
-				,_parent(parent)
+				,_left(_sentinel)
+				,_right(_sentinel)
+				,_parent(_sentinel)
 			{
 #ifdef __DEBUG__
 PAR_CTOR
