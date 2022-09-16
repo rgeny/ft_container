@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/13 21:03:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/16 13:49:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,25 +81,11 @@ DTOR
 #endif
 			}
 
-//			RBNode &	operator=	(RBNode const & src)
-//			{
-//				value = src.value;
-//				color = src.color;
-//				left = src.left;
-//				right = src.right;
-//				parent = src.parent;
-//				return (*this);
-//			}
 			RBNode &	operator=	(value_type const & value)
 			{
 				this->value = value;
 				return (*this);
 			}
-
-			bool	is_red		(void) const
-			{	return (this->color);	}
-			bool	is_black	(void) const
-			{	return ( ! (this->color) );	}
 
 			bool	operator==	(value_type val)
 			{	return (value == val);	}

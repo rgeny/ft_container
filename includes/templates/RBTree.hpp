@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/13 21:03:06 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/16 21:23:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define RBTREE_HPP
 
 # include <iostream>
+
+//tmp
+# include <sstream>
+//end tmp
 
 # include "print.hpp"
 # include "type_traits.hpp"
@@ -41,16 +45,19 @@ namespace ft
 	class RBTree
 	{
 		public:
-			typedef Value				value_type;
-			typedef	RBNode<value_type>	node_type;
-			typedef Allocator			allocator_type;
+			typedef Value					value_type;
+			typedef	RBNode<value_type>		node_type;
+			typedef	RBNode<value_type> *	node_pointer;
+			typedef Allocator				allocator_type;
+			typedef size_t					size_type;
 
 			RBTree	(allocator_type const & alloc = allocator_type())
 				:_alloc(alloc)
 				,_sentinel(NULL)
 				,_root(NULL)
+				,_size(0)
 			{
-				RBNode<value_type>	tmp(_sentinel);
+				node_type	tmp(_sentinel);
 				_sentinel = _alloc.allocate(1, &tmp);
 				_alloc.construct(_sentinel, _sentinel);
 				_root = _sentinel;
@@ -61,6 +68,7 @@ namespace ft
 				:_alloc(alloc)
 				,_sentinel(_alloc.allocate(1, _sentinel))
 				,_root(_sentinel)
+				,_size(0)
 			{
 				_alloc.construct(_sentinel);
 				if (src._root != src._sentinel)
@@ -84,8 +92,8 @@ namespace ft
 			{
 				if (_root == _sentinel)
 				{
-					node_type *	new_node = _alloc.allocate(1);
-					node_type	tmp(_sentinel, value);
+					node_pointer	new_node = _alloc.allocate(1);
+					node_type		tmp(_sentinel, value);
 					_alloc.construct(new_node, tmp);
 					_root = new_node;
 				}
@@ -100,29 +108,151 @@ namespace ft
 					_clear(_root);
 			}
 
-			void	print	(void)
-			{
-				print(_root);
-			}
 
-			void	print	(RBNode<value_type> * const & node)
+
+
+
+
+
+
+
+
+//			void	print	(void)
+//			{
+//				size_t	height	= _count_height(_root);
+//				size_t	width	= _count_width(_root, height);
+//
+//				std::cout	<< "height == "
+//							<< height
+//							<< std::endl
+//							<< "width  == "
+//							<< width
+//							<< std::endl;
+//			}
+
+//			void	print	(node_pointer & node,
+//							 size_t height,
+//							 size_t width,
+//							 size_t pos = 0)
+//			{
+//				if (node == _sentinel)
+//					return ;
+//				size_t	left,
+//						right;
+//				if (node->left == _sentinel)
+//				{
+//					left = 4;
+//					right = 4;
+//				}
+//			}
+//
+
+
+
+
+		size_t	strsize	(std::string & str)
+		{
+			size_t	count = 0;
+
+			for (size_t i = 0; i < str.size(); ++i)
 			{
-				if (node == _sentinel)
-					return ;
-				print(node->left);
-				std::cout	<< node->value
-							<< std::endl;
-				print(node->right);
+				std::string tmp = str.substr(i, 3);
+				if (tmp == "─" || tmp == "┌" || tmp == "┐")
+					i += 2;
+				++count;
 			}
+			return (count);
+		}
+
+		void	print	(void)
+		{
+			size_t	height = _height(_root);
+			std::vector<std::string>	tree;
+
+			std::cout	<< "height == "
+						<< height
+						<< std::endl;
+			tree.resize(height);
+			print(_root, tree, 0);
+			for (size_t i = 0; i < height; ++i)
+				std::cout	<< tree[i]
+							<< std::endl;
+		}
+
+
+		size_t	print	(node_pointer & node,
+						 std::vector<std::string> & tree,
+						 size_t depth,
+						 size_t pos = 0)
+		{
+			for (size_t i = strsize(tree[depth]); i < pos; ++i)
+				tree[depth] += " ";
+			if (node == _sentinel)
+			{
+				tree[depth] += "NIL";
+				return (3);
+			}
+			std::stringstream	ss;
+
+			ss	<< node->value;
+			size_t	cur_size = ss.str().size();
+
+			size_t	size_left = print(node->left, tree, depth + 1, pos);
+			size_t	size_right = print(node->right, tree, depth + 1, pos + size_left + 2 + cur_size);
+
+			for (size_t i = 0; i <= size_left; ++i)
+			{
+				if ( i == size_left / 2 )
+					tree[depth] += "┌";
+				else if (i > size_left / 2)
+					tree[depth] += "─";
+				else
+					tree[depth] += " ";
+			}
+			tree[depth] += ss.str();
+			for (size_t i = 0, end = (size_right + 2) / 2; i <= end; ++i)
+			{
+				if ( i == end)
+					tree[depth] += "┐";
+				else
+					tree[depth] += "─";
+			}
+			return (size_left * 2 + cur_size + 2);
+		}
+
+
+
+
+
+
+		private:
+
+		size_t	_height	(node_pointer & node)
+		{
+			if (node == _sentinel)
+				return (1);
+			return (1 + std::max(_height(node->left), _height(node->right)));
+		}
+
+
+
+
+
+
+
+
+
+
 
 //			iterator insert( iterator hint, const value_type& value );
 
-		private:
-			allocator_type			_alloc;
-			RBNode<value_type> *	_sentinel;
-			RBNode<value_type> *	_root;
+//		private:
+			allocator_type	_alloc;
+			node_pointer	_sentinel;
+			node_pointer	_root;
+			size_type		_size;
 
-			void	_clear	(RBNode<value_type> * & node)
+			void	_clear	(node_pointer & node)
 			{
 				if (node != _sentinel)
 				{
@@ -134,7 +264,14 @@ namespace ft
 				}
 			}
 
-			void	_insert	(RBNode<value_type> * & cur_pt,
+			void	_balance	(node_pointer & cur_pt)
+			{
+				if (cur_pt->parent->color == BLACK)
+					return ;
+				
+			}
+
+			void	_insert	(node_pointer & cur_pt,
 							 value_type const & value)
 			{
 #ifdef __DEBUG__
@@ -158,10 +295,10 @@ namespace ft
 #ifdef __DEBUG__
 	ft::_print_nl("cur_pt->right == NULL");
 #endif
-						RBNode<value_type> **	pt = &cur_pt->right;
-						*pt = _alloc.allocate(1);
-						RBNode<value_type>	tmp(_sentinel, value);
+						cur_pt->right = _alloc.allocate(1);
+						node_type	tmp(_sentinel, value);
 						_alloc.construct(cur_pt->right, tmp);
+						++_size;
 					}
 					else
 					{
@@ -182,8 +319,9 @@ namespace ft
 	ft::_print_nl("cur_pt->left == NULL");
 #endif
 						cur_pt->left = _alloc.allocate(1);
-						RBNode<value_type>	tmp(_sentinel, value);
+						node_type	tmp(_sentinel, value);
 						_alloc.construct(cur_pt->left, tmp);
+						++_size;
 					}
 					else
 					{
