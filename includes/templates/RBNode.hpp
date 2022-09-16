@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/16 13:49:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/16 22:04:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ namespace ft
 					 typename ft::enable_if<ft::is_pointer<T>::value>::type = 0)
 				:sentinel(sentinel)
 				,value()
-				,color(BLACK)
+				,color(RED)
 				,left(sentinel)
 				,right(sentinel)
 				,parent(sentinel)

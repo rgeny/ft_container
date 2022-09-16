@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/16 21:23:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/16 22:03:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,145 +108,117 @@ namespace ft
 					_clear(_root);
 			}
 
-
-
-
-
-
-
-
-
-
-//			void	print	(void)
-//			{
-//				size_t	height	= _count_height(_root);
-//				size_t	width	= _count_width(_root, height);
-//
-//				std::cout	<< "height == "
-//							<< height
-//							<< std::endl
-//							<< "width  == "
-//							<< width
-//							<< std::endl;
-//			}
-
-//			void	print	(node_pointer & node,
-//							 size_t height,
-//							 size_t width,
-//							 size_t pos = 0)
-//			{
-//				if (node == _sentinel)
-//					return ;
-//				size_t	left,
-//						right;
-//				if (node->left == _sentinel)
-//				{
-//					left = 4;
-//					right = 4;
-//				}
-//			}
-//
-
-
-
-
-		size_t	strsize	(std::string & str)
-		{
-			size_t	count = 0;
-
-			for (size_t i = 0; i < str.size(); ++i)
+#ifdef __DEBUG__
+			void	print	(void)
 			{
-				std::string tmp = str.substr(i, 3);
-				if (tmp == "─" || tmp == "┌" || tmp == "┐")
-					i += 2;
-				++count;
+				size_t	height = _height(_root);
+				std::vector<std::string>	tree;
+
+				tree.resize(height);
+				for (size_t i = 0; i < height; ++i)
+					tree[i] += WHITE_BACK BLACK_TEXT;
+				_print(_root, tree, 0);
+				for (size_t i = 0; i < height; ++i)
+					std::cout	<< tree[i]
+								<< std::endl;
+				std::cout	<< RESET;
 			}
-			return (count);
-		}
-
-		void	print	(void)
-		{
-			size_t	height = _height(_root);
-			std::vector<std::string>	tree;
-
-			std::cout	<< "height == "
-						<< height
-						<< std::endl;
-			tree.resize(height);
-			print(_root, tree, 0);
-			for (size_t i = 0; i < height; ++i)
-				std::cout	<< tree[i]
-							<< std::endl;
-		}
-
-
-		size_t	print	(node_pointer & node,
-						 std::vector<std::string> & tree,
-						 size_t depth,
-						 size_t pos = 0)
-		{
-			for (size_t i = strsize(tree[depth]); i < pos; ++i)
-				tree[depth] += " ";
-			if (node == _sentinel)
-			{
-				tree[depth] += "NIL";
-				return (3);
-			}
-			std::stringstream	ss;
-
-			ss	<< node->value;
-			size_t	cur_size = ss.str().size();
-
-			size_t	size_left = print(node->left, tree, depth + 1, pos);
-			size_t	size_right = print(node->right, tree, depth + 1, pos + size_left + 2 + cur_size);
-
-			for (size_t i = 0; i <= size_left; ++i)
-			{
-				if ( i == size_left / 2 )
-					tree[depth] += "┌";
-				else if (i > size_left / 2)
-					tree[depth] += "─";
-				else
-					tree[depth] += " ";
-			}
-			tree[depth] += ss.str();
-			for (size_t i = 0, end = (size_right + 2) / 2; i <= end; ++i)
-			{
-				if ( i == end)
-					tree[depth] += "┐";
-				else
-					tree[depth] += "─";
-			}
-			return (size_left * 2 + cur_size + 2);
-		}
-
-
-
-
-
-
+#endif
 		private:
 
-		size_t	_height	(node_pointer & node)
-		{
-			if (node == _sentinel)
-				return (1);
-			return (1 + std::max(_height(node->left), _height(node->right)));
-		}
+#ifdef __DEBUG__
+			void	_print	(node_pointer & node,
+							 std::vector<std::string> & tree,
+							 size_t depth,
+							 size_t pos = 0,
+							 size_t * left = NULL,
+							 size_t * right = NULL)
+			{
+				for (size_t i = _strsize(tree[depth]); i < pos; ++i)
+					tree[depth] += " ";
+				if (node == _sentinel)
+				{
+					if (node->color == RED)
+						tree[depth] += WHITE_BACK RED_TEXT "NIL" BLACK_TEXT;
+					else
+						tree[depth] += "NIL";
+					if (left != NULL && right != NULL)
+					{
+						*left += 2;
+						*right += 1;
+					}
+					return ;
+				}
 
+				std::stringstream	ss;
+				ss	<< node->value;
+				size_t	cur_size = ss.str().size();
 
+				size_t	ll = 0, lr = 0;
+				_print(node->left, tree, depth + 1, pos, &ll, &lr);
+				size_t	rl = 0, rr = 0;
+				_print(node->right, tree, depth + 1, pos + ll + lr + 2 + cur_size, &rl, &rr);
 
+				for (size_t i = 0; i <= ll + lr; ++i)
+				{
+					if (i == ll - 1)
+						tree[depth] += "┌";
+					else if (i >= ll)
+						tree[depth] += "─";
+					else
+						tree[depth] += " ";
+				}
+				if (node->color == RED)
+					tree[depth] += WHITE_BACK RED_TEXT;
+				else
+					tree[depth] += WHITE_BACK BLACK_TEXT;
+				tree[depth] += ss.str();
+				tree[depth] += BLACK_TEXT;
+				for (size_t i = 0; i <= rl; ++i)
+				{
+					if (i == rl)
+						tree[depth] += "┐";
+					else
+						tree[depth] += "─";
+				}
+				if (left != NULL && right != NULL)
+				{
+					*left = ll + lr + ((cur_size + 1) / 2) + 1;
+					*right = rl + rr + (cur_size / 2) + 1;
+				}
+			}
 
+			size_t	_height	(node_pointer & node)
+			{
+				if (node == _sentinel)
+					return (1);
+				return (1 + std::max(_height(node->left), _height(node->right)));
+			}
 
+			size_t	_strsize	(std::string & str)
+			{
+				size_t	count = 0;
 
+				for (size_t i = 0; i < str.size(); ++i)
+				{
+					std::string special = str.substr(i, 3);
+					std::string	color = str.substr(i, 5);
+					std::string	reset = str.substr(i, 4);
+					if (special == "─" || special == "┌" || special == "┐")
+						i += 2;
+					else if (color == RED_TEXT || color == BLACK_TEXT || color == WHITE_BACK)
+					{
+						i += 4;
+						--count;
+					}
+					++count;
+				}
+				return (count);
+			}
 
-
-
-
-
+#endif
 //			iterator insert( iterator hint, const value_type& value );
 
-//		private:
 			allocator_type	_alloc;
 			node_pointer	_sentinel;
 			node_pointer	_root;
