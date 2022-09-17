@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/17 10:52:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/17 22:20:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 //tmp
 # include <sstream>
+# include <vector>
+# include "colors.hpp"
 //end tmp
 
 # include "print.hpp"
@@ -27,12 +29,12 @@
 namespace ft
 {
 #ifdef __DEBUG__
-	static void	_print_nl	(std::string str)
+	static inline void	_print_nl	(std::string str)
 	{
 		std::cout	<< str
 					<< std::endl;
 	}
-	static void	_print_nl	(void)
+	static inline void	_print_nl	(void)
 	{
 		std::cout	<< std::endl;
 	}
@@ -148,7 +150,9 @@ namespace ft
 #ifdef __DEBUG__
 	_print_nl("*cur_pt = value");
 #endif
-					*cur_pt = value;
+					node_type	tmp(_sentinel, value);
+					_alloc.destroy(cur_pt);
+					_alloc.construct(cur_pt, tmp);
 				}
 				else if (*cur_pt < value)
 				{
@@ -201,7 +205,7 @@ namespace ft
 	ft::_print_nl();
 #endif
 			}
-#  include "RBTree/print.hpp"
+# include "RBTree/print.hpp"
 	};
 }
 # undef CLASS_NAME

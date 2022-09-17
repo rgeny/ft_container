@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/11 10:36:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/17 22:21:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 
 # include "pair.hpp"
 # include <utility>
+# include "RBTree.hpp"
 
 namespace ft
 {
 
+//	tmp
 	template
 	<
 		typename FIRST_TYPE,
@@ -38,6 +40,7 @@ namespace ft
 	ft::pair<FIRST_TYPE, SECOND_TYPE>
 		ft_to_std	(std::pair<FIRST_TYPE, SECOND_TYPE> const & src)
 	{	return (ft::pair<FIRST_TYPE, SECOND_TYPE>(src.first, src.second));	}
+//	fin tmp
 
 	template
 	<
@@ -91,6 +94,7 @@ namespace ft
 
 			ft::pair<iterator, bool> insert(value_type const & value)
 			{
+				_rbtree.insert(value);
 				std::pair<Key const, T>	tm(value.first, value.second);
 				std::pair<iterator, bool> tmp = this->std::map<Key, T, Compare, Allocator>::insert(ft_to_std(tm));
 				ft::pair<iterator, bool>	to_return(tmp.first, tmp.second);
@@ -125,24 +129,35 @@ namespace ft
 			{
 				friend class map;
 
-				protected:
-					Compare comp;
-					value_compare(Compare c)
-						:comp(c)
-					{	}
-				
 				public:
 					bool	operator()	(value_type const & lhs,
 										 value_type const & rhs) const
 					{
 						return (comp(lhs.first, rhs.first));
 					}
+
+				protected:
+					Compare comp;
+
+					value_compare(Compare c)
+						:comp(c)
+					{	}
 			};
 
 			map::value_compare	value_comp	(void) const
 			{	return	(_comp);	}
+
+#ifdef __DEBUG__
+			void	print	(void)
+			{
+				_rbtree.print();
+			}
+#endif
+
 		private:
 			value_compare	_comp;
+
+			RBTree<value_type>	_rbtree;
 			
 	};
 
@@ -157,6 +172,22 @@ namespace ft
 					 ft::map<Key, T, Compare, Alloc> & rhs)
 	{
 		lhs.swap(rhs);
+	}
+
+	template
+	<
+		typename Key,
+		typename Val
+	>
+	std::ostream &	operator<<	(std::ostream & os,
+								 ft::pair<Key, Val> const & val)
+	{
+		os	<< "{"
+			<< val.first
+			<< ":"
+			<< val.second
+			<< "}";
+		return (os);
 	}
 }
 
