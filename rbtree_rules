@@ -32,7 +32,7 @@ INSERT :
 	- rotate at P, P is now parent to N and G
 	  G is now red and P is black
 	
-
+│└─┘┐┌
 ERASE :
 - S, P child and S child are black. S become RED, redo that with N = P while P->parent != NULL
 - N is now root --> end
