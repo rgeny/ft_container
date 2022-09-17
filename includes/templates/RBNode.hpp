@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/17 22:21:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/17 22:29:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ DFL_CTOR
 #endif
 			}
 			RBNode	(pointer & sentinel,
+					 pointer & parent,
 					 value_type const value,
 					 e_color const color = RED)
 				:sentinel(sentinel)
@@ -56,7 +57,7 @@ DFL_CTOR
 				,color(color)
 				,left(sentinel)
 				,right(sentinel)
-				,parent(sentinel)
+				,parent(parent)
 			{
 #ifdef __DEBUG__
 PAR_CTOR

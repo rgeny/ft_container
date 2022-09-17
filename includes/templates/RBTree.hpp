@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/17 22:20:33 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/17 22:29:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ namespace ft
 				if (_root == _sentinel)
 				{
 					node_pointer	new_node = _alloc.allocate(1);
-					node_type		tmp(_sentinel, value);
+					node_type		tmp(_sentinel, _sentinel, value);
 					_alloc.construct(new_node, tmp);
 					_root = new_node;
 				}
@@ -150,7 +150,7 @@ namespace ft
 #ifdef __DEBUG__
 	_print_nl("*cur_pt = value");
 #endif
-					node_type	tmp(_sentinel, value);
+					node_type	tmp(_sentinel, cur_pt->parent, value);
 					_alloc.destroy(cur_pt);
 					_alloc.construct(cur_pt, tmp);
 				}
@@ -165,7 +165,7 @@ namespace ft
 	ft::_print_nl("cur_pt->right == NULL");
 #endif
 						cur_pt->right = _alloc.allocate(1);
-						node_type	tmp(_sentinel, value);
+						node_type	tmp(_sentinel, cur_pt, value);
 						_alloc.construct(cur_pt->right, tmp);
 						++_size;
 					}
@@ -188,7 +188,7 @@ namespace ft
 	ft::_print_nl("cur_pt->left == NULL");
 #endif
 						cur_pt->left = _alloc.allocate(1);
-						node_type	tmp(_sentinel, value);
+						node_type	tmp(_sentinel, cur_pt, value);
 						_alloc.construct(cur_pt->left, tmp);
 						++_size;
 					}
