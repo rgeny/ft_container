@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:07:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/19 14:30:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/19 17:05:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 explicit	vector	(allocator_type const & alloc = allocator_type())
 	:_alloc(alloc)
-	,_T_alloc(_T_allocator_type())
+	,_T_alloc(alloc)
 	,_size(0)
 	,_capacity(0)
 	,_data(NULL)
@@ -33,7 +33,7 @@ explicit	vector	(size_type n
 					,value_type const & val = value_type()
 					,allocator_type const & alloc = allocator_type())
 	:_alloc(alloc)
-	,_T_alloc(_T_allocator_type())
+	,_T_alloc(alloc)
 	,_size(0)
 	,_capacity(0)
 	,_data(NULL)
@@ -50,7 +50,7 @@ vector	(InputIterator first
 		,allocator_type const & alloc = allocator_type()
 		,typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type = 0)
 	:_alloc(alloc)
-	,_T_alloc(_T_allocator_type())
+	,_T_alloc(alloc)
 	,_size(0)
 	,_capacity(0)
 	,_data(NULL)
