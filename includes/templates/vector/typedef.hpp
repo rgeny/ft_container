@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:16:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 11:39:41 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/18 14:35:57 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef std::size_t											size_type;
 typedef std::ptrdiff_t										difference_type;
 typedef value_type &										reference;
 typedef value_type const &									const_reference;
-typedef typename allocator_type::pointer					pointer;
-typedef typename allocator_type::const_pointer				const_pointer;
+typedef typename _T_allocator_type::pointer					pointer;
+typedef typename _T_allocator_type::const_pointer			const_pointer;
 typedef ft::RandomAccessIterator<pointer, vector>			iterator;
 typedef ft::RandomAccessIterator<const_pointer, vector>		const_iterator;
 typedef ft::reverse_iterator<iterator>						reverse_iterator;

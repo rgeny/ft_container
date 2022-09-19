@@ -154,7 +154,7 @@ iterator	erase	(iterator pos)
 	}
 
 	--_size;
-	_alloc.destroy(_data + _size);
+	_T_alloc.destroy(_data + _size);
 
 #ifdef __DEBUG__
 	std::cout	<< "content after : "

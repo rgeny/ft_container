@@ -19,7 +19,7 @@ void	_destroy	(pointer it,
 {
 	while (it != ite)
 	{
-		_alloc.destroy(it);
+		_T_alloc.destroy(it);
 		it++;
 	}
 }
@@ -30,7 +30,7 @@ void	_destroy_all	(void)
 		 it != ite;
 		 it++)
 	{
-		_alloc.destroy(it);
+		_T_alloc.destroy(it);
 	}
 }
 
@@ -40,7 +40,7 @@ void	_construct	(pointer first,
 {
 	while (first < end)
 	{
-		_alloc.construct(first, value);
+		_T_alloc.construct(first, value);
 		++first;
 	}
 }
@@ -56,7 +56,7 @@ void	_construct	(pointer first,
 	while (first < last &&
 			first_val < last_val)
 	{
-		_alloc.construct(first, *first_val);
+		_T_alloc.construct(first, *first_val);
 		++first;
 		++first_val;
 	}

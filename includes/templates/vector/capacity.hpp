@@ -21,7 +21,7 @@ size_type	size	(void)	const
 
 size_type	max_size	(void) const
 {
-	return (_alloc.max_size());
+	return (_T_alloc.max_size());
 }
 
 size_type	capacity	(void) const
@@ -50,11 +50,11 @@ void	reserve	(size_type new_cap)
 	if (new_cap <= _capacity)
 		return ;
 
-	pointer	new_data = _alloc.allocate(new_cap);
+	pointer	new_data = _T_alloc.allocate(new_cap);
 
 	_construct(new_data, new_data + _size, _data, _data + _size);
 	_destroy_all();
-	_alloc.deallocate(_data, _capacity);
+	_T_alloc.deallocate(_data, _capacity);
 	_data = new_data;
 	_capacity = new_cap;
 

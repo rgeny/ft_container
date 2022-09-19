@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:14:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 19:29:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/18 14:39:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ namespace ft
 	>
 	class vector
 	{
+		private:
+			typedef typename Allocator::template rebind<T>::other	_T_allocator_type;
+
 		public:
 
 			#include "vector/typedef.hpp"
@@ -45,10 +48,11 @@ namespace ft
 			#include "vector/operator.hpp"
 
 		private:
-			allocator_type	_alloc;
-			size_type		_size;
-			size_type		_capacity;
-			pointer			_data;
+			allocator_type		_alloc;
+			size_type			_size;
+			size_type			_capacity;
+			pointer				_data;
+			_T_allocator_type	_T_alloc;
 			
 			#include "vector/private.hpp"
 	};
