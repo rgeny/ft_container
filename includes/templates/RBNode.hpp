@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/17 22:29:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/19 15:23:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ namespace ft
 			>
 			RBNode	(T & sentinel,
 					 typename ft::enable_if<ft::is_pointer<T>::value>::type = 0)
-				:sentinel(sentinel)
-				,value()
+				:value()
 				,color(BLACK)
 				,left(sentinel)
 				,right(sentinel)
@@ -52,8 +51,7 @@ DFL_CTOR
 					 pointer & parent,
 					 value_type const value,
 					 e_color const color = RED)
-				:sentinel(sentinel)
-				,value(value)
+				:value(value)
 				,color(color)
 				,left(sentinel)
 				,right(sentinel)
@@ -64,8 +62,7 @@ PAR_CTOR
 #endif
 			}
 			RBNode	(RBNode const & src)
-				:sentinel(src.sentinel)
-				,value(src.value)
+				:value(src.value)
 				,color(src.color)
 				,left(src.left)
 				,right(src.right)
@@ -94,7 +91,6 @@ DTOR
 			{	return (value < val);	}
 
 //		private:
-			pointer &		sentinel;
 			value_type		value;
 			e_color			color;
 			pointer			left;
