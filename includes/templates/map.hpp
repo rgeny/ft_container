@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/17 22:21:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/19 14:17:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,8 +157,21 @@ namespace ft
 		private:
 			value_compare	_comp;
 
-			RBTree<value_type>	_rbtree;
+			template
+			<
+				typename _Key,
+				typename _Value
+			>
+			struct _KeyOfValue
+			{
+				public:
+				_Key &	operator()	(_Value & val)
+				{	return (val->first);	}
+			};
+
+			RBTree	<value_type>	_rbtree;
 			
+
 	};
 
 	template

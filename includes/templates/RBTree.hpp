@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/17 22:29:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/19 15:30:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ namespace ft
 #endif
 	template
 	<
-		typename Value,
+		typename Key,
+		typename Value = Key,
+		typename KeyOfValue = Value, // tmp
+		typename Compare = std::less<Value>,
 		typename Allocator = std::allocator<RBNode<Value> >
 	>
 	class RBTree
