@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:14:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/19 14:28:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/19 16:13:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ namespace ft
 	>
 	class vector
 	{
-		private:
-			typedef typename Allocator::template rebind<T>::other	_T_allocator_type;
-
 		public:
 
 			#include "vector/typedef.hpp"

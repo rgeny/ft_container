@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:16:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/18 14:35:57 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/19 16:13:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,21 @@
 # ifndef VECTOR_TYPEDEF_HPP
 #  define VECTOR_TYPEDEF_HPP
 
-typedef T													value_type;
-typedef Allocator											allocator_type;
-typedef std::size_t											size_type;
-typedef std::ptrdiff_t										difference_type;
-typedef value_type &										reference;
-typedef value_type const &									const_reference;
-typedef typename _T_allocator_type::pointer					pointer;
-typedef typename _T_allocator_type::const_pointer			const_pointer;
-typedef ft::RandomAccessIterator<pointer, vector>			iterator;
-typedef ft::RandomAccessIterator<const_pointer, vector>		const_iterator;
-typedef ft::reverse_iterator<iterator>						reverse_iterator;
-typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
+private:
+	typedef typename Allocator::template rebind<T>::other		_T_allocator_type;
+public:
+	typedef T													value_type;
+	typedef Allocator											allocator_type;
+	typedef std::size_t											size_type;
+	typedef std::ptrdiff_t										difference_type;
+	typedef value_type &										reference;
+	typedef value_type const &									const_reference;
+	typedef typename _T_allocator_type::pointer					pointer;
+	typedef typename _T_allocator_type::const_pointer			const_pointer;
+	typedef ft::RandomAccessIterator<pointer, vector>			iterator;
+	typedef ft::RandomAccessIterator<const_pointer, vector>		const_iterator;
+	typedef ft::reverse_iterator<iterator>						reverse_iterator;
+	typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
 
 # endif
 #endif
