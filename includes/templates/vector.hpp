@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:14:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/18 14:39:32 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/19 14:28:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ namespace ft
 
 		private:
 			allocator_type		_alloc;
+			_T_allocator_type	_T_alloc;
 			size_type			_size;
 			size_type			_capacity;
 			pointer				_data;
-			_T_allocator_type	_T_alloc;
 			
 			#include "vector/private.hpp"
 	};
