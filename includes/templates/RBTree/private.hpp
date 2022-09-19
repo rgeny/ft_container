@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/19 17:20:58 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/19 17:41:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 void	_construct	(node_preference new_node,
 					 node_preference parent,
-					 value_type const & value = value_type() )
+					 value_type const & value = value_type(),
+					 e_color const color = RED)
 {
 	if (new_node != _sentinel)
 		_node_alloc.destroy(new_node);
@@ -26,13 +27,14 @@ void	_construct	(node_preference new_node,
 		++_size;
 	}
 	
-	node_type	tmp(_sentinel, parent, value);
+	node_type	tmp(_sentinel, parent, value, color);
 	_node_alloc.construct(new_node, tmp);
 }
 
-void	_clear		(node_preference node)
+void	_clear		(node_preference node,
+					 bool destroy_sentinel = false)
 {
-	if (node != _sentinel)
+	if (node != _sentinel || destroy_sentinel)
 	{
 		_node_alloc.destroy(node);
 		_node_alloc.deallocate(node, 1);
