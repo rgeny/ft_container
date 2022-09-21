@@ -34,7 +34,7 @@ INSERT :
 	
 │└─┘┐┌
 ERASE :
-- S, P child and S child are black. S become RED, redo that with N = P while P->parent != NULL
+- P child and S child are black. S become RED, redo that with N = P while P->parent != NULL
 - N is now root --> end
 - S is red --> P, C, D, need to be black
 		rotate in P, S is now G
@@ -45,3 +45,12 @@ ERASE :
 		switch S and C color
 - S is black and D is red
 		Rotate at P with S
+
+
+while (node != _root && node->color == BLACK)
+{
+	parent = node->parent;
+	grandp = parent->parent;
+
+
+}

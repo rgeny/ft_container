@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:46:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/19 18:28:42 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/21 19:20:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ RBTree	(allocator_type const & alloc = allocator_type())
 	,_node_alloc()
 	,_sentinel(NULL)
 	,_root(NULL)
-	,_size(0)
+	,_size(-1)
 	,_comp()
 {
 	_construct(_sentinel, _sentinel, value_type(), BLACK);
@@ -32,7 +32,7 @@ RBTree	(RBTree const & src,
 	,_node_alloc()
 	,_sentinel(NULL)
 	,_root(NULL)
-	,_size(0)
+	,_size(-1)
 	,_comp()
 {
 	_construct(_sentinel, _sentinel);
