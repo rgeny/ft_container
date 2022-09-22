@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:20:47 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/07 12:09:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/22 16:37:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,20 @@ class RandomAccessIterator
 		typedef ft::iterator_traits<Iterator>			__traits_type;
 
 	public:
-		#include "RandomAccessIterator/typedef.hpp"
-		#include "RandomAccessIterator/structor.hpp"
-		#include "RandomAccessIterator/modifiers_operator.hpp"
-		#include "RandomAccessIterator/member_operation_operator.hpp"
-		#include "RandomAccessIterator/member.hpp"
-		#include "RandomAccessIterator/access_operator.hpp"
+		typedef Iterator									iterator_type;
+		typedef typename __traits_type::difference_type		difference_type;
+		typedef typename __traits_type::value_type			value_type;
+		typedef typename __traits_type::pointer				pointer;
+		typedef typename __traits_type::reference			reference;
+		typedef typename __traits_type::iterator_category	iterator_category;
+
+#  include "RandomAccessIterator/modifiers_operator.hpp"
+#  include "RandomAccessIterator/member_operation_operator.hpp"
+#  include "RandomAccessIterator/member.hpp"
+#  include "RandomAccessIterator/access_operator.hpp"
 };
-#include "RandomAccessIterator/comparison_operator.hpp"
-#include "RandomAccessIterator/non_member_operation_operator.hpp"
+#  include "RandomAccessIterator/comparison_operator.hpp"
+#  include "RandomAccessIterator/non_member_operation_operator.hpp"
 
 #  undef CLASS_NAME
 # endif
