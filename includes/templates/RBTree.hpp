@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/22 14:47:26 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/22 15:33:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@
 
 namespace ft
 {
+
+//	template
+//	<
+//		typename Iterator
+//	>
+//	class BidirectionnalIterator
+//	{
+//		public:
+//
+//
+//	};
+
 	template
 	<
 		typename Key,
@@ -71,6 +83,93 @@ namespace ft
 
 			size_type	size	(void) const
 			{	return (_size);	}
+
+			void	test	(void)
+			{
+				std::cout	<< "INCREMENT :"
+							<< std::endl;
+				for (node_pointer tmp = this->begin(); tmp != _sentinel; tmp = getNext(tmp))
+				{
+					std::cout	<< "tmp->value == "
+								<< tmp->value
+								<< std::endl;
+				}
+				std::cout	<< std::endl
+							<< "DECREMENT :"
+							<< std::endl;
+				for (node_pointer tmp = this->end(); tmp != _sentinel; tmp = getPrevious(tmp))
+				{
+					std::cout	<< "tmp->value == "
+								<< tmp->value
+								<< std::endl;
+				}
+			}
+
+			node_pointer	begin	(void)
+			{
+				node_pointer	to_return = _root;
+
+				while (to_return->left != _sentinel)
+					to_return = to_return->left;
+				return (to_return);
+			}
+
+			node_pointer	end		(void)
+			{
+				node_pointer	to_return = _root;
+
+				while (to_return->right != _sentinel)
+					to_return = to_return->right;
+				return (to_return);
+			}
+
+			node_pointer	getNext	(node_pointer node)
+			{
+				if (node == _sentinel)
+					return (node);
+				if (node->right != _sentinel)
+				{
+					node = node->right;
+					while (node->left != _sentinel)
+						node = node->left;
+					return (node);
+				}
+				if (node->parent->left == node)
+					return (node->parent);
+				
+				node_pointer parent = node->parent;
+				while (parent != _sentinel &&
+					   parent->right == node)
+				{
+					node = parent;
+					parent = parent->parent;
+				}
+				return (parent);
+			}
+
+			node_pointer	getPrevious	(node_pointer node)
+			{
+				if (node == _sentinel)
+					return (node);
+				if (node->left != _sentinel)
+				{
+					node = node->left;
+					while (node->right != _sentinel)
+						node = node->right;
+					return (node);
+				}
+				if (node->parent->right == node)
+					return (node->parent);
+
+				node_pointer	parent = node->parent;
+				while (parent != _sentinel &&
+					   parent->left == node)
+				{
+					node = parent;
+					parent = parent->parent;
+				}
+				return (parent);
+			}
 
 		private:
 			allocator_type			_alloc;
