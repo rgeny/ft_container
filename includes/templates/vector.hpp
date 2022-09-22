@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 15:14:52 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/19 16:13:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/22 12:39:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,23 @@ namespace ft
 	>
 	class vector
 	{
-		public:
+		private:
+			typedef typename Allocator::template rebind<T>::other		_T_allocator_type;
 
-			#include "vector/typedef.hpp"
+		public:
+			typedef T													value_type;
+			typedef Allocator											allocator_type;
+			typedef std::size_t											size_type;
+			typedef std::ptrdiff_t										difference_type;
+			typedef value_type &										reference;
+			typedef value_type const &									const_reference;
+			typedef typename _T_allocator_type::pointer					pointer;
+			typedef typename _T_allocator_type::const_pointer			const_pointer;
+			typedef ft::RandomAccessIterator<pointer, vector>			iterator;
+			typedef ft::RandomAccessIterator<const_pointer, vector>		const_iterator;
+			typedef ft::reverse_iterator<iterator>						reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>				const_reverse_iterator;
+
 			#include "vector/structor.hpp"
 			#include "vector/iterators.hpp"
 			#include "vector/capacity.hpp"
