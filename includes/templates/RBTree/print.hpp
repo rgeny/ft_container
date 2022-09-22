@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:49:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/17 10:57:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/22 15:00:39 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,53 @@
 #  define RBTREE_PRINT_HPP
 #  ifdef __DEBUG__
 
+#  define RESET "\033[0m"
+#  define COLOR_BACK "\033[47m" // white
+#  define COLOR_TEXT "\033[30m" // black
+#  define BLACK_NODE "\033[30m" // black
+#  define RED_NODE "\033[31m"   // red
+
+#  define ROOT _root
+#  define SENTINEL _sentinel
+#  define NODE_POINTER_TYPE node_pointer
+#  define NODE_LEFT left
+#  define NODE_RIGHT right
+
 public:
 	void	print	(void)
 	{
-		size_t	height = _height(_root);
+		size_t	height = _height(ROOT);
 		std::vector<std::string>	tree;
 
 		tree.resize(height);
-		for (size_t i = 0; i < height; ++i)
-			tree[i] += WHITE_BACK BLACK_TEXT;
-		_print(_root, tree, 0);
+		_print(ROOT, tree, 0);
+		tree[height - 1] += RESET;
+		std::cout	<< COLOR_BACK COLOR_TEXT
+					<< std::endl;
 		for (size_t i = 0; i < height; ++i)
 			std::cout	<< tree[i]
 						<< std::endl;
-		std::cout	<< RESET
-					<< std::endl;
 	}
 
 private:
-	void	_print	(node_pointer & node,
+	void	_print	(NODE_POINTER_TYPE & node,
 					 std::vector<std::string> & tree,
 					 size_t depth,
 					 size_t pos = 0,
 					 size_t * left = NULL,
 					 size_t * right = NULL)
 	{
+//	align node
 		for (size_t i = _strsize(tree[depth]); i < pos; ++i)
 			tree[depth] += " ";
-		if (node == _sentinel)
+
+//	end of recursive function
+		if (node == SENTINEL)
 		{
 			if (node->color == RED)
-				tree[depth] += WHITE_BACK RED_TEXT "NIL" BLACK_TEXT;
+				tree[depth] += RED_NODE "NIL" COLOR_TEXT;
 			else
-				tree[depth] += "NIL";
+				tree[depth] += BLACK_NODE "NIL" COLOR_TEXT;
 			if (left != NULL && right != NULL)
 			{
 				*left += 2;
@@ -56,15 +70,18 @@ private:
 			return ;
 		}
 
+//	count size of current value
 		std::stringstream	ss;
 		ss	<< node->value;
 		size_t	cur_size = ss.str().size();
 
+//	execute the recursion
 		size_t	ll = 0, lr = 0;
-		_print(node->left, tree, depth + 1, pos, &ll, &lr);
+		_print(node->NODE_LEFT, tree, depth + 1, pos, &ll, &lr);
 		size_t	rl = 0, rr = 0;
-		_print(node->right, tree, depth + 1, pos + ll + lr + 2 + cur_size, &rl, &rr);
+		_print(node->NODE_RIGHT, tree, depth + 1, pos + ll + lr + 2 + cur_size, &rl, &rr);
 
+//	add left branch of current node
 		for (size_t i = 0; i <= ll + lr; ++i)
 		{
 			if (i == ll - 1)
@@ -74,12 +91,18 @@ private:
 			else
 				tree[depth] += " ";
 		}
+
+//	add color of current node
 		if (node->color == RED)
-			tree[depth] += WHITE_BACK RED_TEXT;
+			tree[depth] += RED_NODE;
 		else
-			tree[depth] += WHITE_BACK BLACK_TEXT;
+			tree[depth] += BLACK_NODE;
+
+//	add value
 		tree[depth] += ss.str();
-		tree[depth] += BLACK_TEXT;
+		tree[depth] += COLOR_TEXT;
+
+//	add right branch of current value
 		for (size_t i = 0; i <= rl; ++i)
 		{
 			if (i == rl)
@@ -87,6 +110,9 @@ private:
 			else
 				tree[depth] += "─";
 		}
+
+//	calculate the size of the display to the left and
+//	to the right of the current node for the parent.
 		if (left != NULL && right != NULL)
 		{
 			*left = ll + lr + ((cur_size + 1) / 2) + 1;
@@ -94,13 +120,15 @@ private:
 		}
 	}
 
-	size_t	_height	(node_pointer & node)
+	size_t	_height	(NODE_POINTER_TYPE & node)
 	{
-		if (node == _sentinel)
+		if (node == SENTINEL)
 			return (1);
-		return (1 + std::max(_height(node->left), _height(node->right)));
+		return (1 + std::max(_height(node->NODE_LEFT), _height(node->NODE_RIGHT)));
 	}
 
+//	_strsize
+//	calculate true size of string despite non-ascii characters.
 	size_t	_strsize	(std::string & str)
 	{
 		size_t	count = 0;
@@ -109,10 +137,17 @@ private:
 		{
 			std::string special = str.substr(i, 3);
 			std::string	color = str.substr(i, 5);
-			std::string	reset = str.substr(i, 4);
-			if (special == "─" || special == "┌" || special == "┐")
+
+			if (special == "─" ||
+				special == "┌" ||
+				special == "┐")
+			{
 				i += 2;
-			else if (color == RED_TEXT || color == BLACK_TEXT || color == WHITE_BACK)
+			}
+			else if (color == COLOR_BACK ||
+					 color == COLOR_TEXT ||
+					 color == BLACK_NODE ||
+					 color == RED_NODE)
 			{
 				i += 4;
 				--count;

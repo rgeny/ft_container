@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/21 18:29:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/22 14:47:26 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,21 @@
 # define RBTREE_HPP
 
 # include <iostream>
+# include <memory>
+# include <iterator>
 
-//tmp
-# include <sstream>
-# include <vector>
-# include "colors.hpp"
-//end tmp
+# ifdef __DEBUG__
+#  include <vector>
+# endif
 
 # include "print.hpp"
 # include "type_traits.hpp"
 # include "RBNode.hpp"
 # define CLASS_NAME "RBTree"
 
+
 namespace ft
 {
-#ifdef __DEBUG__
-	static inline void	_print_nl	(std::string str)
-	{
-		std::cout	<< str
-					<< std::endl;
-	}
-	static inline void	_print_nl	(void)
-	{
-		std::cout	<< std::endl;
-	}
-#endif
 	template
 	<
 		typename Key,
