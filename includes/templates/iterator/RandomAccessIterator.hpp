@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:20:47 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/22 16:37:42 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/22 16:43:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class RandomAccessIterator
 		typedef typename __traits_type::reference			reference;
 		typedef typename __traits_type::iterator_category	iterator_category;
 
+#  include "RandomAccessIterator/structor.hpp"
 #  include "RandomAccessIterator/modifiers_operator.hpp"
 #  include "RandomAccessIterator/member_operation_operator.hpp"
 #  include "RandomAccessIterator/member.hpp"
