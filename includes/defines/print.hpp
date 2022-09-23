@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 14:58:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 14:59:28 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/23 15:40:31 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 # define PRINT(a) std::cout << a << std::endl;
 
-# define DFL_CTOR	PRINT(CLASS_NAME" default constructor.")
-# define CPY_CTOR	PRINT(CLASS_NAME" copy constructor.")
-# define PAR_CTOR	PRINT(CLASS_NAME" parameter constructor.")
-# define FILL_CTOR	PRINT(CLASS_NAME" fill constructor.")
-# define RANGE_CTOR	PRINT(CLASS_NAME" range constructor.")
-# define DTOR	PRINT(CLASS_NAME" destructor.")
+# define DFL_CTOR		PRINT(CLASS_NAME" default constructor.")
+# define CPY_CTOR		PRINT(CLASS_NAME" copy constructor.")
+# define CONST_CPY_CTOR	PRINT(CLASS_NAME" const copy constructor.")
+# define PAR_CTOR		PRINT(CLASS_NAME" parameter constructor.")
+# define FILL_CTOR		PRINT(CLASS_NAME" fill constructor.")
+# define RANGE_CTOR		PRINT(CLASS_NAME" range constructor.")
+# define DTOR			PRINT(CLASS_NAME" destructor.")
 
 #endif
