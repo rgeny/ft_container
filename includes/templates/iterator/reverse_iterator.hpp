@@ -6,13 +6,15 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/25 00:08:42 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/22 16:56:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/22 22:19:57 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef ITERATOR_HPP
 # ifndef REVERSE_ITERATOR_HPP
 #  define REVERSE_ITERATOR_HPP
+
+#  define CLASS_NAME "reverse_iterator"
 
 template
 <
@@ -48,6 +50,8 @@ class reverse_iterator
 
 #  include "reverse_iterator/compares_operator.hpp"
 #  include "reverse_iterator/non_member_move_operator.hpp"
+
+#  undef CLASS_NAME
 
 # endif
 #endif
