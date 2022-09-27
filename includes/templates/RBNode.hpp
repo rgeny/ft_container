@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/19 15:23:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/27 10:12:50 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,45 @@
 
 namespace ft
 {
-	enum e_color
+	enum node_color
 	{
 		RED=true,
 		BLACK=false
 	};
+
+#define CLASS_NAME "RBNodeBase"
+	class RBNodeBase
+	{
+		public:
+			typedef RBNodeBase *		NodeBase_ptr;
+
+			NodeBase_ptr	parent;
+			NodeBase_ptr	left;
+			NodeBase_ptr	right;
+			node_color			color;
+
+			RBNodeBase	(NodeBase_ptr parent,
+						 NodeBase_ptr left,
+						 NodeBase_ptr right,
+						 node_color color)
+				:parent(parent)
+				,left(left)
+				,right(right)
+				,color(color)
+			{
+#ifdef __DEBUG__
+PAR_CTOR
+#endif
+			}
+
+			~RBNodeBase	(void)
+			{
+#ifdef __DEBUG__
+DTOR
+#endif
+			}
+	};
+#undef CLASS_NAME
 #define CLASS_NAME "RBNode"
 	template <typename Value>
 	class RBNode
@@ -50,7 +84,7 @@ DFL_CTOR
 			RBNode	(pointer & sentinel,
 					 pointer & parent,
 					 value_type const value,
-					 e_color const color = RED)
+					 node_color const color = RED)
 				:value(value)
 				,color(color)
 				,left(sentinel)
@@ -72,6 +106,19 @@ PAR_CTOR
 CPY_CTOR
 #endif
 			}
+			template < typename _T >
+			RBNode	(RBNode<_T> const & src)
+				:value(src.value)
+				,color(src.color)
+				,left(src.left)
+				,right(src.right)
+				,parent(src.parent)
+			{
+#ifdef __DEBUG__
+CPY_CTOR
+#endif
+			}
+
 			~RBNode	(void)
 			{
 #ifdef __DEBUG__
@@ -92,7 +139,7 @@ DTOR
 
 //		private:
 			value_type		value;
-			e_color			color;
+			node_color			color;
 			pointer			left;
 			pointer			right;
 			pointer			parent;

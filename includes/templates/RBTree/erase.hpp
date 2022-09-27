@@ -25,7 +25,7 @@ public:
 		if (del_node == _sentinel)
 			return (0);
 
-		e_color			original_color = del_node->color;
+		node_color			original_color = del_node->color;
 		node_pointer	child,
 						min = del_node;
 

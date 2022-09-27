@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/22 15:33:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/23 17:52:13 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,13 @@
 # include "print.hpp"
 # include "type_traits.hpp"
 # include "RBNode.hpp"
-# define CLASS_NAME "RBTree"
-
+# include "iterator.hpp"
 
 namespace ft
 {
-
-//	template
-//	<
-//		typename Iterator
-//	>
-//	class BidirectionnalIterator
-//	{
-//		public:
-//
-//
-//	};
-
+# include "iterator/BidirectionalIterator.hpp"
+# include "RBTree/RBTree_iterator.hpp"
+# define CLASS_NAME "RBTree"
 	template
 	<
 		typename Key,
@@ -66,6 +56,8 @@ namespace ft
 			typedef size_t										size_type;
 			typedef std::ptrdiff_t								difference_type;
 			typedef Compare										key_compare;
+			typedef BidirectionalIterator<node_type>			iterator;
+
 # include "RBTree/structor.hpp"
 # include "RBTree/find.hpp"
 
@@ -86,23 +78,9 @@ namespace ft
 
 			void	test	(void)
 			{
-				std::cout	<< "INCREMENT :"
-							<< std::endl;
-				for (node_pointer tmp = this->begin(); tmp != _sentinel; tmp = getNext(tmp))
-				{
-					std::cout	<< "tmp->value == "
-								<< tmp->value
-								<< std::endl;
-				}
-				std::cout	<< std::endl
-							<< "DECREMENT :"
-							<< std::endl;
-				for (node_pointer tmp = this->end(); tmp != _sentinel; tmp = getPrevious(tmp))
-				{
-					std::cout	<< "tmp->value == "
-								<< tmp->value
-								<< std::endl;
-				}
+				iterator	it(_root);
+
+
 			}
 
 			node_pointer	begin	(void)

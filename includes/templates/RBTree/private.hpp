@@ -17,7 +17,7 @@
 void	_construct	(node_preference new_node,
 					 node_preference parent,
 					 value_type const & value = value_type(),
-					 e_color const color = RED)
+					 node_color const color = RED)
 {
 	if (new_node != _sentinel)
 		_node_alloc.destroy(new_node);
