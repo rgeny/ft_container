@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 10:12:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/27 10:45:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ namespace ft
 			NodeBase_ptr	parent;
 			NodeBase_ptr	left;
 			NodeBase_ptr	right;
-			node_color			color;
+			node_color		color;
 
 			RBNodeBase	(NodeBase_ptr parent,
 						 NodeBase_ptr left,
@@ -54,6 +54,62 @@ PAR_CTOR
 DTOR
 #endif
 			}
+
+			NodeBase_ptr	min	(void)
+			{
+				NodeBase_ptr	node = this;
+				while (! node->left->is_sentinel() )
+					node = node->left;
+				return (node);
+			}
+
+			NodeBase_ptr	max	(void)
+			{
+				NodeBase_ptr	node = this;
+				while ( ! node->right->is_sentinel() )
+					node = node->right;
+				return (node);
+			}
+
+			NodeBase_ptr	previous	(void)
+			{
+				NodeBase_ptr	node = this;
+
+				if ( ! node->left->is_sentinel() )
+					return (node->left->max());
+
+				NodeBase_ptr	parent = node->parent;
+				while ( ! parent->is_sentinel() &&
+						parent->left == node)
+				{
+					node = parent;
+					parent = parent->parent;
+				}
+				return (parent);
+			}
+
+			NodeBase_ptr	next	(void)
+			{
+				NodeBase_ptr	node = this;
+
+				if ( ! node->right->is_sentinel() )
+					return (node->right->min());
+
+				NodeBase_ptr	parent = node->parent;
+				while ( ! parent->is_sentinel() &&
+						parent->right == node)
+				{
+					node = parent;
+					parent = parent->parent;
+				}
+				return (parent);
+			}
+
+			bool	is_sentinel	(void)
+			{
+				return (this == this->parent);
+			}
+
 	};
 #undef CLASS_NAME
 #define CLASS_NAME "RBNode"
@@ -139,7 +195,7 @@ DTOR
 
 //		private:
 			value_type		value;
-			node_color			color;
+			node_color		color;
 			pointer			left;
 			pointer			right;
 			pointer			parent;
