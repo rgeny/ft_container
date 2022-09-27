@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:04:59 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/21 18:05:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/27 14:04:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 public:
 	value_type	insert	(const_reference value)
 	{
-		node_pointer	parent = _sentinel;
-		node_pointer *	new_node = &_root;
+		NodeBase_ptr	parent = _cast(_sentinel);
+		NodeBase_ptr *	new_node = &_root;
 
 		while (*new_node != _sentinel)
 		{
 			parent = *new_node;
-			if (_comp(parent->value, value))
+			if (_compare(parent, value))
 				new_node = &parent->right;
-			else if (_comp(value, parent->value))
+			else if (_compare(value, parent))
 				new_node = &parent->left;
 			else
-				return (parent->value);
+				return (_cast(parent)->value);
 		}
 
 		_construct(*new_node, parent, value);
@@ -37,11 +37,11 @@ public:
 	}
 
 private:
-	void	_insert_balance	(node_pointer node)
+	void	_insert_balance	(NodeBase_ptr node)
 	{
-		node_pointer	parent;
-		node_pointer	uncle;
-		node_pointer	grandp;
+		NodeBase_ptr	parent;
+		NodeBase_ptr	uncle;
+		NodeBase_ptr	grandp;
 
 		while (node->parent->color == RED)
 		{

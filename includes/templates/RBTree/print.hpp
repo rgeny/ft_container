@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:49:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 10:03:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/27 14:07:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 
 #  define ROOT _root
 #  define SENTINEL _sentinel
-#  define NODE_POINTER_TYPE node_pointer
+#  define NODE_BASE_POINTER NodeBase_ptr
+#  define NODE_POINTER node_pointer
 #  define NODE_LEFT left
 #  define NODE_RIGHT right
 
@@ -44,7 +45,7 @@ public:
 	}
 
 private:
-	void	_print	(NODE_POINTER_TYPE & node,
+	void	_print	(NODE_BASE_POINTER & node,
 					 std::vector<std::string> & tree,
 					 size_t depth,
 					 size_t pos = 0,
@@ -72,7 +73,7 @@ private:
 
 //	count size of current value
 		std::stringstream	ss;
-		ss	<< node->value;
+		ss	<< static_cast<NODE_POINTER>(node)->value;
 		size_t	cur_size = ss.str().size();
 
 //	execute the recursion
@@ -120,7 +121,7 @@ private:
 		}
 	}
 
-	size_t	_height	(NODE_POINTER_TYPE & node)
+	size_t	_height	(NODE_BASE_POINTER & node)
 	{
 		if (node == SENTINEL)
 			return (1);

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:01:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/21 18:26:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/27 17:33:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ public:
 		return (this->erase(this->find(key)));
 	}
 
-	size_type	erase	(node_pointer del_node)
+	size_type	erase	(NodeBase_ptr del_node)
 	{
 		if (del_node == _sentinel)
 			return (0);
 
-		node_color			original_color = del_node->color;
-		node_pointer	child,
+		node_color		original_color = del_node->color;
+		NodeBase_ptr	child,
 						min = del_node;
 
 		if (del_node->left == _sentinel)
@@ -41,7 +41,7 @@ public:
 		}
 		else
 		{
-			min = _getMin(del_node->right);
+			min = del_node->right->min();
 			original_color = min->color;
 			child = min->right;
 			if (min->parent == del_node)
@@ -61,21 +61,16 @@ public:
 		_clear(del_node);
 		if (original_color == BLACK)
 			_erase_balance(child);
+		_sentinel->parent = _sentinel;
 		return (1);
 	}
 
 private:
-	node_pointer	_getMin	(node_pointer node)
-	{
-		while (node->left != _sentinel)
-			node = node->left;
-		return (node);
-	}
 
-	void	_transplant	(node_pointer parent,
-						 node_pointer child)
+	void	_transplant	(NodeBase_ptr parent,
+						 NodeBase_ptr child)
 	{
-		node_pointer	grandp = parent->parent;
+		NodeBase_ptr	grandp = parent->parent;
 
 		if (grandp == _sentinel)
 			_root = child;
@@ -86,10 +81,10 @@ private:
 		child->parent = grandp;
 	}
 
-	void	_erase_balance	(node_pointer node)
+	void	_erase_balance	(NodeBase_ptr node)
 	{
-		node_pointer	parent;
-		node_pointer	sister;
+		NodeBase_ptr	parent;
+		NodeBase_ptr	sister;
 
 		while (node != _root && node->color == BLACK)
 		{

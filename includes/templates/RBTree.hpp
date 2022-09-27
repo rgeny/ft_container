@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/23 17:52:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/27 10:56:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ namespace ft
 			typedef Value										value_type;
 			typedef typename allocator_type::reference			reference;
 			typedef typename allocator_type::const_reference	const_reference;
+			typedef RBNodeBase::NodeBase_ptr					NodeBase_ptr;
 			typedef typename _node_allocator_type::value_type	node_type;
 			typedef typename _node_allocator_type::pointer		node_pointer;
 			typedef node_pointer &								node_preference;
@@ -83,77 +84,29 @@ namespace ft
 
 			}
 
-			node_pointer	begin	(void)
+			NodeBase_ptr	begin	(void)
 			{
-				node_pointer	to_return = _root;
+				NodeBase_ptr	to_return = _root;
 
-				while (to_return->left != _sentinel)
+				while ( ! to_return->left->is_sentinel() )
 					to_return = to_return->left;
 				return (to_return);
 			}
 
-			node_pointer	end		(void)
+			NodeBase_ptr	end		(void)
 			{
-				node_pointer	to_return = _root;
+				NodeBase_ptr	to_return = _root;
 
-				while (to_return->right != _sentinel)
+				while ( ! to_return->right->is_sentinel() )
 					to_return = to_return->right;
 				return (to_return);
-			}
-
-			node_pointer	getNext	(node_pointer node)
-			{
-				if (node == _sentinel)
-					return (node);
-				if (node->right != _sentinel)
-				{
-					node = node->right;
-					while (node->left != _sentinel)
-						node = node->left;
-					return (node);
-				}
-				if (node->parent->left == node)
-					return (node->parent);
-				
-				node_pointer parent = node->parent;
-				while (parent != _sentinel &&
-					   parent->right == node)
-				{
-					node = parent;
-					parent = parent->parent;
-				}
-				return (parent);
-			}
-
-			node_pointer	getPrevious	(node_pointer node)
-			{
-				if (node == _sentinel)
-					return (node);
-				if (node->left != _sentinel)
-				{
-					node = node->left;
-					while (node->right != _sentinel)
-						node = node->right;
-					return (node);
-				}
-				if (node->parent->right == node)
-					return (node->parent);
-
-				node_pointer	parent = node->parent;
-				while (parent != _sentinel &&
-					   parent->left == node)
-				{
-					node = parent;
-					parent = parent->parent;
-				}
-				return (parent);
 			}
 
 		private:
 			allocator_type			_alloc;
 			_node_allocator_type	_node_alloc;
-			node_pointer			_sentinel;
-			node_pointer			_root;
+			NodeBase_ptr			_sentinel;
+			NodeBase_ptr			_root;
 			size_type				_size;
 			key_compare				_comp;
 

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 10:45:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/27 17:31:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,16 @@ namespace ft
 			NodeBase_ptr	right;
 			node_color		color;
 
-			RBNodeBase	(NodeBase_ptr parent,
-						 NodeBase_ptr left,
-						 NodeBase_ptr right,
+			RBNodeBase	(void)
+				:parent(NULL)
+				,left(NULL)
+				,right(NULL)
+				,color(BLACK)
+			{	}
+
+			RBNodeBase	(NodeBase_ptr & parent,
+						 NodeBase_ptr & left,
+						 NodeBase_ptr & right,
 						 node_color color)
 				:parent(parent)
 				,left(left)
@@ -45,6 +52,17 @@ namespace ft
 			{
 #ifdef __DEBUG__
 PAR_CTOR
+#endif
+			}
+
+			RBNodeBase	(RBNodeBase const & src)
+				:parent(src.parent)
+				,left(src.left)
+				,right(src.right)
+				,color(src.color)
+			{
+#ifdef __DEBUG__
+CPY_CTOR
 #endif
 			}
 
@@ -107,7 +125,7 @@ DTOR
 
 			bool	is_sentinel	(void)
 			{
-				return (this == this->parent);
+				return (this == this->left);
 			}
 
 	};
@@ -115,6 +133,7 @@ DTOR
 #define CLASS_NAME "RBNode"
 	template <typename Value>
 	class RBNode
+		:public RBNodeBase
 	{
 		public:
 			typedef Value						value_type;
@@ -127,36 +146,27 @@ DTOR
 			>
 			RBNode	(T & sentinel,
 					 typename ft::enable_if<ft::is_pointer<T>::value>::type = 0)
-				:value()
-				,color(BLACK)
-				,left(sentinel)
-				,right(sentinel)
-				,parent(sentinel)
+				:RBNodeBase(sentinel, sentinel, sentinel, BLACK)
+				,value()
 			{
 #ifdef __DEBUG__
 DFL_CTOR
 #endif
 			}
-			RBNode	(pointer & sentinel,
-					 pointer & parent,
+			RBNode	(NodeBase_ptr & sentinel,
+					 NodeBase_ptr & parent,
 					 value_type const value,
 					 node_color const color = RED)
-				:value(value)
-				,color(color)
-				,left(sentinel)
-				,right(sentinel)
-				,parent(parent)
+				:RBNodeBase(parent, sentinel, sentinel, color)
+				,value(value)
 			{
 #ifdef __DEBUG__
 PAR_CTOR
 #endif
 			}
 			RBNode	(RBNode const & src)
-				:value(src.value)
-				,color(src.color)
-				,left(src.left)
-				,right(src.right)
-				,parent(src.parent)
+				:RBNodeBase(src)
+				,value(src.value)
 			{
 #ifdef __DEBUG__
 CPY_CTOR
@@ -164,11 +174,8 @@ CPY_CTOR
 			}
 			template < typename _T >
 			RBNode	(RBNode<_T> const & src)
-				:value(src.value)
-				,color(src.color)
-				,left(src.left)
-				,right(src.right)
-				,parent(src.parent)
+				:RBNodeBase(src)
+				,value(src.value)
 			{
 #ifdef __DEBUG__
 CPY_CTOR
@@ -193,12 +200,7 @@ DTOR
 			bool	operator<	(value_type val)
 			{	return (value < val);	}
 
-//		private:
 			value_type		value;
-			node_color		color;
-			pointer			left;
-			pointer			right;
-			pointer			parent;
 	};
 #undef CLASS_NAME
 }
