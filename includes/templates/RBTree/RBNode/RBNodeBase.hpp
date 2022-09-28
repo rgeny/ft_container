@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:40:54 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:35:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:44:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ namespace ft
 			black_node = false
 		};
 
-		class RBNodeBase
+		class NodeBase
 		{
 			public:
-				typedef RBNodeBase *	NodeBase_ptr;
+				typedef NodeBase *	NodeBase_ptr;
 				
 				NodeBase_ptr	parent;
 				NodeBase_ptr	left;
 				NodeBase_ptr	right;
 				node_color		color;
 
-				RBNodeBase	(NodeBase_ptr parent = NULL,
+				NodeBase	(NodeBase_ptr parent = NULL,
 							 NodeBase_ptr left = NULL,
 							 NodeBase_ptr right = NULL,
 							 node_color color = black_node);
-				RBNodeBase	(RBNodeBase const & src);
-				~RBNodeBase	(void);
+				NodeBase	(NodeBase const & src);
+				~NodeBase	(void);
 
 				NodeBase_ptr	max	(void);
 				NodeBase_ptr	min	(void);
@@ -48,8 +48,8 @@ namespace ft
 				bool	is_sentinel	(void);
 		};
 
-		RBNodeBase *	decrement	(RBNodeBase * node);
-		RBNodeBase *	increment	(RBNodeBase * node);
+		NodeBase *	decrement	(NodeBase * node);
+		NodeBase *	increment	(NodeBase * node);
 	}
 }
 

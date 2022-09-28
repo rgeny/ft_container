@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:38:36 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:43:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,40 +27,40 @@ namespace ft
 
 #define CLASS_NAME "RBNode"
 		template <typename Value>
-		class RBNode
-			:public RBNodeBase
+		class Node
+			:public NodeBase
 		{
 			public:
 				typedef Value						value_type;
-				typedef RBNode *					pointer;
-				typedef RBNode<value_type> const *	const_pointer;
+				typedef Node *						pointer;
+				typedef Node<value_type> const *	const_pointer;
 
 				template
 				<
 					typename T
 				>
-				RBNode	(T & sentinel,
+				Node	(T & sentinel,
 						 typename ft::enable_if<ft::is_pointer<T>::value>::type = 0)
-					:RBNodeBase(sentinel, sentinel, sentinel, black_node)
+					:NodeBase(sentinel, sentinel, sentinel, black_node)
 					,value()
 				{
 	#ifdef __DEBUG__
 	DFL_CTOR
 	#endif
 				}
-				RBNode	(NodeBase_ptr & sentinel,
+				Node	(NodeBase_ptr & sentinel,
 						 NodeBase_ptr & parent,
 						 value_type const value,
 						 node_color const color = red_node)
-					:RBNodeBase(parent, sentinel, sentinel, color)
+					:NodeBase(parent, sentinel, sentinel, color)
 					,value(value)
 				{
 	#ifdef __DEBUG__
 	PAR_CTOR
 	#endif
 				}
-				RBNode	(RBNode const & src)
-					:RBNodeBase(src)
+				Node	(Node const & src)
+					:NodeBase(src)
 					,value(src.value)
 				{
 	#ifdef __DEBUG__
@@ -68,15 +68,15 @@ namespace ft
 	#endif
 				}
 				template < typename _T >
-				RBNode	(RBNode<_T> const & src)
-					:RBNodeBase(src)
+				Node	(Node<_T> const & src)
+					:NodeBase(src)
 					,value(src.value)
 				{
 	#ifdef __DEBUG__
 	CPY_CTOR
 	#endif
 				}
-				~RBNode	(void)	{}
+				~Node	(void)	{}
 
 				value_type		value;
 		};

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:35:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:49:07 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ namespace ft
 			typename Compare = std::less<Value>,
 			typename Allocator = std::allocator<Value>
 		>
-		class RBTree
+		class Tree
 		{
 			private:
-				typedef typename Allocator::template rebind<RBNode<Value> >::other	_node_allocator_type;
+				typedef typename Allocator::template rebind<Node<Value> >::other	_node_allocator_type;
 
 			public:
 				typedef Allocator									allocator_type;
@@ -52,7 +52,7 @@ namespace ft
 				typedef Value										value_type;
 				typedef typename allocator_type::reference			reference;
 				typedef typename allocator_type::const_reference	const_reference;
-				typedef RBNodeBase::NodeBase_ptr					NodeBase_ptr;
+				typedef NodeBase::NodeBase_ptr					NodeBase_ptr;
 				typedef typename _node_allocator_type::value_type	node_type;
 				typedef typename _node_allocator_type::pointer		node_pointer;
 				typedef node_pointer &								node_preference;
@@ -64,10 +64,10 @@ namespace ft
 # include "RBTree/structor.hpp"
 # include "RBTree/find.hpp"
 
-				RBTree &	operator=	(RBTree const & src)
+				Tree &	operator=	(Tree const & src)
 				{
 					this->clear();
-					_root = new RBTree<value_type>(*src._root);
+					_root = new Tree<value_type>(*src._root);
 					return (*this);
 				}
 

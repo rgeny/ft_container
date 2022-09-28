@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:38:56 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 19:01:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:46:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 template
 <
 	typename T,
-	typename Node = RBNodeBase
+	typename Node = NodeBase
 >
-class RBTree_iterator
+class Tree_iterator
 {
 	private:
-		typedef RBTree_iterator<T>					_self;
+		typedef Tree_iterator<T>					_self;
 
 	public:
 		typedef T									iterator_type;
@@ -55,7 +55,7 @@ class RBTree_iterator
 			typename _T,
 			typename _Node
 		>
-		_self	operator=	(RBTree_iterator<_T, _Node> const & src)
+		_self	operator=	(Tree_iterator<_T, _Node> const & src)
 		{
 			_current = src.base();
 			return (*this);

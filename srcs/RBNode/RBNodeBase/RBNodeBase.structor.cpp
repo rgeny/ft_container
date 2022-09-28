@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 11:03:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:38:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:45:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-ft::RB::RBNodeBase::RBNodeBase	(ft::RB::RBNodeBase * parent,
-						 ft::RB::RBNodeBase * left,
-						 ft::RB::RBNodeBase * right,
+ft::RB::NodeBase::NodeBase	(ft::RB::NodeBase * parent,
+						 ft::RB::NodeBase * left,
+						 ft::RB::NodeBase * right,
 						 node_color color)
 	:parent(parent)
 	,left(left)
@@ -40,7 +40,7 @@ PAR_CTOR
 #endif
 }
 
-ft::RB::RBNodeBase::RBNodeBase	(ft::RB::RBNodeBase const & src)
+ft::RB::NodeBase::NodeBase	(ft::RB::NodeBase const & src)
 	:parent(src.parent)
 	,left(src.left)
 	,right(src.right)
@@ -57,6 +57,6 @@ CPY_CTOR
 /*                                                                            */
 /* ************************************************************************** */
 
-ft::RB::RBNodeBase::~RBNodeBase	(void)	{}
+ft::RB::NodeBase::~NodeBase	(void)	{}
 
 #undef CLASS_NAME

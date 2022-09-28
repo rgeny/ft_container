@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:46:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 15:38:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:49:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # ifndef RBTREE_STRUCTOR_HPP
 #  define RBTREE_STRUCTOR_HPP
 
-RBTree	(allocator_type const & alloc = allocator_type())
+Tree	(allocator_type const & alloc = allocator_type())
 	:_alloc(alloc)
 	,_node_alloc(alloc)
 	,_sentinel(NULL)
@@ -26,7 +26,7 @@ RBTree	(allocator_type const & alloc = allocator_type())
 	_root = _sentinel;
 }
 
-RBTree	(RBTree const & src,
+Tree	(Tree const & src,
 		 allocator_type const & alloc = allocator_type())
 	:_alloc(alloc)
 	,_node_alloc(alloc)
@@ -48,7 +48,7 @@ RBTree	(RBTree const & src,
 	}
 }
 
-~RBTree	(void)
+~Tree	(void)
 {
 	this->clear();
 	_clear(_sentinel, true);
