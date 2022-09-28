@@ -6,13 +6,13 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:22:43 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:14:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:37:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RBTree/RBNode/RBNodeBase.hpp"
 
-ft::RBNodeBase *	ft::RBNodeBase::min	(void)
+ft::RB::RBNodeBase *	ft::RB::RBNodeBase::min	(void)
 {
 	NodeBase_ptr	node = this;
 	while ( ! node->left->is_sentinel() )
@@ -20,7 +20,7 @@ ft::RBNodeBase *	ft::RBNodeBase::min	(void)
 	return (node);
 }
 
-ft::RBNodeBase *	ft::RBNodeBase::max	(void)
+ft::RB::RBNodeBase *	ft::RB::RBNodeBase::max	(void)
 {
 	NodeBase_ptr	node = this;
 	while ( ! node->right->is_sentinel() )
@@ -28,7 +28,7 @@ ft::RBNodeBase *	ft::RBNodeBase::max	(void)
 	return (node);
 }
 
-bool	ft::RBNodeBase::is_sentinel	(void)
+bool	ft::RB::RBNodeBase::is_sentinel	(void)
 {
 	return (this == this->left);
 }

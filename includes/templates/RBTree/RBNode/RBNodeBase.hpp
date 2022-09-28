@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:40:54 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:02:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:35:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,40 @@
 
 namespace ft
 {
-	enum	node_color
+	namespace RB
 	{
-		red_node = true,
-		black_node = false
-	};
+		enum	node_color
+		{
+			red_node = true,
+			black_node = false
+		};
 
-	class RBNodeBase
-	{
-		public:
-			typedef RBNodeBase *	NodeBase_ptr;
-			
-			NodeBase_ptr	parent;
-			NodeBase_ptr	left;
-			NodeBase_ptr	right;
-			node_color		color;
+		class RBNodeBase
+		{
+			public:
+				typedef RBNodeBase *	NodeBase_ptr;
+				
+				NodeBase_ptr	parent;
+				NodeBase_ptr	left;
+				NodeBase_ptr	right;
+				node_color		color;
 
-			RBNodeBase	(NodeBase_ptr parent = NULL,
-						 NodeBase_ptr left = NULL,
-						 NodeBase_ptr right = NULL,
-						 node_color color = black_node);
-			RBNodeBase	(RBNodeBase const & src);
-			~RBNodeBase	(void);
+				RBNodeBase	(NodeBase_ptr parent = NULL,
+							 NodeBase_ptr left = NULL,
+							 NodeBase_ptr right = NULL,
+							 node_color color = black_node);
+				RBNodeBase	(RBNodeBase const & src);
+				~RBNodeBase	(void);
 
-			NodeBase_ptr	max	(void);
-			NodeBase_ptr	min	(void);
+				NodeBase_ptr	max	(void);
+				NodeBase_ptr	min	(void);
 
-			bool	is_sentinel	(void);
-	};
+				bool	is_sentinel	(void);
+		};
+
+		RBNodeBase *	decrement	(RBNodeBase * node);
+		RBNodeBase *	increment	(RBNodeBase * node);
+	}
 }
 
 #endif

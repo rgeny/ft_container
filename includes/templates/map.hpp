@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/19 14:17:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:36:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ namespace ft
 				{	return (val->first);	}
 			};
 
-			RBTree	<value_type>	_rbtree;
+			RB::RBTree	<value_type>	_rbtree;
 			
 
 	};
