@@ -6,41 +6,31 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:43:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 18:01:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RBNODE_HPP
 # define RBNODE_HPP
 
-//# include <iostream>
-# include <cstdlib>
-# include "type_traits.hpp"
 # include "RBNode/RBNodeBase.hpp"
 
 namespace ft
 {
 	namespace RB
 	{
-//	RBNodeBase *	decrement	(RBNodeBase * node);
-//	RBNodeBase *	increment	(RBNodeBase * node);
-
 #define CLASS_NAME "RBNode"
 		template <typename Value>
 		class Node
 			:public NodeBase
 		{
 			public:
-				typedef Value						value_type;
-				typedef Node *						pointer;
+				typedef Value											value_type;
+				typedef Node *										pointer;
 				typedef Node<value_type> const *	const_pointer;
 
-				template
-				<
-					typename T
-				>
-				Node	(T & sentinel,
-						 typename ft::enable_if<ft::is_pointer<T>::value>::type = 0)
+				template < typename T	>
+				Node	(T & sentinel)
 					:NodeBase(sentinel, sentinel, sentinel, black_node)
 					,value()
 				{
@@ -49,9 +39,9 @@ namespace ft
 	#endif
 				}
 				Node	(NodeBase_ptr & sentinel,
-						 NodeBase_ptr & parent,
-						 value_type const value,
-						 node_color const color = red_node)
+							 NodeBase_ptr & parent,
+							 value_type const value,
+							 node_color const color = red_node)
 					:NodeBase(parent, sentinel, sentinel, color)
 					,value(value)
 				{
@@ -67,8 +57,8 @@ namespace ft
 	CPY_CTOR
 	#endif
 				}
-				template < typename _T >
-				Node	(Node<_T> const & src)
+				template < typename _Value >
+				Node	(Node<_Value> const & src)
 					:NodeBase(src)
 					,value(src.value)
 				{

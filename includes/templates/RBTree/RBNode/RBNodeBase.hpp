@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:40:54 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:44:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 18:02:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ namespace ft
 				bool	is_sentinel	(void);
 		};
 
-		NodeBase *	decrement	(NodeBase * node);
-		NodeBase *	increment	(NodeBase * node);
+		NodeBase *	node_decrement	(NodeBase * node);
+		NodeBase *	node_increment	(NodeBase * node);
 	}
 }
 
