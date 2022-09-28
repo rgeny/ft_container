@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:49:07 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 17:56:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ namespace ft
 		class Tree
 		{
 			private:
-				typedef typename Allocator::template rebind<Node<Value> >::other	_node_allocator_type;
+				typedef typename Allocator::template rebind<Node<Value> >::other	
+															_node_allocator_type;
 
 			public:
 				typedef Allocator									allocator_type;
@@ -60,6 +61,16 @@ namespace ft
 				typedef std::ptrdiff_t								difference_type;
 				typedef Compare										key_compare;
 				typedef BidirectionalIterator<node_type>			iterator;
+
+			private:
+				allocator_type			_alloc;
+				_node_allocator_type	_node_alloc;
+				NodeBase_ptr			_sentinel;
+				NodeBase_ptr			_root;
+				size_type				_size;
+				key_compare				_comp;
+
+			public:
 
 # include "RBTree/structor.hpp"
 # include "RBTree/find.hpp"
@@ -104,13 +115,7 @@ namespace ft
 					return (to_return);
 				}
 
-			private:
-				allocator_type			_alloc;
-				_node_allocator_type	_node_alloc;
-				NodeBase_ptr			_sentinel;
-				NodeBase_ptr			_root;
-				size_type				_size;
-				key_compare				_comp;
+
 
 # include "RBTree/private.hpp"
 # include "RBTree/insert.hpp"
