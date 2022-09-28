@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 15:53:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 16:51:40 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,90 +16,77 @@
 //# include <iostream>
 # include <cstdlib>
 # include "type_traits.hpp"
+# include "RBNode/RBNodeBase.hpp"
 
 namespace ft
 {
-	enum node_color
-	{
-		red_node = true,
-		black_node = false
-	};
-
-	
-
-#define CLASS_NAME "RBNodeBase"
-	class RBNodeBase
-	{
-		public:
-			typedef RBNodeBase *		NodeBase_ptr;
-
-			NodeBase_ptr	parent;
-			NodeBase_ptr	left;
-			NodeBase_ptr	right;
-			node_color		color;
-
-			RBNodeBase	(void)
-				:parent(NULL)
-				,left(NULL)
-				,right(NULL)
-				,color(black_node)
-			{	}
-
-			RBNodeBase	(NodeBase_ptr & parent,
-						 NodeBase_ptr & left,
-						 NodeBase_ptr & right,
-						 node_color color)
-				:parent(parent)
-				,left(left)
-				,right(right)
-				,color(color)
-			{
-#ifdef __DEBUG__
-PAR_CTOR
-#endif
-			}
-
-			RBNodeBase	(RBNodeBase const & src)
-				:parent(src.parent)
-				,left(src.left)
-				,right(src.right)
-				,color(src.color)
-			{
-#ifdef __DEBUG__
-CPY_CTOR
-#endif
-			}
-
-			~RBNodeBase	(void)
-			{
-#ifdef __DEBUG__
-DTOR
-#endif
-			}
-
-			NodeBase_ptr	min	(void)
-			{
-				NodeBase_ptr	node = this;
-				while (! node->left->is_sentinel() )
-					node = node->left;
-				return (node);
-			}
-
-			NodeBase_ptr	max	(void)
-			{
-				NodeBase_ptr	node = this;
-				while ( ! node->right->is_sentinel() )
-					node = node->right;
-				return (node);
-			}
-
-			bool	is_sentinel	(void)
-			{
-				return (this == this->left);
-			}
-
-	};
-#undef CLASS_NAME
+//	enum node_color
+//	{
+//		red_node = true,
+//		black_node = false
+//	};
+//
+//#define CLASS_NAME "RBNodeBase"
+//	class RBNodeBase
+//	{
+//		public:
+//			typedef RBNodeBase *		NodeBase_ptr;
+//
+//			NodeBase_ptr	parent;
+//			NodeBase_ptr	left;
+//			NodeBase_ptr	right;
+//			node_color		color;
+//
+//			RBNodeBase	(NodeBase_ptr parent = NULL,
+//						 NodeBase_ptr left = NULL,
+//						 NodeBase_ptr right = NULL,
+//						 node_color color = black_node)
+//				:parent(parent)
+//				,left(left)
+//				,right(right)
+//				,color(color)
+//			{
+//#ifdef __DEBUG__
+//PAR_CTOR
+//#endif
+//			}
+//
+//			RBNodeBase	(RBNodeBase const & src)
+//				:parent(src.parent)
+//				,left(src.left)
+//				,right(src.right)
+//				,color(src.color)
+//			{
+//#ifdef __DEBUG__
+//CPY_CTOR
+//#endif
+//			}
+//
+//			~RBNodeBase	(void)	{}
+//
+//			NodeBase_ptr	min	(void)
+//			{
+//				NodeBase_ptr	node = this;
+//				while ( ! node->left->is_sentinel() )
+//					node = node->left;
+//				return (node);
+//			}
+//
+//			NodeBase_ptr	max	(void)
+//			{
+//				NodeBase_ptr	node = this;
+//				while ( ! node->right->is_sentinel() )
+//					node = node->right;
+//				return (node);
+//			}
+//
+//			bool	is_sentinel	(void)
+//			{
+//				return (this == this->left);
+//			}
+//
+//	};
+//#undef CLASS_NAME
 
 	RBNodeBase *	decrement	(RBNodeBase * node);
 	RBNodeBase *	increment	(RBNodeBase * node);
@@ -155,24 +142,7 @@ CPY_CTOR
 CPY_CTOR
 #endif
 			}
-
-			~RBNode	(void)
-			{
-#ifdef __DEBUG__
-DTOR
-#endif
-			}
-
-			RBNode &	operator=	(value_type const & value)
-			{
-				this->value = value;
-				return (*this);
-			}
-
-			bool	operator==	(value_type val)
-			{	return (value == val);	}
-			bool	operator<	(value_type val)
-			{	return (value < val);	}
+			~RBNode	(void)	{}
 
 			value_type		value;
 	};
