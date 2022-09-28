@@ -7,3 +7,4 @@ objs
 *.out
 tester*
 42TESTERS-CONTAINERS
+*.a

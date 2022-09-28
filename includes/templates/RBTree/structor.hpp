@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:46:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 18:24:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 15:38:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ RBTree	(RBTree const & src,
 	while (tmp != src._sentinel)
 	{
 		this->insert(_cast(tmp)->value);
-		tmp = tmp->next();
+		tmp = increment(tmp);
 	}
 }
 

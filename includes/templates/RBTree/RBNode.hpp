@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 13:28:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 15:53:50 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RBNODE_HPP
 
 //# include <iostream>
+# include <cstdlib>
+# include "type_traits.hpp"
 
 namespace ft
 {
@@ -22,6 +24,8 @@ namespace ft
 		red_node = true,
 		black_node = false
 	};
+
+	
 
 #define CLASS_NAME "RBNodeBase"
 	class RBNodeBase
@@ -89,40 +93,6 @@ DTOR
 				return (node);
 			}
 
-			NodeBase_ptr	previous	(void)
-			{
-				NodeBase_ptr	node = this;
-
-				if ( ! node->left->is_sentinel() )
-					return (node->left->max());
-
-				NodeBase_ptr	parent = node->parent;
-				while ( ! parent->is_sentinel() &&
-						parent->left == node)
-				{
-					node = parent;
-					parent = parent->parent;
-				}
-				return (parent);
-			}
-
-			NodeBase_ptr	next	(void)
-			{
-				NodeBase_ptr	node = this;
-
-				if ( ! node->right->is_sentinel() )
-					return (node->right->min());
-
-				NodeBase_ptr	parent = node->parent;
-				while ( ! parent->is_sentinel() &&
-						parent->right == node)
-				{
-					node = parent;
-					parent = parent->parent;
-				}
-				return (parent);
-			}
-
 			bool	is_sentinel	(void)
 			{
 				return (this == this->left);
@@ -130,6 +100,10 @@ DTOR
 
 	};
 #undef CLASS_NAME
+
+	RBNodeBase *	decrement	(RBNodeBase * node);
+	RBNodeBase *	increment	(RBNodeBase * node);
+
 #define CLASS_NAME "RBNode"
 	template <typename Value>
 	class RBNode
