@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 17:31:32 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 13:28:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ namespace ft
 {
 	enum node_color
 	{
-		RED=true,
-		BLACK=false
+		red_node = true,
+		black_node = false
 	};
 
 #define CLASS_NAME "RBNodeBase"
@@ -38,7 +38,7 @@ namespace ft
 				:parent(NULL)
 				,left(NULL)
 				,right(NULL)
-				,color(BLACK)
+				,color(black_node)
 			{	}
 
 			RBNodeBase	(NodeBase_ptr & parent,
@@ -146,7 +146,7 @@ DTOR
 			>
 			RBNode	(T & sentinel,
 					 typename ft::enable_if<ft::is_pointer<T>::value>::type = 0)
-				:RBNodeBase(sentinel, sentinel, sentinel, BLACK)
+				:RBNodeBase(sentinel, sentinel, sentinel, black_node)
 				,value()
 			{
 #ifdef __DEBUG__
@@ -156,7 +156,7 @@ DFL_CTOR
 			RBNode	(NodeBase_ptr & sentinel,
 					 NodeBase_ptr & parent,
 					 value_type const value,
-					 node_color const color = RED)
+					 node_color const color = red_node)
 				:RBNodeBase(parent, sentinel, sentinel, color)
 				,value(value)
 			{

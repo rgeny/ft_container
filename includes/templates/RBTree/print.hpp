@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:49:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 14:07:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 12:29:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ private:
 //	end of recursive function
 		if (node == SENTINEL)
 		{
-			if (node->color == RED)
+			if (node->color == red_node)
 				tree[depth] += RED_NODE "NIL" COLOR_TEXT;
 			else
 				tree[depth] += BLACK_NODE "NIL" COLOR_TEXT;
@@ -94,7 +94,7 @@ private:
 		}
 
 //	add color of current node
-		if (node->color == RED)
+		if (node->color == red_node)
 			tree[depth] += RED_NODE;
 		else
 			tree[depth] += BLACK_NODE;

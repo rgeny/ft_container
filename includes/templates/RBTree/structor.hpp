@@ -22,7 +22,7 @@ RBTree	(allocator_type const & alloc = allocator_type())
 	,_size(-1)
 	,_comp()
 {
-	_construct(_sentinel, _sentinel, value_type(), BLACK);
+	_construct(_sentinel, _sentinel, value_type(), black_node);
 	_root = _sentinel;
 }
 
@@ -35,7 +35,7 @@ RBTree	(RBTree const & src,
 	,_size(-1)
 	,_comp()
 {
-	_construct(_sentinel, _sentinel, value_type(), BLACK);
+	_construct(_sentinel, _sentinel, value_type(), black_node);
 
 	_root = _sentinel;
 

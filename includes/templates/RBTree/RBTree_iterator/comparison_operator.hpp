@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 16:51:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/23 16:54:03 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/27 18:58:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 template
 <
 	typename _T_left,
-	typename _T_right
+	typename _T_right,
+	typename _Node_left,
+	typename _Node_right
 >
-bool	operator==	(RBTree_iterator<_T_left> const & lhs,
-					 RBTree_iterator<_T_right> const & rhs)
+bool	operator==	(RBTree_iterator<_T_left, _Node_left> const & lhs,
+					 RBTree_iterator<_T_right, _Node_right> const & rhs)
 {	return (lhs.base() == rhs.base());	}
 
 template
@@ -35,10 +37,12 @@ bool	operator==	(RBTree_iterator<_T> const & lhs,
 template
 <
 	typename _T_left,
-	typename _T_right
+	typename _T_right,
+	typename _Node_left,
+	typename _Node_right
 >
-bool	operator!=	(RBTree_iterator<_T_left> const & lhs,
-					 RBTree_iterator<_T_right> const & rhs)
+bool	operator!=	(RBTree_iterator<_T_left, _Node_left> const & lhs,
+					 RBTree_iterator<_T_right, _Node_right> const & rhs)
 {	return ( ! (lhs == rhs) );	}
 
 template

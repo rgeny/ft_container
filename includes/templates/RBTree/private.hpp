@@ -34,7 +34,7 @@ int		_compare	(value_type value,
 void	_construct	(NodeBase_ptr & new_node,
 					 NodeBase_ptr & parent,
 					 value_type const & value = value_type(),
-					 node_color const color = RED)
+					 node_color const color = red_node)
 {
 	if (new_node != _sentinel)
 		_node_alloc.destroy(_cast(new_node));

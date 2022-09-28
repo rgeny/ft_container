@@ -43,18 +43,18 @@ private:
 		NodeBase_ptr	uncle;
 		NodeBase_ptr	grandp;
 
-		while (node->parent->color == RED)
+		while (node->parent->color == red_node)
 		{
 			parent = node->parent;
 			grandp = parent->parent;
 			if (grandp->left == parent)
 			{
 				uncle = grandp->right;
-				if (uncle->color == RED)
+				if (uncle->color == red_node)
 				{
-					uncle->color = BLACK;
-					parent->color = BLACK;
-					grandp->color = RED;
+					uncle->color = black_node;
+					parent->color = black_node;
+					grandp->color = red_node;
 					node = grandp;
 				}
 				else
@@ -64,19 +64,19 @@ private:
 						_left_rotate(node->parent);
 						node = parent;
 					}
-					node->parent->color = BLACK;
-					node->parent->parent->color = RED;
+					node->parent->color = black_node;
+					node->parent->parent->color = red_node;
 					_right_rotate(node->parent->parent);
 				}
 			}
 			else
 			{
 				uncle = grandp->left;
-				if (uncle->color == RED)
+				if (uncle->color == red_node)
 				{
-					uncle->color = BLACK;
-					parent->color = BLACK;
-					grandp->color = RED;
+					uncle->color = black_node;
+					parent->color = black_node;
+					grandp->color = red_node;
 					node = grandp;
 				}
 				else
@@ -86,13 +86,13 @@ private:
 						_right_rotate(node->parent);
 						node = parent;
 					}
-					node->parent->color = BLACK;
-					node->parent->parent->color = RED;
+					node->parent->color = black_node;
+					node->parent->parent->color = red_node;
 					_left_rotate(node->parent->parent);
 				}
 			}
 		}
-		_root->color = BLACK;
+		_root->color = black_node;
 	}
 
 # endif

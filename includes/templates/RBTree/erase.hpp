@@ -59,7 +59,7 @@ public:
 		}
 
 		_clear(del_node);
-		if (original_color == BLACK)
+		if (original_color == black_node)
 			_erase_balance(child);
 		_sentinel->parent = _sentinel;
 		return (1);
@@ -86,37 +86,37 @@ private:
 		NodeBase_ptr	parent;
 		NodeBase_ptr	sister;
 
-		while (node != _root && node->color == BLACK)
+		while (node != _root && node->color == black_node)
 		{
 			parent = node->parent;
 			if (node == parent->left)
 			{
 				sister = parent->right;
-				if (sister->color == RED)
+				if (sister->color == red_node)
 				{
-					sister->color = BLACK;
-					parent->color = RED;
+					sister->color = black_node;
+					parent->color = red_node;
 					_left_rotate(node->parent);
 					sister = node->parent->right;
 				}
-				if (sister->left->color == BLACK &&
-					sister->right->color == BLACK)
+				if (sister->left->color == black_node &&
+					sister->right->color == black_node)
 				{
-					sister->color = RED;
+					sister->color = red_node;
 					node = node->parent;
 				}
 				else
 				{
-					if (sister->right->color == BLACK)
+					if (sister->right->color == black_node)
 					{
-						sister->left->color = BLACK;
-						sister->color = RED;
+						sister->left->color = black_node;
+						sister->color = red_node;
 						_right_rotate(sister);
 						sister = node->parent->right;
 					}
 					sister->color = node->parent->color;
-					node->parent->color = BLACK;
-					sister->right->color = BLACK;
+					node->parent->color = black_node;
+					sister->right->color = black_node;
 					_left_rotate(node->parent);
 					node = _root;
 				}
@@ -124,37 +124,37 @@ private:
 			else
 			{
 				sister = parent->left;
-				if (sister->color == RED)
+				if (sister->color == red_node)
 				{
-					sister->color = BLACK;
-					parent->color = RED;
+					sister->color = black_node;
+					parent->color = red_node;
 					_right_rotate(node->parent);
 					sister = node->parent->left;
 				}
-				if (sister->left->color == BLACK &&
-					sister->right->color == BLACK)
+				if (sister->left->color == black_node &&
+					sister->right->color == black_node)
 				{
-					sister->color = RED;
+					sister->color = red_node;
 					node = node->parent;
 				}
 				else
 				{
-					if (sister->left->color == BLACK)
+					if (sister->left->color == black_node)
 					{
-						sister->right->color = BLACK;
-						sister->color = RED;
+						sister->right->color = black_node;
+						sister->color = red_node;
 						_left_rotate(sister);
 						sister = node->parent->left;
 					}
 					sister->color = node->parent->color;
-					node->parent->color = BLACK;
-					sister->left->color = BLACK;
+					node->parent->color = black_node;
+					sister->left->color = black_node;
 					_right_rotate(node->parent);
 					node = _root;
 				}
 			}
 		}
-		node->color = BLACK;
+		node->color = black_node;
 	}
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 10:56:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 13:21:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 # include "print.hpp"
 # include "type_traits.hpp"
-# include "RBNode.hpp"
+# include "RBTree/RBNode.hpp"
 # include "iterator.hpp"
 
 namespace ft
