@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 18:35:33 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 18:45:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,17 @@ namespace ft
 
 			public:
 				typedef Allocator									allocator_type;
+//		value typedef
 				typedef Key											key_type;
 				typedef Value										value_type;
 				typedef typename allocator_type::reference			reference;
 				typedef typename allocator_type::const_reference	const_reference;
-				typedef NodeBase::NodeBase_ptr					NodeBase_ptr;
+//		node typedef
+				typedef NodeBase::NodeBase_ptr						NodeBase_ptr;
 				typedef typename _node_allocator_type::value_type	node_type;
 				typedef typename _node_allocator_type::pointer		node_pointer;
 				typedef node_pointer &								node_preference;
+//
 				typedef size_t										size_type;
 				typedef std::ptrdiff_t								difference_type;
 				typedef Compare										key_compare;
@@ -88,12 +91,13 @@ namespace ft
 				size_type	size	(void) const
 				{	return (_size);	}
 
+//tmp
 				void	test	(void)
 				{
-//					iterator	it(_root);
 
 
 				}
+//fin tmp
 
 				NodeBase_ptr	begin	(void)
 				{
