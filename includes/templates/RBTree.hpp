@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:56:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/09/28 18:35:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ namespace ft
 {
 	namespace RB
 	{
-# include "iterator/BidirectionalIterator.hpp"
 # include "RBTree/RBTree_iterator.hpp"
 # define CLASS_NAME "RBTree"
 		template
@@ -60,7 +59,6 @@ namespace ft
 				typedef size_t										size_type;
 				typedef std::ptrdiff_t								difference_type;
 				typedef Compare										key_compare;
-				typedef BidirectionalIterator<node_type>			iterator;
 
 			private:
 				allocator_type			_alloc;
@@ -92,7 +90,7 @@ namespace ft
 
 				void	test	(void)
 				{
-					iterator	it(_root);
+//					iterator	it(_root);
 
 
 				}
