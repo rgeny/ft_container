@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 15:21:07 by rgeny             #+#    #+#              #
-#    Updated: 2022/09/28 16:53:33 by rgeny            ###   ########.fr        #
+#    Updated: 2022/09/28 17:16:16 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ VPATH				= $(SRCS_DIR)
 VPATH				+=$(RBNODE_DIR) $(RBNODEBASE_DIR)
 
 DEFAULT_FILES		= operator structor member accessor
-SRCS				= $(addsuffix .cpp,				increment \
+SRCS				= $(addsuffix .cpp,				move_node \
 						$(addprefix RBNodeBase.,	$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
