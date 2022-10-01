@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 18:07:00 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 12:17:33 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,28 @@
 node_pointer	_cast	(NodeBase_ptr node)
 {	return (static_cast<node_pointer>(node));	}
 
+//int	_compare	(NodeBase_ptr node,
+//				 value_type value)
+//{
+//	node_pointer	tmp = _cast(node);
+//	return (_comp(tmp->value, value));
+//}
+//
+//int		_compare	(value_type value,
+//					 NodeBase_ptr node)
+//{
+//	node_pointer	tmp = _cast(node);
+//	return (_comp(value, tmp->value));
+//}
+
 int	_compare	(NodeBase_ptr node,
-				 value_type value)
+				 key_type const & value)
 {
 	node_pointer	tmp = _cast(node);
 	return (_comp(tmp->value, value));
 }
 
-int		_compare	(value_type value,
+int		_compare	(key_type const & value,
 					 NodeBase_ptr node)
 {
 	node_pointer	tmp = _cast(node);

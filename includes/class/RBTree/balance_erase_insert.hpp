@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:23:13 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 11:04:11 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 11:19:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ namespace ft
 		void	right_rotate	(NodeBase * parent,
 								 NodeBase * & root);
 		NodeBase_ptr	tree_balance_and_erase	(NodeBase_ptr del_node,
+												 NodeBase_ptr & root);
+		void			tree_insert_and_balance	(NodeBase_ptr new_node,
 												 NodeBase_ptr & root);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 11:07:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 11:59:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ namespace ft
 		template
 		<
 			typename Key,
-			typename Value = Key,
-			typename KeyOfValue = Value, // tmp
+			typename Value,
+			typename KeyOfValue, // tmp
 			typename Compare = std::less<Value>,
 			typename Allocator = std::allocator<Value>
 		>
@@ -80,7 +80,8 @@ namespace ft
 				Tree &	operator=	(Tree const & src)
 				{
 					this->clear();
-					_root = new Tree<value_type>(*src._root);
+					this->insert(src._root->value);
+//					_root = new Tree<value_type>(*src._root);
 					return (*this);
 				}
 

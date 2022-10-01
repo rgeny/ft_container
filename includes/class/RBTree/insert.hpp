@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:00:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 11:01:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 12:35:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,11 @@
 public:
 	value_type	insert	(const_reference value)
 	{
-		NodeBase_ptr	parent = _cast(_sentinel);
-		NodeBase_ptr *	new_node = &_root;
+		NodeBase_ptr	parent = _sentinel;
+		NodeBase_ptr &	new_node = this->find(KeyOfValue()(value), parent);
 
-		while (*new_node != _sentinel)
-		{
-			parent = *new_node;
-			if (_compare(parent, value))
-				new_node = &parent->right;
-			else if (_compare(value, parent))
-				new_node = &parent->left;
-			else
-				return (_cast(parent)->value);
-		}
-
-		_construct(*new_node, parent, value);
-			_insert_balance(*new_node);
+		_construct(new_node, parent, value);
+		_insert_balance(new_node);
 		return (value);
 	}
 
