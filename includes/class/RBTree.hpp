@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 14:27:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 16:42:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@
 # include "RBTree/RBNode.hpp"
 # include "iterator.hpp"
 # include "RBTree/balance_erase_insert.hpp"
+# include "RBTree/RBTreeIterator.hpp"
+# include "RBTree/RBTreeConstIterator.hpp"
 
 namespace ft
 {
 	namespace RB
 	{
-# include "RBTree/RBTree_iterator.hpp"
 # define CLASS_NAME "RBTree"
 		template
 		<
@@ -63,6 +64,7 @@ namespace ft
 				typedef size_t										size_type;
 				typedef std::ptrdiff_t								difference_type;
 				typedef Compare										key_compare;
+				typedef TreeIterator<value_type>					iterator;
 
 			private:
 				allocator_type			_alloc;
@@ -96,7 +98,7 @@ namespace ft
 
 //tmp
 		public:
-				NodeBase_ptr	begin	(void)
+				NodeBase_ptr	Nodebegin	(void)
 				{
 					NodeBase_ptr	to_return = _root;
 
@@ -105,13 +107,28 @@ namespace ft
 					return (to_return);
 				}
 
-				NodeBase_ptr	end		(void)
+				NodeBase_ptr	Nodeend		(void)
 				{
 					NodeBase_ptr	to_return = _root;
 
 					while ( ! to_return->right->is_sentinel() )
 						to_return = to_return->right;
 					return (to_return);
+				}
+
+
+				iterator	begin	(void)
+				{
+					NodeBase_ptr	to_return = _root;
+
+					while ( ! to_return->left->is_sentinel() )
+						to_return = to_return->left;
+					return (to_return);
+				}
+
+				iterator	end		(void)
+				{
+					return (_sentinel);
 				}
 
 
