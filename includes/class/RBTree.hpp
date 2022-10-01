@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 14:20:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:27:15 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ namespace ft
 		<
 			typename Key,
 			typename Value,
-			typename KeyOfValue, // tmp
+			typename KeyOfValue,
 			typename Compare = std::less<Value>,
 			typename Allocator = std::allocator<Value>
 		>
@@ -75,7 +75,6 @@ namespace ft
 			public:
 
 # include "RBTree/structor.hpp"
-# include "RBTree/find.hpp"
 
 //				Tree &	operator=	(Tree const & src)
 //				{
@@ -89,6 +88,7 @@ namespace ft
 				size_type	size	(void) const
 				{	return (_size);	}
 
+# include "RBTree/find.hpp"
 # include "RBTree/private.hpp"
 # include "RBTree/insert.hpp"
 # include "RBTree/erase.hpp"
