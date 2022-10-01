@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 11:59:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:18:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,9 @@ namespace ft
 # include "RBTree/structor.hpp"
 # include "RBTree/find.hpp"
 
-				Tree &	operator=	(Tree const & src)
-				{
-					this->clear();
-					this->insert(src._root->value);
-//					_root = new Tree<value_type>(*src._root);
-					return (*this);
-				}
+//				Tree &	operator=	(Tree const & src)
+//				{
+//				}
 
 				void	clear	(void)
 				{
@@ -93,14 +89,13 @@ namespace ft
 				size_type	size	(void) const
 				{	return (_size);	}
 
+# include "RBTree/private.hpp"
+# include "RBTree/insert.hpp"
+# include "RBTree/erase.hpp"
+# include "RBTree/print.hpp"
+
 //tmp
-				void	test	(void)
-				{
-
-
-				}
-//fin tmp
-
+		public:
 				NodeBase_ptr	begin	(void)
 				{
 					NodeBase_ptr	to_return = _root;
@@ -120,12 +115,12 @@ namespace ft
 				}
 
 
+				void	test	(void)
+				{
 
-# include "RBTree/private.hpp"
-# include "RBTree/insert.hpp"
-# include "RBTree/erase.hpp"
-//# include "RBTree/rotate.hpp"
-# include "RBTree/print.hpp"
+
+				}
+//fin tmp
 		};
 	}
 }

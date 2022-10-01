@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:00:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 12:35:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:16:54 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,67 +21,8 @@ public:
 		NodeBase_ptr &	new_node = this->find(KeyOfValue()(value), parent);
 
 		_construct(new_node, parent, value);
-		_insert_balance(new_node);
+		tree_insert_and_balance(new_node, _root);
 		return (value);
-	}
-
-private:
-	void	_insert_balance	(NodeBase_ptr node)
-	{
-		NodeBase_ptr	parent;
-		NodeBase_ptr	uncle;
-		NodeBase_ptr	grandp;
-
-		while (node->parent->color == red_node)
-		{
-			parent = node->parent;
-			grandp = parent->parent;
-			if (grandp->left == parent)
-			{
-				uncle = grandp->right;
-				if (uncle->color == red_node)
-				{
-					uncle->color = black_node;
-					parent->color = black_node;
-					grandp->color = red_node;
-					node = grandp;
-				}
-				else
-				{
-					if (node == parent->right)
-					{
-						left_rotate(node->parent, _root);
-						node = parent;
-					}
-					node->parent->color = black_node;
-					node->parent->parent->color = red_node;
-					right_rotate(node->parent->parent, _root);
-				}
-			}
-			else
-			{
-				uncle = grandp->left;
-				if (uncle->color == red_node)
-				{
-					uncle->color = black_node;
-					parent->color = black_node;
-					grandp->color = red_node;
-					node = grandp;
-				}
-				else
-				{
-					if (node == parent->left)
-					{
-						right_rotate(node->parent, _root);
-						node = parent;
-					}
-					node->parent->color = black_node;
-					node->parent->parent->color = red_node;
-					left_rotate(node->parent->parent, _root);
-				}
-			}
-		}
-		_root->color = black_node;
 	}
 
 # endif

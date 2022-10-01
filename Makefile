@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 15:21:07 by rgeny             #+#    #+#              #
-#    Updated: 2022/10/01 11:05:46 by rgeny            ###   ########.fr        #
+#    Updated: 2022/10/01 14:12:33 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ DEFAULT_FILES		= operator structor member accessor
 SRCS				= $(addsuffix .cpp,				move_node \
 													rotate \
 													tree_balance_and_erase \
+													tree_insert_and_balance \
 						$(addprefix RBNodeBase.,	$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)
