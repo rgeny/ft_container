@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 16:42:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 17:05:22 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ namespace ft
 				typedef std::ptrdiff_t								difference_type;
 				typedef Compare										key_compare;
 				typedef TreeIterator<value_type>					iterator;
+				typedef TreeConstIterator<value_type>				const_iterator;
 
 			private:
 				allocator_type			_alloc;
@@ -130,6 +131,21 @@ namespace ft
 				{
 					return (_sentinel);
 				}
+				
+				const_iterator	begin	(void) const
+				{
+					NodeBase_ptr	to_return = _root;
+
+					while ( ! to_return->left->is_sentinel() )
+						to_return = to_return->left;
+					return (to_return);
+				}
+
+				const_iterator	end		(void) const
+				{
+					return (_sentinel);
+				}
+
 
 
 				void	test	(void)
