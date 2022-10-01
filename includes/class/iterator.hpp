@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:01:27 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/05 21:25:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:52:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ namespace ft
 	>
 	struct iterator
 	{
+		typedef Category	iterator_category;
 		typedef T			value_type;
 		typedef Distance	difference_type;
 		typedef Pointer		pointer;
 		typedef Reference	reference;
-		typedef Category	iterator_category;
 	};
 
 	# include "iterator/iterator_traits.hpp"
