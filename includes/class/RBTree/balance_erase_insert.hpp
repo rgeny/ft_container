@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   erase.hpp                                          :+:      :+:    :+:   */
+/*   balance_erase_insert.hpp                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 18:01:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 11:10:13 by rgeny            ###   ########.fr       */
+/*   Created: 2022/10/01 10:23:13 by rgeny             #+#    #+#             */
+/*   Updated: 2022/10/01 11:04:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef RBTREE_HPP
-# ifndef RBTREE_ERASE_HPP
-#  define RBTREE_ERASE_HPP
+#ifndef BALANCE_ERASE_INSERT_HPP
+# define BALANCE_ERASE_INSERT_HPP
 
-public:
-	size_type	erase	(key_type const & key)
+# include "RBNode.hpp"
+
+namespace ft
+{
+	namespace RB
 	{
-		NodeBase_ptr	tmp = tree_balance_and_erase(this->find(key), _root);
+		typedef NodeBase::NodeBase_ptr	NodeBase_ptr;
 
-		_clear(tmp);
-		return (1);
+		void	left_rotate		(NodeBase * parent,
+								 NodeBase * & root);
+		void	right_rotate	(NodeBase * parent,
+								 NodeBase * & root);
+		NodeBase_ptr	tree_balance_and_erase	(NodeBase_ptr del_node,
+												 NodeBase_ptr & root);
 	}
+}
 
-# endif
 #endif
 

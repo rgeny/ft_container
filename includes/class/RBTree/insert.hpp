@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/21 18:04:59 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/27 14:04:30 by rgeny            ###   ########.fr       */
+/*   Created: 2022/10/01 11:00:05 by rgeny             #+#    #+#             */
+/*   Updated: 2022/10/01 11:01:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ private:
 				{
 					if (node == parent->right)
 					{
-						_left_rotate(node->parent);
+						left_rotate(node->parent, _root);
 						node = parent;
 					}
 					node->parent->color = black_node;
 					node->parent->parent->color = red_node;
-					_right_rotate(node->parent->parent);
+					right_rotate(node->parent->parent, _root);
 				}
 			}
 			else
@@ -83,12 +83,12 @@ private:
 				{
 					if (node == parent->left)
 					{
-						_right_rotate(node->parent);
+						right_rotate(node->parent, _root);
 						node = parent;
 					}
 					node->parent->color = black_node;
 					node->parent->parent->color = red_node;
-					_left_rotate(node->parent->parent);
+					left_rotate(node->parent->parent, _root);
 				}
 			}
 		}

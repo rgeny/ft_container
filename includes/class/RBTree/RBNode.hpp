@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 18:01:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 10:51:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ namespace ft
 			:public NodeBase
 		{
 			public:
-				typedef Value											value_type;
-				typedef Node *										pointer;
+				typedef Value						value_type;
+				typedef Node *						pointer;
 				typedef Node<value_type> const *	const_pointer;
 
 				template < typename T	>

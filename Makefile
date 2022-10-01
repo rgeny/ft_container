@@ -6,7 +6,7 @@
 #    By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 15:21:07 by rgeny             #+#    #+#              #
-#    Updated: 2022/09/28 17:16:16 by rgeny            ###   ########.fr        #
+#    Updated: 2022/10/01 11:05:46 by rgeny            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ INCLUDES_FLAG		= $(addprefix -I,	$(INCLUDES_DIR) \
 
 OBJS_DIR			= objs/
 SRCS_DIR			= srcs/
-RBNODE_DIR			= $(SRCS_DIR)RBNode/
+RBTREE_DIR			= $(SRCS_DIR)RBTree/
+RBNODE_DIR			= $(RBTREE_DIR)RBNode/
 RBNODEBASE_DIR		= $(RBNODE_DIR)RBNodeBase/
 INCLUDES_DIR		= includes/
 CLASS_DIR			= $(INCLUDES_DIR)class/
@@ -33,10 +34,12 @@ FUNCTIONS_DIR		= $(INCLUDES_DIR)functions/
 TEMPLATES_DIR		= $(INCLUDES_DIR)templates/
 
 VPATH				= $(SRCS_DIR)
-VPATH				+=$(RBNODE_DIR) $(RBNODEBASE_DIR)
+VPATH				+=$(RBTREE_DIR) $(RBNODE_DIR) $(RBNODEBASE_DIR)
 
 DEFAULT_FILES		= operator structor member accessor
 SRCS				= $(addsuffix .cpp,				move_node \
+													rotate \
+													tree_balance_and_erase \
 						$(addprefix RBNodeBase.,	$(DEFAULT_FILES)))
 OBJS				= $(patsubst %.cpp, $(OBJS_DIR)%.o, $(SRCS))
 DEPS				= $(OBJS:.o=.d)

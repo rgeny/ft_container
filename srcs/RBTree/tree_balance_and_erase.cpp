@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree_balancing_after_erasing.cpp                   :+:      :+:    :+:   */
+/*   tree_balance_and_erase.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:41:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/29 18:58:24 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 11:09:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RBTree/balance_erase_insert.hpp"
 
 using namespace ft::RB;
-
-void	test	(void)
-{
-	std::cout	<< "t1\n";
-}
 
 static void	_transplant	(NodeBase_ptr parent,
 						 NodeBase_ptr child,
@@ -111,8 +106,7 @@ static void	_erase_balance	(NodeBase_ptr node,
 	node->color = black_node;
 }
 
-//size_t	tree_balancing_after_erasing	(NodeBase_ptr del_node)
-NodeBase_ptr	tree_balancing_after_erasing	(NodeBase_ptr del_node,
+NodeBase_ptr	ft::RB::tree_balance_and_erase	(NodeBase_ptr del_node,
 												 NodeBase_ptr & root)
 {
 	if ( del_node->is_sentinel() )

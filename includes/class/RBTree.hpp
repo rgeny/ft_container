@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 18:45:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 11:07:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "type_traits.hpp"
 # include "RBTree/RBNode.hpp"
 # include "iterator.hpp"
+# include "RBTree/balance_erase_insert.hpp"
 
 namespace ft
 {
@@ -122,7 +123,7 @@ namespace ft
 # include "RBTree/private.hpp"
 # include "RBTree/insert.hpp"
 # include "RBTree/erase.hpp"
-# include "RBTree/rotate.hpp"
+//# include "RBTree/rotate.hpp"
 # include "RBTree/print.hpp"
 		};
 	}
