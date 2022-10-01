@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:01:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 11:10:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:20:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ public:
 		_clear(tmp);
 		return (1);
 	}
+
+//todo : add erase with iterator
 
 # endif
 #endif

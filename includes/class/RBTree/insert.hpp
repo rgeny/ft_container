@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:00:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 14:16:54 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/01 14:20:34 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ public:
 		tree_insert_and_balance(new_node, _root);
 		return (value);
 	}
+
+//todo : add insert with iterator
 
 # endif
 #endif
