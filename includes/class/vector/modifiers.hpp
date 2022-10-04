@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:35:12 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/10 16:54:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/04 18:11:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ void	insert	(iterator pos,
 						 this->begin() + position - 1);
 }
 
+template < typename Iter >
+typename iterator_traits<Iter>::iterator_category
+	_iterator_category	(Iter const &)
+	{	return typename iterator_traits<Iter>::iterator_category();	}
 
 template
 <
@@ -88,29 +92,42 @@ void	insert	(iterator pos,
 				 InputIt last,
 				 typename ft::enable_if<!ft::is_integral<InputIt>::value>::type = 0)
 {
-	size_t	position = pos - this->begin(),
-			count = std::distance(first, last);
-
-#ifdef __DEBUG__
-	std::cout	<< "insert template count = "
-				<< count
-				<< std::endl
-				<< "insert template position ="
-				<< position
-				<< std::endl;
-#endif
-
-	if (&(*first) < &(*last))
-		this->insert(pos, count, *first);
-	else
-		this->insert(pos, count, T() );
-
-	for (iterator it = this->begin() + position;
-		 first != last;
-		 it++, first++)
-	{
-		*it = *first;
-	}
+	this->_insert(pos, first, last, _iterator_category(first) );
+//	size_t	position = pos - this->begin(),
+//			count = std::distance(first, last);
+//
+//#ifdef __DEBUG__
+//	std::cout	<< "insert template count = "
+//				<< count
+//				<< std::endl
+//				<< "insert template position ="
+//				<< position
+//				<< std::endl;
+//#endif
+//
+//	if (InputIt::iterator_category == std::random_access_iterator_tag)
+//	{
+//		if (&(*first) < &(*last))
+//			this->insert(pos, count, *first);
+//		else
+//			this->insert(pos, count, T() );
+//
+//		for (iterator it = this->begin() + position;
+//			 first != last;
+//			 it++, first++)
+//		{
+//			*it = *first;
+//		}
+//	}
+//	else
+//	{
+//		while (count > 0 && first != last)
+//		{
+//			this->insert(pos, *first);
+//			--count;
+//			++first;
+//		}
+//	}
 }
 
 iterator	erase	(iterator pos)

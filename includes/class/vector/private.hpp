@@ -6,13 +6,48 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:05:33 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/10 16:11:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/04 18:03:57 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef VECTOR_HPP
 # ifndef VECTOR_PRIVATE_HPP
 #  define VECTOR_PRIVATE_HPP
+
+template < typename InputIt >
+void	_insert	(iterator pos,
+				 InputIt first,
+				 InputIt last,
+				 std::input_iterator_tag)
+{
+	while (first != last)
+	{
+		this->insert(pos, *first);
+		++first;
+	}
+}
+
+template < typename ForwardIterator >
+void	_insert	(iterator pos,
+				 ForwardIterator first,
+				 ForwardIterator last,
+				 std::forward_iterator_tag)
+{
+	size_t	position = pos - this->begin(),
+			count = std::distance(first, last);
+
+	if (&(*first) < &(*last))
+		this->insert(pos, count, *first);
+	else
+		this->insert(pos, count, T() );
+	
+	for (iterator it = this->begin() + position;
+		 first != last;
+		 ++it, ++first)
+	{
+		*it = *first;
+	}
+}
 
 void	_destroy	(pointer it,
 					 pointer ite)
