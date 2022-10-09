@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 14:32:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 15:31:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,14 @@ namespace ft
 			{
 				std::pair<iterator, iterator>	tmp = this->std::map<Key, T, Compare, Allocator>::equal_range(key);
 				return (ft::pair<iterator, iterator>(tmp.first, tmp.second));
+			}
+
+
+
+			ft::pair<const_iterator, const_iterator>	equal_range	(Key const & key) const
+			{
+				std::pair<const_iterator, const_iterator>	tmp = this->std::map<Key, T, Compare, Allocator>::equal_range(key);
+				return (ft::pair<const_iterator, const_iterator>(tmp.first, tmp.second));
 			}
 
 			iterator	insert	(iterator hint,
