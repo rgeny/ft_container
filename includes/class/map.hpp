@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 15:31:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 16:52:59 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,10 @@ namespace ft
 			~map	(void)
 			{	}
 
-			ft::pair<iterator, bool> insert(value_type const & value)
+			ft::pair<iterator, bool> insert(ft::pair<Key const, T> const & value)
 			{
-				_rbtree.insert(value);
 				std::pair<Key const, T>	tm(value.first, value.second);
+				_rbtree.insert(tm);
 				std::pair<iterator, bool> tmp = this->std::map<Key, T, Compare, Allocator>::insert(ft_to_std(tm));
 				ft::pair<iterator, bool>	to_return(tmp.first, tmp.second);
 				return (to_return);
@@ -117,7 +117,7 @@ namespace ft
 			}
 
 			iterator	insert	(iterator hint,
-								 value_type const & value)
+								 ft::pair<Key const, T> const & value)
 			{
 				std::pair<Key const, T>	tmp(value.first, value.second);
 				return (this->std::map<Key, T, Compare, Allocator>::insert(hint, tmp));
