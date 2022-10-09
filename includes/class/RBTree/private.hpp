@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 12:17:33 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 15:07:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,18 @@
 node_pointer	_cast	(NodeBase_ptr node)
 {	return (static_cast<node_pointer>(node));	}
 
-//int	_compare	(NodeBase_ptr node,
-//				 value_type value)
-//{
-//	node_pointer	tmp = _cast(node);
-//	return (_comp(tmp->value, value));
-//}
-//
-//int		_compare	(value_type value,
-//					 NodeBase_ptr node)
-//{
-//	node_pointer	tmp = _cast(node);
-//	return (_comp(value, tmp->value));
-//}
-
 int	_compare	(NodeBase_ptr node,
-				 key_type const & value)
+				 key_type const & key)
 {
 	node_pointer	tmp = _cast(node);
-	return (_comp(tmp->value, value));
+	return (_comp(KeyOfValue()(tmp->value), key));
 }
 
-int		_compare	(key_type const & value,
+int		_compare	(key_type const & key,
 					 NodeBase_ptr node)
 {
 	node_pointer	tmp = _cast(node);
-	return (_comp(value, tmp->value));
+	return (_comp(key, KeyOfValue()(tmp->value)));
 }
 
 void	_construct	(NodeBase_ptr & new_node,
@@ -51,7 +37,7 @@ void	_construct	(NodeBase_ptr & new_node,
 					 node_color const color = red_node)
 {
 	if (new_node != _sentinel)
-		_node_alloc.destroy(_cast(new_node));
+		return ;
 	else
 	{
 		new_node = _node_alloc.allocate(1);
@@ -87,6 +73,16 @@ void	_clear_all	(NodeBase_ptr node)
 		node = node->left;
 		_clear(tmp);
 	}
+}
+
+void	_init_sentinel	(void)
+{
+	_sentinel = _node_alloc.allocate(1);
+	_sentinel->left = _sentinel;
+	_sentinel->right = _sentinel;
+	_sentinel->left = _sentinel;
+	_sentinel->color = black_node;
+	_root = _sentinel;
 }
 
 # endif

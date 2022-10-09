@@ -6,16 +6,13 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 11:03:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 18:21:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/08 16:23:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RBTree/RBNode/RBNodeBase.hpp"
 
 #define CLASS_NAME "RBNodeBase"
-
-
-using namespace ft::RB;
 
 /* ************************************************************************** */
 /*                                                                            */
@@ -30,10 +27,10 @@ using namespace ft::RB;
 /*                                                                            */
 /* ************************************************************************** */
 
-NodeBase::NodeBase	(NodeBase * parent,
-										 NodeBase * left,
-										 NodeBase * right,
-										 node_color color)
+ft::RB::NodeBase::NodeBase	(ft::RB::NodeBase * parent,
+							 ft::RB::NodeBase * left,
+							 ft::RB::NodeBase * right,
+							 node_color color)
 	:parent(parent)
 	,left(left)
 	,right(right)
@@ -44,7 +41,7 @@ PAR_CTOR
 #endif
 }
 
-NodeBase::NodeBase	(NodeBase const & src)
+ft::RB::NodeBase::NodeBase	(ft::RB::NodeBase const & src)
 	:parent(src.parent)
 	,left(src.left)
 	,right(src.right)
@@ -61,6 +58,6 @@ CPY_CTOR
 /*                                                                            */
 /* ************************************************************************** */
 
-NodeBase::~NodeBase	(void)	{}
+ft::RB::NodeBase::~NodeBase	(void)	{}
 
 #undef CLASS_NAME

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:46:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 18:02:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 14:24:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ Tree	(allocator_type const & alloc = allocator_type())
 	,_size(-1)
 	,_comp()
 {
-	_construct(_sentinel, _sentinel, value_type(), black_node);
-	_root = _sentinel;
+	_init_sentinel();
 }
 
 Tree	(Tree const & src,
@@ -35,12 +34,9 @@ Tree	(Tree const & src,
 	,_size(-1)
 	,_comp()
 {
-	_construct(_sentinel, _sentinel, value_type(), black_node);
-
-	_root = _sentinel;
+	_init_sentinel();
 
 	NodeBase_ptr	tmp = src._root->min();
-
 	while (tmp != src._sentinel)
 	{
 		this->insert(_cast(tmp)->value);
@@ -51,7 +47,8 @@ Tree	(Tree const & src,
 ~Tree	(void)
 {
 	this->clear();
-	_clear(_sentinel, true);
+//	_clear(_sentinel, true);
+	_node_alloc.deallocate(_cast(_sentinel), 1);
 }
 
 # endif

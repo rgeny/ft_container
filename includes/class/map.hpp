@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 12:01:03 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 14:32:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ namespace ft
 		public:
 			typedef Key																		key_type;
 			typedef T																		mapped_type;
-			typedef ft::pair<Key const, T>													value_type;
+			typedef std::pair<Key const, T>													value_type;
 			typedef size_t																	size_type;
 			typedef std::ptrdiff_t															difference_type;
 			typedef Compare																	key_compare;
@@ -83,6 +83,7 @@ namespace ft
 				 Compare const & comp = Compare(),
 				 Allocator const & alloc = Allocator())
 				:std::map<Key, T, Compare, Allocator>(first, last, comp, alloc)
+				,_comp(comp)
 			{	}
 			map	(map const & other)
 				:std::map<Key, T, Compare, Allocator>(other)
@@ -165,8 +166,8 @@ namespace ft
 			struct _KeyOfValue
 			{
 				public:
-				_Key &	operator()	(_Value & val)
-				{	return (val->first);	}
+				_Key const &	operator()	(_Value const & val)
+				{	return (val.first);	}
 			};
 
 			RB::Tree	<key_type, value_type, _KeyOfValue<key_type, value_type> >	_rbtree;

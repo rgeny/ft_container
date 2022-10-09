@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 17:05:22 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 15:01:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@
 
 # ifdef __DEBUG__
 #  include <vector>
+template
+<
+	typename Key,
+	typename Value
+>
+std::ostream &	operator<<	(std::ostream & os,
+							 std::pair< Key, Value> const & p)
+{
+	os	<< "("
+		<< p.first
+		<< ":"
+		<< p.second
+		<< ")";
+	return (os);
+}
 # endif
 
 # include "print.hpp"
@@ -28,6 +43,8 @@
 # include "RBTree/balance_erase_insert.hpp"
 # include "RBTree/RBTreeIterator.hpp"
 # include "RBTree/RBTreeConstIterator.hpp"
+
+
 
 namespace ft
 {
@@ -39,7 +56,7 @@ namespace ft
 			typename Key,
 			typename Value,
 			typename KeyOfValue,
-			typename Compare = std::less<Value>,
+			typename Compare = std::less<Key>,
 			typename Allocator = std::allocator<Value>
 		>
 		class Tree
@@ -79,9 +96,18 @@ namespace ft
 
 # include "RBTree/structor.hpp"
 
-//				Tree &	operator=	(Tree const & src)
-//				{
-//				}
+				Tree &	operator=	(Tree const & src)
+				{
+					NodeBase_ptr	tmp = src._root->min();
+
+					while (tmp != src._sentinel)
+					{
+						this->insert(_cast(tmp)->value);
+						tmp = node_increment(tmp);
+					}
+
+					return (*this);
+				}
 
 				void	clear	(void)
 				{
