@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 16:52:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 17:43:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,149 +23,28 @@
 namespace ft
 {
 
-//	tmp
-	template
-	<
-		typename FIRST_TYPE,
-		typename SECOND_TYPE
-	>
-	std::pair<FIRST_TYPE, SECOND_TYPE>
-		std_to_ft	(ft::pair<FIRST_TYPE, SECOND_TYPE> const & src)
-	{	return (std::pair<FIRST_TYPE, SECOND_TYPE>(src.first, src.second));	}
-	template
-	<
-		typename FIRST_TYPE,
-		typename SECOND_TYPE
-	>
-	ft::pair<FIRST_TYPE, SECOND_TYPE>
-		ft_to_std	(std::pair<FIRST_TYPE, SECOND_TYPE> const & src)
-	{	return (ft::pair<FIRST_TYPE, SECOND_TYPE>(src.first, src.second));	}
-//	fin tmp
-
 	template
 	<
 		typename Key,
 		typename T,
 		typename Compare = std::less<Key>,
-		typename Allocator = std::allocator<std::pair<const Key, T> >
+		typename Allocator = std::allocator<ft::pair<const Key, T> >
 	>
 	class map
-		:public std::map<Key, T, Compare, Allocator>
 	{
 		public:
-			typedef Key																		key_type;
-			typedef T																		mapped_type;
-			typedef std::pair<Key const, T>													value_type;
-			typedef size_t																	size_type;
-			typedef std::ptrdiff_t															difference_type;
-			typedef Compare																	key_compare;
-			typedef Allocator																allocator_type;
-			typedef value_type &															reference;
-			typedef value_type const &														const_reference;
-			typedef typename allocator_type::pointer										pointer;
-			typedef typename allocator_type::const_pointer									const_pointer;
-			typedef typename std::map<Key, T, Compare, Allocator>::iterator					iterator;
-			typedef typename std::map<Key, T, Compare, Allocator>::const_iterator			const_iterator;
-			typedef typename std::map<Key, T, Compare, Allocator>::reverse_iterator			reverse_iterator;
-			typedef typename std::map<Key, T, Compare, Allocator>::const_reverse_iterator	const_reverse_iterator;
-
-			explicit map	(Compare const & comp = Compare(),
-							 Allocator const & alloc = Allocator() )
-				:std::map<Key, T, Compare, Allocator>(comp, alloc)
-				,_comp(comp)
-			{	}
-			template
-			<
-				typename InputIt
-			>
-			map	(InputIt first,
-				 InputIt last,
-				 Compare const & comp = Compare(),
-				 Allocator const & alloc = Allocator())
-				:std::map<Key, T, Compare, Allocator>(first, last, comp, alloc)
-				,_comp(comp)
-			{	}
-			map	(map const & other)
-				:std::map<Key, T, Compare, Allocator>(other)
-				,_comp(other._comp)
-			{	}
-
-			~map	(void)
-			{	}
-
-			ft::pair<iterator, bool> insert(ft::pair<Key const, T> const & value)
-			{
-				std::pair<Key const, T>	tm(value.first, value.second);
-				_rbtree.insert(tm);
-				std::pair<iterator, bool> tmp = this->std::map<Key, T, Compare, Allocator>::insert(ft_to_std(tm));
-				ft::pair<iterator, bool>	to_return(tmp.first, tmp.second);
-				return (to_return);
-			}
-
-			ft::pair<iterator, iterator>	equal_range	(Key const & key)
-			{
-				std::pair<iterator, iterator>	tmp = this->std::map<Key, T, Compare, Allocator>::equal_range(key);
-				return (ft::pair<iterator, iterator>(tmp.first, tmp.second));
-			}
-
-
-
-			ft::pair<const_iterator, const_iterator>	equal_range	(Key const & key) const
-			{
-				std::pair<const_iterator, const_iterator>	tmp = this->std::map<Key, T, Compare, Allocator>::equal_range(key);
-				return (ft::pair<const_iterator, const_iterator>(tmp.first, tmp.second));
-			}
-
-			iterator	insert	(iterator hint,
-								 ft::pair<Key const, T> const & value)
-			{
-				std::pair<Key const, T>	tmp(value.first, value.second);
-				return (this->std::map<Key, T, Compare, Allocator>::insert(hint, tmp));
-			}
-
-			template
-			<
-				typename InputIt
-			>
-			void	insert	(InputIt first,
-							 InputIt last)
-			{
-				this->std::map<Key, T, Compare, Allocator>::insert(first, last);
-			}
-
-			class value_compare
-				:public std::binary_function<value_type, value_type, bool>
-			{
-				friend class map;
-
-				public:
-					bool	operator()	(value_type const & lhs,
-										 value_type const & rhs) const
-					{
-						return (comp(lhs.first, rhs.first));
-					}
-
-				protected:
-					Compare comp;
-
-					value_compare(Compare c)
-						:comp(c)
-					{	}
-			};
-
-			map::value_compare	value_comp	(void) const
-			{	return	(_comp);	}
-
-#ifdef __DEBUG__
-			void	print	(void)
-			{
-				_rbtree.print();
-			}
-#endif
+			typedef Key												key_type;
+			typedef T												mapped_type;
+			typedef ft::pair<key_type const, mapped_type>			value_type;
+			typedef size_t											size_type;
+			typedef std::ptrdiff_t									difference_type;
+			typedef Compare											key_compare;
+			typedef Allocator										allocator_type;
+			typedef value_type &									reference;
+			typedef value_type const &								const_reference;
 
 		private:
-			value_compare	_comp;
-
+			typedef typename Allocator:: template rebind<value_type>::other	_pair_allocator_type;
 			template
 			<
 				typename _Key,
@@ -178,8 +57,126 @@ namespace ft
 				{	return (val.first);	}
 			};
 
-			RB::Tree	<key_type, value_type, _KeyOfValue<key_type, value_type> >	_rbtree;
-			
+			typedef RB::Tree <key_type, value_type, _KeyOfValue<key_type, value_type >, key_compare, _pair_allocator_type>	_tree_type;
+
+		public:
+			typedef typename _pair_allocator_type::pointer			pointer;
+			typedef typename _pair_allocator_type::const_pointer	const_pointer;
+			typedef typename _tree_type::iterator					iterator;
+			typedef typename _tree_type::const_iterator				const_iterator;
+			typedef typename _tree_type::reverse_iterator			reverse_iterator;
+			typedef typename _tree_type::const_reverse_iterator		const_reverse_iterator;
+
+			class value_compare
+				:public std::binary_function<value_type, value_type, bool>
+			{
+				friend class map;
+
+				public:
+					bool	operator()	(value_type const & lhs,
+										 value_type const & rhs) const
+					{	return (comp(lhs.first, rhs.first));	}
+
+				protected:
+					Compare comp;
+
+					value_compare(Compare c)
+						:comp(c)
+					{	}
+			};
+		private:
+			value_compare	_comp;
+			_tree_type		_rbtree;
+
+		public:
+
+			explicit map	(Compare const & comp = Compare(),
+							 Allocator const & alloc = Allocator() )
+				:_comp(comp)
+				,_rbtree()
+			{}
+			template < typename InputIt >
+			map		(InputIt first,
+					 InputIt last,
+					 Compare const & comp = Compare(),
+					 Allocator const & alloc = Allocator())
+				:_comp(comp)
+				,_rbtree(first, last)
+			{	}
+			map		(map const & src)
+				:_comp(src._comp)
+				,_rbtree(src._rbtree)
+			{	}
+
+			~map	(void)
+			{	}
+
+			ft::pair<iterator, bool>	insert(value_type const & value)
+			{
+				return(_rbtree.insert(value));
+			}
+
+			mapped_type &	operator[]	(key_type const & key)
+			{
+				return (this->insert(ft::make_pair(key, mapped_type())).first->second);
+			}
+
+			iterator	begin	(void)
+			{	return (_rbtree.begin());	}
+			const_iterator	begin	(void) const
+			{	return (_rbtree.begin());	}
+
+			iterator	end	(void)
+			{	return (_rbtree.end());	}
+			const_iterator	end	(void) const
+			{	return (_rbtree.end());	}
+//
+//
+//
+//			
+//
+//			ft::pair<iterator, iterator>	equal_range	(Key const & key)
+//			{
+//				std::pair<iterator, iterator>	tmp = this->std::map<Key, T, Compare, Allocator>::equal_range(key);
+//				return (ft::pair<iterator, iterator>(tmp.first, tmp.second));
+//			}
+//
+//
+//
+//			ft::pair<const_iterator, const_iterator>	equal_range	(Key const & key) const
+//			{
+//				std::pair<const_iterator, const_iterator>	tmp = this->std::map<Key, T, Compare, Allocator>::equal_range(key);
+//				return (ft::pair<const_iterator, const_iterator>(tmp.first, tmp.second));
+//			}
+//
+//			iterator	insert	(iterator hint,
+//								 ft::pair<Key const, T> const & value)
+//			{
+//				std::pair<Key const, T>	tmp(value.first, value.second);
+//				return (this->std::map<Key, T, Compare, Allocator>::insert(hint, tmp));
+//			}
+//
+//			template
+//			<
+//				typename InputIt
+//			>
+//			void	insert	(InputIt first,
+//							 InputIt last)
+//			{
+//				this->std::map<Key, T, Compare, Allocator>::insert(first, last);
+//			}
+//
+
+
+			value_compare	value_comp	(void) const
+			{	return	(_comp);	}
+
+#ifdef __DEBUG__
+			void	print	(void)
+			{
+				_rbtree.print();
+			}
+#endif
 
 	};
 

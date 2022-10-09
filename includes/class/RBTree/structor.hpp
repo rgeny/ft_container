@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:46:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 14:24:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 17:25:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,26 @@ Tree	(Tree const & src,
 	{
 		this->insert(_cast(tmp)->value);
 		tmp = node_increment(tmp);
+	}
+}
+
+template < typename InputIt >
+Tree	(InputIt & first,
+		 InputIt & last,
+		 allocator_type const & alloc = allocator_type() )
+	:_alloc(alloc)
+	,_node_alloc(alloc)
+	,_sentinel(NULL)
+	,_root(NULL)
+	,_size(-1)
+	,_comp()
+{
+	_init_sentinel();
+
+	while (first != last)
+	{
+		this->insert(*first);
+		++first;
 	}
 }
 

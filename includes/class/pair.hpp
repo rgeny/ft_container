@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 21:50:32 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/11 10:16:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 17:26:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,6 @@ namespace ft
 				return (*this);
 			}
 
-//		tmp
-			operator	std::pair<FIRST_TYPE, SECOND_TYPE>()
-			{
-				return (std::pair<FIRST_TYPE, SECOND_TYPE>(this->first, this->second));
-			}
-//		fin tmp
 	};
 	template
 	<

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 15:01:45 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/09 17:28:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,17 @@
 
 # ifdef __DEBUG__
 #  include <vector>
-template
-<
-	typename Key,
-	typename Value
->
-std::ostream &	operator<<	(std::ostream & os,
-							 std::pair< Key, Value> const & p)
-{
-	os	<< "("
-		<< p.first
-		<< ":"
-		<< p.second
-		<< ")";
-	return (os);
-}
+#  include <sstream>
 # endif
 
 # include "print.hpp"
 # include "type_traits.hpp"
-# include "RBTree/RBNode.hpp"
 # include "iterator.hpp"
+# include "pair.hpp"
+# include "RBTree/RBNode.hpp"
 # include "RBTree/balance_erase_insert.hpp"
 # include "RBTree/RBTreeIterator.hpp"
 # include "RBTree/RBTreeConstIterator.hpp"
-
-
 
 namespace ft
 {
@@ -83,6 +68,8 @@ namespace ft
 				typedef Compare										key_compare;
 				typedef TreeIterator<value_type>					iterator;
 				typedef TreeConstIterator<value_type>				const_iterator;
+				typedef ft::reverse_iterator<iterator>				reverse_iterator;
+				typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
 			private:
 				allocator_type			_alloc;
