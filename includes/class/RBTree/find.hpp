@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:27:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 14:27:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:13:11 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #ifndef RBTREE_FIND_HPP
 # define RBTREE_FIND_HPP
 
+public:
+	iterator		find	(key_type const & key)
+	{	return (iterator(this->_find(key)));	}
 
 private:
 	NodeBase_ptr &	_find	(key_type const & key,
