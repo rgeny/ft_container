@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:30:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 16:47:07 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 12:59:48 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ using namespace ft::RB;
 
 NodeBase *	ft::RB::node_decrement	(NodeBase * node)
 {
+	if (node->is_sentinel())
+		return (node->parent->max());
 	if ( ! node->left->is_sentinel() )
 		return (node->left->max());
 	
@@ -31,6 +33,8 @@ NodeBase *	ft::RB::node_decrement	(NodeBase * node)
 
 NodeBase const *	ft::RB::node_decrement	(NodeBase const * node)
 {
+	if (node->is_sentinel())
+		return (node->parent->max());
 	if ( ! node->left->is_sentinel() )
 		return (node->left->max());
 	
@@ -46,6 +50,8 @@ NodeBase const *	ft::RB::node_decrement	(NodeBase const * node)
 
 NodeBase *	ft::RB::node_increment	(NodeBase * node)
 {
+	if (node->is_sentinel())
+		return (node->parent->max());
 	if ( ! node->right->is_sentinel() )
 		return (node->right->min());
 	
@@ -61,6 +67,8 @@ NodeBase *	ft::RB::node_increment	(NodeBase * node)
 
 NodeBase const *	ft::RB::node_increment	(NodeBase const * node)
 {
+	if (node->is_sentinel())
+		return (node->parent->max());
 	if ( ! node->right->is_sentinel() )
 		return (node->right->min());
 	

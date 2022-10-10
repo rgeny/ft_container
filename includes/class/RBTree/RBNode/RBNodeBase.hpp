@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:40:54 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 16:46:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 12:49:34 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ namespace ft
 				NodeBase	(NodeBase const & src);
 				~NodeBase	(void);
 
-				NodeBase_ptr	max	(void);
-				NodeBase_ptr	min	(void);
+				NodeBase_ptr		max	(void);
+				NodeBase_const_ptr	max	(void) const;
+				NodeBase_ptr		min	(void);
+				NodeBase_const_ptr	min	(void) const;
 
-				bool	is_sentinel	(void);
+				bool	is_sentinel	(void) const;
 		};
 
 		NodeBase *			node_decrement	(NodeBase * node);

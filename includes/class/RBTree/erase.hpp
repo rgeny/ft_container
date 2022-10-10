@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:01:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 14:27:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 12:46:17 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ public:
 		NodeBase_ptr	tmp = tree_balance_and_erase(this->_find(key), _root);
 
 		_clear(tmp);
+		_sentinel->parent = _root;
 		return (1);
 	}
 

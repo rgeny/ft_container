@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 17:28:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 13:08:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,33 +131,27 @@ namespace ft
 				}
 
 
-				iterator	begin	(void)
-				{
-					NodeBase_ptr	to_return = _root;
-
-					while ( ! to_return->left->is_sentinel() )
-						to_return = to_return->left;
-					return (to_return);
-				}
-
-				iterator	end		(void)
-				{
-					return (_sentinel);
-				}
-				
+				iterator		begin	(void)
+				{	return (_root->min());	}
 				const_iterator	begin	(void) const
-				{
-					NodeBase_ptr	to_return = _root;
+				{	return (_root->min());	}
 
-					while ( ! to_return->left->is_sentinel() )
-						to_return = to_return->left;
-					return (to_return);
-				}
-
+				iterator		end		(void)
+				{	return (_sentinel);	}
 				const_iterator	end		(void) const
-				{
-					return (_sentinel);
-				}
+				{	return (_sentinel);	}
+
+				reverse_iterator		rbegin	(void)
+				{	return (reverse_iterator(this->end()));	}
+				const_reverse_iterator	rbegin	(void) const
+				{	return (const_reverse_iterator(this->end()));	}
+
+				reverse_iterator		rend	(void)
+				{	return (reverse_iterator(this->begin()));	}
+				const_reverse_iterator	rend	(void) const
+				{	return (const_reverse_iterator(this->begin()));	}
+				
+
 
 
 
