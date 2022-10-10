@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 14:21:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:25:35 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,12 @@ namespace ft
 					throw (std::out_of_range(EXCEPTION_FT_MAP_AT));
 				return (it->second);
 			}
+
+			bool	empty	(void)
+			{	return (this->size() == 0);	}
+
+			void	clear	(void)
+			{	_rbtree.clear();	}
 
 //			ft::pair<iterator, iterator>	equal_range	(Key const & key)
 //			{
