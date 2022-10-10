@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 13:08:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:09:56 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ namespace ft
 
 				Tree &	operator=	(Tree const & src)
 				{
+					_clear(_root);
 					NodeBase_ptr	tmp = src._root->min();
 
 					while (tmp != src._sentinel)
@@ -101,8 +102,10 @@ namespace ft
 					_clear_all(_root);
 				}
 
-				size_type	size	(void) const
+				size_type	size		(void) const
 				{	return (_size);	}
+				size_type	max_size	(void) const
+				{	return (_node_alloc.max_size());	}
 
 # include "RBTree/find.hpp"
 # include "RBTree/private.hpp"
