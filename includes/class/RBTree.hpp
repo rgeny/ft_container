@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 15:14:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 16:52:35 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ namespace ft
 				typedef typename allocator_type::const_reference	const_reference;
 //		node typedef
 				typedef NodeBase::NodeBase_ptr						NodeBase_ptr;
+				typedef NodeBase::NodeBase_const_ptr				NodeBase_const_ptr;
 				typedef typename _node_allocator_type::value_type	node_type;
 				typedef typename _node_allocator_type::pointer		node_pointer;
 				typedef node_pointer &								node_preference;

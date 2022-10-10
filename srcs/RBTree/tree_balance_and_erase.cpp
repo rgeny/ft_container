@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:41:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 11:09:41 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 16:15:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,7 @@ NodeBase_ptr	ft::RB::tree_balance_and_erase	(NodeBase_ptr del_node,
 		min->color = del_node->color;;
 	}
 
-//	_clear(del_node);
 	if (original_color == black_node)
 		_erase_balance(child, root);
-//	_sentinel->parent = _sentinel;
-//	return (1);
 	return (del_node);
 }

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:27:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 15:10:41 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 16:55:48 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 public:
 	iterator		find	(key_type const & key)
-	{	return (iterator(this->_find(key)));	}
+	{	return (iterator(this->_find_node(key)));	}
 	const_iterator	find	(key_type const & key) const
-	{	return (iterator(this->_find(key)));	}
+	{	return (const_iterator(this->_find_node(key)));	}
 
 private:
 	NodeBase_ptr &	_find	(key_type const & key)
@@ -56,8 +56,36 @@ private:
 		return (*hint);
 	}
 
+	NodeBase_ptr	_find_node	(key_type const & key)
+	{
+		NodeBase_ptr	node = _root;
 
+		while (node != _sentinel)
+		{
+			if (_compare(node, key))
+				node = node->right;
+			else if (_compare(key, node))
+				node = node->left;
+			else
+				return (node);
+		}
+		return (node);
+	}
+	NodeBase_const_ptr	_find_node	(key_type const & key) const
+	{
+		NodeBase_const_ptr	node = _root;
 
+		while (node != _sentinel)
+		{
+			if (_compare(node, key))
+				node = node->right;
+			else if (_compare(key, node))
+				node = node->left;
+			else
+				return (node);
+		}
+		return (node);
+	}
 
 # endif
 #endif
