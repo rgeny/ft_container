@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 14:09:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 15:14:59 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "RBTree/balance_erase_insert.hpp"
 # include "RBTree/RBTreeIterator.hpp"
 # include "RBTree/RBTreeConstIterator.hpp"
+# include "algorithm.hpp"
 
 namespace ft
 {
@@ -154,13 +155,19 @@ namespace ft
 				const_reverse_iterator	rend	(void) const
 				{	return (const_reverse_iterator(this->begin()));	}
 				
+				void	swap	(Tree & rhs)
+				{
+					ft::swap(_sentinel, rhs._sentinel);
+					ft::swap(_root, rhs._root);
+					ft::swap(_size, rhs._size);
+				}
 
-
-
+//NodeBase_ptr			_sentinel;
+//				NodeBase_ptr			_root;
+//				size_type				_size;
 
 				void	test	(void)
 				{
-
 
 				}
 //fin tmp
