@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 14:25:35 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 15:00:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,24 @@ namespace ft
 			~map	(void)
 			{	}
 
-			ft::pair<iterator, bool>	insert(value_type const & value)
+			ft::pair<iterator, bool>	insert	(value_type const & value)
 			{
-				return(_rbtree.insert(value));
+				return (_rbtree.insert(value));
+			}
+			iterator					insert	(iterator hint,
+												 value_type const & value)
+			{
+				return (_rbtree.insert(hint, value));
+			}
+			template < typename InputIt >
+			void	insert	(InputIt first,
+							 InputIt last)
+			{
+				while (first != last)
+				{
+					this->insert(*first);
+					++first;
+				}
 			}
 
 			mapped_type &	operator[]	(key_type const & key)
@@ -237,22 +252,6 @@ namespace ft
 					 ft::map<Key, T, Compare, Alloc> & rhs)
 	{
 		lhs.swap(rhs);
-	}
-
-	template
-	<
-		typename Key,
-		typename Val
-	>
-	std::ostream &	operator<<	(std::ostream & os,
-								 ft::pair<Key, Val> const & val)
-	{
-		os	<< "{"
-			<< val.first
-			<< ":"
-			<< val.second
-			<< "}";
-		return (os);
 	}
 }
 
