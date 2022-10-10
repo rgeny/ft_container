@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 17:43:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:10:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,18 @@ namespace ft
 					{	}
 			};
 		private:
-			value_compare	_comp;
-			_tree_type		_rbtree;
+			value_compare			_comp;
+			allocator_type			_alloc;
+			_pair_allocator_type	_pair_alloc;
+			_tree_type				_rbtree;
 
 		public:
 
 			explicit map	(Compare const & comp = Compare(),
 							 Allocator const & alloc = Allocator() )
 				:_comp(comp)
+				,_alloc(alloc)
+				,_pair_alloc(alloc)
 				,_rbtree()
 			{}
 			template < typename InputIt >
@@ -101,10 +105,14 @@ namespace ft
 					 Compare const & comp = Compare(),
 					 Allocator const & alloc = Allocator())
 				:_comp(comp)
+				,_alloc(alloc)
+				,_pair_alloc(alloc)
 				,_rbtree(first, last)
 			{	}
 			map		(map const & src)
 				:_comp(src._comp)
+				,_alloc(src._alloc)
+				,_pair_alloc(src._pair_alloc)
 				,_rbtree(src._rbtree)
 			{	}
 
@@ -130,11 +138,30 @@ namespace ft
 			{	return (_rbtree.end());	}
 			const_iterator	end	(void) const
 			{	return (_rbtree.end());	}
-//
-//
-//
-//			
-//
+
+			reverse_iterator	rbegin	(void)
+			{	return (_rbtree.rbegin());	}
+			const_reverse_iterator	rbegin	(void) const
+			{	return (_rbtree.rbegin());	}
+
+			reverse_iterator	rend	(void)
+			{	return (_rbtree.rend());	}
+			const_reverse_iterator	rend	(void) const
+			{	return (_rbtree.rend());	}
+
+			allocator_type	get_allocator	(void) const
+			{	return (_alloc);	}
+
+			size_type	size		(void) const
+			{	return (_rbtree.size());	}
+			size_type	max_size	(void) const
+			{	return (_rbtree.max_size());	}
+
+//			reference		at	(key_type const & key)
+//			{	return (*_rbtree.find(key));	}
+//			const_reference	at	(key_type const & key) const
+//			{	return (*_rbtree.find(key));	}
+
 //			ft::pair<iterator, iterator>	equal_range	(Key const & key)
 //			{
 //				std::pair<iterator, iterator>	tmp = this->std::map<Key, T, Compare, Allocator>::equal_range(key);
