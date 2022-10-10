@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 15:10:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 15:14:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,11 @@ namespace ft
 			{	return (_rbtree.find(key));	}
 			const_iterator	find	(Key const & key) const
 			{	return (_rbtree.find(key));	}
+
+			void	swap	(map & rhs)
+			{
+				_rbtree.swap(rhs._rbtree);
+			}
 
 //			ft::pair<iterator, iterator>	equal_range	(Key const & key)
 //			{
