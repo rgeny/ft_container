@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 15:00:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 15:10:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,29 @@ namespace ft
 				}
 			}
 
+			void	erase	(iterator pos)
+			{
+				this->erase(pos->first);
+			}
+			void	erase	(iterator first,
+							 iterator last)
+			{
+				while (first != last)
+				{
+					iterator	next = first;
+					++next;
+					this->erase(first->first);
+					first = next;
+				}
+			}
+			size_type erase	(Key const & key)
+			{
+				if (this->find(key) == this->end())
+					return (0);
+				_rbtree.erase(key);
+				return (1);
+			}
+
 			mapped_type &	operator[]	(key_type const & key)
 			{
 				return (this->insert(ft::make_pair(key, mapped_type())).first->second);
@@ -195,6 +218,11 @@ namespace ft
 
 			void	clear	(void)
 			{	_rbtree.clear();	}
+
+			iterator		find	(Key const & key)
+			{	return (_rbtree.find(key));	}
+			const_iterator	find	(Key const & key) const
+			{	return (_rbtree.find(key));	}
 
 //			ft::pair<iterator, iterator>	equal_range	(Key const & key)
 //			{
