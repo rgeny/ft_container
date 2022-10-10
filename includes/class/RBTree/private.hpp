@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 15:07:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:29:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,9 @@ void	_construct	(NodeBase_ptr & new_node,
 	_node_alloc.construct(_cast(new_node), tmp);
 }
 
-void	_clear		(NodeBase_ptr & node,
-					 bool destroy_sentinel = false)
+void	_clear		(NodeBase_ptr & node)
 {
-	if (node != _sentinel || destroy_sentinel)
+	if (node != _sentinel)
 	{
 		node_pointer	tmp = _cast(node);
 
@@ -71,6 +70,8 @@ void	_clear_all	(NodeBase_ptr node)
 		_clear_all(node->right);
 		tmp = node;
 		node = node->left;
+		if (tmp == _root)
+			_root = _sentinel;
 		_clear(tmp);
 	}
 }
