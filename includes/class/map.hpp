@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 14:10:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 14:21:13 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 # include <iostream>
 # include <map>
+# include <stdexcept>
 
 # include "pair.hpp"
 # include <utility>
 # include "RBTree.hpp"
+
+# define EXCEPTION_FT_MAP_AT "ft::map::at"
 
 namespace ft
 {
@@ -157,10 +160,20 @@ namespace ft
 			size_type	max_size	(void) const
 			{	return (_rbtree.max_size());	}
 
-//			reference		at	(key_type const & key)
-//			{	return (*_rbtree.find(key));	}
-//			const_reference	at	(key_type const & key) const
-//			{	return (*_rbtree.find(key));	}
+			mapped_type &		at	(key_type const & key)
+			{
+				iterator	it = _rbtree.find(key);
+				if (it == this->end())
+					throw (std::out_of_range(EXCEPTION_FT_MAP_AT));
+				return (it->second);
+			}
+			mapped_type const &	at	(key_type const & key) const
+			{
+				iterator	it = _rbtree.find(key);
+				if (it == this->end())
+					throw (std::out_of_range(EXCEPTION_FT_MAP_AT));
+				return (it->second);
+			}
 
 //			ft::pair<iterator, iterator>	equal_range	(Key const & key)
 //			{
