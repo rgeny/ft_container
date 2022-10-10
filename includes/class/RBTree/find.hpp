@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:27:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 15:01:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/10 15:10:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 public:
 	iterator		find	(key_type const & key)
+	{	return (iterator(this->_find(key)));	}
+	const_iterator	find	(key_type const & key) const
 	{	return (iterator(this->_find(key)));	}
 
 private:
