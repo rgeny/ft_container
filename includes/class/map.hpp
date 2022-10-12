@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/12 18:36:58 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/12 21:37:34 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,6 +233,21 @@ namespace ft
 			{
 				return (this->find(key) != this->end());
 			}
+
+			iterator		lower_bound	(key_type const & key)
+			{	return (_rbtree.lower_bound(key));	}
+			const_iterator	lower_bound	(key_type const & key) const
+			{	return (_rbtree.lower_bound(key));	}
+
+			iterator		upper_bound	(key_type const & key)
+			{	return (_rbtree.upper_bound(key));	}
+			const_iterator	upper_bound	(key_type const & key) const
+			{	return (_rbtree.upper_bound(key));	}
+
+			ft::pair<iterator, iterator>	equal_range	(key_type const & key)
+			{	return (_rbtree.equal_range(key));	}
+			ft::pair<const_iterator, const_iterator>	equal_range	(key_type const & key) const
+			{	return (_rbtree.equal_range(key));	}
 
 //			ft::pair<iterator, iterator>	equal_range	(Key const & key)
 //			{

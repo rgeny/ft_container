@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/12 18:40:54 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/12 21:36:59 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,55 @@ namespace ft
 					ft::swap(_sentinel, rhs._sentinel);
 					ft::swap(_root, rhs._root);
 					ft::swap(_size, rhs._size);
+				}
+
+				iterator	lower_bound	(key_type const & key)
+				{
+					iterator	it = this->begin(),
+								ite = this->end();
+
+					while (it != ite && _compare(it._cur_node, key))
+						++it;
+					return (it);
+				}
+				const_iterator	lower_bound	(key_type const & key) const
+				{
+					const_iterator	it = this->begin(),
+									ite = this->end();
+
+					while (it != ite && _compare(it._cur_node, key))
+						++it;
+					return (it);
+				}
+
+				iterator	upper_bound	(key_type const & key)
+				{
+					iterator	it = this->begin(),
+								ite = this->end();
+
+					while (it != ite && !_compare(key, it._cur_node))
+						++it;
+					return (it);
+				}
+				const_iterator	upper_bound	(key_type const & key) const
+				{
+					const_iterator	it = this->begin(),
+									ite = this->end();
+
+					while (it != ite && !_compare(key, it._cur_node))
+						++it;
+					return (it);
+				}
+
+				ft::pair<iterator,iterator>	equal_range	(key_type const & key)
+				{
+					return (ft::make_pair(this->lower_bound(key),
+										  this->upper_bound(key)));
+				}
+				ft::pair<const_iterator,const_iterator>	equal_range	(key_type const & key ) const
+				{
+					return (ft::make_pair(this->lower_bound(key),
+										  this->upper_bound(key)));
 				}
 
 //NodeBase_ptr			_sentinel;
