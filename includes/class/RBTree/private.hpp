@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 14:29:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/12 18:42:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 node_pointer	_cast	(NodeBase_ptr node)
 {	return (static_cast<node_pointer>(node));	}
+node_const_pointer	_cast	(NodeBase_const_ptr node) const
+{	return (static_cast<node_const_pointer>(node));	}
 
 int	_compare	(NodeBase_ptr node,
 				 key_type const & key)
@@ -23,11 +25,24 @@ int	_compare	(NodeBase_ptr node,
 	node_pointer	tmp = _cast(node);
 	return (_comp(KeyOfValue()(tmp->value), key));
 }
+int	_compare	(NodeBase_const_ptr node,
+				 key_type const & key) const
+{
+	node_const_pointer	tmp = _cast(node);
+	return (_comp(KeyOfValue()(tmp->value), key));
+}
 
 int		_compare	(key_type const & key,
 					 NodeBase_ptr node)
 {
 	node_pointer	tmp = _cast(node);
+	return (_comp(key, KeyOfValue()(tmp->value)));
+}
+
+int		_compare	(key_type const & key,
+					 NodeBase_const_ptr node) const
+{
+	node_const_pointer	tmp = _cast(node);
 	return (_comp(key, KeyOfValue()(tmp->value)));
 }
 
