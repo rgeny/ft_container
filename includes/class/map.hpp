@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/12 18:31:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/12 18:36:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,7 @@ namespace ft
 				_rbtree.swap(rhs._rbtree);
 			}
 
-			size_type	count	(key_type const & key)
+			size_type	count	(key_type const & key) const
 			{
 				return (this->find(key) != this->end());
 			}
