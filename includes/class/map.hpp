@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 15:14:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/12 18:31:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,11 @@ namespace ft
 			void	swap	(map & rhs)
 			{
 				_rbtree.swap(rhs._rbtree);
+			}
+
+			size_type	count	(key_type const & key)
+			{
+				return (this->find(key) != this->end());
 			}
 
 //			ft::pair<iterator, iterator>	equal_range	(Key const & key)
