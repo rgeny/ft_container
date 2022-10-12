@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/12 18:42:42 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/12 18:52:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,13 @@ void	_clear_all	(NodeBase_ptr node)
 void	_init_sentinel	(void)
 {
 	_sentinel = _node_alloc.allocate(1);
-	_sentinel->left = _sentinel;
-	_sentinel->right = _sentinel;
-	_sentinel->left = _sentinel;
-	_sentinel->color = black_node;
+
+	node_type	tmp(_sentinel, _sentinel, value_type(), black_node);
+//	_sentinel->left = _sentinel;
+//	_sentinel->right = _sentinel;
+//	_sentinel->left = _sentinel;
+//	_sentinel->color = black_node;
+	_node_alloc.construct(_cast(_sentinel), tmp);
 	_root = _sentinel;
 }
 

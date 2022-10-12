@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:46:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 14:23:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/12 18:52:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ Tree	(InputIt & first,
 {
 	this->clear();
 //	_clear(_sentinel, true);
+	_node_alloc.destroy(_cast(_sentinel));
 	_node_alloc.deallocate(_cast(_sentinel), 1);
 }
 
