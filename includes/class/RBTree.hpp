@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/12 21:36:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/14 15:39:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ namespace ft
 			private:
 				allocator_type			_alloc;
 				_node_allocator_type	_node_alloc;
-				NodeBase_ptr			_sentinel;
 				NodeBase_ptr			_root;
+				NodeBase_ptr			_sentinel;
 				size_type				_size;
 				key_compare				_comp;
 

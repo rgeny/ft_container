@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:46:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/12 18:52:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/14 15:39:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 Tree	(allocator_type const & alloc = allocator_type())
 	:_alloc(alloc)
 	,_node_alloc(alloc)
-	,_sentinel(NULL)
 	,_root(NULL)
+	,_sentinel(NULL)
 	,_size(0)
 	,_comp()
 {
@@ -29,8 +29,8 @@ Tree	(Tree const & src,
 		 allocator_type const & alloc = allocator_type())
 	:_alloc(alloc)
 	,_node_alloc(alloc)
-	,_sentinel(NULL)
 	,_root(NULL)
+	,_sentinel(NULL)
 	,_size(0)
 	,_comp()
 {
@@ -50,8 +50,8 @@ Tree	(InputIt & first,
 		 allocator_type const & alloc = allocator_type() )
 	:_alloc(alloc)
 	,_node_alloc(alloc)
-	,_sentinel(NULL)
 	,_root(NULL)
+	,_sentinel(NULL)
 	,_size(0)
 	,_comp()
 {
