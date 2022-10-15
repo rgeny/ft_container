@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/12 18:52:55 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/15 17:23:09 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,12 +95,13 @@ void	_init_head	(void)
 {
 	_head = _node_alloc.allocate(1);
 
-	node_type	tmp(_head, _head, value_type(), black_node);
+	node_type	tmp(_head, NULL, value_type(), black_node);
 //	_head->left = _head;
 //	_head->right = _head;
 //	_head->left = _head;
 //	_head->color = black_node;
 	_node_alloc.construct(_cast(_head), tmp);
+	this->reset();
 	_root = _head;
 }
 

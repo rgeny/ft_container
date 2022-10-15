@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/15 16:11:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/15 17:23:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ DFL_CTOR
 
 			void	reset	(void)
 			{
-				_head->parent = _head;
+				_head->parent = NULL;
 				_head->parent = _head;
 				_head->parent = _head;
 				_size = 0;
@@ -100,7 +100,7 @@ DFL_CTOR
 				typedef ft::reverse_iterator<iterator>				reverse_iterator;
 				typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
 
-			private:
+//			private:
 				allocator_type			_alloc;
 				_node_allocator_type	_node_alloc;
 				NodeBase_ptr			_root;
