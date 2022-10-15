@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/14 15:39:21 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/15 16:11:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,31 @@ namespace ft
 {
 	namespace RB
 	{
+# define CLASS_NAME "TreeHeader"
+		struct TreeHeader
+		{
+			NodeBase	_senti; //tmp
+			NodeBase *	_sentinel;
+			size_t		_size;
+
+			TreeHeader	(void)
+				:_sentinel(NULL)
+				,_size(0)
+			{
+# ifdef __DEBUG__
+DFL_CTOR
+# endif
+			}
+
+			void	reset	(void)
+			{
+				_sentinel->parent = _sentinel;
+				_sentinel->parent = _sentinel;
+				_sentinel->parent = _sentinel;
+				_size = 0;
+			}
+		};
+# undef CLASS_NAME
 # define CLASS_NAME "RBTree"
 		template
 		<
@@ -46,6 +71,7 @@ namespace ft
 			typename Allocator = std::allocator<Value>
 		>
 		class Tree
+			:public TreeHeader
 		{
 			private:
 				typedef typename Allocator::template rebind<Node<Value> >::other	
@@ -78,8 +104,6 @@ namespace ft
 				allocator_type			_alloc;
 				_node_allocator_type	_node_alloc;
 				NodeBase_ptr			_root;
-				NodeBase_ptr			_sentinel;
-				size_type				_size;
 				key_compare				_comp;
 
 			public:

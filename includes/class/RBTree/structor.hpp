@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:46:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/14 15:39:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/15 16:13:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 #  define RBTREE_STRUCTOR_HPP
 
 Tree	(allocator_type const & alloc = allocator_type())
-	:_alloc(alloc)
+	:TreeHeader()
+	,_alloc(alloc)
 	,_node_alloc(alloc)
 	,_root(NULL)
-	,_sentinel(NULL)
-	,_size(0)
 	,_comp()
 {
 	_init_sentinel();
@@ -27,11 +26,10 @@ Tree	(allocator_type const & alloc = allocator_type())
 
 Tree	(Tree const & src,
 		 allocator_type const & alloc = allocator_type())
-	:_alloc(alloc)
+	:TreeHeader(src.TreeHeader)
+	,_alloc(alloc)
 	,_node_alloc(alloc)
 	,_root(NULL)
-	,_sentinel(NULL)
-	,_size(0)
 	,_comp()
 {
 	_init_sentinel();
@@ -48,11 +46,10 @@ template < typename InputIt >
 Tree	(InputIt & first,
 		 InputIt & last,
 		 allocator_type const & alloc = allocator_type() )
-	:_alloc(alloc)
+	:TreeHeader()
+	,_alloc(alloc)
 	,_node_alloc(alloc)
 	,_root(NULL)
-	,_sentinel(NULL)
-	,_size(0)
 	,_comp()
 {
 	_init_sentinel();
