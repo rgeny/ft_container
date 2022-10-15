@@ -40,11 +40,11 @@ namespace ft
 		struct TreeHeader
 		{
 			NodeBase	_senti; //tmp
-			NodeBase *	_sentinel;
+			NodeBase *	_head;
 			size_t		_size;
 
 			TreeHeader	(void)
-				:_sentinel(NULL)
+				:_head(NULL)
 				,_size(0)
 			{
 # ifdef __DEBUG__
@@ -54,9 +54,9 @@ DFL_CTOR
 
 			void	reset	(void)
 			{
-				_sentinel->parent = _sentinel;
-				_sentinel->parent = _sentinel;
-				_sentinel->parent = _sentinel;
+				_head->parent = _head;
+				_head->parent = _head;
+				_head->parent = _head;
 				_size = 0;
 			}
 		};
@@ -115,7 +115,7 @@ DFL_CTOR
 					_clear(_root);
 					NodeBase_ptr	tmp = src._root->min();
 
-					while (tmp != src._sentinel)
+					while (tmp != src._head)
 					{
 						this->insert(_cast(tmp)->value);
 						tmp = node_increment(tmp);
@@ -146,7 +146,7 @@ DFL_CTOR
 				{
 					NodeBase_ptr	to_return = _root;
 
-					while ( ! to_return->left->is_sentinel() )
+					while ( ! to_return->left->is_head() )
 						to_return = to_return->left;
 					return (to_return);
 				}
@@ -155,7 +155,7 @@ DFL_CTOR
 				{
 					NodeBase_ptr	to_return = _root;
 
-					while ( ! to_return->right->is_sentinel() )
+					while ( ! to_return->right->is_head() )
 						to_return = to_return->right;
 					return (to_return);
 				}
@@ -167,9 +167,9 @@ DFL_CTOR
 				{	return (_root->min());	}
 
 				iterator		end		(void)
-				{	return (_sentinel);	}
+				{	return (_head);	}
 				const_iterator	end		(void) const
-				{	return (_sentinel);	}
+				{	return (_head);	}
 
 				reverse_iterator		rbegin	(void)
 				{	return (reverse_iterator(this->end()));	}
@@ -183,7 +183,7 @@ DFL_CTOR
 				
 				void	swap	(Tree & rhs)
 				{
-					ft::swap(_sentinel, rhs._sentinel);
+					ft::swap(_head, rhs._head);
 					ft::swap(_root, rhs._root);
 					ft::swap(_size, rhs._size);
 				}
@@ -236,10 +236,6 @@ DFL_CTOR
 					return (ft::make_pair(this->lower_bound(key),
 										  this->upper_bound(key)));
 				}
-
-//NodeBase_ptr			_sentinel;
-//				NodeBase_ptr			_root;
-//				size_type				_size;
 
 				void	test	(void)
 				{

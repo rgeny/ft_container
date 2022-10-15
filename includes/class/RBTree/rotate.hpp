@@ -20,10 +20,10 @@ void	_left_rotate	(NodeBase_ptr parent)
 	NodeBase_ptr	grandp = parent->parent;
 
 	parent->right = child->left;
-	if (child->left != _sentinel)
+	if (child->left != _head)
 		child->left->parent = parent;
 	child->parent = grandp;
-	if (grandp == _sentinel)
+	if (grandp == _head)
 		_root = child;
 	else if (grandp->left == parent)
 		grandp->left = child;
@@ -39,10 +39,10 @@ void	_right_rotate	(NodeBase_ptr parent)
 	NodeBase_ptr	grandp = parent->parent;
 
 	parent->left = child->right;
-	if (child->right != _sentinel)
+	if (child->right != _head)
 		child->right->parent = parent;
 	child->parent = grandp;
-	if (grandp == _sentinel)
+	if (grandp == _head)
 		_root = child;
 	else if (grandp->left == parent)
 		grandp->left = child;

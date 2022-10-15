@@ -48,7 +48,7 @@ namespace ft
 				NodeBase_ptr		min	(void);
 				NodeBase_const_ptr	min	(void) const;
 
-				bool	is_sentinel	(void) const;
+				bool	is_head	(void) const;
 		};
 
 		NodeBase *			node_decrement	(NodeBase * node);

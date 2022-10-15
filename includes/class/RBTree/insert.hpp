@@ -24,14 +24,14 @@ public:
 	iterator	 insert	(iterator hint,
 						 const_reference value)
 	{
-		NodeBase_ptr	parent = _sentinel;
+		NodeBase_ptr	parent = _head;
 		NodeBase_ptr &	new_node = this->_find(KeyOfValue()(value), parent, &hint._cur_node);
 
-		if (new_node != _sentinel)
+		if (new_node != _head)
 			return (iterator(new_node));
 		_construct(new_node, parent, value);
 		tree_insert_and_balance(new_node, _root);
-		_sentinel->parent = _root;
+		_head->parent = _root;
 		return (iterator(new_node));
 	}
 

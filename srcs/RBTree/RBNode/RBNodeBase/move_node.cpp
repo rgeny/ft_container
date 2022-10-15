@@ -16,13 +16,13 @@ using namespace ft::RB;
 
 NodeBase *	ft::RB::node_decrement	(NodeBase * node)
 {
-	if (node->is_sentinel())
+	if (node->is_head())
 		return (node->parent->max());
-	if ( ! node->left->is_sentinel() )
+	if ( ! node->left->is_head() )
 		return (node->left->max());
 	
 	NodeBase *	parent = node->parent;
-	while ( ! parent->is_sentinel() &&
+	while ( ! parent->is_head() &&
 			parent->left == node)
 	{
 		node = parent;
@@ -33,13 +33,13 @@ NodeBase *	ft::RB::node_decrement	(NodeBase * node)
 
 NodeBase const *	ft::RB::node_decrement	(NodeBase const * node)
 {
-	if (node->is_sentinel())
+	if (node->is_head())
 		return (node->parent->max());
-	if ( ! node->left->is_sentinel() )
+	if ( ! node->left->is_head() )
 		return (node->left->max());
 	
 	NodeBase *	parent = node->parent;
-	while ( ! parent->is_sentinel() &&
+	while ( ! parent->is_head() &&
 			parent->left == node)
 	{
 		node = parent;
@@ -50,13 +50,13 @@ NodeBase const *	ft::RB::node_decrement	(NodeBase const * node)
 
 NodeBase *	ft::RB::node_increment	(NodeBase * node)
 {
-	if (node->is_sentinel())
+	if (node->is_head())
 		return (node->parent->max());
-	if ( ! node->right->is_sentinel() )
+	if ( ! node->right->is_head() )
 		return (node->right->min());
 	
 	NodeBase *	parent = node->parent;
-	while ( ! parent->is_sentinel() &&
+	while ( ! parent->is_head() &&
 			parent->right == node)
 	{
 		node = parent;
@@ -67,13 +67,13 @@ NodeBase *	ft::RB::node_increment	(NodeBase * node)
 
 NodeBase const *	ft::RB::node_increment	(NodeBase const * node)
 {
-	if (node->is_sentinel())
+	if (node->is_head())
 		return (node->parent->max());
-	if ( ! node->right->is_sentinel() )
+	if ( ! node->right->is_head() )
 		return (node->right->min());
 	
 	NodeBase *	parent = node->parent;
-	while ( ! parent->is_sentinel() &&
+	while ( ! parent->is_head() &&
 			parent->right == node)
 	{
 		node = parent;

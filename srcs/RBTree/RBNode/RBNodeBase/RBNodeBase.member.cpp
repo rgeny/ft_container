@@ -17,7 +17,7 @@ using namespace ft::RB;
 NodeBase *	NodeBase::min	(void)
 {
 	NodeBase_ptr	node = this;
-	while ( ! node->left->is_sentinel() )
+	while ( ! node->left->is_head() )
 		node = node->left;
 	return (node);
 }
@@ -25,7 +25,7 @@ NodeBase *	NodeBase::min	(void)
 NodeBase const *	NodeBase::min	(void) const
 {
 	NodeBase_const_ptr	node = this;
-	while ( ! node->left->is_sentinel() )
+	while ( ! node->left->is_head() )
 		node = node->left;
 	return (node);
 }
@@ -33,7 +33,7 @@ NodeBase const *	NodeBase::min	(void) const
 NodeBase *	NodeBase::max	(void)
 {
 	NodeBase_ptr	node = this;
-	while ( ! node->right->is_sentinel() )
+	while ( ! node->right->is_head() )
 		node = node->right;
 	return (node);
 }
@@ -41,12 +41,12 @@ NodeBase *	NodeBase::max	(void)
 NodeBase const *	NodeBase::max	(void) const
 {
 	NodeBase_const_ptr	node = this;
-	while ( ! node->right->is_sentinel() )
+	while ( ! node->right->is_head() )
 		node = node->right;
 	return (node);
 }
 
-bool	NodeBase::is_sentinel	(void) const
+bool	NodeBase::is_head	(void) const
 {
 	return (this == this->left);
 }

@@ -21,7 +21,7 @@ Tree	(allocator_type const & alloc = allocator_type())
 	,_root(NULL)
 	,_comp()
 {
-	_init_sentinel();
+	_init_head();
 }
 
 Tree	(Tree const & src,
@@ -32,10 +32,10 @@ Tree	(Tree const & src,
 	,_root(NULL)
 	,_comp()
 {
-	_init_sentinel();
+	_init_head();
 
 	NodeBase_ptr	tmp = src._root->min();
-	while (tmp != src._sentinel)
+	while (tmp != src._head)
 	{
 		this->insert(_cast(tmp)->value);
 		tmp = node_increment(tmp);
@@ -52,7 +52,7 @@ Tree	(InputIt & first,
 	,_root(NULL)
 	,_comp()
 {
-	_init_sentinel();
+	_init_head();
 
 	while (first != last)
 	{
@@ -64,9 +64,9 @@ Tree	(InputIt & first,
 ~Tree	(void)
 {
 	this->clear();
-//	_clear(_sentinel, true);
-	_node_alloc.destroy(_cast(_sentinel));
-	_node_alloc.deallocate(_cast(_sentinel), 1);
+//	_clear(_head, true);
+	_node_alloc.destroy(_cast(_head));
+	_node_alloc.deallocate(_cast(_head), 1);
 }
 
 # endif

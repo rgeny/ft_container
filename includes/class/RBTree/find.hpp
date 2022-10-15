@@ -23,7 +23,7 @@ public:
 private:
 	NodeBase_ptr &	_find	(key_type const & key)
 	{
-		NodeBase_ptr	parent = _sentinel;
+		NodeBase_ptr	parent = _head;
 		return (this->_find(key, parent));
 	}
 
@@ -37,13 +37,13 @@ private:
 							 NodeBase_ptr & parent,
 							 NodeBase_ptr * hint)
 	{
-		if (*hint == _sentinel || (*hint != _root &&
+		if (*hint == _head || (*hint != _root &&
 			(((*hint)->parent->left == *hint && _compare((*hint)->parent, key)) ||
 			 ((*hint)->parent->right == *hint && _compare(key, (*hint)->parent)))))
 		{
 			hint = &_root;
 		}
-		while (*hint != _sentinel)
+		while (*hint != _head)
 		{
 			parent = *hint;
 			if (_compare(parent, key))
@@ -60,7 +60,7 @@ private:
 	{
 		NodeBase_ptr	node = _root;
 
-		while (node != _sentinel)
+		while (node != _head)
 		{
 			if (_compare(node, key))
 				node = node->right;
@@ -75,7 +75,7 @@ private:
 	{
 		NodeBase_const_ptr	node = _root;
 
-		while (node != _sentinel)
+		while (node != _head)
 		{
 			if (_compare(node, key))
 				node = node->right;
