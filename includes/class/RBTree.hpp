@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:32:58 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:51:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ DFL_CTOR
 
 				Tree &	operator=	(Tree const & src)
 				{
-					_clear(&_head.parent);
+					_clear(_head.parent);
 					NodeBase_ptr	tmp = src._head.parent->min();
 
 					while (tmp != &src._head)
@@ -192,6 +192,7 @@ DFL_CTOR
 				
 				void	swap	(Tree & rhs)
 				{
+					ft::swap(_head.parent->parent, rhs._head.parent->parent);
 					ft::swap(_head.parent, rhs._head.parent);
 					ft::swap(_head.left, rhs._head.left);
 					ft::swap(_head.right, rhs._head.right);
