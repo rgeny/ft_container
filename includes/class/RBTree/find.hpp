@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:27:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/12 18:39:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 16:04:24 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ private:
 	NodeBase_ptr &	_find	(key_type const & key,
 							 NodeBase_ptr & parent)
 	{
-		return (_find(key, parent, &_root));
+		return (_find(key, parent, &_head.parent));
 	}
 
 	NodeBase_ptr &	_find	(key_type const & key,
 							 NodeBase_ptr & parent,
 							 NodeBase_ptr * hint)
 	{
-		if (*hint == &_head || (*hint != _root &&
+		if (*hint == &_head || (*hint != _head.parent &&
 			(((*hint)->parent->left == *hint && _compare((*hint)->parent, key)) ||
 			 ((*hint)->parent->right == *hint && _compare(key, (*hint)->parent)))))
 		{
-			hint = &_root;
+			hint = &_head.parent;
 		}
 		while (*hint != &_head)
 		{
@@ -58,7 +58,7 @@ private:
 
 	NodeBase_ptr	_find_node	(key_type const & key)
 	{
-		NodeBase_ptr	node = _root;
+		NodeBase_ptr	node = _head.parent;
 
 		while (node != &_head)
 		{
@@ -73,7 +73,7 @@ private:
 	}
 	NodeBase_const_ptr	_find_node	(key_type const & key) const
 	{
-		NodeBase_const_ptr	node = _root;
+		NodeBase_const_ptr	node = _head.parent;
 
 		while (node != &_head)
 		{

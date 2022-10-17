@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 15:07:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 16:01:54 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ namespace ft
 			size_t		_size;
 
 			TreeHeader	(void)
-				:_head(NULL, &_head, &_head)
+				:_head(&_head, &_head, &_head)
 				,_size(0)
 			{
 # ifdef __DEBUG__
@@ -53,7 +53,7 @@ DFL_CTOR
 
 			void	reset	(void)
 			{
-				_head.parent = NULL;
+				_head.parent = &_head;
 				_head.left = &_head;
 				_head.right = &_head;
 				_size = 0;
