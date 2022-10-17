@@ -6,11 +6,11 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 11:03:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/08 16:23:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 15:13:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RBTree/RBNode/RBNodeBase.hpp"
+#include "RBTree/RBNodeBase.hpp"
 
 #define CLASS_NAME "RBNodeBase"
 

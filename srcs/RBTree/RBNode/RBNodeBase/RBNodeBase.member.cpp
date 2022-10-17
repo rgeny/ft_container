@@ -6,11 +6,11 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:22:43 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 12:50:33 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 15:13:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RBTree/RBNode/RBNodeBase.hpp"
+#include "RBTree/RBNodeBase.hpp"
 
 using namespace ft::RB;
 

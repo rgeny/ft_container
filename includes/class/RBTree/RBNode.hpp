@@ -6,14 +6,14 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 15:04:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 15:12:04 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RBNODE_HPP
 # define RBNODE_HPP
 
-# include "RBNode/RBNodeBase.hpp"
+# include "RBNodeBase.hpp"
 
 namespace ft
 {

@@ -6,9 +6,9 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:47:29 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/28 17:14:09 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 15:12:36 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RBTree/RBNode/RBNodeBase.hpp"
+#include "RBTree/RBNodeBase.hpp"
 
