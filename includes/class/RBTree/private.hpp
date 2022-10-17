@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 15:45:46 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 16:19:20 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,8 @@ void	_construct	(NodeBase_ptr & new_node,
 					 value_type const & value = value_type(),
 					 node_color const color = red_node)
 {
-	if (new_node != &_head)
-		return ;
-	else
-	{
-		new_node = _node_alloc.allocate(1);
-		++_size;
-	}
+	new_node = _node_alloc.allocate(1);
+	++_size;
 	
 	node_type	tmp(&_head, parent, value, color);
 	_node_alloc.construct(_cast(new_node), tmp);
