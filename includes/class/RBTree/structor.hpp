@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:46:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 15:09:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 15:46:16 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,18 @@ Tree	(allocator_type const & alloc = allocator_type())
 	:TreeHeader()
 	,_alloc(alloc)
 	,_node_alloc(alloc)
-	,_root(NULL)
+	,_root(&_head)
 	,_comp()
-{
-	_init_head();
-}
+{	}
 
 Tree	(Tree const & src,
 		 allocator_type const & alloc = allocator_type())
 	:TreeHeader()
 	,_alloc(alloc)
 	,_node_alloc(alloc)
-	,_root(NULL)
+	,_root(&_head)
 	,_comp()
 {
-	_init_head();
-
 	NodeBase_ptr	tmp = src._root->min();
 	while (tmp != &src._head)
 	{
@@ -49,11 +45,9 @@ Tree	(InputIt & first,
 	:TreeHeader()
 	,_alloc(alloc)
 	,_node_alloc(alloc)
-	,_root(NULL)
+	,_root(&_head)
 	,_comp()
 {
-	_init_head();
-
 	while (first != last)
 	{
 		this->insert(*first);

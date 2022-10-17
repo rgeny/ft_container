@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 14:56:56 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 15:45:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,6 @@ void	_clear_all	(NodeBase_ptr node)
 			_root = &_head;
 		_clear(tmp);
 	}
-}
-
-void	_init_head	(void)
-{
-//	_head = _node_alloc.allocate(1);
-
-//	node_type	tmp(_head, NULL, value_type(), black_node);
-//	_node_alloc.construct(_cast(_head), tmp);
-//	this->reset();
-	_root = &_head;
 }
 
 # endif
