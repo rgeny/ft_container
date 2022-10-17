@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:49:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 16:26:26 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:33:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #  define BLACK_NODE "\033[30m" // black
 #  define RED_NODE "\033[31m"   // red
 
-#  define ROOT _root
+#  define ROOT _head.parent
 #  define SENTINEL NULL
 #  define NODE_BASE_POINTER NodeBase_ptr
 #  define NODE_POINTER node_pointer

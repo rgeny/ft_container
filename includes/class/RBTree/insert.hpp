@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:00:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 16:22:18 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:31:47 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ public:
 			return (iterator(new_node));
 		_construct(new_node, parent, value);
 		tree_insert_and_balance(new_node, _head.parent);
-		_root = _head.parent;
 		return (iterator(new_node));
 	}
 

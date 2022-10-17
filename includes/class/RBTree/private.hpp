@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:08:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:31:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,7 @@ void	_clear_all	(NodeBase_ptr node)
 		tmp = node;
 		node = node->left;
 		if (tmp == _head.parent)
-		{
-			_root = NULL;
 			_head.parent = NULL;
-		}
 		_clear(tmp);
 	}
 }

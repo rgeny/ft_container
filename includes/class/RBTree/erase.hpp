@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:01:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:10:10 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:32:01 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,9 @@
 public:
 	size_type	erase	(key_type const & key)
 	{
-		NodeBase_ptr	tmp = tree_balance_and_erase(this->_find_node(key), _root);
+		NodeBase_ptr	tmp = tree_balance_and_erase(this->_find_node(key), _head.parent);
 
 		_clear(tmp);
-		_head.parent = _root;
-
 		return (1);
 	}
 

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:13:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:32:58 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ DFL_CTOR
 //			private:
 				allocator_type			_alloc;
 				_node_allocator_type	_node_alloc;
-				NodeBase_ptr			_root;
+//				NodeBase_ptr			_root;
 				key_compare				_comp;
 
 			public:
@@ -111,8 +111,8 @@ DFL_CTOR
 
 				Tree &	operator=	(Tree const & src)
 				{
-					_clear(_root);
-					NodeBase_ptr	tmp = src._root->min();
+					_clear(&_head.parent);
+					NodeBase_ptr	tmp = src._head.parent->min();
 
 					while (tmp != &src._head)
 					{
@@ -125,7 +125,7 @@ DFL_CTOR
 
 				void	clear	(void)
 				{
-					_clear_all(_root);
+					_clear_all(_head.parent);
 				}
 
 				size_type	size		(void) const
@@ -143,7 +143,7 @@ DFL_CTOR
 		public:
 				NodeBase_ptr	Nodebegin	(void)
 				{
-					NodeBase_ptr	to_return = _root;
+					NodeBase_ptr	to_return = _head.parent;
 
 					while ( ! to_return->left->is_head() )
 						to_return = to_return->left;
@@ -152,7 +152,7 @@ DFL_CTOR
 
 				NodeBase_ptr	Nodeend		(void)
 				{
-					NodeBase_ptr	to_return = _root;
+					NodeBase_ptr	to_return = _head.parent;
 
 					while ( ! to_return->right->is_head() )
 						to_return = to_return->right;
@@ -192,11 +192,9 @@ DFL_CTOR
 				
 				void	swap	(Tree & rhs)
 				{
-//					ft::swap(_head, rhs._head);
 					ft::swap(_head.parent, rhs._head.parent);
 					ft::swap(_head.left, rhs._head.left);
 					ft::swap(_head.right, rhs._head.right);
-					ft::swap(_root, rhs._root);
 					ft::swap(_size, rhs._size);
 				}
 
