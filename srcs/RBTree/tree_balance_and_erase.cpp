@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:41:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 16:15:52 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 20:48:23 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,104 +26,125 @@ static void	_transplant	(NodeBase_ptr parent,
 		grandp->left = child;
 	else
 		grandp->right = child;
-	child->parent = grandp;
+	if (child != NULL)
+		child->parent = grandp;
 }
 
 static void	_erase_balance	(NodeBase_ptr node,
+							 NodeBase_ptr parent,
 							 NodeBase_ptr & root)
 {
-	NodeBase_ptr	parent;
+//	NodeBase_ptr	parent;
 	NodeBase_ptr	sister;
 
-	while (node != root && node->color == black_node)
+	while (node != root && (node == NULL || node->color == black_node))
 	{
-		parent = node->parent;
+		if (node != NULL)
+			parent = node->parent;
 		if (node == parent->left)
 		{
 			sister = parent->right;
-			if (sister->color == red_node)
+			if (sister != NULL && sister->color == red_node)
 			{
 				sister->color = black_node;
 				parent->color = red_node;
-				left_rotate(node->parent, root);
-				sister = node->parent->right;
+				left_rotate(parent, root);
+				sister = parent->right;
 			}
-			if (sister->left->color == black_node &&
-				sister->right->color == black_node)
+			if (sister != NULL &&
+				(sister->left == NULL || sister->left->color == black_node) &&
+				(sister->right == NULL || sister->right->color == black_node))
 			{
 				sister->color = red_node;
-				node = node->parent;
+				node = parent;
 			}
 			else
 			{
-				if (sister->right->color == black_node)
+				if (sister != NULL &&
+					(sister->right == NULL || sister->right->color == black_node))
 				{
-					sister->left->color = black_node;
+					if (sister->left != NULL)
+						sister->left->color = black_node;
 					sister->color = red_node;
 					right_rotate(sister, root);
-					sister = node->parent->right;
+					sister = parent->right;
 				}
-				sister->color = node->parent->color;
-				node->parent->color = black_node;
-				sister->right->color = black_node;
-				left_rotate(node->parent, root);
+				if (sister != NULL)
+				{
+					sister->color = parent->color;
+					if (sister->right != NULL)
+						sister->right->color = black_node;
+				}
+				parent->color = black_node;
+				left_rotate(parent, root);
 				node = root;
 			}
 		}
 		else
 		{
 			sister = parent->left;
-			if (sister->color == red_node)
+			if (sister != NULL && sister->color == red_node)
 			{
 				sister->color = black_node;
 				parent->color = red_node;
-				right_rotate(node->parent, root);
-				sister = node->parent->left;
+				right_rotate(parent, root);
+				sister = parent->left;
 			}
-			if (sister->left->color == black_node &&
-				sister->right->color == black_node)
+			if (sister != NULL &&
+				(sister->left == NULL || sister->left->color == black_node) &&
+				(sister->right == NULL || sister->right->color == black_node))
 			{
 				sister->color = red_node;
-				node = node->parent;
+				node = parent;
 			}
 			else
 			{
-				if (sister->left->color == black_node)
+				if (sister != NULL &&
+					(sister->left == NULL || sister->left->color == black_node))
 				{
-					sister->right->color = black_node;
+					if (sister->right != NULL)
+						sister->right->color = black_node;
 					sister->color = red_node;
 					left_rotate(sister, root);
-					sister = node->parent->left;
+					sister = parent->left;
 				}
-				sister->color = node->parent->color;
-				node->parent->color = black_node;
-				sister->left->color = black_node;
-				right_rotate(node->parent, root);
+				if (sister != NULL)
+				{
+					sister->color = parent->color;
+					if (sister->left != NULL)
+						sister->left->color = black_node;
+				}
+				parent->color = black_node;
+				right_rotate(parent, root);
 				node = root;
 			}
 		}
 	}
-	node->color = black_node;
+	if (node != NULL)
+		node->color = black_node;
 }
 
 NodeBase_ptr	ft::RB::tree_balance_and_erase	(NodeBase_ptr del_node,
 												 NodeBase_ptr & root)
 {
 	if ( del_node->is_head() )
-		return (0);
+		return (NULL);
 
 	node_color		original_color = del_node->color;
 	NodeBase_ptr	child,
+					parent = del_node,
 					min = del_node;
 
 	if ( del_node->left->is_head() )
 	{
 		child = del_node->right;
+		parent = del_node->parent;
 		_transplant(del_node, child, root);
 	}
 	else if ( del_node->right->is_head() )
 	{
 		child = del_node->left;
+		parent = del_node->parent;
 		_transplant(del_node, child, root);
 	}
 	else
@@ -131,13 +152,19 @@ NodeBase_ptr	ft::RB::tree_balance_and_erase	(NodeBase_ptr del_node,
 		min = del_node->right->min();
 		original_color = min->color;
 		child = min->right;
+		parent = min;
 		if (min->parent == del_node)
-			child->parent = min;
+		{
+			if (child != NULL)
+				child->parent = min;
+		}
 		else
 		{
 			_transplant(min, min->right, root);
 			min->right = del_node->right;
-			min->right->parent = min;
+			parent = min->parent;
+			if (min->right != NULL)
+				min->right->parent = min;
 		}
 		_transplant(del_node, min, root);
 		min->left = del_node->left;
@@ -146,6 +173,6 @@ NodeBase_ptr	ft::RB::tree_balance_and_erase	(NodeBase_ptr del_node,
 	}
 
 	if (original_color == black_node)
-		_erase_balance(child, root);
+		_erase_balance(child, parent, root);
 	return (del_node);
 }

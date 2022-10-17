@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 16:25:01 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 11:02:02 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 17:46:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,20 @@ void	ft::RB::left_rotate	(NodeBase * parent,
 	NodeBase *	child = parent->right;
 	NodeBase *	grandp = parent->parent;
 
-	parent->right = child->left;
-	if ( ! child->left->is_head() )
-		child->left->parent = parent;
-	child->parent = grandp;
+	if (child != NULL)
+	{
+		parent->right = child->left;
+		if ( ! child->left->is_head() )
+			child->left->parent = parent;
+		child->parent = grandp;
+		child->left = parent;
+	}
 	if ( grandp->is_head() )
 		root = child;
 	else if (grandp->left == parent)
 		grandp->left = child;
 	else
 		grandp->right = child;
-	child->left = parent;
 	parent->parent = child;
 }
 

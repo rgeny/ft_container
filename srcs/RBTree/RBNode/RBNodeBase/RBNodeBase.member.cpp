@@ -6,11 +6,12 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:22:43 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 15:13:00 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 16:31:13 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RBTree/RBNodeBase.hpp"
+#include <iostream>
 
 using namespace ft::RB;
 
@@ -48,5 +49,6 @@ NodeBase const *	NodeBase::max	(void) const
 
 bool	NodeBase::is_head	(void) const
 {
-	return (this == this->left);
+	bool	not_null = (bool)this;
+	return (!not_null || this == this->left);
 }

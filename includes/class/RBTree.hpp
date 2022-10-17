@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 16:20:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:13:43 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,9 +161,19 @@ DFL_CTOR
 
 
 				iterator		begin	(void)
-				{	return (_root->min());	}
+				{
+					if (_head.parent == NULL)
+						return (&_head);
+					return (_head.parent->min());
+				}
+//					return (_root->min());	}
 				const_iterator	begin	(void) const
-				{	return (_root->min());	}
+				{
+					if (_head.parent == NULL)
+						return (&_head);
+					return (_head.parent->min());
+				}
+//				{	return (_root->min());	}
 
 				iterator		end		(void)
 				{	return (&_head);	}
@@ -183,6 +193,9 @@ DFL_CTOR
 				void	swap	(Tree & rhs)
 				{
 //					ft::swap(_head, rhs._head);
+					ft::swap(_head.parent, rhs._head.parent);
+					ft::swap(_head.left, rhs._head.left);
+					ft::swap(_head.right, rhs._head.right);
 					ft::swap(_root, rhs._root);
 					ft::swap(_size, rhs._size);
 				}

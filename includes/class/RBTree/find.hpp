@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:27:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 16:17:15 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:01:54 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,21 @@
 
 public:
 	iterator		find	(key_type const & key)
-	{	return (iterator(this->_find_node(key)));	}
+	{
+		iterator	it = this->_find_node(key);
+		if (it._cur_node == NULL)
+			return (iterator(&_head));
+		return (it);
+	}
+//		return (iterator(this->_find_node(key)));	}
 	const_iterator	find	(key_type const & key) const
-	{	return (const_iterator(this->_find_node(key)));	}
+	{
+		const_iterator	it = this->_find_node(key);
+		if (it._cur_node == NULL)
+			return (const_iterator(&_head));
+		return (it);
+	}
+//	{	return (const_iterator(this->_find_node(key)));	}
 
 private:
 	NodeBase_ptr &	_find	(key_type const & key)
@@ -60,7 +72,7 @@ private:
 	{
 		NodeBase_ptr	node = _head.parent;
 
-		while (node != &_head)
+		while (node != &_head && node != NULL)
 		{
 			if (_compare(node, key))
 				node = node->right;

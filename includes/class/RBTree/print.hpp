@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 10:49:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 15:00:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 16:26:26 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #  define RED_NODE "\033[31m"   // red
 
 #  define ROOT _root
-#  define SENTINEL &_head
+#  define SENTINEL NULL
 #  define NODE_BASE_POINTER NodeBase_ptr
 #  define NODE_POINTER node_pointer
 #  define NODE_LEFT left
@@ -59,7 +59,7 @@ private:
 //	end of recursive function
 		if (node == SENTINEL)
 		{
-			if (node->color == red_node)
+			if (node != NULL && node->color == red_node)
 				tree[depth] += RED_NODE "NIL" COLOR_TEXT;
 			else
 				tree[depth] += BLACK_NODE "NIL" COLOR_TEXT;

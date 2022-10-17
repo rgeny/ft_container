@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:01:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 16:16:03 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:10:10 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ public:
 
 		_clear(tmp);
 		_head.parent = _root;
+
 		return (1);
 	}
 
@@ -28,4 +29,11 @@ public:
 
 # endif
 #endif
-
+//
+//del_node = -3
+//color = black
+//parent = 8
+//min = -2
+//min->right = 8
+//8->parent = -2
+//child = NIL

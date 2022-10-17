@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 16:19:20 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:08:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ void	_construct	(NodeBase_ptr & new_node,
 	new_node = _node_alloc.allocate(1);
 	++_size;
 	
-	node_type	tmp(&_head, parent, value, color);
+	node_type	tmp(NULL, parent, value, color);
 	_node_alloc.construct(_cast(new_node), tmp);
 }
 
 void	_clear		(NodeBase_ptr & node)
 {
-	if (node != &_head)
+	if (node != &_head && node != NULL)
 	{
 		node_pointer	tmp = _cast(node);
 
@@ -75,13 +75,16 @@ void	_clear_all	(NodeBase_ptr node)
 {
 	NodeBase_ptr	tmp;
 
-	while (node != &_head)
+	while (node != &_head && node != NULL)
 	{
 		_clear_all(node->right);
 		tmp = node;
 		node = node->left;
-		if (tmp == _root)
-			_root = &_head;
+		if (tmp == _head.parent)
+		{
+			_root = NULL;
+			_head.parent = NULL;
+		}
 		_clear(tmp);
 	}
 }

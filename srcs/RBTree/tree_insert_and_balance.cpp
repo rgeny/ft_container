@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 14:05:59 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 14:13:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 16:31:59 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft::RB::tree_insert_and_balance	(NodeBase_ptr new_node,
 		if (grandp->left == parent)
 		{
 			uncle = grandp->right;
-			if (uncle->color == red_node)
+			if (uncle != NULL && uncle->color == red_node)
 			{
 				uncle->color = black_node;
 				parent->color = black_node;
@@ -50,7 +50,7 @@ void	ft::RB::tree_insert_and_balance	(NodeBase_ptr new_node,
 		else
 		{
 			uncle = grandp->left;
-			if (uncle->color == red_node)
+			if (uncle != NULL && uncle->color == red_node)
 			{
 				uncle->color = black_node;
 				parent->color = black_node;
