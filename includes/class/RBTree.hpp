@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/15 17:23:55 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 15:07:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ namespace ft
 # define CLASS_NAME "TreeHeader"
 		struct TreeHeader
 		{
-			NodeBase	_senti; //tmp
-			NodeBase *	_head;
+			NodeBase	_head;
 			size_t		_size;
 
 			TreeHeader	(void)
-				:_head(NULL)
+				:_head(NULL, &_head, &_head)
 				,_size(0)
 			{
 # ifdef __DEBUG__
@@ -54,9 +53,9 @@ DFL_CTOR
 
 			void	reset	(void)
 			{
-				_head->parent = NULL;
-				_head->parent = _head;
-				_head->parent = _head;
+				_head.parent = NULL;
+				_head.left = &_head;
+				_head.right = &_head;
 				_size = 0;
 			}
 		};
@@ -115,7 +114,7 @@ DFL_CTOR
 					_clear(_root);
 					NodeBase_ptr	tmp = src._root->min();
 
-					while (tmp != src._head)
+					while (tmp != &src._head)
 					{
 						this->insert(_cast(tmp)->value);
 						tmp = node_increment(tmp);
@@ -167,9 +166,9 @@ DFL_CTOR
 				{	return (_root->min());	}
 
 				iterator		end		(void)
-				{	return (_head);	}
+				{	return (&_head);	}
 				const_iterator	end		(void) const
-				{	return (_head);	}
+				{	return (&_head);	}
 
 				reverse_iterator		rbegin	(void)
 				{	return (reverse_iterator(this->end()));	}
@@ -183,7 +182,7 @@ DFL_CTOR
 				
 				void	swap	(Tree & rhs)
 				{
-					ft::swap(_head, rhs._head);
+//					ft::swap(_head, rhs._head);
 					ft::swap(_root, rhs._root);
 					ft::swap(_size, rhs._size);
 				}

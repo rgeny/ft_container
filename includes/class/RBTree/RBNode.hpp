@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:21:53 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/15 17:21:24 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 15:04:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ namespace ft
 	DFL_CTOR
 	#endif
 				}
-				Node	(NodeBase_ptr & sentinel,
+				Node	(NodeBase_ptr sentinel,
 							 NodeBase_ptr parent,
 							 value_type const value,
 							 node_color const color = red_node)

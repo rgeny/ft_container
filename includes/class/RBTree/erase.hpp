@@ -20,7 +20,7 @@ public:
 		NodeBase_ptr	tmp = tree_balance_and_erase(this->_find_node(key), _root);
 
 		_clear(tmp);
-		_head->parent = _root;
+		_head.parent = _root;
 		return (1);
 	}
 

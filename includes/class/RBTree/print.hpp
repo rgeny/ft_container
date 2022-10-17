@@ -22,7 +22,7 @@
 #  define RED_NODE "\033[31m"   // red
 
 #  define ROOT _root
-#  define SENTINEL _head
+#  define SENTINEL &_head
 #  define NODE_BASE_POINTER NodeBase_ptr
 #  define NODE_POINTER node_pointer
 #  define NODE_LEFT left

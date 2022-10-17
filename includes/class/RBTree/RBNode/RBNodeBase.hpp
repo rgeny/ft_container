@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:40:54 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 12:49:34 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 14:57:14 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ namespace ft
 		class NodeBase
 		{
 			public:
-				typedef NodeBase *	NodeBase_ptr;
+				typedef NodeBase *			NodeBase_ptr;
 				typedef NodeBase const *	NodeBase_const_ptr;
 				
 				NodeBase_ptr	parent;
