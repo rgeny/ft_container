@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:41:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 20:48:23 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 14:28:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ static void	_erase_balance	(NodeBase_ptr node,
 NodeBase_ptr	ft::RB::tree_balance_and_erase	(NodeBase_ptr del_node,
 												 NodeBase_ptr & root)
 {
-	if ( del_node->is_head() )
-		return (NULL);
+//	if ( del_node->is_head() )
+//		return (NULL);
 
 	node_color		original_color = del_node->color;
 	NodeBase_ptr	child,

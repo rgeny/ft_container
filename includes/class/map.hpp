@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/18 12:16:51 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 15:03:52 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,8 @@ namespace ft
 
 			void	erase	(iterator pos)
 			{
-				this->erase(pos->first);
+//				this->erase(pos->first);
+				_rbtree.erase(pos);
 			}
 			void	erase	(iterator first,
 							 iterator last)
@@ -154,6 +155,7 @@ namespace ft
 					iterator	next = first;
 					++next;
 					this->erase(first->first);
+//					_rb_tree.erase(first);
 					first = next;
 				}
 			}
@@ -249,6 +251,9 @@ namespace ft
 			ft::pair<const_iterator, const_iterator>	equal_range	(key_type const & key) const
 			{	return (_rbtree.equal_range(key));	}
 
+			key_compare		key_comp	(void) const
+			{	return (key_compare());	}
+
 //			ft::pair<iterator, iterator>	equal_range	(Key const & key)
 //			{
 //				std::pair<iterator, iterator>	tmp = this->std::map<Key, T, Compare, Allocator>::equal_range(key);
@@ -285,6 +290,26 @@ namespace ft
 			value_compare	value_comp	(void) const
 			{	return	(_comp);	}
 
+		template
+		<
+			class _Key,
+			class _T,
+			class _Compare,
+			class _Alloc
+		>
+		friend bool	operator==	(ft::map<_Key, _T, _Compare, _Alloc> const & lhs,
+								 ft::map<_Key, _T, _Compare, _Alloc> const & rhs );
+		template
+		<
+			class _Key,
+			class _T,
+			class _Compare,
+			class _Alloc
+		>
+		friend bool	operator<	(ft::map<_Key, _T, _Compare, _Alloc> const & lhs,
+								 ft::map<_Key, _T, _Compare, _Alloc> const & rhs );
+			
+
 #ifdef __DEBUG__
 			void	print	(void)
 			{
@@ -306,6 +331,74 @@ namespace ft
 	{
 		lhs.swap(rhs);
 	}
+
+
+
+	template
+	<
+		class _Key,
+		class _T,
+		class _Compare,
+		class _Alloc
+	>
+	bool	operator==	(ft::map<_Key, _T, _Compare, _Alloc> const & lhs,
+						 ft::map<_Key, _T, _Compare, _Alloc> const & rhs )
+	{	return (lhs._rbtree == rhs._rbtree);	}
+	
+	template
+	<
+		class _Key,
+		class _T,
+		class _Compare,
+		class _Alloc
+	>
+	bool	operator!=	(ft::map<_Key, _T, _Compare, _Alloc> const & lhs,
+						 ft::map<_Key, _T, _Compare, _Alloc> const & rhs )
+	{	return ( ! (lhs == rhs) );	}
+
+	template
+	<
+		class _Key,
+		class _T,
+		class _Compare,
+		class _Alloc
+	>
+	bool	operator<	(ft::map<_Key, _T, _Compare, _Alloc> const & lhs,
+						 ft::map<_Key, _T, _Compare, _Alloc> const & rhs )
+	{	return (lhs._rbtree < rhs._rbtree);	}
+
+	template
+	<
+		class _Key,
+		class _T,
+		class _Compare,
+		class _Alloc
+	>
+	bool	operator>	(ft::map<_Key, _T, _Compare, _Alloc> const & lhs,
+						 ft::map<_Key, _T, _Compare, _Alloc> const & rhs )
+	{	return ( rhs < lhs );	}
+
+	template
+	<
+		class _Key,
+		class _T,
+		class _Compare,
+		class _Alloc
+	>
+	bool	operator<=	(ft::map<_Key, _T, _Compare, _Alloc> const & lhs,
+						 ft::map<_Key, _T, _Compare, _Alloc> const & rhs )
+	{	return ( ! (rhs < lhs ) );	}
+
+	template
+	<
+		class _Key,
+		class _T,
+		class _Compare,
+		class _Alloc
+	>
+	bool	operator>=	(ft::map<_Key, _T, _Compare, _Alloc> const & lhs,
+						 ft::map<_Key, _T, _Compare, _Alloc> const & rhs )
+	{	return ( ! (lhs < rhs) );	}
 }
 
 #endif

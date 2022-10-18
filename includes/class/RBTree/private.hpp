@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 17:07:50 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:31:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 14:22:39 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	_construct	(NodeBase_ptr & new_node,
 
 void	_clear		(NodeBase_ptr & node)
 {
-	if (node != &_head && node != NULL)
+	if (node != NULL)
 	{
 		node_pointer	tmp = _cast(node);
 
@@ -75,7 +75,7 @@ void	_clear_all	(NodeBase_ptr node)
 {
 	NodeBase_ptr	tmp;
 
-	while (node != &_head && node != NULL)
+	while (node != NULL)
 	{
 		_clear_all(node->right);
 		tmp = node;

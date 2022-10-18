@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:01:38 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:32:01 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 14:27:35 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ public:
 
 		_clear(tmp);
 		return (1);
+	}
+
+	void	erase	(iterator pos)
+	{
+		tree_balance_and_erase(pos._cur_node, _head.parent);
+		_clear(pos._cur_node);
 	}
 
 //todo : add erase with iterator

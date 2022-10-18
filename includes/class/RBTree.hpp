@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:51:49 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 15:02:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,14 +166,12 @@ DFL_CTOR
 						return (&_head);
 					return (_head.parent->min());
 				}
-//					return (_root->min());	}
 				const_iterator	begin	(void) const
 				{
 					if (_head.parent == NULL)
 						return (&_head);
 					return (_head.parent->min());
 				}
-//				{	return (_root->min());	}
 
 				iterator		end		(void)
 				{	return (&_head);	}
@@ -253,7 +251,25 @@ DFL_CTOR
 
 				}
 //fin tmp
+
+			friend bool	operator==	(Tree const & lhs,
+									 Tree const & rhs)
+			{
+				return	(lhs.size() == rhs.size() &&
+						 ft::equal (lhs.begin(),
+						 			lhs.end(),
+									rhs.begin()));
+			}
+			friend bool	operator<	(Tree const & lhs,
+									 Tree const & rhs)
+			{
+				return (ft::lexicographical_compare(lhs.begin(),
+													lhs.end(),
+													rhs.begin(),
+													rhs.end()));
+			}
 		};
+
 	}
 }
 # undef CLASS_NAME
