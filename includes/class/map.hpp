@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/18 16:21:04 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 16:38:48 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ namespace ft
 				return (it->second);
 			}
 
-			bool	empty	(void)
+			bool	empty	(void) const
 			{	return (this->size() == 0);	}
 
 			void	clear	(void)
