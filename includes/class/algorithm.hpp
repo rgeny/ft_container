@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:21:48 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/10 14:49:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 18:37:13 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,27 +99,6 @@ namespace ft
 		return (true);
 	}
 
-	template
-	<
-		typename Iterator1,
-		typename Iterator2,
-		typename BinaryPredicate
-	>
-	bool	equal	(Iterator1 first1,
-					 Iterator1 last1,
-					 Iterator2 first2,
-					 BinaryPredicate p)
-	{
-		while (first1 != last1)
-		{
-			if ( ! (p(*first1, *first2)) )
-				return (false);
-			++first1;
-			++first2;
-		}
-		return (true);
-	}
-
 //	lexicographical_compare
 	template
 	<
@@ -136,32 +115,6 @@ namespace ft
 		{
 			if (*first1 != *first2)
 				return (*first1 < *first2);
-			++first1;
-			++first2;
-		}
-		return (first1 == last1 &&
-				first2 != last2);
-	}
-
-	template
-	<
-		typename Iterator1,
-		typename Iterator2,
-		typename Compare
-	>
-	bool	lexicographical_compare	(Iterator1 first1,
-									 Iterator1 last1,
-									 Iterator2 first2,
-									 Iterator2 last2,
-									 Compare comp)
-	{
-		while (first1 != last1 &&
-				first2 != last2)
-		{
-			if (comp(*first1, *first2))
-				return (true);
-			if (comp(*first2, *first1))
-				return (false);
 			++first1;
 			++first2;
 		}
