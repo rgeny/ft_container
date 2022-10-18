@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 13:48:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/06 15:12:43 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 19:53:45 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,64 +63,85 @@ namespace ft
 				return (*this);
 			}
 
-			friend bool	operator==	(ft::stack<T, Container> const & lhs,
-									 ft::stack<T, Container> const & rhs)
-			{
-#ifdef __DEBUG__
-				std::cout	<< "ft::stack operator=="
-							<< std::endl;
-#endif
-				return (lhs.c == rhs.c);
-			}
-			friend bool	operator!=	(ft::stack<T, Container> const & lhs,
-									 ft::stack<T, Container> const & rhs)
-			{
-#ifdef __DEBUG__
-				std::cout	<< "ft::stack operator!="
-							<< std::endl;
-#endif
-				return (!(lhs == rhs));
-			}
-			friend bool	operator<	(ft::stack<T, Container> const & lhs,
-									 ft::stack<T, Container> const & rhs)
-			{
-#ifdef __DEBUG__
-				std::cout	<< "ft::stack operator<"
-							<< std::endl;
-#endif
-				return (lhs.c < rhs.c);
-			}
-			friend bool	operator<=	(ft::stack<T, Container> const & lhs,
-									 ft::stack<T, Container> const & rhs)
-			{
-#ifdef __DEBUG__
-				std::cout	<< "ft::stack operator<="
-							<< std::endl;
-#endif
-				return (lhs < rhs || lhs == rhs);
-			}
-			friend bool	operator>	(ft::stack<T, Container> const & lhs,
-									 ft::stack<T, Container> const & rhs)
-			{
-#ifdef __DEBUG__
-				std::cout	<< "ft::stack operator>"
-							<< std::endl;
-#endif
-				return (!(lhs <= rhs));
-			}
-			friend bool	operator>=	(ft::stack<T, Container> const & lhs,
-									 ft::stack<T, Container> const & rhs)
-			{
-#ifdef __DEBUG__
-				std::cout	<< "ft::stack operator>="
-							<< std::endl;
-#endif
-				return (!(lhs < rhs));
-			}
+			template
+			<
+				typename _T,
+				typename _Container
+			>
+			friend bool	operator==	(ft::stack<_T, _Container> const & lhs,
+									 ft::stack<_T, _Container> const & rhs);
+			template
+			<
+				typename _T,
+				typename _Container
+			>
+			friend bool	operator<	(ft::stack<_T, _Container> const & lhs,
+									 ft::stack<_T, _Container> const & rhs);
 
 		protected:
 			container_type	c;
 	};
+
+
+//	operator==
+	template
+	<
+		typename T,
+		typename Container
+	>
+	bool	operator==	(ft::stack<T, Container> const & lhs,
+						 ft::stack<T, Container> const & rhs)
+	{  	return ( lhs.c == rhs.c );	}
+
+//	operator<
+	template
+	<
+		typename T,
+		typename Container
+	>
+	bool	operator<	(ft::stack<T, Container> const & lhs,
+						 ft::stack<T, Container> const & rhs)
+	{	return ( lhs.c < rhs.c );		}
+
+//	operator!=
+	template
+	<
+		typename T,
+		typename Container
+	>
+	bool	operator!=	(ft::stack<T, Container> const & lhs,
+						 ft::stack<T, Container> const & rhs)
+	{	return ( ! (lhs == rhs) );		}
+
+//	operator<=
+	template
+	<
+		typename T,
+		typename Container
+	>
+	bool	operator<=	(ft::stack<T, Container> const & lhs,
+						 ft::stack<T, Container> const & rhs)
+	{	return ( ! (rhs < lhs) );	}
+
+//	operator>
+	template
+	<
+		typename T,
+		typename Container
+	>
+	bool	operator>	(ft::stack<T, Container> const & lhs,
+						 ft::stack<T, Container> const & rhs)
+	{	return ( ! (lhs <= rhs) );		}
+
+//	operator>=
+	template
+	<
+		typename T,
+		typename Container
+	>
+	bool	operator>=	(ft::stack<T, Container> const & lhs,
+						 ft::stack<T, Container> const & rhs)
+	{	return ( ! (lhs < rhs) );	}
 }
 
 # undef CLASS_NAME
