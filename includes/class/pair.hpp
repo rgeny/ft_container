@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 21:50:32 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/09 17:26:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 15:09:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,9 @@ namespace ft
 	bool	operator<	(ft::pair<FIRST_TYPE, SECOND_TYPE> const & lhs,
 						 ft::pair<FIRST_TYPE, SECOND_TYPE> const & rhs)
 	{
-		return ( lhs.first < rhs.first &&
-				 lhs.second < rhs.second );
+		return ( lhs.first < rhs.first ||
+				 ( ! (rhs.first < lhs.first) &&
+				 	  lhs.second < rhs.second));
 	}
 	template
 	<
@@ -101,9 +102,7 @@ namespace ft
 	>
 	bool	operator!=	(ft::pair<FIRST_TYPE, SECOND_TYPE> const & lhs,
 						 ft::pair<FIRST_TYPE, SECOND_TYPE> const & rhs)
-	{
-		return ( ! (lhs == rhs) );
-	}
+	{	return ( ! (lhs == rhs) );	}
 	template
 	<
 		typename FIRST_TYPE,
@@ -111,9 +110,7 @@ namespace ft
 	>
 	bool	operator>	(ft::pair<FIRST_TYPE, SECOND_TYPE> const & lhs,
 						 ft::pair<FIRST_TYPE, SECOND_TYPE> const & rhs)
-	{
-		return ( rhs < lhs );
-	}
+	{	return ( rhs < lhs );	}
 	template
 	<
 		typename FIRST_TYPE,
@@ -121,9 +118,7 @@ namespace ft
 	>
 	bool	operator<=	(ft::pair<FIRST_TYPE, SECOND_TYPE> const & lhs,
 						 ft::pair<FIRST_TYPE, SECOND_TYPE> const & rhs)
-	{
-		return ( ! (rhs < lhs) );
-	}
+	{	return ( ! (rhs < lhs) );	}
 	template
 	<
 		typename FIRST_TYPE,
@@ -131,9 +126,7 @@ namespace ft
 	>
 	bool	operator>=	(ft::pair<FIRST_TYPE, SECOND_TYPE> const & lhs,
 						 ft::pair<FIRST_TYPE, SECOND_TYPE> const & rhs)
-	{
-		return ( ! (rhs > lhs) );
-	}
+	{	return ( ! (rhs > lhs) );	}
 }
 
 #endif
