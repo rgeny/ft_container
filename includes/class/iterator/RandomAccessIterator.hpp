@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 15:20:47 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/01 14:53:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 18:48:19 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #  define RANDOMACCESSITERATOR_HPP
 
 #  define CLASS_NAME "RandomAccessIterator"
+#  include "print.hpp"
 
 template
 <
@@ -37,10 +38,48 @@ class RandomAccessIterator
 		typedef typename __traits_type::pointer				pointer;
 		typedef typename __traits_type::reference			reference;
 
-#  include "RandomAccessIterator/structor.hpp"
+
+		RandomAccessIterator	(void)
+			:_M_current(Iterator())
+		{
+#  ifdef __DEBUG__
+DFL_CTOR
+#  endif
+		}
+
+		RandomAccessIterator	(Iterator const & it)
+			:_M_current(it)
+		{
+#  ifdef __DEBUG__
+PAR_CTOR
+#  endif
+		}
+
+		template < typename Iter >
+		RandomAccessIterator (RandomAccessIterator
+								<Iter,
+								 typename ft::enable_if
+								 	<(ft::is_same
+										<Iter,
+										 typename Container::pointer
+										>::value),
+									Container>::type
+								> const & it)
+			:_M_current(it.base())
+		{	}
+
+		~RandomAccessIterator	(void)
+		{
+#  ifdef __DEBUG__
+DTOR
+#  endif
+		}
+
+		Iterator const &	base	(void) const
+		{	return (_M_current);	}
+
 #  include "RandomAccessIterator/modifiers_operator.hpp"
 #  include "RandomAccessIterator/member_operation_operator.hpp"
-#  include "RandomAccessIterator/member.hpp"
 #  include "RandomAccessIterator/access_operator.hpp"
 };
 #  include "RandomAccessIterator/comparison_operator.hpp"

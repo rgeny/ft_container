@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 14:04:44 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 10:59:48 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 18:42:21 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ template
 >
 bool	operator!=	(RandomAccessIterator<IteratorLeft, Container> const & lhs,
 					 RandomAccessIterator<IteratorRight, Container> const & rhs)
-{	return (lhs.base() != rhs.base());	}
+{	return ( ! (lhs == rhs) );	}
 template
 <
 	typename Iterator,
@@ -63,7 +63,7 @@ template
 >
 bool	operator!=	(RandomAccessIterator<Iterator, Container> const & lhs,
 					 RandomAccessIterator<Iterator, Container> const & rhs)
-{	return (lhs.base() != rhs.base());	}
+{	return ( ! (lhs == rhs) );	}
 
 
 //	operator <
@@ -96,7 +96,7 @@ template
 >
 bool	operator<=	(RandomAccessIterator<IteratorLeft, Container> const & lhs,
 					 RandomAccessIterator<IteratorRight, Container> const & rhs)
-{	return (lhs.base() <= rhs.base());	}
+{	return ( ! (rhs < lhs) );	}
 
 template
 <
@@ -105,7 +105,7 @@ template
 >
 bool	operator<=	(RandomAccessIterator<Iterator, Container> const & lhs,
 					 RandomAccessIterator<Iterator, Container> const & rhs)
-{	return (lhs.base() <= rhs.base());	}
+{	return ( ! (rhs < lhs) );	}
 
 
 //	operator>
@@ -117,7 +117,7 @@ template
 >
 bool	operator>	(RandomAccessIterator<IteratorLeft, Container> const & lhs,
 					 RandomAccessIterator<IteratorRight, Container> const & rhs)
-{	return (lhs.base() > rhs.base());	}
+{	return ( rhs < lhs );	}
 template
 <
 	typename Iterator,
@@ -125,7 +125,7 @@ template
 >
 bool	operator>	(RandomAccessIterator<Iterator, Container> const & lhs,
 					 RandomAccessIterator<Iterator, Container> const & rhs)
-{	return (lhs.base() > rhs.base());	}
+{	return ( rhs < lhs );	}
 
 
 //	operator>=
@@ -137,7 +137,7 @@ template
 >
 bool	operator>=	(RandomAccessIterator<IteratorLeft, Container> const & lhs,
 					 RandomAccessIterator<IteratorRight, Container> const & rhs)
-{	return (lhs.base() >= rhs.base());	}
+{	return ( ! (lhs < rhs) );	}
 template
 <
 	typename Iterator,
@@ -145,7 +145,7 @@ template
 >
 bool	operator>=	(RandomAccessIterator<Iterator, Container> const & lhs,
 					 RandomAccessIterator<Iterator, Container> const & rhs)
-{	return (lhs.base() >= rhs.base());	}
+{	return ( ! (lhs < rhs) );	}
 
 # endif
 #endif

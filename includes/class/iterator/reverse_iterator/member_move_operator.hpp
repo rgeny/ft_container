@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 15:57:11 by rgeny             #+#    #+#             */
-/*   Updated: 2022/09/09 15:14:59 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 18:55:46 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,9 @@ reverse_iterator	operator--	(int)
 }
 
 reverse_iterator	operator+	(difference_type n) const
-{
-	return (reverse_iterator(this->current - n));
-}
+{	return (reverse_iterator(this->current - n));	}
 reverse_iterator	operator-	(difference_type n) const
-{
-	return (reverse_iterator(this->current + n));
-}
+{	return (reverse_iterator(this->current + n));	}
 
 reverse_iterator &	operator+=	(difference_type n)
 {
