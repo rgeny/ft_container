@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 11:03:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 15:13:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 12:21:55 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ ft::RB::NodeBase::NodeBase	(ft::RB::NodeBase * parent,
 							 ft::RB::NodeBase * left,
 							 ft::RB::NodeBase * right,
 							 node_color color)
-	:parent(parent)
+	:color(color)
+	,parent(parent)
 	,left(left)
 	,right(right)
-	,color(color)
 {
 #ifdef __DEBUG__
 PAR_CTOR
@@ -42,10 +42,10 @@ PAR_CTOR
 }
 
 ft::RB::NodeBase::NodeBase	(ft::RB::NodeBase const & src)
-	:parent(src.parent)
+	:color(src.color)
+	,parent(src.parent)
 	,left(src.left)
 	,right(src.right)
-	,color(src.color)
 {
 #ifdef __DEBUG__
 CPY_CTOR

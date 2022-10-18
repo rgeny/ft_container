@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:27:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:01:54 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/17 21:54:12 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ private:
 	{
 		NodeBase_const_ptr	node = _head.parent;
 
-		while (node != &_head)
+		while (node != &_head && node != NULL)
 		{
 			if (_compare(node, key))
 				node = node->right;

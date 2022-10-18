@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 16:40:54 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 14:57:14 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 12:18:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ namespace ft
 				typedef NodeBase *			NodeBase_ptr;
 				typedef NodeBase const *	NodeBase_const_ptr;
 				
+				node_color		color;
 				NodeBase_ptr	parent;
 				NodeBase_ptr	left;
 				NodeBase_ptr	right;
-				node_color		color;
 
 				NodeBase	(NodeBase_ptr parent = NULL,
 							 NodeBase_ptr left = NULL,

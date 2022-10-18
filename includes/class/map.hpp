@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 18:04:58 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:00:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 12:16:51 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ namespace ft
 						:comp(c)
 					{	}
 			};
-		private:
+//		private:
 			value_compare			_comp;
 			allocator_type			_alloc;
 			_pair_allocator_type	_pair_alloc;
 			_tree_type				_rbtree;
 
-		public:
+//		public:
 
 			explicit map	(Compare const & comp = Compare(),
 							 Allocator const & alloc = Allocator() )
