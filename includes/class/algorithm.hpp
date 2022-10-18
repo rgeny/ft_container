@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 15:21:48 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/18 18:37:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/18 19:29:38 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 namespace ft
 {
 //	max
-	template
-	<
-		typename T
-	>
+	template < typename T >
 	T const &	max	(T const & lhs,
 					 T const & rhs)
 	{
@@ -29,10 +26,7 @@ namespace ft
 	}
 
 //	swap
-	template
-	<
-		typename T
-	>
+	template < typename T >
 	void	swap	(T & lhs,
 					 T & rhs)
 	{
@@ -42,10 +36,7 @@ namespace ft
 	}
 
 //	swap_backward
-	template
-	<
-		typename Iterator
-	>
+	template < typename Iterator >
 	void	swap_backward	(Iterator lhs,
 							 Iterator rhs,
 							 Iterator ite)
@@ -59,10 +50,7 @@ namespace ft
 	}
 
 //	move_forward
-	template
-	<
-		typename Iterator
-	>
+	template < typename Iterator >
 	void	move_forward	(Iterator lhs,
 							 Iterator rhs,
 							 Iterator ite)
