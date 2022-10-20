@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/20 12:22:05 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/20 12:28:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,37 +55,97 @@ namespace ft
 															_node_allocator_type;
 
 			public:
-				typedef Allocator									allocator_type;
+				typedef Allocator										allocator_type;
 //		value typedef
-				typedef Key											key_type;
-				typedef Value										value_type;
-				typedef typename allocator_type::reference			reference;
-				typedef typename allocator_type::const_reference	const_reference;
+				typedef Key												key_type;
+				typedef Value											value_type;
+				typedef typename allocator_type::reference				reference;
+				typedef typename allocator_type::const_reference		const_reference;
 //		node typedef
-				typedef NodeBase::NodeBase_ptr						NodeBase_ptr;
-				typedef NodeBase::NodeBase_const_ptr				NodeBase_const_ptr;
-				typedef typename _node_allocator_type::value_type	node_type;
-				typedef typename _node_allocator_type::pointer		node_pointer;
-				typedef typename _node_allocator_type::const_pointer		node_const_pointer;
-				typedef node_pointer &								node_preference;
+				typedef NodeBase::NodeBase_ptr							NodeBase_ptr;
+				typedef NodeBase::NodeBase_const_ptr					NodeBase_const_ptr;
+				typedef typename _node_allocator_type::value_type		node_type;
+				typedef typename _node_allocator_type::pointer			node_pointer;
+				typedef typename _node_allocator_type::const_pointer	node_const_pointer;
+				typedef node_pointer &									node_preference;
 //
-				typedef size_t										size_type;
-				typedef std::ptrdiff_t								difference_type;
-				typedef Compare										key_compare;
-				typedef TreeIterator<value_type>					iterator;
-				typedef TreeConstIterator<value_type>				const_iterator;
-				typedef ft::reverse_iterator<iterator>				reverse_iterator;
-				typedef ft::reverse_iterator<const_iterator>		const_reverse_iterator;
+				typedef size_t											size_type;
+				typedef std::ptrdiff_t									difference_type;
+				typedef Compare											key_compare;
+				typedef TreeIterator<value_type>						iterator;
+				typedef TreeConstIterator<value_type>					const_iterator;
+				typedef ft::reverse_iterator<iterator>					reverse_iterator;
+				typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 
-//			private:
+			private:
 				allocator_type			_alloc;
 				_node_allocator_type	_node_alloc;
-//				NodeBase_ptr			_root;
 				key_compare				_comp;
 
 			public:
 
-# include "RBTree/structor.hpp"
+				Tree	(allocator_type const & alloc = allocator_type())
+					:TreeHeader()
+					,_alloc(alloc)
+					,_node_alloc(alloc)
+					,_comp()
+				{	}
+
+				Tree	(Tree const & src,
+						 allocator_type const & alloc = allocator_type())
+					:TreeHeader()
+					,_alloc(alloc)
+					,_node_alloc(alloc)
+					,_comp()
+				{
+					NodeBase_ptr	tmp = src._head.parent->min();
+					while (tmp != &src._head)
+					{
+						this->insert(_cast(tmp)->value);
+						tmp = node_increment(tmp);
+					}
+				}
+
+				template < typename InputIt >
+				Tree	(InputIt & first,
+						 InputIt & last,
+						 allocator_type const & alloc = allocator_type() )
+					:TreeHeader()
+					,_alloc(alloc)
+					,_node_alloc(alloc)
+					,_comp()
+				{
+					while (first != last)
+					{
+						this->insert(*first);
+						++first;
+					}
+				}
+
+				~Tree	(void)
+				{
+					this->clear();
+				}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 				Tree &	operator=	(Tree const & src)
 				{
