@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/18 19:33:38 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/20 12:22:05 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,8 @@ namespace ft
 {
 	namespace RB
 	{
-# define CLASS_NAME "TreeHeader"
-		struct TreeHeader
-		{
-			NodeBase	_head;
-			size_t		_size;
+# include "RBTree/RBTreeHeader.hpp"
 
-			TreeHeader	(void)
-				:_head(NULL, &_head, &_head)
-				,_size(0)
-			{
-# ifdef __DEBUG__
-DFL_CTOR
-# endif
-			}
-
-			void	reset	(void)
-			{
-				_head.parent = NULL;
-				_head.left = &_head;
-				_head.right = &_head;
-				_size = 0;
-			}
-		};
-# undef CLASS_NAME
 # define CLASS_NAME "RBTree"
 		template
 		<
