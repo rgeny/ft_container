@@ -20,7 +20,7 @@ static void	_transplant	(NodeBase_ptr parent,
 {
 	NodeBase_ptr	grandp = parent->parent;
 
-	if ( grandp->is_head() )
+	if ( grandp == root->parent )
 		root = child;
 	else if (parent == grandp->left)
 		grandp->left = child;
@@ -127,21 +127,18 @@ static void	_erase_balance	(NodeBase_ptr node,
 NodeBase_ptr	ft::RB::tree_balance_and_erase	(NodeBase_ptr del_node,
 												 NodeBase_ptr & root)
 {
-//	if ( del_node->is_head() )
-//		return (NULL);
-
 	node_color		original_color = del_node->color;
 	NodeBase_ptr	child,
 					parent = del_node,
 					min = del_node;
 
-	if ( del_node->left->is_head() )
+	if ( del_node->left == NULL )
 	{
 		child = del_node->right;
 		parent = del_node->parent;
 		_transplant(del_node, child, root);
 	}
-	else if ( del_node->right->is_head() )
+	else if ( del_node->right == NULL )
 	{
 		child = del_node->left;
 		parent = del_node->parent;

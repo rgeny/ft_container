@@ -183,7 +183,7 @@ namespace ft
 				{
 					NodeBase_ptr	to_return = _head.parent;
 
-					while ( ! to_return->left->is_head() )
+					while ( to_return->left != NULL )
 						to_return = to_return->left;
 					return (to_return);
 				}
@@ -192,7 +192,7 @@ namespace ft
 				{
 					NodeBase_ptr	to_return = _head.parent;
 
-					while ( ! to_return->right->is_head() )
+					while ( to_return->right != NULL )
 						to_return = to_return->right;
 					return (to_return);
 				}

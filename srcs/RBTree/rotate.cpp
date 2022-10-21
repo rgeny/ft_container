@@ -23,12 +23,12 @@ void	ft::RB::left_rotate	(NodeBase * parent,
 	if (child != NULL)
 	{
 		parent->right = child->left;
-		if ( ! child->left->is_head() )
+		if ( child->left != NULL )
 			child->left->parent = parent;
 		child->parent = grandp;
 		child->left = parent;
 	}
-	if ( grandp->is_head() )
+	if ( grandp == root->parent )
 		root = child;
 	else if (grandp->left == parent)
 		grandp->left = child;
@@ -44,10 +44,10 @@ void	ft::RB::right_rotate	(NodeBase * parent,
 	NodeBase *	grandp = parent->parent;
 
 	parent->left = child->right;
-	if ( ! child->right->is_head() )
+	if ( child->right != NULL )
 		child->right->parent = parent;
 	child->parent = grandp;
-	if ( grandp->is_head() )
+	if ( grandp == root->parent )
 		root = child;
 	else if (grandp->left == parent)
 		grandp->left = child;
