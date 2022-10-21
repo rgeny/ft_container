@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insert.hpp                                         :+:      :+:    :+:   */
+/*   modifiers.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 11:00:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 14:48:32 by rgeny            ###   ########.fr       */
+/*   Created: 2022/10/21 19:17:26 by rgeny             #+#    #+#             */
+/*   Updated: 2022/10/21 19:22:13 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifdef RBTREE_HPP
-# ifndef INSERT_HPP
-#  define INSERT_HPP
+# ifndef RBTREE_MODIFIERS_HPP
+#  define RBTREE_MODIFIERS_HPP
 
 public:
+//	insert
 	ft::pair<iterator, bool>	insert	(const_reference value)
 	{
 		size_t	size = _size;
@@ -36,7 +37,53 @@ public:
 		return (iterator(new_node));
 	}
 
-//todo : add insert with iterator
+//	erase
+	size_type	erase	(key_type const & key)
+	{
+		NodeBase_ptr	tmp = tree_balance_and_erase(this->_find_node(key), _head.parent);
+
+		_clear(tmp);
+		return (1);
+	}
+
+	void	erase	(iterator pos)
+	{
+		tree_balance_and_erase(pos._cur_node, _head.parent);
+		_clear(pos._cur_node);
+	}
+
+//	clear
+	void	clear	(void)
+	{	_clear_all(_head.parent);	}
+
+//	swap
+	void	swap	(Tree & rhs)
+	{
+		if (_head.parent != NULL)
+			_head.parent->parent = &rhs._head;
+		if (rhs._head.parent != NULL)
+			rhs._head.parent->parent = &_head;
+		ft::swap(_head.parent, rhs._head.parent);
+		ft::swap(_size, rhs._size);
+	}
+
+//	operator=
+	Tree &	operator=	(Tree const & src)
+	{
+		_clear_all(_head.parent);
+
+		if (src._head.parent == NULL)
+			return (*this);
+		NodeBase_ptr	tmp = src._head.parent->min();
+
+		while (tmp != &src._head)
+		{
+			this->insert(_cast(tmp)->value);
+			tmp = node_increment(tmp);
+		}
+
+		return (*this);
+	}
 
 # endif
 #endif

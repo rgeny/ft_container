@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 17:06:08 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 19:23:30 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,51 +123,7 @@ namespace ft
 				}
 
 				~Tree	(void)
-				{
-					this->clear();
-				}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				Tree &	operator=	(Tree const & src)
-				{
-					_clear_all(_head.parent);
-
-					if (src._head.parent == NULL)
-						return (*this);
-					NodeBase_ptr	tmp = src._head.parent->min();
-
-					while (tmp != &src._head)
-					{
-						this->insert(_cast(tmp)->value);
-						tmp = node_increment(tmp);
-					}
-
-					return (*this);
-				}
-
-				void	clear	(void)
-				{
-					_clear_all(_head.parent);
-				}
+				{	this->clear();	}
 
 				size_type	size		(void) const
 				{	return (_size);	}
@@ -175,141 +131,29 @@ namespace ft
 				{	return (_node_alloc.max_size());	}
 
 # include "RBTree/find.hpp"
-# include "RBTree/private.hpp"
-# include "RBTree/insert.hpp"
-# include "RBTree/erase.hpp"
+# include "RBTree/modifiers.hpp"
 # include "RBTree/print.hpp"
+# include "RBTree/iterator.hpp"
+# include "RBTree/compare.hpp"
+# include "RBTree/allocator.hpp"
 
-//tmp
-		public:
-				NodeBase_ptr	Nodebegin	(void)
+			public:
+				friend bool	operator==	(Tree const & lhs,
+										 Tree const & rhs)
 				{
-					NodeBase_ptr	to_return = _head.parent;
-
-					while ( to_return->left != NULL )
-						to_return = to_return->left;
-					return (to_return);
+					return	(lhs.size() == rhs.size() &&
+							 ft::equal (lhs.begin(),
+										lhs.end(),
+										rhs.begin()));
 				}
-
-				NodeBase_ptr	Nodeend		(void)
+				friend bool	operator<	(Tree const & lhs,
+										 Tree const & rhs)
 				{
-					NodeBase_ptr	to_return = _head.parent;
-
-					while ( to_return->right != NULL )
-						to_return = to_return->right;
-					return (to_return);
+					return (ft::lexicographical_compare(lhs.begin(),
+														lhs.end(),
+														rhs.begin(),
+														rhs.end()));
 				}
-
-
-				iterator		begin	(void)
-				{
-					if (_head.parent == NULL)
-						return (&_head);
-					return (_head.parent->min());
-				}
-				const_iterator	begin	(void) const
-				{
-					if (_head.parent == NULL)
-						return (&_head);
-					return (_head.parent->min());
-				}
-
-				iterator		end		(void)
-				{	return (&_head);	}
-				const_iterator	end		(void) const
-				{	return (&_head);	}
-
-				reverse_iterator		rbegin	(void)
-				{	return (reverse_iterator(this->end()));	}
-				const_reverse_iterator	rbegin	(void) const
-				{	return (const_reverse_iterator(this->end()));	}
-
-				reverse_iterator		rend	(void)
-				{	return (reverse_iterator(this->begin()));	}
-				const_reverse_iterator	rend	(void) const
-				{	return (const_reverse_iterator(this->begin()));	}
-				
-				void	swap	(Tree & rhs)
-				{
-					if (_head.parent != NULL)
-						_head.parent->parent = &rhs._head;
-					if (rhs._head.parent != NULL)
-						rhs._head.parent->parent = &_head;
-					ft::swap(_head.parent, rhs._head.parent);
-					ft::swap(_size, rhs._size);
-				}
-
-				iterator	lower_bound	(key_type const & key)
-				{
-					iterator	it = this->begin(),
-								ite = this->end();
-
-					while (it != ite && _compare(it._cur_node, key))
-						++it;
-					return (it);
-				}
-				const_iterator	lower_bound	(key_type const & key) const
-				{
-					const_iterator	it = this->begin(),
-									ite = this->end();
-
-					while (it != ite && _compare(it._cur_node, key))
-						++it;
-					return (it);
-				}
-
-				iterator	upper_bound	(key_type const & key)
-				{
-					iterator	it = this->begin(),
-								ite = this->end();
-
-					while (it != ite && !_compare(key, it._cur_node))
-						++it;
-					return (it);
-				}
-				const_iterator	upper_bound	(key_type const & key) const
-				{
-					const_iterator	it = this->begin(),
-									ite = this->end();
-
-					while (it != ite && !_compare(key, it._cur_node))
-						++it;
-					return (it);
-				}
-
-				ft::pair<iterator,iterator>	equal_range	(key_type const & key)
-				{
-					return (ft::make_pair(this->lower_bound(key),
-										  this->upper_bound(key)));
-				}
-				ft::pair<const_iterator,const_iterator>	equal_range	(key_type const & key ) const
-				{
-					return (ft::make_pair(this->lower_bound(key),
-										  this->upper_bound(key)));
-				}
-
-				void	test	(void)
-				{
-
-				}
-//fin tmp
-
-			friend bool	operator==	(Tree const & lhs,
-									 Tree const & rhs)
-			{
-				return	(lhs.size() == rhs.size() &&
-						 ft::equal (lhs.begin(),
-						 			lhs.end(),
-									rhs.begin()));
-			}
-			friend bool	operator<	(Tree const & lhs,
-									 Tree const & rhs)
-			{
-				return (ft::lexicographical_compare(lhs.begin(),
-													lhs.end(),
-													rhs.begin(),
-													rhs.end()));
-			}
 		};
 
 	}

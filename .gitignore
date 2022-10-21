@@ -8,3 +8,4 @@ objs
 tester*
 42TESTERS-CONTAINERS
 *.a
+containers_test
