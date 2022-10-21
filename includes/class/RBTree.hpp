@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 16:58:07 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 17:06:08 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,10 @@ namespace ft
 
 				Tree &	operator=	(Tree const & src)
 				{
-					_clear(_head.parent);
+					_clear_all(_head.parent);
+
+					if (src._head.parent == NULL)
+						return (*this);
 					NodeBase_ptr	tmp = src._head.parent->min();
 
 					while (tmp != &src._head)
