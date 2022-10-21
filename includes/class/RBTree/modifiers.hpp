@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:17:26 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 19:37:37 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 21:22:25 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,29 @@ public:
 	}
 
 //	erase
+	void	erase	(iterator first,
+					 iterator last)
+	{
+		iterator	next;
+
+		while (first != last)
+		{
+			next = first;
+			++next;
+			this->erase(first);
+			first = next;
+		}
+	}
 	size_type	erase	(key_type const & key)
 	{
-		NodeBase_ptr	tmp = tree_balance_and_erase(this->_find_node(key), _head.parent);
-
-		_clear(tmp);
-		return (1);
+		size_t	size = _size;
+		NodeBase_ptr 	node = this->_find_node(key);
+		if (node != NULL)
+		{
+			tree_balance_and_erase(node, _head.parent);
+			_clear(node);
+		}
+		return (size != _size);
 	}
 
 	void	erase	(iterator pos)

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:17:30 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 20:44:28 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 21:24:50 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,9 @@ void	erase	(iterator pos)
 {	_rbtree.erase(pos);	}
 void	erase	(iterator first,
 				 iterator last)
-{
-	while (first != last)
-	{
-		iterator	next = first;
-		++next;
-		this->erase(first->first);
-		first = next;
-	}
-}
+{	_rbtree.erase(first, last);	}
 size_type erase	(Key const & key)
-{
-	if (this->find(key) == this->end())
-		return (0);
-	_rbtree.erase(key);
-	return (1);
-}
+{	return (_rbtree.erase(key));	}
 
 //	swap
 void	swap	(map & rhs)

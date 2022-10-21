@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:09:47 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 19:11:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 21:02:29 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ private:
 
 			_node_alloc.destroy(tmp);
 			_node_alloc.deallocate(tmp, 1);
-			node = &_head;
+//			node = &_head;
 			--_size;
 		}
 	}
