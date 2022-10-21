@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:17:26 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 19:22:13 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 19:37:37 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,20 @@
 
 public:
 //	insert
+	template < typename InputIt >
+	void	insert	(InputIt first,
+					 InputIt last)
+	{
+		while (first != last)
+		{
+			this->insert(*first);
+			++first;
+		}
+	}
+
 	ft::pair<iterator, bool>	insert	(const_reference value)
 	{
-		size_t	size = _size;
+		size_t		size = _size;
 		iterator	it = this->insert(iterator(_head.parent), value);
 
 		return (ft::make_pair(it, size != _size));
@@ -71,17 +82,7 @@ public:
 	Tree &	operator=	(Tree const & src)
 	{
 		_clear_all(_head.parent);
-
-		if (src._head.parent == NULL)
-			return (*this);
-		NodeBase_ptr	tmp = src._head.parent->min();
-
-		while (tmp != &src._head)
-		{
-			this->insert(_cast(tmp)->value);
-			tmp = node_increment(tmp);
-		}
-
+		this->insert(src.begin(), src.end());
 		return (*this);
 	}
 

@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:17:30 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/18 19:19:28 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 20:44:28 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,17 @@ void	clear	(void)
 {	_rbtree.clear();	}
 
 //	insert
-ft::pair<iterator, bool>	insert	(value_type const & value)
-{	return (_rbtree.insert(value));	}
-iterator					insert	(iterator hint,
-									 value_type const & value)
-{	return (_rbtree.insert(hint, value));	}
 template < typename InputIt >
 void	insert	(InputIt first,
 				 InputIt last)
-{
-	while (first != last)
-	{
-		this->insert(*first);
-		++first;
-	}
-}
+{	this->_rbtree.insert(first, last);	}
+
+ft::pair<iterator, bool>	insert	(value_type const & value)
+{	return (_rbtree.insert(value));	}
+
+iterator					insert	(iterator hint,
+									 value_type const & value)
+{	return (_rbtree.insert(hint, value));	}
 
 //	erase
 void	erase	(iterator pos)
