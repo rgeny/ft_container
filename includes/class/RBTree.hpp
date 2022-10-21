@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 22:03:40 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 22:06:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,15 @@ namespace ft
 				typedef typename _node_allocator_type::pointer			node_pointer;
 				typedef typename _node_allocator_type::const_pointer	node_const_pointer;
 				typedef node_pointer &									node_preference;
-//
-				typedef size_t											size_type;
-				typedef std::ptrdiff_t									difference_type;
-				typedef Compare											key_compare;
+//		iterator typedef
 				typedef TreeIterator<value_type>						iterator;
 				typedef TreeConstIterator<value_type>					const_iterator;
 				typedef ft::reverse_iterator<iterator>					reverse_iterator;
 				typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
+//		utility typedef
+				typedef size_t											size_type;
+				typedef std::ptrdiff_t									difference_type;
+				typedef Compare											key_compare;
 
 			private:
 				allocator_type			_alloc;
@@ -120,24 +121,25 @@ namespace ft
 # include "RBTree/compare.hpp"
 # include "RBTree/allocator.hpp"
 # include "RBTree/capacity.hpp"
-
-			public:
-				friend bool	operator==	(Tree const & lhs,
-										 Tree const & rhs)
-				{
-					return	(lhs.size() == rhs.size() &&
-							 ft::equal (lhs.begin(),
-										lhs.end(),
-										rhs.begin()));
-				}
-				friend bool	operator<	(Tree const & lhs,
-										 Tree const & rhs)
-				{
-					return (ft::lexicographical_compare(lhs.begin(),
-														lhs.end(),
-														rhs.begin(),
-														rhs.end()));
-				}
+# include "RBTree/compares_operator.hpp"
+//
+//			public:
+//				friend bool	operator==	(Tree const & lhs,
+//										 Tree const & rhs)
+//				{
+//					return	(lhs.size() == rhs.size() &&
+//							 ft::equal (lhs.begin(),
+//										lhs.end(),
+//										rhs.begin()));
+//				}
+//				friend bool	operator<	(Tree const & lhs,
+//										 Tree const & rhs)
+//				{
+//					return (ft::lexicographical_compare(lhs.begin(),
+//														lhs.end(),
+//														rhs.begin(),
+//														rhs.end()));
+//				}
 		};
 
 	}
