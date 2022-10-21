@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 19:23:30 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 21:51:53 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,6 @@ namespace ft
 				~Tree	(void)
 				{	this->clear();	}
 
-				size_type	size		(void) const
-				{	return (_size);	}
-				size_type	max_size	(void) const
-				{	return (_node_alloc.max_size());	}
 
 # include "RBTree/find.hpp"
 # include "RBTree/modifiers.hpp"
@@ -136,6 +132,7 @@ namespace ft
 # include "RBTree/iterator.hpp"
 # include "RBTree/compare.hpp"
 # include "RBTree/allocator.hpp"
+# include "RBTree/capacity.hpp"
 
 			public:
 				friend bool	operator==	(Tree const & lhs,

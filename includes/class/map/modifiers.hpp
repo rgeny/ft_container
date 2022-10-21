@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:17:30 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 21:24:50 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 21:27:57 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ iterator					insert	(iterator hint,
 //	erase
 void	erase	(iterator pos)
 {	_rbtree.erase(pos);	}
+
 void	erase	(iterator first,
 				 iterator last)
 {	_rbtree.erase(first, last);	}
+
 size_type erase	(Key const & key)
 {	return (_rbtree.erase(key));	}
 
