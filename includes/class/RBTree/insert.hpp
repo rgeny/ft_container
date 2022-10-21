@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:00:05 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:31:47 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 14:48:32 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ public:
 	ft::pair<iterator, bool>	insert	(const_reference value)
 	{
 		size_t	size = _size;
-		return (ft::make_pair(this->insert(iterator(_head.parent), value), size != _size));
+		iterator	it = this->insert(iterator(_head.parent), value);
+
+		return (ft::make_pair(it, size != _size));
 	}
 
 	iterator	 insert	(iterator hint,
