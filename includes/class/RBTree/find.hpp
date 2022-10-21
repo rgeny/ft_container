@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:27:57 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/17 21:54:12 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 16:59:49 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ private:
 	{
 		if (*hint == &_head || *hint == NULL || (*hint != _head.parent &&
 			(((*hint)->parent->left == *hint && _compare((*hint)->parent, key)) ||
-			 ((*hint)->parent->right == *hint && _compare(key, (*hint)->parent)))))
+			 ((*hint)->parent->right == *hint && _compare(key, (*hint)->parent)) ||
+			 ((!_compare((*hint)->parent, key) && !_compare(key, (*hint)->parent))))))
 		{
 			hint = &_head.parent;
 		}
