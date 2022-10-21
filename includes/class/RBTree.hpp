@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 21:51:53 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 22:03:40 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,7 @@ namespace ft
 					,_alloc(alloc)
 					,_node_alloc(alloc)
 					,_comp()
-				{
-					NodeBase_ptr	tmp = src._head.parent->min();
-					while (tmp != &src._head)
-					{
-						this->insert(_cast(tmp)->value);
-						tmp = node_increment(tmp);
-					}
-				}
+				{	*this = src;	}
 
 				template < typename InputIt >
 				Tree	(InputIt & first,
@@ -114,13 +107,7 @@ namespace ft
 					,_alloc(alloc)
 					,_node_alloc(alloc)
 					,_comp()
-				{
-					while (first != last)
-					{
-						this->insert(*first);
-						++first;
-					}
-				}
+				{	this->insert(first, last);	}
 
 				~Tree	(void)
 				{	this->clear();	}
