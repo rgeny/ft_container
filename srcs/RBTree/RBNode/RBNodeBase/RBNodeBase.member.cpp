@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:22:43 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 17:05:17 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 18:11:02 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ using namespace ft::RB;
 NodeBase *	NodeBase::min	(void)
 {
 	NodeBase_ptr	node = this;
-	while ( ! node->left->is_head() )
+	while ( node->left != NULL && ! node->left->is_head() )
 		node = node->left;
 	return (node);
 }
@@ -26,7 +26,7 @@ NodeBase *	NodeBase::min	(void)
 NodeBase const *	NodeBase::min	(void) const
 {
 	NodeBase_const_ptr	node = this;
-	while ( ! node->left->is_head() )
+	while ( node->left != NULL && ! node->left->is_head() )
 		node = node->left;
 	return (node);
 }
@@ -34,7 +34,7 @@ NodeBase const *	NodeBase::min	(void) const
 NodeBase *	NodeBase::max	(void)
 {
 	NodeBase_ptr	node = this;
-	while ( ! node->right->is_head() )
+	while ( node->right != NULL && ! node->right->is_head() )
 		node = node->right;
 	return (node);
 }
@@ -42,13 +42,12 @@ NodeBase *	NodeBase::max	(void)
 NodeBase const *	NodeBase::max	(void) const
 {
 	NodeBase_const_ptr	node = this;
-	while ( ! node->right->is_head() )
+	while ( node->right != NULL && ! node->right->is_head() )
 		node = node->right;
 	return (node);
 }
 
 bool	NodeBase::is_head	(void) const
 {
-	bool	not_null = (bool)this;
-	return (!not_null || this == this->left);
+	return (this == this->left);
 }

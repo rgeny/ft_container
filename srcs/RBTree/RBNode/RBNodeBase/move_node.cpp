@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 15:30:21 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/10 12:59:48 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 18:17:42 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ NodeBase *	ft::RB::node_decrement	(NodeBase * node)
 {
 	if (node->is_head())
 		return (node->parent->max());
-	if ( ! node->left->is_head() )
+	if ( node->left != NULL )
 		return (node->left->max());
 	
 	NodeBase *	parent = node->parent;
@@ -35,7 +35,7 @@ NodeBase const *	ft::RB::node_decrement	(NodeBase const * node)
 {
 	if (node->is_head())
 		return (node->parent->max());
-	if ( ! node->left->is_head() )
+	if ( node->left != NULL )
 		return (node->left->max());
 	
 	NodeBase *	parent = node->parent;
@@ -52,7 +52,7 @@ NodeBase *	ft::RB::node_increment	(NodeBase * node)
 {
 	if (node->is_head())
 		return (node->parent->max());
-	if ( ! node->right->is_head() )
+	if ( node->right != NULL )
 		return (node->right->min());
 	
 	NodeBase *	parent = node->parent;
@@ -69,7 +69,7 @@ NodeBase const *	ft::RB::node_increment	(NodeBase const * node)
 {
 	if (node->is_head())
 		return (node->parent->max());
-	if ( ! node->right->is_head() )
+	if ( node->right != NULL )
 		return (node->right->min());
 	
 	NodeBase *	parent = node->parent;
