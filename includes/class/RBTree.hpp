@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:19:37 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/20 14:46:16 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/21 16:58:07 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,14 +228,11 @@ namespace ft
 				
 				void	swap	(Tree & rhs)
 				{
-//					ft::swap(_head.parent->parent, rhs._head.parent->parent);
 					if (_head.parent != NULL)
 						_head.parent->parent = &rhs._head;
 					if (rhs._head.parent != NULL)
 						rhs._head.parent->parent = &_head;
 					ft::swap(_head.parent, rhs._head.parent);
-					ft::swap(_head.left, rhs._head.left);
-					ft::swap(_head.right, rhs._head.right);
 					ft::swap(_size, rhs._size);
 				}
 
