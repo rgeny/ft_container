@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:17:26 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/21 21:22:25 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/23 14:01:44 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ public:
 	{
 		NodeBase_ptr	parent = &_head;
 		NodeBase_ptr &	new_node = this->_find(KeyOfValue()(value), parent, &hint._cur_node);
+		NodeBase_ptr	save_new_node;
 
 		if (new_node != &_head && new_node != NULL)
 			return (iterator(new_node));
 		_construct(new_node, parent, value);
+		save_new_node = new_node;
 		tree_insert_and_balance(new_node, _head.parent);
-		return (iterator(new_node));
+		return (iterator(save_new_node));
 	}
 
 //	erase
