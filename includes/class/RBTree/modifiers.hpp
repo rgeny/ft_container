@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:17:26 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/23 14:01:44 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/23 16:29:00 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,16 @@ public:
 		return (ft::make_pair(it, size != _size));
 	}
 
+	iterator	 insert	(const_iterator hint,
+						 const_reference value)
+	{
+		iterator	it;
+		if (hint == this->end())
+			it = this->end();
+		else
+			it = this->find(KeyOfValue()(_cast(hint._cur_node)->value));
+		return (this->insert(it, value));
+	}
 	iterator	 insert	(iterator hint,
 						 const_reference value)
 	{
@@ -51,6 +61,21 @@ public:
 	}
 
 //	erase
+	void	erase	(const_iterator first,
+					 const_iterator last)
+	{
+		iterator	_first,
+					_last;
+		if (first == this->end())
+			_first = this->end();
+		else
+			_first = this->find(KeyOfValue()(_cast(first._cur_node)->value));
+		if (last == this->end())
+			_last = this->end();
+		else
+			_last = this->find(KeyOfValue()(_cast(last._cur_node)->value));
+		this->erase(_first, _last);
+	}
 	void	erase	(iterator first,
 					 iterator last)
 	{
@@ -76,6 +101,17 @@ public:
 		return (size != _size);
 	}
 
+	void	erase	(const_iterator pos)
+	{
+		iterator	it = this->begin();
+
+		if (pos == this->end())
+			it = this->end();
+		else
+			it = this->find(KeyOfValue()(_cast(pos._cur_node)->value));
+
+		this->erase(it);
+	}
 	void	erase	(iterator pos)
 	{
 		tree_balance_and_erase(pos._cur_node, _head.parent);
