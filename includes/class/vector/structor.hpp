@@ -6,7 +6,7 @@
 /*   By: rgeny <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 18:07:15 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/04 17:46:27 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/23 16:42:27 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ vector	(vector const & src)
 #ifdef __DEBUG__
 CPY_CTOR
 #endif
-	this->reserve(src._capacity);
+	this->reserve(src._size);
 	this->insert(this->begin(), src.begin(), src.end());
 }
 
