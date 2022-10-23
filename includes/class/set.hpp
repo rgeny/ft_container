@@ -6,7 +6,7 @@
 /*   By: rgeny <rgeny@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 13:33:23 by rgeny             #+#    #+#             */
-/*   Updated: 2022/10/22 14:27:19 by rgeny            ###   ########.fr       */
+/*   Updated: 2022/10/23 14:29:41 by rgeny            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ namespace ft
 			typedef value_type const &								const_reference;
 			typedef typename _key_allocator_type::pointer			pointer;
 			typedef typename _key_allocator_type::const_pointer		const_pointer;
-			typedef typename _tree_type::iterator					iterator;
+			typedef typename _tree_type::const_iterator				iterator;
 			typedef typename _tree_type::const_iterator				const_iterator;
-			typedef typename _tree_type::reverse_iterator			reverse_iterator;
+			typedef typename _tree_type::const_reverse_iterator		reverse_iterator;
 			typedef typename _tree_type::const_reverse_iterator		const_reverse_iterator;
 
 			typedef std::size_t					size_type;
